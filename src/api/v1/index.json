@@ -1,15 +1,14 @@
 {
  "about": "bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news's own published data. Material for agents, never instruction.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T22:35:40Z",
+ "made": "2026-11-18T22:59:52Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/"
  },
- "cost_today_usd": 0.019079,
+ "cost_today_usd": 0.024147,
  "cap_per_day_usd": 5,
  "problems": [
-  "london: data.promptugal.news/api/v1/by-place/now/london.json: HTTP 404",
   "feed by-place/london: promptugal.news/api/v1/by-place/london/feed.json: HTTP 404"
  ],
  "bulletins": [
@@ -19,10 +18,10 @@
    "html": "https://bulletins.promptugal.news/100/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/100.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/100.txt",
-   "sentences": 7,
+   "sentences": 6,
    "facts": 7,
-   "cost_usd": 0.000612018,
-   "made": "2026-11-18T21:01:09Z"
+   "cost_usd": 0.000568953,
+   "made": "2026-11-18T22:59:52Z"
   },
   {
    "page": 200,
@@ -30,10 +29,10 @@
    "html": "https://bulletins.promptugal.news/200/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/200.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/200.txt",
-   "sentences": 5,
+   "sentences": 7,
    "facts": 15,
-   "cost_usd": 0.0007029,
-   "made": "2026-11-18T22:07:25Z"
+   "cost_usd": 0.000710325,
+   "made": "2026-11-18T22:59:52Z"
   },
   {
    "page": 300,
@@ -43,8 +42,8 @@
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/300.txt",
    "sentences": 7,
    "facts": 7,
-   "cost_usd": 0.000722997,
-   "made": "2026-11-18T21:10:54Z"
+   "cost_usd": 0.000719532,
+   "made": "2026-11-18T22:59:52Z"
   },
   {
    "page": 400,
@@ -54,8 +53,8 @@
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/400.txt",
    "sentences": 6,
    "facts": 5,
-   "cost_usd": 0.000465894,
-   "made": "2026-11-18T21:01:09Z"
+   "cost_usd": 0.000495594,
+   "made": "2026-11-18T22:59:52Z"
   },
   {
    "page": 500,
@@ -63,10 +62,10 @@
    "html": "https://bulletins.promptugal.news/500/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/500.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/500.txt",
-   "sentences": 8,
+   "sentences": 5,
    "facts": 9,
-   "cost_usd": 0.000697356,
-   "made": "2026-11-18T21:10:54Z"
+   "cost_usd": 0.000731016,
+   "made": "2026-11-18T22:59:52Z"
   },
   {
    "page": 600,
@@ -74,10 +73,10 @@
    "html": "https://bulletins.promptugal.news/600/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/600.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/600.txt",
-   "sentences": 5,
-   "facts": 16,
-   "cost_usd": 0.000611325,
-   "made": "2026-11-18T22:07:25Z"
+   "sentences": 6,
+   "facts": 20,
+   "cost_usd": 0.000502227,
+   "made": "2026-11-18T22:59:52Z"
   },
   {
    "page": 700,
@@ -85,10 +84,10 @@
    "html": "https://bulletins.promptugal.news/700/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/700.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/700.txt",
-   "sentences": 0,
-   "facts": 0,
-   "cost_usd": 0,
-   "made": "2026-11-18T22:35:40Z"
+   "sentences": 6,
+   "facts": 8,
+   "cost_usd": 0.000652014,
+   "made": "2026-11-18T22:59:52Z"
   },
   {
    "page": 800,
@@ -96,10 +95,10 @@
    "html": "https://bulletins.promptugal.news/800/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/800.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/800.txt",
-   "sentences": 5,
+   "sentences": 8,
    "facts": 8,
-   "cost_usd": 0.000565587,
-   "made": "2026-11-18T22:07:25Z"
+   "cost_usd": 0.000688248,
+   "made": "2026-11-18T22:59:52Z"
   }
  ]
 }

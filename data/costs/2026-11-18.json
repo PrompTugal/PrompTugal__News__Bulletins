@@ -286,7 +286,87 @@
    "prompt_tokens": 798,
    "completion_tokens": 983,
    "cost_usd": 0.000565587
+  },
+  {
+   "at": "2026-11-18T22:59:57.639Z",
+   "what": "script for P100",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 717,
+   "completion_tokens": 1006,
+   "cost_usd": 0.000568953
+  },
+  {
+   "at": "2026-11-18T23:00:02.361Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1350,
+   "completion_tokens": 1165,
+   "cost_usd": 0.000710325
+  },
+  {
+   "at": "2026-11-18T23:00:07.007Z",
+   "what": "script for P300",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 893,
+   "completion_tokens": 1275,
+   "cost_usd": 0.000719532
+  },
+  {
+   "at": "2026-11-18T23:00:10.357Z",
+   "what": "script for P400",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 591,
+   "completion_tokens": 883,
+   "cost_usd": 0.000495594
+  },
+  {
+   "at": "2026-11-18T23:00:15.798Z",
+   "what": "script for P500",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 894,
+   "completion_tokens": 1298,
+   "cost_usd": 0.000731016
+  },
+  {
+   "at": "2026-11-18T23:00:18.828Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1563,
+   "completion_tokens": 702,
+   "cost_usd": 0.000502227
+  },
+  {
+   "at": "2026-11-18T23:00:23.535Z",
+   "what": "script for P700",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 706,
+   "completion_tokens": 1176,
+   "cost_usd": 0.000652014
+  },
+  {
+   "at": "2026-11-18T23:00:28.144Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 792,
+   "completion_tokens": 1232,
+   "cost_usd": 0.000688248
   }
  ],
- "total_usd": 0.019079
+ "total_usd": 0.024147
 }

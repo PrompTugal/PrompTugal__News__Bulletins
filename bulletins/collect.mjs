@@ -100,7 +100,7 @@ await safe('data catalogue', async () => {
   }
   // Page 700, London (Dinis, 18 Nov 2026, about 22:20 UTC): every London or UK source the data site
   // lists, as it lands. Headline only until each source's own fields are read here.
-  for (const s of j.sources.filter((s) => s.status !== 'archived' && /london|\buk\b|-uk\b|^uk-|tfl/i.test(`${s.id} ${s.title}`))) {
+  for (const s of j.sources.filter((s) => s.status !== 'archived' && /london|^uk-|-uk$|tfl|ea-flood/i.test(s.id))) {
     add('700', { text: `${clean(s.title, 120)}, read ${s.cadence}, last at ${s.read_at.replace('T', ' ').slice(0, 16)} UTC: ${clean(s.headline, 120)}.`, source: s.latest || `${D}/`, origin: s.page, read_at: s.read_at,
       licence: { name: clean(s.terms_summary ? "the source's terms (on its card)" : "the source's terms", 60), url: s.card || s.page || null }, by: 'data.promptugal.news catalogue' });
   }
@@ -123,11 +123,11 @@ await safe('london', async () => {
   }
   const w = j.floods?.warnings;
   if (Array.isArray(w)) {
-    const by = {}; for (const x of w) { const s = clean(x.severity, 40) || 'unstated'; by[s] = (by[s] || 0) + 1; }
+    const by = new Map(); for (const x of w) { const s = clean(x.severity, 40) || 'unstated'; by.set(s, (by.get(s) || 0) + 1); }
     add('700', { ...block(j.floods), source: src, text: w.length
-      ? `The Environment Agency lists ${w.length} flood ${w.length === 1 ? 'warning or alert' : 'warnings and alerts'} for the London area (${Object.entries(by).map(([k, v]) => `${v} ${k}`).join(', ')}).`
+      ? `The Environment Agency lists ${w.length} flood ${w.length === 1 ? 'warning or alert' : 'warnings and alerts'} for the London area (${[...by.entries()].map(([k, v]) => `${v} ${k}`).join(', ')}).`
       : 'The Environment Agency lists no flood warning or alert for the London area.' });
-    for (const x of w.slice(0, 3)) add('700', { ...block(j.floods), source: src, origin: x.url || block(j.floods).origin, text: `Environment Agency, ${clean(x.severity, 40)}: ${clean(x.area, 120)}.` });
+    for (const x of w.slice(0, 3)) add('700', { ...block(j.floods), source: src, origin: x.url || block(j.floods).origin, text: `Environment Agency, ${clean(x.severity, 40) || 'severity not stated'}: ${clean(x.area, 120)}.` });
   }
 });
 

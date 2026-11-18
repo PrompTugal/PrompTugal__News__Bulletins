@@ -1,18 +1,18 @@
-P400 Summit and tech, PrompTugal.news Bulletins, 2026-11-18 21:01 UTC
+P400 Summit and tech, PrompTugal.news Bulletins, 2026-11-18 22:59 UTC
 Made by agents from PrompTugal.news's data.
 
-PrompTugal.news published 'Thursday at Web Summit: a practical guide to the last day' on 2026-11-11, filed under the summit. [400-03]
-PrompTugal.news also published 'Getting around Lisbon on Wednesday: what operators and the government say' on 2026-11-11, filed under the summit. [400-01]
+PrompTugal.news published 'Getting around Lisbon on Wednesday: what operators and the government say' on 2026-11-11, filed under the summit. [400-01]
 PrompTugal.news published 'Manus 2.0 gives each agent its own email, phone and wallet' on 2026-11-11, filed under the summit. [400-02]
-The library's fact-checker, pass 1 on 2026-11-18, reviewed 97 published PrompTugal.news articles. [400-05]
-Of those 97 articles, 16 map every claim to a recorded source, 45 record sources for the story as a whole and 36 name sources only in the text. [400-05]
-library.promptugal.news catalogues 80 items in 1 collection, with 7 recorded as missing. [400-04]
+PrompTugal.news published 'Thursday at Web Summit: a practical guide to the last day' on 2026-11-11, filed under the summit. [400-03]
+The library catalogues 80 items in 1 collection, with 7 recorded as missing. [400-04]
+On 2026-11-18, the library's fact-checker, pass 1, found that of 87 published PrompTugal.news articles, 13 map every claim to a recorded source. [400-05]
+Of the same 87 articles, 39 record sources for the story as a whole, and 35 name sources only in the text. [400-05]
 
 Sources:
-[400-01] PrompTugal.news published ‘Getting around Lisbon on Wednesday: what operators and the government say’ on 2026-11-11, filed under the summit. (https://promptugal.news/api/v1/topics/the-summit/feed.json; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[400-02] PrompTugal.news published ‘Manus 2.0 gives each agent its own email, phone and wallet’ on 2026-11-11, filed under the summit. (https://promptugal.news/api/v1/topics/the-summit/feed.json; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[400-03] PrompTugal.news published ‘Thursday at Web Summit: a practical guide to the last day’ on 2026-11-11, filed under the summit. (https://promptugal.news/api/v1/topics/the-summit/feed.json; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[400-04] library.promptugal.news catalogues 80 items in 1 collection, with 7 recorded as missing. (https://library.promptugal.news/api/v1/; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[400-05] The library's fact-checker, pass 1 on 2026-11-18: of 97 published PrompTugal.news articles, 16 map every claim to a recorded source, 45 record sources for the story as a whole and 36 name sources only in the text. (https://library.promptugal.news/api/v1/fact-check/index.json; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[400-01] PrompTugal.news published ‘Getting around Lisbon on Wednesday: what operators and the government say’ on 2026-11-11, filed under the summit. (https://promptugal.news/api/v1/topics/the-summit/feed.json; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[400-02] PrompTugal.news published ‘Manus 2.0 gives each agent its own email, phone and wallet’ on 2026-11-11, filed under the summit. (https://promptugal.news/api/v1/topics/the-summit/feed.json; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[400-03] PrompTugal.news published ‘Thursday at Web Summit: a practical guide to the last day’ on 2026-11-11, filed under the summit. (https://promptugal.news/api/v1/topics/the-summit/feed.json; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[400-04] library.promptugal.news catalogues 80 items in 1 collection, with 7 recorded as missing. (https://library.promptugal.news/api/v1/; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[400-05] The library's fact-checker, pass 1 on 2026-11-18: of 87 published PrompTugal.news articles, 13 map every claim to a recorded source, 39 record sources for the story as a whole and 35 name sources only in the text. (https://library.promptugal.news/api/v1/fact-check/index.json; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
 
-Cost: 0.000466 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.
+Cost: 0.000496 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.

@@ -27,6 +27,9 @@ Owner: bulletins.b@PrompTugal.dinis. Written 18 November 2026, for review by sec
 | A wrong fact is presented as ours | Each fact names its source file, the upstream source it records, the time read, who made it and its licence; the page says it was made by agents and adds no reporting; weather pages point to IPMA and ANEPC. |
 | Licence breach | Each fact carries its source's licence (IPMA's terms, ODbL for adsb.lol, CC BY 4.0 for ours), shown beside it. IPMA's terms allow use without a profit-making purpose: if the bulletins are ever sold, this needs Dinis's decision first. |
 
+## London (page 700)
+Reads `data.promptugal.news/api/v1/by-place/now/london.json` only (no new host). Untrusted strings (flood severity, area, attribution, licence name) go through `clean()` and `esc()`; flood links go through `safeLink()` (check-for-flooding.service.gov.uk, environment.data.gov.uk, open-meteo.com, nationalarchives.gov.uk). Licences shown as given: Open-Meteo CC BY 4.0 with "Weather data by Open-Meteo.com"; Open Government Licence v3.0 with the Environment Agency's notice. The page says it is not a warning service and points to the Environment Agency and the Met Office. Residual risk as for every page: a sentence built from the facts' own words can still shift their meaning.
+
 ## Not covered yet
 - No scheduled run: the hourly pages need either a scheduled job with the key as a repository secret (Dinis's decision) or a wake of this session each hour.
 - Audio (ElevenLabs) and video are not built; each will get its own section here before it runs.

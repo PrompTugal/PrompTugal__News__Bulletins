@@ -3,7 +3,7 @@
  "title": "Weather",
  "about": "Weather across Portugal from IPMA: warnings, forecasts, sea and fire risk.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T21:10:54Z",
+ "made": "2026-11-18T22:59:52Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,67 +11,60 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-18T21:11:11.173Z",
-  "facts_sha256": "70f290f7b2a95d69c5e3860ba0abed2e",
+  "written": "2026-11-18T23:00:15.799Z",
+  "facts_sha256": "ae15745a76b8674840fdd02b22e05d4d",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000697356,
+  "cost_usd": 0.000731016,
   "tokens": {
    "prompt": 894,
-   "completion": 1230
+   "completion": 1298
   },
   "note": null,
   "sentences": [
    {
-    "text": "IPMA lists 27 active weather warnings in 25 areas of Portugal, of which 7 are orange and 20 are yellow.",
+    "text": "IPMA lists 19 active weather warnings in 25 areas of Portugal, 7 orange and 12 yellow.",
     "facts": [
      "500-06"
     ]
    },
    {
-    "text": "Orange or red IPMA warnings are active for rough sea in Aveiro, Braga, Coimbra, Leiria, Lisboa, Porto and Viana do Castelo.",
+    "text": "Orange or red warnings for rough sea are active in Aveiro, Braga, Coimbra, Leiria, Lisboa, Porto and Viana do Castelo.",
     "facts": [
      "500-07"
     ]
    },
    {
-    "text": "The IPMA forecast for Lisboa today, 2026-11-18, is a minimum of 15.9 °C and a maximum of 20.9 °C, with a 100% chance of rain and moderate wind from the W.",
-    "facts": [
-     "500-01"
-    ]
-   },
-   {
-    "text": "The IPMA forecast for Porto today, 2026-11-18, is a minimum of 13.7 °C and a maximum of 18.2 °C, with a 100% chance of rain and moderate wind from the SW.",
-    "facts": [
-     "500-02"
-    ]
-   },
-   {
-    "text": "In Faro, the IPMA forecast for today is a minimum of 19.8 °C and a maximum of 22.4 °C, with a 100% chance of rain and moderate wind from the W.",
-    "facts": [
-     "500-03"
-    ]
-   },
-   {
-    "text": "Coimbra has a forecast minimum of 13.7 °C and maximum of 18.3 °C, and Évora a minimum of 15.8 °C and maximum of 21 °C, both with a 100% chance of rain today.",
-    "facts": [
-     "500-04",
-     "500-05"
-    ]
-   },
-   {
-    "text": "The IPMA sea forecast for the Porto coast on 2026-11-19 gives waves of 3.7 to 5.1 metres from the NW and a sea temperature of 16.7 to 16.8 °C.",
+    "text": "IPMA forecasts waves of 3.7 to 5.1 metres from NW on the Porto coast on 2026-11-19, with sea temperature 16.7 to 16.8 °C.",
     "facts": [
      "500-08"
     ]
    },
    {
-    "text": "IPMA lists the fire risk today as low for all 278 of Portugal's municipalities.",
+    "text": "IPMA forecasts a chance of rain of 100% today, 2026-11-18, in Lisboa, Porto, Faro, Coimbra and Évora.",
+    "facts": [
+     "500-01",
+     "500-02",
+     "500-03",
+     "500-04",
+     "500-05"
+    ]
+   },
+   {
+    "text": "Fire risk today is low in all 278 of Portugal's municipalities.",
     "facts": [
      "500-09"
     ]
    }
   ],
-  "dropped": []
+  "dropped": [
+   {
+    "text": "Faro has the highest forecast maximum of the five cities at 22.4 °C, with a minimum of 19.8 °C.",
+    "facts": [
+     "500-03"
+    ],
+    "why": "too many words not in its cited facts (highest, cities)"
+   }
+  ]
  },
  "facts": [
   {
@@ -79,7 +72,7 @@
    "text": "IPMA forecast for Lisboa today (2026-11-18): minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-   "read_at": "2026-11-18T21:05:30Z",
+   "read_at": "2026-11-18T22:55:52Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -91,7 +84,7 @@
    "text": "IPMA forecast for Porto today (2026-11-18): minimum 13.7 °C, maximum 18.2 °C, chance of rain 100%, wind moderate from SW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1131200.json",
-   "read_at": "2026-11-18T21:05:35Z",
+   "read_at": "2026-11-18T22:55:57Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -103,7 +96,7 @@
    "text": "IPMA forecast for Faro today (2026-11-18): minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-   "read_at": "2026-11-18T21:05:13Z",
+   "read_at": "2026-11-18T22:55:34Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -115,7 +108,7 @@
    "text": "IPMA forecast for Coimbra today (2026-11-18): minimum 13.7 °C, maximum 18.3 °C, chance of rain 100%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1060300.json",
-   "read_at": "2026-11-18T21:05:08Z",
+   "read_at": "2026-11-18T22:55:29Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -127,7 +120,7 @@
    "text": "IPMA forecast for Évora today (2026-11-18): minimum 15.8 °C, maximum 21 °C, chance of rain 100%, wind moderate from SW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1070500.json",
-   "read_at": "2026-11-18T21:05:10Z",
+   "read_at": "2026-11-18T22:55:32Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -136,10 +129,10 @@
   },
   {
    "id": "500-06",
-   "text": "IPMA lists 27 active weather warnings in 25 areas of Portugal (7 orange, 20 yellow).",
+   "text": "IPMA lists 19 active weather warnings in 25 areas of Portugal (7 orange, 12 yellow).",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-   "read_at": "2026-11-18T21:06:43Z",
+   "read_at": "2026-11-18T22:57:04Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -151,7 +144,7 @@
    "text": "Orange or red IPMA warnings are active for rough sea in Aveiro; rough sea in Braga; rough sea in Coimbra; rough sea in Leiria; rough sea in Lisboa; rough sea in Porto; rough sea in Viana do Castelo.",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-   "read_at": "2026-11-18T21:06:43Z",
+   "read_at": "2026-11-18T22:57:04Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -163,7 +156,7 @@
    "text": "IPMA sea forecast for the Porto coast on 2026-11-19: waves of 3.7 to 5.1 metres from NW, sea temperature 16.7 to 16.8 °C.",
    "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-   "read_at": "2026-11-18T21:06:30Z",
+   "read_at": "2026-11-18T22:56:52Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -175,7 +168,7 @@
    "text": "IPMA fire risk today for Portugal's 278 municipalities: 278 at low.",
    "source": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/rcm/rcm-d0.json",
-   "read_at": "2026-11-18T21:06:18Z",
+   "read_at": "2026-11-18T22:56:39Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"

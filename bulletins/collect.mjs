@@ -111,7 +111,7 @@ await safe('data catalogue', async () => {
 // Environment Agency's flood warnings (Open Government Licence). Not a warning service.
 await safe('london', async () => {
   const j = await getJSON(`${D}/by-place/now/london.json`);
-  const block = (b) => ({ origin: b?.source || b?.provenance?.source, read_at: b?.read_at || b?.provenance?.read_at || j.read_at,
+  const block = (b) => ({ origin: b?.source || b?.provenance?.source, read_at: b?.at || b?.read_at || b?.provenance?.read_at || j.read_at,
     licence: { name: clean([b?.license?.name || b?.licence?.name || b?.licence || "the source's terms", b?.attribution || b?.credit].filter((x) => typeof x === 'string' && x).join('; '), 160), url: b?.license?.url || b?.licence?.url || null },
     by: clean(b?.provenance?.by || b?.by || 'data.promptugal.news', 160) });
   const src = `${D}/by-place/now/london.json`;

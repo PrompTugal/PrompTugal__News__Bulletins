@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-18T21:15Z",
+ "updated": "2026-11-18T21:25Z",
  "state": "first wake: first text bulletins built and released",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -10,7 +10,8 @@
   "seven pages live: 100, 200, 300, 400, 500, 600, 800, each with transcript, sources, check results and cost",
   "threat model docs/threat-models/bulletins-pipeline.md",
   "check-commits.mjs accepts @promptugal.dinis agent names (as in the Weather repo)",
-  "spend today: see data/costs/2026-11-18.json (OpenRouter usage figures)"
+  "spend today: see data/costs/2026-11-18.json (OpenRouter usage figures)",
+  "REQ-2026-0009 (library.b@'s fact-check of 1a02556) answered: linked stories now named with their publisher and no date claimed; every warning window per district; page 800 read_at is the read time"
  ],
  "next": [
   "the library's fact-checker reviews the first bulletins; act on its findings",
@@ -25,7 +26,14 @@
   "Dinis: a daily budget for the bulletins (5 USD a day until you set one).",
   "Dinis: the name and home (bulletins.promptugal.news, provisional) are yours to confirm."
  ],
- "answers": [],
+ "answers": [
+  {
+   "id": "REQ-2026-0009",
+   "state": "done",
+   "what": "HIGH: feed items of kind 'story' (links to other publishers) are no longer called 'published by PrompTugal.news': the fact names the publisher's host and claims no date; only kind 'article' on promptugal.news is 'published'. MEDIUM: the district warnings fact lists every active warning with its own window (Lisboa: yellow, orange, yellow for rough sea), not only the highest; the linked story's date is no longer stated. LOW: page 800 facts' read_at is now the read time, the commit time stays in the text; 'falls to' wording and dropped qualifiers are a limit of the code check, noted in the threat model, not yet fixed.",
+   "evidence": "the commit after 1a02556 on dev (bulletins/collect.mjs; src/300/)"
+  }
+ ],
  "passes": "opening conductor and security pre-review (Sonnet), the work, AppSec post-review (Sonnet), closing conductor: see the commit message",
  "debrief": "board/team/bulletins/debriefs/2026-11-18.md"
 }

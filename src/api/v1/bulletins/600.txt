@@ -1,27 +1,28 @@
-P600 Data, PrompTugal.news Bulletins, 2026-11-18 21:01 UTC
+P600 Data, PrompTugal.news Bulletins, 2026-11-18 21:10 UTC
 Made by agents from PrompTugal.news's data.
 
-data.promptugal.news lists 14 sources: 11 read without problems at their last run, 2 partly failed and 1 is archived. [600-01]
-IPMA weather warnings show 27 active warnings in 25 areas. [600-12]
-The MeteoAlarm CAP feed for Portugal lists 67 messages, of which 27 have not expired. [600-13]
-IPMA station observations show 162 of 227 stations reporting. [600-09]
-Events in Portugal, by place, show 141 events, and this source partly failed at its last run at 2026-11-18 19:14 UTC. [600-05]
-Social signals show 147 organisation posts, and this source partly failed at its last run at 2026-11-18 19:17 UTC. [600-14]
+The data.promptugal.news page lists 15 sources: 12 read without problems at their last run, 2 partly failed and 1 is archived. [600-01]
+Two sources partly failed: events in Portugal by place, with 141 events, and social signals, with 147 posts. [600-06, 600-15]
+Public contracts from Portal BASE stood at 1514 contracts at the last read, at 2026-11-18 21:03 UTC, with status ok. [600-03]
+IPMA weather warnings showed 27 active warnings in 25 areas at the last read, at 2026-11-18 21:06 UTC. [600-13]
+171 of 227 IPMA stations were reporting observations at the last read, at 2026-11-18 21:06 UTC. [600-10]
+The CISA KEV list held 1786 known exploited vulnerabilities at the last read, at 2026-11-18 21:03 UTC, with status ok. [600-05]
 
 Sources:
-[600-01] data.promptugal.news lists 14 sources: 11 read without problems at their last run, 2 partly failed, 1 archived. (https://data.promptugal.news/api/v1/; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-02] Flights around Faro airport, read hourly, last at 2026-11-18 20:29 UTC: 4 airline flights, 0 other aircraft; status ok. (https://data.promptugal.news/api/v1/adsb-faro/latest.json; read 2026-11-18 20:29 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-03] Public contracts (Portal BASE), read every 6 hours, last at 2026-11-18 19:14 UTC: 1514 contracts; status ok. (https://data.promptugal.news/api/v1/base-gov-pt/latest.json; read 2026-11-18 19:14 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-04] Public live cameras: where they are and whether they are up, read hourly, last at 2026-11-18 20:29 UTC: 22 cameras; status ok. (https://data.promptugal.news/api/v1/cams/latest.json; read 2026-11-18 20:29 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-05] Events in Portugal, by place, read every 6 hours, last at 2026-11-18 19:14 UTC: 141 events; status partly failed. (https://data.promptugal.news/api/v1/events-pt/latest.json; read 2026-11-18 19:14 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-06] Code from Portuguese organisations on GitHub, read every 6 hours, last at 2026-11-18 19:14 UTC: 21 orgs; status ok. (https://data.promptugal.news/api/v1/github-pt/latest.json; read 2026-11-18 19:14 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-07] IPMA daily forecasts by place, read hourly, last at 2026-11-18 20:29 UTC: 35 places; status ok. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 20:29 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-08] IPMA fire risk, read hourly, last at 2026-11-18 20:31 UTC: 278 municipalities; status ok. (https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json; read 2026-11-18 20:31 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-09] IPMA station observations, read hourly, last at 2026-11-18 20:31 UTC: 162 of 227 stations reporting; status ok. (https://data.promptugal.news/api/v1/ipma-observations/latest.json; read 2026-11-18 20:31 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-10] IPMA sea forecast, read hourly, last at 2026-11-18 20:31 UTC: 12 coastal places; status ok. (https://data.promptugal.news/api/v1/ipma-sea/latest.json; read 2026-11-18 20:31 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-11] IPMA UV index, read hourly, last at 2026-11-18 20:31 UTC: 28 places; status ok. (https://data.promptugal.news/api/v1/ipma-uv/latest.json; read 2026-11-18 20:31 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-12] IPMA weather warnings, read hourly, last at 2026-11-18 20:31 UTC: 27 active warnings in 25 areas; status ok. (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-18 20:31 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-13] MeteoAlarm CAP feed for Portugal, read hourly, last at 2026-11-18 20:31 UTC: 67 messages, 27 not expired; status ok. (https://data.promptugal.news/api/v1/meteoalarm-pt/latest.json; read 2026-11-18 20:31 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[600-14] Social signals: organisations' public posts, by link, read every 6 hours, last at 2026-11-18 19:17 UTC: 147 posts; status partly failed. (https://data.promptugal.news/api/v1/social/latest.json; read 2026-11-18 19:17 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-01] data.promptugal.news lists 15 sources: 12 read without problems at their last run, 2 partly failed, 1 archived. (https://data.promptugal.news/api/v1/; read 2026-11-18 21:10 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-02] Flights around Faro airport, read hourly, last at 2026-11-18 21:03 UTC: 3 airline flights, 0 other aircraft; status ok. (https://data.promptugal.news/api/v1/adsb-faro/latest.json; read 2026-11-18 21:03 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-03] Public contracts (Portal BASE), read every 6 hours, last at 2026-11-18 21:03 UTC: 1514 contracts; status ok. (https://data.promptugal.news/api/v1/base-gov-pt/latest.json; read 2026-11-18 21:03 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-04] Public live cameras: where they are and whether they are up, read hourly, last at 2026-11-18 21:03 UTC: 22 cameras; status ok. (https://data.promptugal.news/api/v1/cams/latest.json; read 2026-11-18 21:03 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-05] Known exploited vulnerabilities (CISA KEV), read every 6 hours, last at 2026-11-18 21:03 UTC: 1786 vulnerabilities; status ok. (https://data.promptugal.news/api/v1/cisa-kev/latest.json; read 2026-11-18 21:03 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-06] Events in Portugal, by place, read every 6 hours, last at 2026-11-18 21:03 UTC: 141 events; status partly failed. (https://data.promptugal.news/api/v1/events-pt/latest.json; read 2026-11-18 21:03 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-07] Code from Portuguese organisations on GitHub, read every 6 hours, last at 2026-11-18 21:03 UTC: 21 orgs; status ok. (https://data.promptugal.news/api/v1/github-pt/latest.json; read 2026-11-18 21:03 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-08] IPMA daily forecasts by place, read hourly, last at 2026-11-18 21:04 UTC: 35 places; status ok. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:04 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-09] IPMA fire risk, read hourly, last at 2026-11-18 21:06 UTC: 278 municipalities; status ok. (https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json; read 2026-11-18 21:06 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-10] IPMA station observations, read hourly, last at 2026-11-18 21:06 UTC: 171 of 227 stations reporting; status ok. (https://data.promptugal.news/api/v1/ipma-observations/latest.json; read 2026-11-18 21:06 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-11] IPMA sea forecast, read hourly, last at 2026-11-18 21:06 UTC: 12 coastal places; status ok. (https://data.promptugal.news/api/v1/ipma-sea/latest.json; read 2026-11-18 21:06 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-12] IPMA UV index, read hourly, last at 2026-11-18 21:06 UTC: 28 places; status ok. (https://data.promptugal.news/api/v1/ipma-uv/latest.json; read 2026-11-18 21:06 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-13] IPMA weather warnings, read hourly, last at 2026-11-18 21:06 UTC: 27 active warnings in 25 areas; status ok. (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-18 21:06 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-14] MeteoAlarm CAP feed for Portugal, read hourly, last at 2026-11-18 21:06 UTC: 67 messages, 19 not expired; status ok. (https://data.promptugal.news/api/v1/meteoalarm-pt/latest.json; read 2026-11-18 21:06 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[600-15] Social signals: organisations' public posts, by link, read every 6 hours, last at 2026-11-18 21:06 UTC: 147 posts; status partly failed. (https://data.promptugal.news/api/v1/social/latest.json; read 2026-11-18 21:06 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
 
-Cost: 0.000422 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.
+Cost: 0.000531 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.

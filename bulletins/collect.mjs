@@ -58,7 +58,8 @@ await safe('ipma-warnings', async () => {
   const orange = [...by.values()].filter((a) => a.level === 'orange' || a.level === 'red');
   if (orange.length) add('500', { ...base, text: `Orange or red IPMA warnings are active for ${[...new Set(orange.map((a) => `${a.type} in ${a.area_name}`))].join('; ')}.` });
   for (const [page, area] of [['200', 'Faro'], ['300', 'Lisboa']]) {
-    const here = [...by.values()].filter((a) => a.area_name === area);
+    // Every active warning for the district, each with its own window (not only the highest level).
+    const here = j.active.filter((a) => a.area_name === area).sort((a, b) => a.start.localeCompare(b.start));
     add(page, { ...base, text: here.length
       ? `IPMA warnings for the ${area} district: ${here.map((a) => `${a.level} for ${a.type}, from ${a.start.replace('T', ' ').slice(0, 16)} to ${a.end.replace('T', ' ').slice(0, 16)} local time`).join('; ')}.`
       : `IPMA lists no active warning for the ${area} district.` });
@@ -104,8 +105,17 @@ for (const [page, feed, label] of [['100', 'by-place/portugal', 'Portugal'], ['2
   await safe(`feed ${feed}`, async () => {
     const j = await getJSON(`${P}/${feed}/feed.json`);
     const items = [...j.items].filter((i) => i.date_published).sort((a, b) => b.date_published.localeCompare(a.date_published)).slice(0, 3);
-    for (const i of items) add(page, { text: `PrompTugal.news published ‘${clean(i.title, 160).replace(/[‘’]/g, "'")}’ on ${day(i.date_published)}, filed under ${label}.`, source: `${P}/${feed}/feed.json`, origin: i.url, read_at: now,
-      licence: i._license?.url ? { name: clean(i._license.name || 'CC BY 4.0', 60), url: i._license.url } : CC, by: 'promptugal.news JSON Feed' });
+    // Our own articles are "published" by PrompTugal.news; a linked story belongs to its publisher
+    // (library.b@'s REQ-2026-0009): it is named by its host and no date is claimed for it.
+    for (const i of items) {
+      const title = clean(i.title, 160).replace(/[\u2018\u2019]/g, "'");
+      let host = ''; try { host = new URL(i.url).hostname.replace(/^www\./, ''); } catch { /* no url */ }
+      const ours = (i._promptugal?.kind === 'article') && host === 'promptugal.news';
+      add(page, { text: ours ? `PrompTugal.news published \u2018${title}\u2019 on ${day(i.date_published)}, filed under ${label}.`
+        : `PrompTugal.news's ${label} feed links to \u2018${title}\u2019, a story published by ${clean(host, 60) || 'another publisher'}, not by PrompTugal.news.`,
+        source: `${P}/${feed}/feed.json`, origin: i.url, read_at: now,
+        licence: ours ? (i._license?.url ? { name: clean(i._license.name || 'CC BY 4.0', 60), url: i._license.url } : CC) : { name: "the publisher's terms (linked, not copied)", url: i.url }, by: 'promptugal.news JSON Feed' });
+    }
   });
 }
 
@@ -138,7 +148,7 @@ if (M && existsSync(join(M, '.git'))) {
     const latest = log.slice(0, 40).map((l) => l.split('\t')).filter(([, s]) => s && !/^site v\d/.test(s)).slice(0, 4);
     // Role and time only: a subject's free text could name a person or a customer, so it is not published.
     for (const [t, s] of latest) { const m = s.match(/^([a-z0-9.-]+@PrompTugal\.dinis)\b/i);
-      add('800', { text: `At ${t.slice(11, 16)} UTC, ${m ? m[1] : 'an agent'} committed work to the main repository.`, source: src, read_at: t, licence: CC, by: `git log of PrompTugal__News__Website dev at ${head}` }); }
+      add('800', { text: `At ${t.slice(11, 16)} UTC on ${day(t)}, ${m ? m[1] : 'an agent'} committed work to the main repository.`, source: src, read_at: now, licence: CC, by: `git log of PrompTugal__News__Website dev at ${head}` }); }
     // Status files: agent, state and updated only.
     const team = join(M, 'board', 'team'); let n = 0, recent = 0;
     for (const r of readdirSync(team)) { const p = join(team, r, 'status.json'); if (!existsSync(p)) continue;

@@ -8,7 +8,7 @@
   - The pipeline in `bulletins/` (collect, write, check, render), run by hand at a wake: `MAIN_REPO=<clone of PrompTugal__News__Website> node bulletins/run.mjs`. It is not hourly yet: no scheduled job exists.
   - Model: anthropic/claude-haiku-5.5 through OpenRouter. Spend is in `data/costs/<day>.json`, from OpenRouter's own usage figures. Cap: 5 USD a day across models until Dinis sets one.
   - No audio, no video. No ElevenLabs key yet. No byline: every page says "Made by agents from PrompTugal.news's data".
-  - The library's fact-checker has not yet reviewed a bulletin (asked on 18 November).
+  - The library's fact-checker reviewed the first bulletins (REQ-2026-0009, 18 November): one high error on page 300 (other publishers' stories called ours), fixed the same evening.
   - bulletins.b@'s key pair (sgit pki keygen), public bundle in `team/keys.json`. Commits are not yet signed with it.
   - `scripts/check-commits.mjs` accepts `@promptugal.dinis` agent names as well as `@agenticcells.*`, as in PrompTugal__News__Weather.
   - Threat model: `docs/threat-models/bulletins-pipeline.md`, not yet reviewed by security@.

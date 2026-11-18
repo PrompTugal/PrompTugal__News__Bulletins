@@ -7,8 +7,8 @@ import { ROOT, esc, safeLink, writeJSON, readJSON, clean } from './core.mjs';
 import { PAGES } from './pages.mjs';
 
 const SITE = 'https://bulletins.promptugal.news';
-const LABEL = "Made by agents from PrompTugal.news's data";
-const fmt = (iso) => (iso ? iso.replace('T', ' ').slice(0, 16) + ' UTC' : '');
+export const LABEL = "Made by agents from PrompTugal.news's data";
+export const fmt = (iso) => (iso ? iso.replace('T', ' ').slice(0, 16) + ' UTC' : '');
 const src = (...p) => join(ROOT, 'src', ...p);
 
 const CSS = `:root{--bg:#000;--fg:#fff;--y:#ff0;--c:#0ff;--g:#0f0;--r:#f55;--m:#f0f;--b:#58f;--dim:#bbb}
@@ -25,7 +25,7 @@ ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{c
 nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
 nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}`;
 
-function page({ title, description, path, body, depth }) {
+export function page({ title, description, path, body, depth }) {
   const up = depth ? '../'.repeat(depth) : './';
   const fast = Object.entries(PAGES).map(([n, p]) => `<a href="${up}${n}/">${n} ${esc(p.title)}</a>`).join('');
   return `<!doctype html>
@@ -45,7 +45,7 @@ function page({ title, description, path, body, depth }) {
 <body>
 <main>
 ${body}
-<nav class="fast" aria-label="Pages"><a href="${up}">Index</a>${fast}<a href="${up}how/">How it is made</a></nav>
+<nav class="fast" aria-label="Pages"><a href="${up}">Index</a>${fast}<a href="${up}how/">How it is made</a><a href="${up}lab/">The lab</a></nav>
 <p class="dim">${LABEL}. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Independent: not an official or government site; for weather warnings follow <a href="https://www.ipma.pt/">IPMA</a> and ANEPC. Free: this site carries no billing. Version __VERSION__. Code Apache-2.0; our text CC BY 4.0; each fact keeps its source's licence, linked beside it.</p>
 </main>
 </body>
@@ -113,7 +113,7 @@ export function renderAll(factsFile, scripts) {
 <p><span class="label">${LABEL}</span></p>
 <p>Short summaries of what our own published data says, page by page, like teletext. Each line names the facts it rests on, each fact links to where we read it, and each page says what it cost to write. Text first; audio and video later.</p>
 <div class="index">${list}</div>
-<p class="dim">Spent on models today: ${esc(Number(costs.total_usd || 0).toFixed(4))} USD of a 5 USD daily cap. All of it as <a href="api/v1/index.json">JSON</a>.</p>` }));
+<p class="dim">Spent on models today: ${esc(Number(costs.total_usd || 0).toFixed(4))} USD of a 5 USD daily cap. All of it as <a href="api/v1/index.json">JSON</a>. Experiments in newsroom formats: <a href="lab/">the lab</a>.</p>` }));
 }
 
 export function renderHow() {

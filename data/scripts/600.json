@@ -1,7 +1,7 @@
 {
  "page": "600",
- "facts_sha256": "f26b1c95f095e004fa2f9d6df1e5ab01",
- "facts_made": "2026-11-18T22:59:52Z",
+ "facts_sha256": "afc385c423583ccb2166562eb30c85df",
+ "facts_made": "2026-11-18T23:44:34Z",
  "model": "anthropic/claude-haiku-5.5",
  "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
  "facts": [
@@ -10,7 +10,7 @@
    "text": "data.promptugal.news lists 20 sources: 17 read without problems at their last run, 2 partly failed, 1 archived.",
    "source": "https://data.promptugal.news/api/v1/",
    "origin": "https://data.promptugal.news/api/v1/",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-18T23:44:34Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -19,10 +19,10 @@
   },
   {
    "id": "600-02",
-   "text": "Flights around Faro airport, read hourly, last at 2026-11-18 22:51 UTC: 1 airline flights, 0 other aircraft; status ok.",
+   "text": "Flights around Faro airport, read hourly, last at 2026-11-18 23:33 UTC: 0 airline flights, 0 other aircraft; status ok.",
    "source": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
    "origin": "https://data.promptugal.news/sources/adsb-faro/",
-   "read_at": "2026-11-18T22:51:48Z",
+   "read_at": "2026-11-18T23:33:38Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -31,10 +31,10 @@
   },
   {
    "id": "600-03",
-   "text": "Public contracts (Portal BASE), read every 6 hours, last at 2026-11-18 22:51 UTC: 1514 contracts; status ok.",
+   "text": "Public contracts (Portal BASE), read every 6 hours, last at 2026-11-18 23:33 UTC: 1514 contracts; status ok.",
    "source": "https://data.promptugal.news/api/v1/base-gov-pt/latest.json",
    "origin": "https://data.promptugal.news/sources/base-gov-pt/",
-   "read_at": "2026-11-18T22:51:48Z",
+   "read_at": "2026-11-18T23:33:39Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -43,10 +43,10 @@
   },
   {
    "id": "600-04",
-   "text": "Public live cameras: where they are and whether they are up, read hourly, last at 2026-11-18 22:51 UTC: 3 cameras; status ok.",
+   "text": "Public live cameras: where they are and whether they are up, read hourly, last at 2026-11-18 23:33 UTC: 3 cameras; status ok.",
    "source": "https://data.promptugal.news/api/v1/cams/latest.json",
    "origin": "https://data.promptugal.news/sources/cams/",
-   "read_at": "2026-11-18T22:51:51Z",
+   "read_at": "2026-11-18T23:33:41Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -55,10 +55,10 @@
   },
   {
    "id": "600-05",
-   "text": "Known exploited vulnerabilities (CISA KEV), read every 6 hours, last at 2026-11-18 22:51 UTC: 1786 vulnerabilities; status ok.",
+   "text": "Known exploited vulnerabilities (CISA KEV), read every 6 hours, last at 2026-11-18 23:33 UTC: 1786 vulnerabilities; status ok.",
    "source": "https://data.promptugal.news/api/v1/cisa-kev/latest.json",
    "origin": "https://data.promptugal.news/sources/cisa-kev/",
-   "read_at": "2026-11-18T22:51:56Z",
+   "read_at": "2026-11-18T23:33:46Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -67,10 +67,10 @@
   },
   {
    "id": "600-06",
-   "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-18 22:51 UTC: 2 warnings, 10 stations, 10 rain gauges; status ok.",
+   "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-18 23:33 UTC: 2 warnings, 10 stations, 10 rain gauges; status ok.",
    "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
    "origin": "https://data.promptugal.news/sources/ea-flood/",
-   "read_at": "2026-11-18T22:51:58Z",
+   "read_at": "2026-11-18T23:33:49Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -79,10 +79,10 @@
   },
   {
    "id": "600-07",
-   "text": "Tourist nights by where guests live: Portugal, Algarve, Lisbon, London (Eurostat), read every 6 hours, last at 2026-11-18 22:52 UTC: 280 rows; status ok.",
+   "text": "Tourist nights by where guests live: Portugal, Algarve, Lisbon, London (Eurostat), read every 6 hours, last at 2026-11-18 23:35 UTC: 280 rows; status ok.",
    "source": "https://data.promptugal.news/api/v1/eurostat-tourism/latest.json",
    "origin": "https://data.promptugal.news/sources/eurostat-tourism/",
-   "read_at": "2026-11-18T22:52:55Z",
+   "read_at": "2026-11-18T23:35:27Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -91,10 +91,10 @@
   },
   {
    "id": "600-08",
-   "text": "Events in Portugal, by place, read every 6 hours, last at 2026-11-18 22:53 UTC: 141 events; status partly failed.",
+   "text": "Events in Portugal, by place, read every 6 hours, last at 2026-11-18 23:35 UTC: 141 events; status partly failed.",
    "source": "https://data.promptugal.news/api/v1/events-pt/latest.json",
    "origin": "https://data.promptugal.news/sources/events-pt/",
-   "read_at": "2026-11-18T22:53:03Z",
+   "read_at": "2026-11-18T23:35:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -103,10 +103,10 @@
   },
   {
    "id": "600-09",
-   "text": "Code from Portuguese organisations on GitHub, read every 6 hours, last at 2026-11-18 22:53 UTC: 21 orgs; status ok.",
+   "text": "Code from Portuguese organisations on GitHub, read every 6 hours, last at 2026-11-18 23:35 UTC: 21 orgs; status ok.",
    "source": "https://data.promptugal.news/api/v1/github-pt/latest.json",
    "origin": "https://data.promptugal.news/sources/github-pt/",
-   "read_at": "2026-11-18T22:53:28Z",
+   "read_at": "2026-11-18T23:35:57Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -115,10 +115,10 @@
   },
   {
    "id": "600-10",
-   "text": "IPMA daily forecasts by place, read hourly, last at 2026-11-18 22:55 UTC: 35 places; status ok.",
+   "text": "IPMA daily forecasts by place, read hourly, last at 2026-11-18 23:38 UTC: 35 places; status ok.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://data.promptugal.news/sources/ipma-city-forecasts/",
-   "read_at": "2026-11-18T22:55:09Z",
+   "read_at": "2026-11-18T23:38:49Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -127,10 +127,10 @@
   },
   {
    "id": "600-11",
-   "text": "IPMA fire risk, read hourly, last at 2026-11-18 22:56 UTC: 278 municipalities; status ok.",
+   "text": "IPMA fire risk, read hourly, last at 2026-11-18 23:40 UTC: 278 municipalities; status ok.",
    "source": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
    "origin": "https://data.promptugal.news/sources/ipma-fire-risk/",
-   "read_at": "2026-11-18T22:56:39Z",
+   "read_at": "2026-11-18T23:40:19Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -139,10 +139,10 @@
   },
   {
    "id": "600-12",
-   "text": "IPMA station observations, read hourly, last at 2026-11-18 22:56 UTC: 169 of 227 stations reporting; status ok.",
+   "text": "IPMA station observations, read hourly, last at 2026-11-18 23:40 UTC: 170 of 227 stations reporting; status ok.",
    "source": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
    "origin": "https://data.promptugal.news/sources/ipma-observations/",
-   "read_at": "2026-11-18T22:56:47Z",
+   "read_at": "2026-11-18T23:40:27Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -151,10 +151,10 @@
   },
   {
    "id": "600-13",
-   "text": "IPMA sea forecast, read hourly, last at 2026-11-18 22:56 UTC: 12 coastal places; status ok.",
+   "text": "IPMA sea forecast, read hourly, last at 2026-11-18 23:40 UTC: 12 coastal places; status ok.",
    "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
    "origin": "https://data.promptugal.news/sources/ipma-sea/",
-   "read_at": "2026-11-18T22:56:52Z",
+   "read_at": "2026-11-18T23:40:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -163,10 +163,10 @@
   },
   {
    "id": "600-14",
-   "text": "IPMA UV index, read hourly, last at 2026-11-18 22:57 UTC: 28 places; status ok.",
+   "text": "IPMA UV index, read hourly, last at 2026-11-18 23:40 UTC: 28 places; status ok.",
    "source": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
    "origin": "https://data.promptugal.news/sources/ipma-uv/",
-   "read_at": "2026-11-18T22:57:02Z",
+   "read_at": "2026-11-18T23:40:42Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -175,10 +175,10 @@
   },
   {
    "id": "600-15",
-   "text": "IPMA weather warnings, read hourly, last at 2026-11-18 22:57 UTC: 19 active warnings in 25 areas; status ok.",
+   "text": "IPMA weather warnings, read hourly, last at 2026-11-18 23:40 UTC: 19 active warnings in 25 areas; status ok.",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://data.promptugal.news/sources/ipma-warnings/",
-   "read_at": "2026-11-18T22:57:04Z",
+   "read_at": "2026-11-18T23:40:44Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -187,10 +187,10 @@
   },
   {
    "id": "600-16",
-   "text": "MeteoAlarm CAP feed for Portugal, read hourly, last at 2026-11-18 22:57 UTC: 67 messages, 19 not expired; status ok.",
+   "text": "MeteoAlarm CAP feed for Portugal, read hourly, last at 2026-11-18 23:40 UTC: 67 messages, 19 not expired; status ok.",
    "source": "https://data.promptugal.news/api/v1/meteoalarm-pt/latest.json",
    "origin": "https://data.promptugal.news/sources/meteoalarm-pt/",
-   "read_at": "2026-11-18T22:57:07Z",
+   "read_at": "2026-11-18T23:40:47Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -199,10 +199,10 @@
   },
   {
    "id": "600-17",
-   "text": "CVEs published or modified in the last 24 hours (NVD), read every 6 hours, last at 2026-11-18 22:57 UTC: 1863 cves in window; status ok.",
+   "text": "CVEs published or modified in the last 24 hours (NVD), read every 6 hours, last at 2026-11-18 23:40 UTC: 1810 cves in window; status ok.",
    "source": "https://data.promptugal.news/api/v1/nvd-cve/latest.json",
    "origin": "https://data.promptugal.news/sources/nvd-cve/",
-   "read_at": "2026-11-18T22:57:10Z",
+   "read_at": "2026-11-18T23:40:50Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -211,10 +211,10 @@
   },
   {
    "id": "600-18",
-   "text": "London forecast (Open-Meteo), read every 6 hours, last at 2026-11-18 22:57 UTC: 72 hourly; status ok.",
+   "text": "London forecast (Open-Meteo), read every 6 hours, last at 2026-11-18 23:41 UTC: 72 hourly; status ok.",
    "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
    "origin": "https://data.promptugal.news/sources/open-meteo-london/",
-   "read_at": "2026-11-18T22:57:24Z",
+   "read_at": "2026-11-18T23:41:04Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -223,10 +223,10 @@
   },
   {
    "id": "600-19",
-   "text": "Social signals: organisations' public posts, by link, read every 6 hours, last at 2026-11-18 22:57 UTC: 147 posts; status partly failed.",
+   "text": "Social signals: organisations' public posts, by link, read every 6 hours, last at 2026-11-18 23:41 UTC: 147 posts; status partly failed.",
    "source": "https://data.promptugal.news/api/v1/social/latest.json",
    "origin": "https://data.promptugal.news/sources/social/",
-   "read_at": "2026-11-18T22:57:26Z",
+   "read_at": "2026-11-18T23:41:06Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -235,10 +235,10 @@
   },
   {
    "id": "600-20",
-   "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-18 22:57 UTC: 889 cameras; status ok.",
+   "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-18 23:41 UTC: 889 cameras; status ok.",
    "source": "https://data.promptugal.news/api/v1/tfl-jamcams/latest.json",
    "origin": "https://data.promptugal.news/sources/tfl-jamcams/",
-   "read_at": "2026-11-18T22:57:51Z",
+   "read_at": "2026-11-18T23:41:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -246,22 +246,28 @@
    "by": "data.promptugal.news catalogue"
   }
  ],
- "written": "2026-11-18T23:00:18.829Z",
+ "written": "2026-11-18T23:44:44.398Z",
  "kept": [
   {
-   "text": "data.promptugal.news lists 20 sources: 17 read without problems at their last run, 2 partly failed and 1 is archived.",
+   "text": "data.promptugal.news lists 20 sources.",
    "facts": [
     "600-01"
    ]
   },
   {
-   "text": "Events in Portugal, by place, list 141 events; this feed has partly failed.",
+   "text": "17 sources read without problems at their last run, 2 partly failed and 1 is archived.",
+   "facts": [
+    "600-01"
+   ]
+  },
+  {
+   "text": "Events in Portugal, by place, list 141 events, and that feed partly failed.",
    "facts": [
     "600-08"
    ]
   },
   {
-   "text": "Social signals, which are organisations' public posts by link, show 147 posts; this feed has partly failed.",
+   "text": "Social signals from organisations' public posts list 147 posts, and that feed partly failed.",
    "facts": [
     "600-19"
    ]
@@ -273,22 +279,23 @@
    ]
   },
   {
-   "text": "IPMA station observations show 169 of 227 stations reporting.",
+   "text": "London flood warnings and Thames levels show 2 warnings, 10 stations and 10 rain gauges.",
    "facts": [
-    "600-12"
+    "600-06"
    ]
   },
   {
-   "text": "Environment Agency data for London shows 2 flood warnings, 10 stations and 10 rain gauges.",
+   "text": "Portal BASE lists 1514 public contracts, and CISA known exploited vulnerabilities lists 1786 vulnerabilities.",
    "facts": [
-    "600-06"
+    "600-03",
+    "600-05"
    ]
   }
  ],
  "dropped": [],
- "cost_usd": 0.000502227,
+ "cost_usd": 0.000566577,
  "tokens": {
   "prompt": 1563,
-  "completion": 702
+  "completion": 832
  }
 }

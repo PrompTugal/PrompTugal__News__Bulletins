@@ -25,6 +25,32 @@ export const SYSTEM = [
   'Answer with JSON only: {"sentences":[{"text":"...","facts":["<id>", ...]}]}, 4 to 8 sentences, most important first.',
 ].join(' ');
 
+// One call to OpenRouter with a given system prompt, user content and model (on the list only).
+// Every response is recorded in the ledger; returns the parsed JSON and the cost.
+export async function callJSON({ system, user, model = MODEL, what }) {
+  if (!MODELS.has(model)) throw new Error(`model not on the list: ${model}`);
+  if (spentToday() + PER_CALL_CEILING_USD > DAILY_CAP_USD) throw new Error(`daily cap of ${DAILY_CAP_USD} USD reached`);
+  const key = process.env.OPEN_ROUTER_KEY;
+  if (!key) throw new Error('OPEN_ROUTER_KEY is not in the environment');
+  const res = await fetch(ENDPOINT, {
+    method: 'POST', redirect: 'error', signal: AbortSignal.timeout(90000),
+    headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json', 'x-title': 'PrompTugal.news bulletins' },
+    body: JSON.stringify({ model, max_tokens: 4000, temperature: 0.2, response_format: { type: 'json_object' }, usage: { include: true },
+      messages: [{ role: 'system', content: system }, { role: 'user', content: user }] }),
+  });
+  const body = await res.json().catch(() => ({}));
+  const reported = Number(body.usage?.cost);
+  const cost = Number.isFinite(reported) ? reported : PER_CALL_CEILING_USD;
+  record({ at: new Date().toISOString(), what, provider: 'openrouter', model: body.model || model, http: res.status,
+    prompt_tokens: body.usage?.prompt_tokens, completion_tokens: body.usage?.completion_tokens, cost_usd: cost, ...(Number.isFinite(reported) ? {} : { estimated: true }) });
+  if (!res.ok) throw new Error(`OpenRouter HTTP ${res.status}: ${clean(body?.error?.message || '', 120)}`);
+  const content = body.choices?.[0]?.message?.content || '';
+  let json;
+  try { json = JSON.parse(content.replace(/^```(?:json)?\s*|\s*```$/g, '').replace(/^[^{]*/, '').replace(/[^}]*$/, '')); } catch { json = null; }
+  if (!json) throw new Error('the model output was not JSON');
+  return { json, cost, model: body.model || model, usage: body.usage || {} };
+}
+
 async function callModel(page, facts) {
   const key = process.env.OPEN_ROUTER_KEY;
   if (!key) throw new Error('OPEN_ROUTER_KEY is not in the environment');

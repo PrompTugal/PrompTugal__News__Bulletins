@@ -1,0 +1,1201 @@
+{
+ "made": "2026-11-18T23:46:25.994Z",
+ "facts_made": "2026-11-18T23:44:34Z",
+ "total_cost_usd": 0.012624,
+ "formats": {
+  "front": {
+   "name": "Front-page story",
+   "about": "A newspaper story: a headline, a standfirst and a short body, most important first."
+  },
+  "radio": {
+   "name": "Radio bulletin script",
+   "about": "A 60-second spoken bulletin, written to be read aloud: short sentences, one idea each. The sign-on and sign-off are fixed text added by code."
+  },
+  "top": {
+   "name": "Top stories, all places",
+   "about": "The newsroom's front page for this hour: the five most important stories across every page, each with a headline and one line."
+  }
+ },
+ "results": [
+  {
+   "format": "top",
+   "page": null,
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Top stories",
+   "at": "2026-11-18T23:44:52.602Z",
+   "cost_usd": 0.001770813,
+   "stories": [
+    {
+     "desk": "all desks",
+     "headline": {
+      "text": "Orange rough sea warning for Lisboa from 06:00 to 12:00 on 2026-11-19",
+      "facts": [
+       "300-03"
+      ],
+      "why": null
+     },
+     "line": {
+      "text": "Waves of 3.5 to 4 metres from NW are forecast on the Lisboa coast on 2026-11-19, with sea temperature 17.4 to 17.5 °C.",
+      "facts": [
+       "300-04"
+      ],
+      "why": null
+     }
+    },
+    {
+     "desk": "all desks",
+     "headline": {
+      "text": "Rain forecast for Lisboa, Porto and Faro today",
+      "facts": [
+       "100-01",
+       "100-02",
+       "100-03"
+      ],
+      "why": null
+     },
+     "line": {
+      "text": "IPMA gives a 100% chance of rain today in Lisboa, Porto and Faro, with maximum temperatures of 20.9 °C, 18.2 °C and 22.4 °C.",
+      "facts": [
+       "100-01",
+       "100-02",
+       "100-03"
+      ],
+      "why": null
+     }
+    },
+    {
+     "desk": "all desks",
+     "headline": {
+      "text": "Two flood alerts in force for the London area",
+      "facts": [
+       "700-06"
+      ],
+      "why": null
+     },
+     "line": {
+      "text": "The Environment Agency lists a Flood alert for Upper River Colne and Radlett Brook and a Flood alert for Lower Lee tributaries.",
+      "facts": [
+       "700-07",
+       "700-08"
+      ],
+      "why": null
+     }
+    },
+    {
+     "desk": "all desks",
+     "headline": {
+      "text": "Faro forecast to have no chance of rain tomorrow",
+      "facts": [
+       "200-02"
+      ],
+      "why": null
+     },
+     "line": {
+      "text": "IPMA forecasts 0% chance of rain in Faro on 2026-11-19, with a minimum of 12.1 °C, a maximum of 20.8 °C and wind moderate from NW.",
+      "facts": [
+       "200-02"
+      ],
+      "why": null
+     }
+    },
+    {
+     "desk": "all desks",
+     "headline": {
+      "text": "Fire risk is low in all 278 municipalities of Portugal",
+      "facts": [
+       "500-09"
+      ],
+      "why": null
+     },
+     "line": {
+      "text": "IPMA rates today's fire risk at low for all 278 of Portugal's municipalities.",
+      "facts": [
+       "500-09"
+      ],
+      "why": null
+     }
+    }
+   ],
+   "kept": 10,
+   "dropped": 0
+  },
+  {
+   "format": "front",
+   "page": "100",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P100",
+   "at": "2026-11-18T23:45:02.688Z",
+   "cost_usd": 0.000736263,
+   "headline": {
+    "text": "IPMA lists 19 active weather warnings across Portugal",
+    "facts": [
+     "100-04"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "IPMA lists 7 orange and 12 yellow warnings across 25 areas, and forecasts a 100% chance of rain in Lisboa, Porto and Faro today.",
+    "facts": [
+     "100-04",
+     "100-01",
+     "100-02",
+     "100-03"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "IPMA lists 19 active weather warnings in 25 areas of Portugal, 7 orange and 12 yellow.",
+     "facts": [
+      "100-04"
+     ],
+     "why": null
+    },
+    {
+     "text": "IPMA forecasts a 100% chance of rain today (2026-11-18) in Lisboa, Porto and Faro.",
+     "facts": [
+      "100-01",
+      "100-02",
+      "100-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "In Lisboa, the forecast minimum is 15.9 °C and the maximum is 20.9 °C, with moderate wind from W.",
+     "facts": [
+      "100-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "In Porto, the forecast minimum is 13.7 °C and the maximum is 18.2 °C, with moderate wind from SW.",
+     "facts": [
+      "100-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "In Faro, the forecast minimum is 19.8 °C and the maximum is 22.4 °C, with moderate wind from W.",
+     "facts": [
+      "100-03"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 7,
+   "dropped": 0
+  },
+  {
+   "format": "front",
+   "page": "200",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P200",
+   "at": "2026-11-18T23:45:08.209Z",
+   "cost_usd": 0.0009504,
+   "headline": {
+    "text": "Rain forecast for four Algarve towns today, dry tomorrow",
+    "facts": [
+     "200-01",
+     "200-03",
+     "200-05",
+     "200-07",
+     "200-02",
+     "200-04",
+     "200-06",
+     "200-08"
+    ],
+    "why": "name \"Algarve\" is not in its cited facts"
+   },
+   "standfirst": {
+    "text": "IPMA forecasts a 100% chance of rain today in Faro, Portimão, Loulé and Sagres, and a yellow rough sea warning is in force for the Faro district.",
+    "facts": [
+     "200-01",
+     "200-03",
+     "200-05",
+     "200-07",
+     "200-09"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "Faro has a forecast minimum of 19.8 °C and maximum of 22.4 °C today, with a 100% chance of rain and moderate wind from W.",
+     "facts": [
+      "200-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "Portimão, Loulé and Sagres also have a 100% chance of rain today, with maximums of 22.7 °C, 20.5 °C and 22.3 °C respectively.",
+     "facts": [
+      "200-03",
+      "200-05",
+      "200-07"
+     ],
+     "why": null
+    },
+    {
+     "text": "Tomorrow, 2026-11-19, the chance of rain is 0% in all four towns, with maximums of 20.8 °C in Faro, 20.4 °C in Portimão, 19.7 °C in Loulé and 19.9 °C in Sagres.",
+     "facts": [
+      "200-02",
+      "200-04",
+      "200-06",
+      "200-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "IPMA has issued a yellow warning for rough sea in the Faro district from 2026-11-18 21:17 to 2026-11-20 09:00 local time.",
+     "facts": [
+      "200-09"
+     ],
+     "why": null
+    },
+    {
+     "text": "The IPMA sea forecast for 2026-11-19 gives waves of 0.7 to 1.3 metres from W on the Faro coast and 3.3 to 3.8 metres from NW on the Sagres coast.",
+     "facts": [
+      "200-10",
+      "200-11"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 6,
+   "dropped": 1
+  },
+  {
+   "format": "front",
+   "page": "300",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P300",
+   "at": "2026-11-18T23:45:14.647Z",
+   "cost_usd": 0.000843777,
+   "headline": {
+    "text": "Orange warning for rough sea in Lisboa district",
+    "facts": [
+     "300-03"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "IPMA has issued an orange warning for rough sea in the Lisboa district from 06:00 to 12:00 local time on 2026-11-19.",
+    "facts": [
+     "300-03"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "The orange warning runs from 06:00 to 12:00 local time on 2026-11-19, with yellow warnings for rough sea before it, from 21:17 on 2026-11-18, and after it, to 09:00 on 2026-11-20.",
+     "facts": [
+      "300-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "IPMA's sea forecast for the Lisboa coast on 2026-11-19 gives waves of 3.5 to 4 metres from NW and a sea temperature of 17.4 to 17.5 °C.",
+     "facts": [
+      "300-04"
+     ],
+     "why": null
+    },
+    {
+     "text": "IPMA's forecast for Lisboa today (2026-11-18) gives a minimum of 15.9 °C, a maximum of 20.9 °C and a chance of rain of 100%, with moderate wind from W.",
+     "facts": [
+      "300-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "For tomorrow (2026-11-19), IPMA forecasts a minimum of 12.8 °C, a maximum of 18.5 °C and a chance of rain of 2%, with moderate wind from W.",
+     "facts": [
+      "300-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "The Lisbon feed also links to 'Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI', a story published by portugalglobal.pt, not by PrompTugal.news.",
+     "facts": [
+      "300-05"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 7,
+   "dropped": 0
+  },
+  {
+   "format": "front",
+   "page": "400",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P400",
+   "at": "2026-11-18T23:45:20.535Z",
+   "cost_usd": 0.000815859,
+   "headline": {
+    "text": "Summit stories cover Lisbon getting around and Manus 2.0",
+    "facts": [
+     "400-01",
+     "400-02"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "The library's fact-checker found on 2026-11-18 that 13 of 87 published articles map every claim to a recorded source.",
+    "facts": [
+     "400-05"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "PrompTugal.news published 'Getting around Lisbon on Wednesday: what operators and the government say' on 2026-11-11, filed under the summit.",
+     "facts": [
+      "400-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "On the same date it published 'Manus 2.0 gives each agent its own email, phone and wallet', also filed under the summit.",
+     "facts": [
+      "400-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "A third story, 'Thursday at Web Summit: a practical guide to the last day', was published on 2026-11-11 under the same heading.",
+     "facts": [
+      "400-03"
+     ],
+     "why": "too many words not in its cited facts (third, story, heading)"
+    },
+    {
+     "text": "The library catalogues 80 items in 1 collection, with 7 recorded as missing.",
+     "facts": [
+      "400-04"
+     ],
+     "why": null
+    },
+    {
+     "text": "On pass 1 of the library's fact-checker on 2026-11-18, 13 of 87 published articles mapped every claim to a recorded source, 39 recorded sources for the story as a whole, and 35 named sources only in the text.",
+     "facts": [
+      "400-05"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 6,
+   "dropped": 1
+  },
+  {
+   "format": "front",
+   "page": "500",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P500",
+   "at": "2026-11-18T23:45:26.355Z",
+   "cost_usd": 0.000906246,
+   "headline": {
+    "text": "IPMA lists 19 active weather warnings in 25 areas",
+    "facts": [
+     "500-06"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "Orange or red warnings for rough sea are active in seven areas, and rain is forecast for five cities today.",
+    "facts": [
+     "500-07",
+     "500-01",
+     "500-02",
+     "500-03",
+     "500-04",
+     "500-05"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "IPMA lists 19 active weather warnings in 25 areas of Portugal, with 7 orange and 12 yellow.",
+     "facts": [
+      "500-06"
+     ],
+     "why": null
+    },
+    {
+     "text": "Orange or red warnings for rough sea are active in Aveiro, Braga, Coimbra, Leiria, Lisboa, Porto and Viana do Castelo.",
+     "facts": [
+      "500-07"
+     ],
+     "why": null
+    },
+    {
+     "text": "IPMA forecasts a 100% chance of rain today in Lisboa, Porto, Faro, Coimbra and Évora.",
+     "facts": [
+      "500-01",
+      "500-02",
+      "500-03",
+      "500-04",
+      "500-05"
+     ],
+     "why": null
+    },
+    {
+     "text": "In Lisboa, today's forecast is a minimum of 15.9 °C and a maximum of 20.9 °C, with moderate wind from W.",
+     "facts": [
+      "500-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "The IPMA sea forecast for the Porto coast on 2026-11-19 gives waves of 3.7 to 5.1 metres from NW and a sea temperature of 16.7 to 16.8 °C.",
+     "facts": [
+      "500-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "IPMA's fire risk for today is low in all 278 of Portugal's municipalities.",
+     "facts": [
+      "500-09"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 8,
+   "dropped": 0
+  },
+  {
+   "format": "front",
+   "page": "600",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P600",
+   "at": "2026-11-18T23:45:32.824Z",
+   "cost_usd": 0.000831897,
+   "headline": {
+    "text": "Seventeen of 20 data sources read without problems",
+    "facts": [
+     "600-01"
+    ],
+    "why": "name \"Seventeen\" is not in its cited facts"
+   },
+   "standfirst": {
+    "text": "The P600 Data check of 20 sources found two partly failed and one archived.",
+    "facts": [
+     "600-01",
+     "600-08",
+     "600-19"
+    ],
+    "why": "number 600 is not in its cited facts"
+   },
+   "sentences": [
+    {
+     "text": "Events in Portugal, by place, listed 141 events at its last read on 2026-11-18 23:35 UTC, and its status was partly failed.",
+     "facts": [
+      "600-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "Social signals, which count organisations' public posts by link, listed 147 posts at 2026-11-18 23:41 UTC, and its status was partly failed.",
+     "facts": [
+      "600-19"
+     ],
+     "why": null
+    },
+    {
+     "text": "Flights around Faro airport recorded 0 airline flights and 0 other aircraft at 2026-11-18 23:33 UTC, with status ok.",
+     "facts": [
+      "600-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "IPMA weather warnings listed 19 active warnings in 25 areas at 2026-11-18 23:40 UTC, with status ok.",
+     "facts": [
+      "600-15"
+     ],
+     "why": null
+    },
+    {
+     "text": "Public contracts from Portal BASE numbered 1514 at 2026-11-18 23:33 UTC, with status ok.",
+     "facts": [
+      "600-03"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 5,
+   "dropped": 2
+  },
+  {
+   "format": "front",
+   "page": "700",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P700",
+   "at": "2026-11-18T23:45:38.063Z",
+   "cost_usd": 0.000833085,
+   "headline": {
+    "text": "2 flood alerts listed for London area",
+    "facts": [
+     "700-06"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "The Environment Agency lists 2 flood warnings and alerts for the London area, with rain forecast for both today and tomorrow.",
+    "facts": [
+     "700-06",
+     "700-04",
+     "700-05"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "The Environment Agency lists 2 flood warnings and alerts for the London area.",
+     "facts": [
+      "700-06"
+     ],
+     "why": null
+    },
+    {
+     "text": "The named alerts are Flood alert: Upper River Colne and Radlett Brook, and Flood alert: Lower Lee tributaries.",
+     "facts": [
+      "700-07",
+      "700-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "Open-Meteo forecasts a minimum of 9.1 °C and a maximum of 13 °C in London today (2026-11-18), with 4.2 mm of rain.",
+     "facts": [
+      "700-04"
+     ],
+     "why": null
+    },
+    {
+     "text": "For tomorrow (2026-11-19), the forecast gives a minimum of 7.2 °C, a maximum of 10.7 °C and 5.3 mm of rain.",
+     "facts": [
+      "700-05"
+     ],
+     "why": null
+    },
+    {
+     "text": "The Environment Agency flood data was last read at 2026-11-18 23:33 UTC, covering 10 stations and 10 rain gauges.",
+     "facts": [
+      "700-01"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 7,
+   "dropped": 0
+  },
+  {
+   "format": "front",
+   "page": "800",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Front-page story, P800",
+   "at": "2026-11-18T23:45:44.088Z",
+   "cost_usd": 0.000749529,
+   "headline": {
+    "text": "PrompTugal.news repository logs 401 commits in 24 hours",
+    "facts": [
+     "800-01"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "The main repository took 401 commits and 71 site releases in the 24 hours to 23:44 UTC on 2026-11-18.",
+    "facts": [
+     "800-01"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "conductor.b@PrompTugal.dinis led the commit count with 89, followed by dev@PrompTugal.dinis with 36 and journalist@PrompTugal.dinis with 31.",
+     "facts": [
+      "800-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "abp@PrompTugal.dinis made 30 commits, security@PrompTugal.dinis made 28 and datasci.places@PrompTugal.dinis made 25.",
+     "facts": [
+      "800-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "At 23:38 and 23:39 UTC on 2026-11-18, conductor.b@PrompTugal.dinis committed work to the main repository, and abp@PrompTugal.dinis did so at 23:40 UTC, followed by rights@PrompTugal.dinis at 23:41 UTC.",
+     "facts": [
+      "800-06",
+      "800-05",
+      "800-04",
+      "800-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "64 agents keep a status file in the main repository's board, and 20 of them updated it in the last 24 hours.",
+     "facts": [
+      "800-07"
+     ],
+     "why": null
+    },
+    {
+     "text": "telemetry.b@PrompTugal.dinis counted 34 sessions at 2026-11-18T23:35Z, with a cumulative API-equivalent cost of 1469.39 USD since 6 November.",
+     "facts": [
+      "800-08"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 7,
+   "dropped": 0
+  },
+  {
+   "format": "radio",
+   "page": "100",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Radio script, P100",
+   "at": "2026-11-18T23:45:48.987Z",
+   "cost_usd": 0.000741411,
+   "headline": null,
+   "standfirst": null,
+   "sentences": [
+    {
+     "text": "The weather institute IPMA lists 19 active weather warnings in 25 areas of Portugal, seven orange and 12 yellow.",
+     "facts": [
+      "100-04"
+     ],
+     "why": null
+    },
+    {
+     "text": "In Lisboa today, the forecast minimum is 15.9 degrees and the maximum is 20.9 degrees.",
+     "facts": [
+      "100-01"
+     ],
+     "why": "too many words not in its cited facts (degrees, degrees)"
+    },
+    {
+     "text": "Lisboa has a 100% chance of rain, with moderate winds from the west.",
+     "facts": [
+      "100-01"
+     ],
+     "why": "too many words not in its cited facts (winds, west)"
+    },
+    {
+     "text": "In Porto today, the forecast minimum is 13.7 degrees and the maximum is 18.2 degrees, with a 100% chance of rain.",
+     "facts": [
+      "100-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "In Faro today, the forecast minimum is 19.8 degrees and the maximum is 22.4 degrees, with a 100% chance of rain.",
+     "facts": [
+      "100-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "Winds in Porto are moderate from the south west, and in Faro they are moderate from the west.",
+     "facts": [
+      "100-02",
+      "100-03"
+     ],
+     "why": "too many words not in its cited facts (winds, south, west, they, west)"
+    }
+   ],
+   "kept": 3,
+   "dropped": 3
+  },
+  {
+   "format": "radio",
+   "page": "200",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Radio script, P200",
+   "at": "2026-11-18T23:45:55.016Z",
+   "cost_usd": 0.000908028,
+   "headline": null,
+   "standfirst": null,
+   "sentences": [
+    {
+     "text": "Yellow warning for rough sea in the Faro district, from 2026-11-18 21:17 to 2026-11-20 09:00 local time.",
+     "facts": [
+      "200-09"
+     ],
+     "why": null
+    },
+    {
+     "text": "Forecasts for today, 2026-11-18, show a 100% chance of rain in Faro, Portimão, Loulé and Sagres.",
+     "facts": [
+      "200-01",
+      "200-03",
+      "200-05",
+      "200-07"
+     ],
+     "why": null
+    },
+    {
+     "text": "The maximum today is 22.4 degrees in Faro and 22.7 degrees in Portimão.",
+     "facts": [
+      "200-01",
+      "200-03"
+     ],
+     "why": "too many words not in its cited facts (degrees, degrees)"
+    },
+    {
+     "text": "Tomorrow, 2026-11-19, the chance of rain is 0% in Faro, Portimão, Loulé and Sagres.",
+     "facts": [
+      "200-02",
+      "200-04",
+      "200-06",
+      "200-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "Tomorrow in Sagres, the minimum is 11.5 degrees and the maximum is 19.9 degrees.",
+     "facts": [
+      "200-08"
+     ],
+     "why": "too many words not in its cited facts (degrees, degrees)"
+    },
+    {
+     "text": "The IPMA forecasts waves of 3.3 to 3.8 metres from NW on the Sagres coast on 2026-11-19.",
+     "facts": [
+      "200-11"
+     ],
+     "why": null
+    },
+    {
+     "text": "On the Faro coast, waves are forecast at 0.7 to 1.3 metres from W, with sea temperatures of 19.2 to 19.7 degrees.",
+     "facts": [
+      "200-10"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 5,
+   "dropped": 2
+  },
+  {
+   "format": "radio",
+   "page": "300",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Radio script, P300",
+   "at": "2026-11-18T23:46:01.389Z",
+   "cost_usd": 0.000832095,
+   "headline": null,
+   "standfirst": null,
+   "sentences": [
+    {
+     "text": "IPMA has issued warnings for rough sea in the Lisboa district.",
+     "facts": [
+      "300-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "An orange warning for rough sea runs from 2026-11-19 06:00 to 2026-11-19 12:00 local time.",
+     "facts": [
+      "300-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "A yellow warning for rough sea runs from 2026-11-18 21:17 to 2026-11-19 06:00 local time.",
+     "facts": [
+      "300-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "Waves of 3.5 to 4 metres from NW are forecast for the Lisboa coast on 2026-11-19.",
+     "facts": [
+      "300-04"
+     ],
+     "why": null
+    },
+    {
+     "text": "The sea temperature is 17.4 to 17.5 degrees.",
+     "facts": [
+      "300-04"
+     ],
+     "why": "too many words not in its cited facts (degrees)"
+    },
+    {
+     "text": "Today in Lisboa, the forecast minimum is 15.9 degrees and the maximum is 20.9 degrees, with a 100% chance of rain.",
+     "facts": [
+      "300-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "Tomorrow, the forecast minimum is 12.8 degrees and the maximum is 18.5 degrees, with a 2% chance of rain.",
+     "facts": [
+      "300-02"
+     ],
+     "why": "too many words not in its cited facts (degrees, degrees)"
+    }
+   ],
+   "kept": 5,
+   "dropped": 2
+  },
+  {
+   "format": "radio",
+   "page": "700",
+   "model": "anthropic/claude-haiku-5.5",
+   "label": "Radio script, P700",
+   "at": "2026-11-18T23:46:07.512Z",
+   "cost_usd": 0.000703098,
+   "headline": null,
+   "standfirst": null,
+   "sentences": [
+    {
+     "text": "The Environment Agency lists 2 flood warnings and alerts for the London area.",
+     "facts": [
+      "700-06"
+     ],
+     "why": null
+    },
+    {
+     "text": "One flood alert covers the Upper River Colne and Radlett Brook.",
+     "facts": [
+      "700-07"
+     ],
+     "why": null
+    },
+    {
+     "text": "A second flood alert covers the Lower Lee tributaries.",
+     "facts": [
+      "700-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "The Environment Agency's London data comes from 10 stations and 10 rain gauges, read hourly.",
+     "facts": [
+      "700-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "For today, 2026-11-18, London's forecast minimum is 9.1 degrees and maximum is 13 degrees.",
+     "facts": [
+      "700-04"
+     ],
+     "why": "too many words not in its cited facts (degrees, degrees)"
+    },
+    {
+     "text": "Rain of 4.2 mm is forecast for London today.",
+     "facts": [
+      "700-04"
+     ],
+     "why": null
+    },
+    {
+     "text": "For tomorrow, 2026-11-19, London's forecast minimum is 7.2 degrees and maximum is 10.7 degrees.",
+     "facts": [
+      "700-05"
+     ],
+     "why": "too many words not in its cited facts (degrees, degrees)"
+    },
+    {
+     "text": "Rain of 5.3 mm is forecast for London tomorrow.",
+     "facts": [
+      "700-05"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 6,
+   "dropped": 2
+  },
+  {
+   "format": "front",
+   "page": "200",
+   "model": "google/gemini-2.5-flash-lite",
+   "label": "Model test: front-page story, P200",
+   "at": "2026-11-18T23:46:12.647Z",
+   "cost_usd": 0.000447678,
+   "headline": {
+    "text": "Algarve weather: rain today, clear skies tomorrow, rough seas warning",
+    "facts": [
+     "200-01",
+     "200-02",
+     "200-03",
+     "200-04",
+     "200-05",
+     "200-06",
+     "200-07",
+     "200-08",
+     "200-09",
+     "200-10",
+     "200-11"
+    ],
+    "why": "name \"Algarve\" is not in its cited facts"
+   },
+   "standfirst": {
+    "text": "The IPMA forecasts 100% chance of rain across Faro, Portimão, Loulé and Sagres today, with clear skies expected tomorrow.",
+    "facts": [
+     "200-01",
+     "200-02",
+     "200-03",
+     "200-04",
+     "200-05",
+     "200-06",
+     "200-07",
+     "200-08"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "IPMA forecasts for Faro on 2026-11-18 include a minimum of 19.8 °C, a maximum of 22.4 °C, a 100% chance of rain, and moderate wind from W.",
+     "facts": [
+      "200-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "For Portimão today, the forecast is a minimum of 18.8 °C, a maximum of 22.7 °C, a 100% chance of rain, and moderate wind from SW.",
+     "facts": [
+      "200-03"
+     ],
+     "why": null
+    },
+    {
+     "text": "Loulé is forecast to have a minimum of 17.7 °C, a maximum of 20.5 °C, a 100% chance of rain, and moderate wind from SW today.",
+     "facts": [
+      "200-05"
+     ],
+     "why": null
+    },
+    {
+     "text": "Sagres is expected to experience a minimum of 19.2 °C, a maximum of 22.3 °C, a 100% chance of rain, and moderate wind from W today.",
+     "facts": [
+      "200-07"
+     ],
+     "why": null
+    },
+    {
+     "text": "Tomorrow, 2026-11-19, Faro is forecast to have a minimum of 12.1 °C, a maximum of 20.8 °C, and a 0% chance of rain with moderate wind from NW.",
+     "facts": [
+      "200-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "The IPMA has issued yellow warnings for rough sea in the Faro district, effective from 2026-11-18 21:17 until 2026-11-20 09:00 local time.",
+     "facts": [
+      "200-09"
+     ],
+     "why": null
+    },
+    {
+     "text": "On the Sagres coast on 2026-11-19, waves are forecast between 3.3 and 3.8 metres from NW.",
+     "facts": [
+      "200-11"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 8,
+   "dropped": 1
+  },
+  {
+   "format": "front",
+   "page": "700",
+   "model": "google/gemini-2.5-flash-lite",
+   "label": "Model test: front-page story, P700",
+   "at": "2026-11-18T23:46:14.853Z",
+   "cost_usd": 0.000269577,
+   "headline": {
+    "text": "London flood warnings issued as rain forecast for today and tomorrow",
+    "facts": [
+     "700-01",
+     "700-04",
+     "700-05",
+     "700-06"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "The Environment Agency has issued two flood warnings for the London area, with rain expected today and tomorrow.",
+    "facts": [
+     "700-01",
+     "700-04",
+     "700-05",
+     "700-06"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "The Environment Agency has issued two flood warnings for the London area, including two flood alerts.",
+     "facts": [
+      "700-01",
+      "700-06"
+     ],
+     "why": null
+    },
+    {
+     "text": "The flood alerts are for the Upper River Colne and Radlett Brook, and the Lower Lee tributaries.",
+     "facts": [
+      "700-07",
+      "700-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "The forecast for London today, November 18 2026, indicates a minimum temperature of 9.1 °C and a maximum of 13 °C, with 4.2 mm of rain.",
+     "facts": [
+      "700-02",
+      "700-04"
+     ],
+     "why": "too many words not in its cited facts (november, indicates, temperature)"
+    },
+    {
+     "text": "Tomorrow, November 19 2026, the forecast for London shows a minimum temperature of 7.2 °C and a maximum of 10.7 °C, with 5.3 mm of rain.",
+     "facts": [
+      "700-02",
+      "700-05"
+     ],
+     "why": "too many words not in its cited facts (november, temperature)"
+    },
+    {
+     "text": "The Environment Agency's flood warnings and Thames levels are read hourly, with the last update at 23:33 UTC on November 18 2026.",
+     "facts": [
+      "700-01"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 5,
+   "dropped": 2
+  },
+  {
+   "format": "front",
+   "page": "200",
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "label": "Model test: front-page story, P200",
+   "at": "2026-11-18T23:46:16.246Z",
+   "cost_usd": 0.000170874,
+   "headline": {
+    "text": "Rain and cooler weather forecast for Algarve",
+    "facts": [
+     "200-01",
+     "200-02"
+    ],
+    "why": "name \"Algarve\" is not in its cited facts"
+   },
+   "standfirst": {
+    "text": "The Algarve will experience rain and cooler temperatures today and tomorrow.",
+    "facts": [
+     "200-01",
+     "200-02"
+    ],
+    "why": "name \"Algarve\" is not in its cited facts"
+   },
+   "sentences": [
+    {
+     "text": "The IPMA forecast for Faro today (2026-11-18) is a minimum of 19.8 °C, a maximum of 22.4 °C, a 100% chance of rain, and moderate wind from the west.",
+     "facts": [
+      "200-01"
+     ],
+     "why": null
+    },
+    {
+     "text": "Tomorrow (2026-11-19), the forecast for Faro includes a minimum of 12.1 °C, a maximum of 20.8 °C, a 0% chance of rain, and moderate wind from the northwest.",
+     "facts": [
+      "200-02"
+     ],
+     "why": null
+    },
+    {
+     "text": "A yellow warning for rough sea is in effect for the Faro district from 21:17 to 09:00 local time on 2026-11-20.",
+     "facts": [
+      "200-09"
+     ],
+     "why": null
+    },
+    {
+     "text": "The sea forecast for the Faro coast on 2026-11-19 predicts waves of 0.7 to 1.3 metres from the west, with sea temperatures between 19.2 and 19.7 °C.",
+     "facts": [
+      "200-10"
+     ],
+     "why": null
+    },
+    {
+     "text": "The sea forecast for the Sagres coast on 2026-11-19 expects waves of 3.3 to 3.8 metres from the northwest, with sea temperatures between 19 and 19.1 °C.",
+     "facts": [
+      "200-11"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 5,
+   "dropped": 2
+  },
+  {
+   "format": "front",
+   "page": "700",
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "label": "Model test: front-page story, P700",
+   "at": "2026-11-18T23:46:21.381Z",
+   "cost_usd": 0.0001133055,
+   "headline": {
+    "text": "London faces flood alerts and rain",
+    "facts": [
+     "700-06",
+     "700-04",
+     "700-05"
+    ],
+    "why": null
+   },
+   "standfirst": {
+    "text": "The Environment Agency has issued two flood alerts for London.",
+    "facts": [
+     "700-06"
+    ],
+    "why": null
+   },
+   "sentences": [
+    {
+     "text": "The alerts are for the Upper River Colne and Radlett Brook, and the Lower Lee tributaries.",
+     "facts": [
+      "700-07",
+      "700-08"
+     ],
+     "why": null
+    },
+    {
+     "text": "The weather forecast for today, 2026-11-18, predicts a minimum temperature of 9.1 °C and a maximum of 13 °C, with 4.2 mm of rain.",
+     "facts": [
+      "700-04"
+     ],
+     "why": "too many words not in its cited facts (weather, predicts, temperature)"
+    },
+    {
+     "text": "Tomorrow, 2026-11-19, the forecast expects a minimum of 7.2 °C and a maximum of 10.7 °C, with 5.3 mm of rain.",
+     "facts": [
+      "700-05"
+     ],
+     "why": null
+    },
+    {
+     "text": "As of 2026-11-18 23:33 UTC, there are 2 flood warnings and 10 monitoring stations active.",
+     "facts": [
+      "700-01"
+     ],
+     "why": null
+    }
+   ],
+   "kept": 5,
+   "dropped": 1
+  }
+ ]
+}

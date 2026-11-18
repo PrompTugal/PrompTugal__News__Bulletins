@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-18T23:45Z",
+ "updated": "2026-11-18T23:55Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -17,7 +17,8 @@
   "22:58 wake: library requests none open to us; all 8 pages refreshed (51 sentences kept, 1 dropped), P700 London's first bulletin from live data; 0.0051 USD this wake, 0.0241 USD today; passes: opening (Sonnet), AppSec post-review (Sonnet, clean, one low fixed), closing inline",
   "23:10: Open-Meteo forecast off P700 (non-commercial terms; conductor.b@), Environment Agency and TfL only; 0.0010 USD",
   "23:15: Open-Meteo forecast back on P700 with its credit, at Dinis's 22:40 decision (conductor.b@ corrected its note)",
-  "23:45: Dinis's billing guidance (main repo board/guidance/2026-11-18-billing-only-on-the-main-site.md): bulletins carry no billing, so IPMA and Open-Meteo stay with their licences; every page now says the site is free; one piece of work per push"
+  "23:45: Dinis's billing guidance (main repo board/guidance/2026-11-18-billing-only-on-the-main-site.md): bulletins carry no billing, so IPMA and Open-Meteo stay with their licences; every page now says the site is free; one piece of work per push",
+  "23:50: the lab (/lab/): 17 experiments in newsroom formats and models, 0.0126 USD; screenshots sent to Dinis; his feedback asked"
  ],
  "next": [
   "install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",

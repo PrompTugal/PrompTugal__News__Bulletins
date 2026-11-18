@@ -406,7 +406,217 @@
    "prompt_tokens": 792,
    "completion_tokens": 1055,
    "cost_usd": 0.000600633
+  },
+  {
+   "at": "2026-11-18T23:44:40.961Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1350,
+   "completion_tokens": 1058,
+   "cost_usd": 0.00065736
+  },
+  {
+   "at": "2026-11-18T23:44:44.397Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1563,
+   "completion_tokens": 832,
+   "cost_usd": 0.000566577
+  },
+  {
+   "at": "2026-11-18T23:44:47.858Z",
+   "what": "script for P700",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 710,
+   "completion_tokens": 824,
+   "cost_usd": 0.00047817
+  },
+  {
+   "at": "2026-11-18T23:44:51.830Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 796,
+   "completion_tokens": 1065,
+   "cost_usd": 0.000605979
+  },
+  {
+   "at": "2026-11-18T23:45:02.684Z",
+   "what": "lab: top (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 5802,
+   "completion_tokens": 2417,
+   "cost_usd": 0.001770813
+  },
+  {
+   "at": "2026-11-18T23:45:08.207Z",
+   "what": "lab: front P100 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 797,
+   "completion_tokens": 1328,
+   "cost_usd": 0.000736263
+  },
+  {
+   "at": "2026-11-18T23:45:14.645Z",
+   "what": "lab: front P200 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1430,
+   "completion_tokens": 1634,
+   "cost_usd": 0.0009504
+  },
+  {
+   "at": "2026-11-18T23:45:20.534Z",
+   "what": "lab: front P300 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 973,
+   "completion_tokens": 1510,
+   "cost_usd": 0.000843777
+  },
+  {
+   "at": "2026-11-18T23:45:26.354Z",
+   "what": "lab: front P400 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 671,
+   "completion_tokens": 1514,
+   "cost_usd": 0.000815859
+  },
+  {
+   "at": "2026-11-18T23:45:32.823Z",
+   "what": "lab: front P500 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 974,
+   "completion_tokens": 1636,
+   "cost_usd": 0.000906246
+  },
+  {
+   "at": "2026-11-18T23:45:38.062Z",
+   "what": "lab: front P600 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1643,
+   "completion_tokens": 1352,
+   "cost_usd": 0.000831897
+  },
+  {
+   "at": "2026-11-18T23:45:44.086Z",
+   "what": "lab: front P700 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 790,
+   "completion_tokens": 1525,
+   "cost_usd": 0.000833085
+  },
+  {
+   "at": "2026-11-18T23:45:48.986Z",
+   "what": "lab: front P800 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 876,
+   "completion_tokens": 1339,
+   "cost_usd": 0.000749529
+  },
+  {
+   "at": "2026-11-18T23:45:55.015Z",
+   "what": "lab: radio P100 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 764,
+   "completion_tokens": 1345,
+   "cost_usd": 0.000741411
+  },
+  {
+   "at": "2026-11-18T23:46:01.388Z",
+   "what": "lab: radio P200 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1397,
+   "completion_tokens": 1555,
+   "cost_usd": 0.000908028
+  },
+  {
+   "at": "2026-11-18T23:46:07.511Z",
+   "what": "lab: radio P300 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 940,
+   "completion_tokens": 1493,
+   "cost_usd": 0.000832095
+  },
+  {
+   "at": "2026-11-18T23:46:12.646Z",
+   "what": "lab: radio P700 (anthropic/claude-haiku-5.5)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 757,
+   "completion_tokens": 1269,
+   "cost_usd": 0.000703098
+  },
+  {
+   "at": "2026-11-18T23:46:14.851Z",
+   "what": "lab: front P200 (google/gemini-2.5-flash-lite)",
+   "provider": "openrouter",
+   "model": "google/gemini-2.5-flash-lite",
+   "http": 200,
+   "prompt_tokens": 1126,
+   "completion_tokens": 849,
+   "cost_usd": 0.000447678
+  },
+  {
+   "at": "2026-11-18T23:46:16.245Z",
+   "what": "lab: front P700 (google/gemini-2.5-flash-lite)",
+   "provider": "openrouter",
+   "model": "google/gemini-2.5-flash-lite",
+   "http": 200,
+   "prompt_tokens": 579,
+   "completion_tokens": 536,
+   "cost_usd": 0.000269577
+  },
+  {
+   "at": "2026-11-18T23:46:21.380Z",
+   "what": "lab: front P200 (mistralai/mistral-small-3.2-24b-instruct)",
+   "provider": "openrouter",
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "http": 200,
+   "prompt_tokens": 1168,
+   "completion_tokens": 425,
+   "cost_usd": 0.000170874
+  },
+  {
+   "at": "2026-11-18T23:46:25.993Z",
+   "what": "lab: front P700 (mistralai/mistral-small-3.2-24b-instruct)",
+   "provider": "openrouter",
+   "model": "mistralai/mistral-small-3.2-24b-instruct",
+   "http": 200,
+   "prompt_tokens": 606,
+   "completion_tokens": 345,
+   "cost_usd": 0.0001133055
   }
  ],
- "total_usd": 0.02626
+ "total_usd": 0.041192
 }

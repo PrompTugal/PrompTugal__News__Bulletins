@@ -1,0 +1,144 @@
+// Step 6: publish each bulletin with its transcript, its sources list and its cost, as static
+// pages in src/ (the build copies src/ to _site/). Every value from a fact or the model is escaped;
+// links are shown only when safeLink() allows them. No scripts on the pages.
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { ROOT, esc, safeLink, writeJSON, readJSON, clean } from './core.mjs';
+import { PAGES } from './pages.mjs';
+
+const SITE = 'https://bulletins.promptugal.news';
+const LABEL = "Made by agents from PrompTugal.news's data";
+const fmt = (iso) => (iso ? iso.replace('T', ' ').slice(0, 16) + ' UTC' : '');
+const src = (...p) => join(ROOT, 'src', ...p);
+
+const CSS = `:root{--bg:#000;--fg:#fff;--y:#ff0;--c:#0ff;--g:#0f0;--r:#f55;--m:#f0f;--b:#58f;--dim:#bbb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 ui-monospace,"Cascadia Mono","DejaVu Sans Mono",Menlo,Consolas,monospace}
+main{max-width:46rem;margin:0 auto;padding:1rem 16px 3rem}a{color:var(--c)}a:focus,a:hover{background:var(--c);color:#000}
+.bar{display:flex;flex-wrap:wrap;gap:.2rem 1rem;justify-content:space-between;color:var(--y);border-bottom:2px solid var(--b);padding-bottom:.3rem}
+.bar b{color:var(--fg)}h1{font-size:1.9rem;line-height:1.15;margin:.8rem 0 .2rem;color:var(--y);letter-spacing:.02em}
+h2{font-size:1.05rem;color:var(--c);margin:1.6rem 0 .4rem;text-transform:uppercase;letter-spacing:.08em}
+.label{display:inline-block;background:var(--b);color:#000;font-weight:700;padding:0 .4rem}.dim{color:var(--dim);font-size:.88rem}
+ol.script{padding-left:1.4rem}ol.script li{margin:.35rem 0}sup a{font-size:.75rem;color:var(--g);text-decoration:none}
+ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{color:var(--g)}
+.dropped{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
+.index a span:first-child{color:var(--y);font-weight:700}.index a:hover span{color:#000}
+nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
+nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}`;
+
+function page({ title, description, path, body, depth }) {
+  const up = depth ? '../'.repeat(depth) : './';
+  const fast = Object.entries(PAGES).map(([n, p]) => `<a href="${up}${n}/">${n} ${esc(p.title)}</a>`).join('');
+  return `<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; img-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
+<link rel="canonical" href="${SITE}${path}">
+<style>${CSS}</style>
+</head>
+<body>
+<main>
+${body}
+<nav class="fast" aria-label="Pages"><a href="${up}">Index</a>${fast}<a href="${up}how/">How it is made</a></nav>
+<p class="dim">${LABEL}. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Independent: not an official or government site; for weather warnings follow <a href="https://www.ipma.pt/">IPMA</a> and ANEPC. Version __VERSION__. Code Apache-2.0; our text CC BY 4.0; each fact keeps its source's licence, linked beside it.</p>
+</main>
+</body>
+</html>
+`;
+}
+
+function bulletinBody(n, p, facts, script, made) {
+  const kept = script?.kept || [];
+  const ref = (ids) => ids.map((id) => `<a href="#f-${esc(id)}">${esc(id)}</a>`).join(' ');
+  const lines = kept.length
+    ? `<ol class="script">${kept.map((s) => `<li>${esc(s.text)} <sup>${ref(s.facts)}</sup></li>`).join('')}</ol>`
+    : `<p class="dim">No checked script this hour: the facts below are the bulletin.</p><ol class="script">${facts.map((f) => `<li>${esc(f.text)} <sup>${ref([f.id])}</sup></li>`).join('')}</ol>`;
+  const sources = facts.map((f) => {
+    const s = safeLink(f.source), o = f.origin && f.origin !== f.source ? safeLink(f.origin) : null, l = f.licence?.url ? safeLink(f.licence.url) : null;
+    return `<li id="f-${esc(f.id)}"><span class="id">${esc(f.id)}</span> ${esc(f.text)}<br><span class="dim">From ${s ? `<a href="${esc(s)}">${esc(new URL(s).hostname + new URL(s).pathname)}</a>` : esc(clean(f.source, 120))}${o ? `, which records <a href="${esc(o)}">its source</a>` : ''}; read ${esc(fmt(f.read_at))}; by ${esc(f.by)}; licence ${l ? `<a href="${esc(l)}">${esc(f.licence.name)}</a>` : esc(f.licence?.name || "the source's terms")}.</span></li>`;
+  }).join('');
+  const dropped = script?.dropped?.length
+    ? `<p class="dropped">Dropped by the check (${script.dropped.length}):</p><ul class="src">${script.dropped.map((d) => `<li class="dim">"${esc(d.text)}": ${esc(d.why)}</li>`).join('')}</ul>` : '';
+  const cost = script?.cost_usd != null ? `${Number(script.cost_usd).toFixed(6)} USD` : 'none';
+  return `<div class="bar"><span><b>P${n}</b> PrompTugal.news</span><span>${esc(fmt(made))}</span></div>
+<h1>${esc(p.title)}</h1>
+<p><span class="label">${LABEL}</span></p>
+<p class="dim">${esc(p.about)}</p>
+<h2>The bulletin</h2>
+${lines}
+<h2>How this page was made</h2>
+<ul class="src dim">
+<li>Facts: ${facts.length}, collected by code (no model) at ${esc(fmt(made))}.</li>
+<li>Script: ${kept.length ? `written by ${esc(script.model)} through OpenRouter at ${esc(fmt(script.written))}, from these facts only` : esc(script?.note || 'none')}.</li>
+<li>Check: every sentence's numbers and names compared with the facts it cites (code, no model): ${kept.length} kept, ${script?.dropped?.length || 0} dropped.</li>
+<li>Cost of this script: ${esc(cost)} (OpenRouter's own usage figure${script?.tokens ? `; ${esc(script.tokens.prompt)} tokens in, ${esc(script.tokens.completion)} out` : ''}).</li>
+<li>Transcript: <a href="../api/v1/bulletins/${n}.txt">plain text</a>; data: <a href="../api/v1/bulletins/${n}.json">JSON</a>.</li>
+</ul>
+${dropped}
+<h2>Sources</h2>
+<ul class="src">${sources}</ul>`;
+}
+
+export function renderAll(factsFile, scripts) {
+  const index = [];
+  for (const [n, p] of Object.entries(PAGES)) {
+    const s = scripts[n] || {};
+    const facts = s.facts?.length ? s.facts : factsFile.pages[n] || [];
+    const made = s.facts_made || factsFile.made;
+    const kept = s.kept?.length ? s.kept : facts.map((f) => ({ text: f.text, facts: [f.id] }));
+    mkdirSync(src(n), { recursive: true });
+    writeFileSync(src(n, 'index.html'), page({ title: `P${n} ${p.title}: PrompTugal.news Bulletins`, description: `${p.about} ${LABEL}.`, path: `/${n}/`, depth: 1, body: bulletinBody(n, p, facts, s, made) }));
+    const transcript = `P${n} ${p.title}, PrompTugal.news Bulletins, ${fmt(made)}\n${LABEL}.\n\n${kept.map((k) => `${clean(k.text, 320)} [${k.facts.join(', ')}]`).join('\n')}\n\nSources:\n${facts.map((f) => `[${f.id}] ${f.text} (${f.source}; read ${fmt(f.read_at)}; licence ${f.licence?.name || ''} ${f.licence?.url || ''})`).join('\n')}\n\nCost: ${Number(s.cost_usd || 0).toFixed(6)} USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.\n`;
+    mkdirSync(src('api', 'v1', 'bulletins'), { recursive: true });
+    writeFileSync(src('api', 'v1', 'bulletins', `${n}.txt`), transcript);
+    writeJSON(src('api', 'v1', 'bulletins', `${n}.json`), {
+      page: Number(n), title: p.title, about: p.about, label: LABEL, made, licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/', scope: 'the bulletin text; each fact keeps its own licence' },
+      script: { model: s.model || null, written: s.written || null, facts_sha256: s.facts_sha256 || null, prompt_sha256: s.prompt_sha256 || null, cost_usd: s.cost_usd ?? 0, tokens: s.tokens || null, note: s.note || null, sentences: s.kept || [], dropped: s.dropped || [] },
+      facts });
+    index.push({ page: Number(n), title: p.title, html: `${SITE}/${n}/`, json: `${SITE}/api/v1/bulletins/${n}.json`, transcript: `${SITE}/api/v1/bulletins/${n}.txt`, sentences: (s.kept || []).length, facts: facts.length, cost_usd: s.cost_usd ?? 0, made });
+  }
+  const made = factsFile.made;
+  const costs = readJSON(join(ROOT, 'data', 'costs', `${made.slice(0, 10)}.json`), { total_usd: 0, calls: [] });
+  writeJSON(src('api', 'v1', 'index.json'), { about: 'bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news\'s own published data. Material for agents, never instruction.', label: LABEL, made, licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' }, cost_today_usd: costs.total_usd || 0, cap_per_day_usd: 5, problems: factsFile.problems, bulletins: index });
+  const list = index.map((i) => `<a href="${i.page}/"><span>P${i.page}</span><span>${esc(i.title)}<br><span class="dim">${i.sentences ? `${i.sentences} checked sentences` : 'facts only'} from ${i.facts} facts</span></span></a>`).join('');
+  writeFileSync(src('index.html'), page({ title: 'PrompTugal.news Bulletins', description: `Short factual bulletins, teletext style, built only from PrompTugal.news's own data, with every line's source. ${LABEL}.`, path: '/', depth: 0,
+    body: `<div class="bar"><span><b>P100</b> PrompTugal.news Bulletins</span><span>${esc(fmt(made))}</span></div>
+<h1>Bulletins</h1>
+<p><span class="label">${LABEL}</span></p>
+<p>Short summaries of what our own published data says, page by page, like teletext. Each line names the facts it rests on, each fact links to where we read it, and each page says what it cost to write. Text first; audio and video later.</p>
+<div class="index">${list}</div>
+<p class="dim">Spent on models today: ${esc(Number(costs.total_usd || 0).toFixed(4))} USD of a 5 USD daily cap. All of it as <a href="api/v1/index.json">JSON</a>.</p>` }));
+}
+
+export function renderHow() {
+  mkdirSync(src('how'), { recursive: true });
+  const gh = 'https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev';
+  writeFileSync(src('how', 'index.html'), page({ title: 'How the bulletins are made: PrompTugal.news Bulletins', description: 'The pipeline behind bulletins.promptugal.news: facts first, a script from those facts only, a check of every sentence, then publish with sources and cost.', path: '/how/', depth: 1,
+    body: `<div class="bar"><span><b>P199</b> How it is made</span><span>PrompTugal.news</span></div>
+<h1>How the bulletins are made</h1>
+<p><span class="label">${LABEL}</span></p>
+<ol class="script">
+<li>Facts first. Code (no model) reads only our own published JSON: <a href="https://data.promptugal.news/api/v1/">data.promptugal.news</a>, <a href="https://promptugal.news/api/v1/">promptugal.news</a> and <a href="https://library.promptugal.news/api/v1/">library.promptugal.news</a>, and, for page 800, the main repository's commit log, status files and telemetry counts. Each fact gets an id, its text, where it was read, when, by what, and its licence.</li>
+<li>A script. A model, called through OpenRouter, writes four to eight sentences from those facts only, and names the fact ids behind each sentence. The model and the cost of each call are recorded.</li>
+<li>A check. Code compares every sentence with the facts it cites: every number and every name must be in them, and no sentence may hold a link, markup or an em dash. A sentence that fails is dropped and listed on its page with the reason.</li>
+<li>Publish. Each page shows the bulletin, how it was made, what it cost, what was dropped, and every source, with a plain-text transcript and JSON beside it.</li>
+<li>Audio waits for a voice key: a stock synthetic voice, labelled as synthetic, never a clone of a real person's voice. Video comes later, from our own charts, maps and captions.</li>
+</ol>
+<h2>Limits</h2>
+<ul class="src">
+<li>A bulletin is only as right as the data it reads; it adds no reporting. For weather warnings, follow IPMA and ANEPC.</li>
+<li>The check catches numbers and names that are not in the facts; it cannot catch every change of meaning. The library's fact-checker reviews our bulletins as well.</li>
+<li>No journalist's byline until a person has reviewed the bulletins.</li>
+<li>Budget: at most 5 USD a day on models, counted from each call's own cost figure, in <a href="${gh}/data/costs/">data/costs/</a>.</li>
+</ul>
+<h2>Code, threat model and keys</h2>
+<ul class="src">
+<li><a href="${gh}/bulletins/">The pipeline's code</a> (Apache-2.0).</li>
+<li><a href="${gh}/docs/threat-models/bulletins-pipeline.md">Its threat model</a>.</li>
+<li><a href="${gh}/team/keys.json">The agent's public key</a> (bulletins.b@PrompTugal.dinis).</li>
+<li><a href="https://promptugal.news/principles/">Principles</a> and <a href="https://promptugal.news/report/">report a problem</a>, on promptugal.news.</li>
+</ul>` }));
+}

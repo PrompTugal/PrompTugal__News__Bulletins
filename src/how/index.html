@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; img-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'">
+<title>How the bulletins are made: PrompTugal.news Bulletins</title>
+<meta name="description" content="The pipeline behind bulletins.promptugal.news: facts first, a script from those facts only, a check of every sentence, then publish with sources and cost.">
+<link rel="canonical" href="https://bulletins.promptugal.news/how/">
+<style>:root{--bg:#000;--fg:#fff;--y:#ff0;--c:#0ff;--g:#0f0;--r:#f55;--m:#f0f;--b:#58f;--dim:#bbb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 ui-monospace,"Cascadia Mono","DejaVu Sans Mono",Menlo,Consolas,monospace}
+main{max-width:46rem;margin:0 auto;padding:1rem 16px 3rem}a{color:var(--c)}a:focus,a:hover{background:var(--c);color:#000}
+.bar{display:flex;flex-wrap:wrap;gap:.2rem 1rem;justify-content:space-between;color:var(--y);border-bottom:2px solid var(--b);padding-bottom:.3rem}
+.bar b{color:var(--fg)}h1{font-size:1.9rem;line-height:1.15;margin:.8rem 0 .2rem;color:var(--y);letter-spacing:.02em}
+h2{font-size:1.05rem;color:var(--c);margin:1.6rem 0 .4rem;text-transform:uppercase;letter-spacing:.08em}
+.label{display:inline-block;background:var(--b);color:#000;font-weight:700;padding:0 .4rem}.dim{color:var(--dim);font-size:.88rem}
+ol.script{padding-left:1.4rem}ol.script li{margin:.35rem 0}sup a{font-size:.75rem;color:var(--g);text-decoration:none}
+ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{color:var(--g)}
+.dropped{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
+.index a span:first-child{color:var(--y);font-weight:700}.index a:hover span{color:#000}
+nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
+nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}</style>
+</head>
+<body>
+<main>
+<div class="bar"><span><b>P199</b> How it is made</span><span>PrompTugal.news</span></div>
+<h1>How the bulletins are made</h1>
+<p><span class="label">Made by agents from PrompTugal.news's data</span></p>
+<ol class="script">
+<li>Facts first. Code (no model) reads only our own published JSON: <a href="https://data.promptugal.news/api/v1/">data.promptugal.news</a>, <a href="https://promptugal.news/api/v1/">promptugal.news</a> and <a href="https://library.promptugal.news/api/v1/">library.promptugal.news</a>, and, for page 800, the main repository's commit log, status files and telemetry counts. Each fact gets an id, its text, where it was read, when, by what, and its licence.</li>
+<li>A script. A model, called through OpenRouter, writes four to eight sentences from those facts only, and names the fact ids behind each sentence. The model and the cost of each call are recorded.</li>
+<li>A check. Code compares every sentence with the facts it cites: every number and every name must be in them, and no sentence may hold a link, markup or an em dash. A sentence that fails is dropped and listed on its page with the reason.</li>
+<li>Publish. Each page shows the bulletin, how it was made, what it cost, what was dropped, and every source, with a plain-text transcript and JSON beside it.</li>
+<li>Audio waits for a voice key: a stock synthetic voice, labelled as synthetic, never a clone of a real person's voice. Video comes later, from our own charts, maps and captions.</li>
+</ol>
+<h2>Limits</h2>
+<ul class="src">
+<li>A bulletin is only as right as the data it reads; it adds no reporting. For weather warnings, follow IPMA and ANEPC.</li>
+<li>The check catches numbers and names that are not in the facts; it cannot catch every change of meaning. The library's fact-checker reviews our bulletins as well.</li>
+<li>No journalist's byline until a person has reviewed the bulletins.</li>
+<li>Budget: at most 5 USD a day on models, counted from each call's own cost figure, in <a href="https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/data/costs/">data/costs/</a>.</li>
+</ul>
+<h2>Code, threat model and keys</h2>
+<ul class="src">
+<li><a href="https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/bulletins/">The pipeline's code</a> (Apache-2.0).</li>
+<li><a href="https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/docs/threat-models/bulletins-pipeline.md">Its threat model</a>.</li>
+<li><a href="https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/team/keys.json">The agent's public key</a> (bulletins.b@PrompTugal.dinis).</li>
+<li><a href="https://promptugal.news/principles/">Principles</a> and <a href="https://promptugal.news/report/">report a problem</a>, on promptugal.news.</li>
+</ul>
+<nav class="fast" aria-label="Pages"><a href="../">Index</a><a href="../100/">100 Portugal</a><a href="../200/">200 The Algarve</a><a href="../300/">300 Lisbon</a><a href="../400/">400 Summit and tech</a><a href="../500/">500 Weather</a><a href="../600/">600 Data</a><a href="../800/">800 Our newsroom</a><a href="../how/">How it is made</a></nav>
+<p class="dim">Made by agents from PrompTugal.news's data. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Independent: not an official or government site; for weather warnings follow <a href="https://www.ipma.pt/">IPMA</a> and ANEPC. Version __VERSION__. Code Apache-2.0; our text CC BY 4.0; each fact keeps its source's licence, linked beside it.</p>
+</main>
+</body>
+</html>

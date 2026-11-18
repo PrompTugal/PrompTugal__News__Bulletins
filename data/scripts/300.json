@@ -1,0 +1,150 @@
+{
+ "page": "300",
+ "facts_sha256": "103e65848c00d916d5601a461af8209b",
+ "facts_made": "2026-11-18T21:01:09Z",
+ "model": "anthropic/claude-haiku-5.5",
+ "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
+ "facts": [
+  {
+   "id": "300-01",
+   "text": "IPMA forecast for Lisboa today (2026-11-18): minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W.",
+   "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+   "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
+   "read_at": "2026-11-18T20:30:31Z",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://api.ipma.pt/"
+   },
+   "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+  },
+  {
+   "id": "300-02",
+   "text": "IPMA forecast for Lisboa tomorrow (2026-11-19): minimum 12.7 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W.",
+   "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+   "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
+   "read_at": "2026-11-18T20:30:31Z",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://api.ipma.pt/"
+   },
+   "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+  },
+  {
+   "id": "300-03",
+   "text": "IPMA warnings for the Lisboa district: orange for rough sea, from 2026-11-19 06:00 to 2026-11-19 12:00 local time; yellow for rain, from 2026-11-18 17:19 to 2026-11-18 20:00 local time.",
+   "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
+   "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
+   "read_at": "2026-11-18T20:31:44Z",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://api.ipma.pt/"
+   },
+   "by": "sources/ipma-warnings/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+  },
+  {
+   "id": "300-04",
+   "text": "IPMA sea forecast for the Lisboa coast on 2026-11-19: waves of 3.6 to 4.1 metres from NW, sea temperature 17.4 to 17.6 °C.",
+   "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
+   "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
+   "read_at": "2026-11-18T20:31:32Z",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://api.ipma.pt/"
+   },
+   "by": "sources/ipma-sea/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+  },
+  {
+   "id": "300-05",
+   "text": "PrompTugal.news published ‘Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI’ on 2026-11-16, filed under Lisbon.",
+   "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
+   "origin": "https://www.portugalglobal.pt/en/news/2026/novembro/web-summit-features-humanoid-robots-and-record-chinese-presence/",
+   "read_at": "2026-11-18T21:01:09Z",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.portugalglobal.pt/"
+   },
+   "by": "promptugal.news JSON Feed"
+  },
+  {
+   "id": "300-06",
+   "text": "PrompTugal.news published ‘Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology’ on 2026-11-05, filed under Lisbon.",
+   "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
+   "origin": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
+   "read_at": "2026-11-18T21:01:09Z",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://vestbee.com/"
+   },
+   "by": "promptugal.news JSON Feed"
+  },
+  {
+   "id": "300-07",
+   "text": "PrompTugal.news published ‘University of Lisbon builds two AI data centres’ on 2026-07-24, filed under Lisbon.",
+   "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
+   "origin": "https://www.portugalglobal.pt/en/news/2026/julho/university-of-lisbon-to-invest-20m-in-ai-science-data-centres/",
+   "read_at": "2026-11-18T21:01:09Z",
+   "licence": {
+    "name": "the source's terms",
+    "url": "https://www.portugalglobal.pt/"
+   },
+   "by": "promptugal.news JSON Feed"
+  }
+ ],
+ "written": "2026-11-18T21:01:23.635Z",
+ "kept": [
+  {
+   "text": "IPMA has issued a yellow rain warning for the Lisboa district from 2026-11-18 17:19 to 2026-11-18 20:00 local time.",
+   "facts": [
+    "300-03"
+   ]
+  },
+  {
+   "text": "Today's forecast for Lisboa gives a minimum of 15.9 °C, a maximum of 20.9 °C and a chance of rain of 100%, with moderate wind from W.",
+   "facts": [
+    "300-01"
+   ]
+  },
+  {
+   "text": "An orange warning for rough sea covers the Lisboa district from 2026-11-19 06:00 to 2026-11-19 12:00 local time.",
+   "facts": [
+    "300-03"
+   ]
+  },
+  {
+   "text": "The sea forecast for the Lisboa coast on 2026-11-19 shows waves of 3.6 to 4.1 metres from NW and a sea temperature of 17.4 to 17.6 °C.",
+   "facts": [
+    "300-04"
+   ]
+  },
+  {
+   "text": "Tomorrow, 2026-11-19, Lisboa is forecast a minimum of 12.7 °C, a maximum of 18.5 °C and a chance of rain of 2%, with moderate wind from W.",
+   "facts": [
+    "300-02"
+   ]
+  },
+  {
+   "text": "PrompTugal.news published 'Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI' on 2026-11-16.",
+   "facts": [
+    "300-05"
+   ]
+  },
+  {
+   "text": "PrompTugal.news published 'Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology' on 2026-11-05.",
+   "facts": [
+    "300-06"
+   ]
+  },
+  {
+   "text": "PrompTugal.news published 'University of Lisbon builds two AI data centres' on 2026-07-24.",
+   "facts": [
+    "300-07"
+   ]
+  }
+ ],
+ "dropped": [],
+ "cost_usd": 0.00076626,
+ "tokens": {
+  "prompt": 810,
+  "completion": 1386
+ }
+}

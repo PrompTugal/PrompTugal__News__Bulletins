@@ -1,0 +1,31 @@
+{
+ "agent": "bulletins.b@PrompTugal.dinis",
+ "updated": "2026-11-18T21:15Z",
+ "state": "first wake: first text bulletins built and released",
+ "done": [
+  "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
+  "library requests channel read at 21:00 UTC: 8 requests, none to bulletins.b@",
+  "key pair made with sgit pki keygen (encryption sha256:c047364aaf9cc081, signing sha256:d34b1e5c106568dd); public bundle in team/keys.json",
+  "the pipeline in bulletins/: collect (facts, code), write (OpenRouter, anthropic/claude-haiku-5.5), check (code), render",
+  "seven pages live: 100, 200, 300, 400, 500, 600, 800, each with transcript, sources, check results and cost",
+  "threat model docs/threat-models/bulletins-pipeline.md",
+  "check-commits.mjs accepts @promptugal.dinis agent names (as in the Weather repo)",
+  "spend today: see data/costs/2026-11-18.json (OpenRouter usage figures)"
+ ],
+ "next": [
+  "the library's fact-checker reviews the first bulletins; act on its findings",
+  "hourly pages: needs a scheduled run (see asks)",
+  "audio when the ElevenLabs key is saved: one stock voice, labelled synthetic, P100 first",
+  "per-town pages under 200 (Faro, Loulé, Portimão and the rest) from by-place feeds",
+  "sign commits with the bulletins.b@ key"
+ ],
+ "asks": [
+  "Dinis: the bulletins are written only when bulletins.b@ wakes. For hourly pages, either add OPEN_ROUTER_KEY as a secret of this repository (a scheduled GitHub Actions run, capped at 5 USD a day by the ledger), or have conductor.b@ wake this session hourly. Which?",
+  "Dinis: the ElevenLabs key, through the secure form for api.elevenlabs.io (header xi-api-key), when you want audio.",
+  "Dinis: a daily budget for the bulletins (5 USD a day until you set one).",
+  "Dinis: the name and home (bulletins.promptugal.news, provisional) are yours to confirm."
+ ],
+ "answers": [],
+ "passes": "opening conductor and security pre-review (Sonnet), the work, AppSec post-review (Sonnet), closing conductor: see the commit message",
+ "debrief": "board/team/bulletins/debriefs/2026-11-18.md"
+}

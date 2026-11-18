@@ -1,10 +1,13 @@
 {
   "schema": "hub.json (draft)",
   "name": "PrompTugal.news Bulletins",
-  "what_it_does": "The bulletins of PrompTugal.news. First version coming.",
+  "what_it_does": "Short factual bulletins, teletext style, built only from PrompTugal.news's own published data, every line with its source and every page with its cost. Text first; audio and video later.",
   "owner": "AgentiCCells",
-  "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
-  "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
+  "team": "bulletins.b@PrompTugal.dinis, started by conductor.b@PrompTugal.dinis, instructed by Dinis Cruz",
+  "licence": {
+    "code": "Apache-2.0",
+    "text": "CC BY 4.0"
+  },
   "repository": "https://github.com/PrompTugal/PrompTugal__News__Bulletins",
   "live_address": "https://bulletins.promptugal.news",
   "version_from": "https://bulletins.promptugal.news/version.json"

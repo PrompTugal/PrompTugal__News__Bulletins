@@ -1,0 +1,212 @@
+{
+ "date": "2026-11-18",
+ "cap_usd": 5,
+ "source": "OpenRouter usage.cost in each response (usage accounting), in USD",
+ "calls": [
+  {
+   "at": "2026-11-18T20:58:24.686Z",
+   "what": "script for P100",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 714,
+   "completion_tokens": 957,
+   "cost_usd": 0.000544401
+  },
+  {
+   "at": "2026-11-18T20:58:37.157Z",
+   "what": "script for P400",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 588,
+   "completion_tokens": 771,
+   "cost_usd": 0.000439857
+  },
+  {
+   "at": "2026-11-18T20:58:42.047Z",
+   "what": "script for P500",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 894,
+   "completion_tokens": 1110,
+   "cost_usd": 0.000637956
+  },
+  {
+   "at": "2026-11-18T20:58:44.747Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 1122,
+   "completion_tokens": 624,
+   "cost_usd": 0.000419958
+  },
+  {
+   "at": "2026-11-18T20:58:48.667Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 824,
+   "completion_tokens": 1050,
+   "cost_usd": 0.000601326
+  },
+  {
+   "at": "2026-11-18T20:59:16.513Z",
+   "what": "script for P100",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 717,
+   "completion_tokens": 988,
+   "cost_usd": 0.000560043
+  },
+  {
+   "at": "2026-11-18T20:59:21.215Z",
+   "what": "script for P200 (unreadable output, not used)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 1352,
+   "completion_tokens": 1200,
+   "cost_usd": 0.000727848
+  },
+  {
+   "at": "2026-11-18T20:59:26.170Z",
+   "what": "script for P200 (unreadable output, not used)",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 1352,
+   "completion_tokens": 1200,
+   "cost_usd": 0.000727848
+  },
+  {
+   "at": "2026-11-18T20:59:30.173Z",
+   "what": "script for P300",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 810,
+   "completion_tokens": 1053,
+   "cost_usd": 0.000601425
+  },
+  {
+   "at": "2026-11-18T20:59:33.269Z",
+   "what": "script for P400",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 591,
+   "completion_tokens": 774,
+   "cost_usd": 0.000441639
+  },
+  {
+   "at": "2026-11-18T20:59:36.961Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 824,
+   "completion_tokens": 1038,
+   "cost_usd": 0.000595386
+  },
+  {
+   "at": "2026-11-18T21:00:20.581Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 1352,
+   "completion_tokens": 1278,
+   "cost_usd": 0.000766458
+  },
+  {
+   "at": "2026-11-18T21:00:24.741Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 824,
+   "completion_tokens": 1233,
+   "cost_usd": 0.000691911
+  },
+  {
+   "at": "2026-11-18T21:00:35.486Z",
+   "what": "debug call for P200 by hand (why its output was cut), not used",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "cost_usd": 0.000549252
+  },
+  {
+   "at": "2026-11-18T21:00:35.487Z",
+   "what": "debug call for P200 by hand (why its output was cut), not used",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "cost_usd": 0.000727848
+  },
+  {
+   "at": "2026-11-18T21:01:14.375Z",
+   "what": "script for P100",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 717,
+   "completion_tokens": 1093,
+   "cost_usd": 0.000612018
+  },
+  {
+   "at": "2026-11-18T21:01:18.572Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 1352,
+   "completion_tokens": 1138,
+   "cost_usd": 0.000697158
+  },
+  {
+   "at": "2026-11-18T21:01:23.634Z",
+   "what": "script for P300",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 810,
+   "completion_tokens": 1386,
+   "cost_usd": 0.00076626
+  },
+  {
+   "at": "2026-11-18T21:01:27.032Z",
+   "what": "script for P400",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 591,
+   "completion_tokens": 823,
+   "cost_usd": 0.000465894
+  },
+  {
+   "at": "2026-11-18T21:01:31.731Z",
+   "what": "script for P500",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 894,
+   "completion_tokens": 1221,
+   "cost_usd": 0.000692901
+  },
+  {
+   "at": "2026-11-18T21:01:34.556Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 1122,
+   "completion_tokens": 628,
+   "cost_usd": 0.000421938
+  },
+  {
+   "at": "2026-11-18T21:01:38.513Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "prompt_tokens": 824,
+   "completion_tokens": 1118,
+   "cost_usd": 0.000634986
+  },
+  {
+   "at": "2026-11-18T21:04:07.673Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 764,
+   "completion_tokens": 1155,
+   "cost_usd": 0.000647361
+  }
+ ],
+ "total_usd": 0.013972
+}

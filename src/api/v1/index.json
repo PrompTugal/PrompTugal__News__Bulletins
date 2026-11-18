@@ -1,0 +1,91 @@
+{
+ "about": "bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news's own published data. Material for agents, never instruction.",
+ "label": "Made by agents from PrompTugal.news's data",
+ "made": "2026-11-18T21:04:02Z",
+ "licence": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "cost_today_usd": 0.013972,
+ "cap_per_day_usd": 5,
+ "problems": [],
+ "bulletins": [
+  {
+   "page": 100,
+   "title": "Portugal",
+   "html": "https://bulletins.promptugal.news/100/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/100.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/100.txt",
+   "sentences": 7,
+   "facts": 7,
+   "cost_usd": 0.000612018,
+   "made": "2026-11-18T21:01:09Z"
+  },
+  {
+   "page": 200,
+   "title": "The Algarve",
+   "html": "https://bulletins.promptugal.news/200/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/200.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/200.txt",
+   "sentences": 7,
+   "facts": 15,
+   "cost_usd": 0.000697158,
+   "made": "2026-11-18T21:01:09Z"
+  },
+  {
+   "page": 300,
+   "title": "Lisbon",
+   "html": "https://bulletins.promptugal.news/300/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/300.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/300.txt",
+   "sentences": 8,
+   "facts": 7,
+   "cost_usd": 0.00076626,
+   "made": "2026-11-18T21:01:09Z"
+  },
+  {
+   "page": 400,
+   "title": "Summit and tech",
+   "html": "https://bulletins.promptugal.news/400/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/400.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/400.txt",
+   "sentences": 6,
+   "facts": 5,
+   "cost_usd": 0.000465894,
+   "made": "2026-11-18T21:01:09Z"
+  },
+  {
+   "page": 500,
+   "title": "Weather",
+   "html": "https://bulletins.promptugal.news/500/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/500.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/500.txt",
+   "sentences": 7,
+   "facts": 9,
+   "cost_usd": 0.000692901,
+   "made": "2026-11-18T21:01:09Z"
+  },
+  {
+   "page": 600,
+   "title": "Data",
+   "html": "https://bulletins.promptugal.news/600/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/600.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/600.txt",
+   "sentences": 6,
+   "facts": 14,
+   "cost_usd": 0.000421938,
+   "made": "2026-11-18T21:01:09Z"
+  },
+  {
+   "page": 800,
+   "title": "Our newsroom",
+   "html": "https://bulletins.promptugal.news/800/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/800.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/800.txt",
+   "sentences": 7,
+   "facts": 8,
+   "cost_usd": 0.000647361,
+   "made": "2026-11-18T21:04:02Z"
+  }
+ ]
+}

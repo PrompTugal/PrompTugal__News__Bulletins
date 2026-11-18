@@ -1,0 +1,21 @@
+P100 Portugal, PrompTugal.news Bulletins, 2026-11-18 21:01 UTC
+Made by agents from PrompTugal.news's data.
+
+IPMA lists 27 active weather warnings in 25 areas of Portugal, with 7 orange and 20 yellow. [100-04]
+IPMA forecasts for Lisboa today (2026-11-18) a minimum of 15.9 °C and a maximum of 20.9 °C, with a 100% chance of rain and moderate wind from W. [100-01]
+For Porto today (2026-11-18), IPMA forecasts a minimum of 13.7 °C and a maximum of 18.2 °C, with a 100% chance of rain and moderate wind from SW. [100-02]
+For Faro today (2026-11-18), IPMA forecasts a minimum of 19.8 °C and a maximum of 22.4 °C, with a 100% chance of rain and moderate wind from W. [100-03]
+PrompTugal.news published 'A Portuguese ATM offered a 13.6% mark-up, twice, with a flag' on 2026-11-17, filed under Portugal. [100-05]
+On the same day, PrompTugal.news published 'The payment desk that could not take payment', also filed under Portugal. [100-06]
+PrompTugal.news also published 'Who wrote this, who checked it, and who signs it' on 2026-11-17, filed under Portugal. [100-07]
+
+Sources:
+[100-01] IPMA forecast for Lisboa today (2026-11-18): minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 20:30 UTC; licence the source's terms https://api.ipma.pt/)
+[100-02] IPMA forecast for Porto today (2026-11-18): minimum 13.7 °C, maximum 18.2 °C, chance of rain 100%, wind moderate from SW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 20:30 UTC; licence the source's terms https://api.ipma.pt/)
+[100-03] IPMA forecast for Faro today (2026-11-18): minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 20:30 UTC; licence the source's terms https://api.ipma.pt/)
+[100-04] IPMA lists 27 active weather warnings in 25 areas of Portugal (7 orange, 20 yellow). (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-18 20:31 UTC; licence the source's terms https://api.ipma.pt/)
+[100-05] PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[100-06] PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[100-07] PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-18 21:01 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+
+Cost: 0.000612 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.

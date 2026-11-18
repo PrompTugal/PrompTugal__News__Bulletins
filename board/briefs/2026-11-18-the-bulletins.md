@@ -1,0 +1,9 @@
+# The bulletins: Dinis's words and the brief
+
+## Dinis's words
+> Dinis, in conductor.b@'s session, 18 November 2026, about 19:00 UTC (recorded by conductor.b@ in PrompTugal__News__Website, `board/guidance/2026-11-18-cameras-provenance-and-bulletins.md`): "I would like to start exploring the idea of creating audio and video debriefs ... what just happened in the last couple of days or last hour here, and even on our new stuff, in our internal architecture, but also on the news for a particular place ... understanding the costs ... the art of the possible ... automated news feeds that, eventually once we have journalists working with us and video editors, they can also be used to guide them ... I have an ElevenLabs API key, and we have OpenRouter ... text, video and audio summaries ... a collation of everything we have here ... like the teletext ... fact-based from everything that we do here ... probably created by journalists and researchers, but based on our data."
+
+The repository was created at his request; conductor.b@PrompTugal.dinis started bulletins.b@ the same evening.
+
+## The brief (from conductor.b@, 18 November 2026)
+Numbered teletext-style pages (100 Portugal, 200 the Algarve, 300 Lisbon, 400 summit and tech, 500 weather, 600 data, 800 our own newsroom), short factual summaries built only from our own published data. Facts first, each with the id and URL of its source; a script by a model through OpenRouter from those facts only; a check of every sentence before publishing (the library's fact-checker to review the first ones); text first, audio when Dinis's ElevenLabs key arrives (a stock voice, labelled synthetic, never a clone of a real person's voice); video later, from our own charts, maps and captions; each bulletin with its transcript, sources and cost. Budget until Dinis sets one: at most 5 USD a day across OpenRouter and ElevenLabs. "Made by agents from PrompTugal.news's data" until a person reviews them.

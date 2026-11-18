@@ -1,0 +1,22 @@
+P300 Lisbon, PrompTugal.news Bulletins, 2026-11-18 21:01 UTC
+Made by agents from PrompTugal.news's data.
+
+IPMA has issued a yellow rain warning for the Lisboa district from 2026-11-18 17:19 to 2026-11-18 20:00 local time. [300-03]
+Today's forecast for Lisboa gives a minimum of 15.9 °C, a maximum of 20.9 °C and a chance of rain of 100%, with moderate wind from W. [300-01]
+An orange warning for rough sea covers the Lisboa district from 2026-11-19 06:00 to 2026-11-19 12:00 local time. [300-03]
+The sea forecast for the Lisboa coast on 2026-11-19 shows waves of 3.6 to 4.1 metres from NW and a sea temperature of 17.4 to 17.6 °C. [300-04]
+Tomorrow, 2026-11-19, Lisboa is forecast a minimum of 12.7 °C, a maximum of 18.5 °C and a chance of rain of 2%, with moderate wind from W. [300-02]
+PrompTugal.news published 'Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI' on 2026-11-16. [300-05]
+PrompTugal.news published 'Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology' on 2026-11-05. [300-06]
+PrompTugal.news published 'University of Lisbon builds two AI data centres' on 2026-07-24. [300-07]
+
+Sources:
+[300-01] IPMA forecast for Lisboa today (2026-11-18): minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 20:30 UTC; licence the source's terms https://api.ipma.pt/)
+[300-02] IPMA forecast for Lisboa tomorrow (2026-11-19): minimum 12.7 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 20:30 UTC; licence the source's terms https://api.ipma.pt/)
+[300-03] IPMA warnings for the Lisboa district: orange for rough sea, from 2026-11-19 06:00 to 2026-11-19 12:00 local time; yellow for rain, from 2026-11-18 17:19 to 2026-11-18 20:00 local time. (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-18 20:31 UTC; licence the source's terms https://api.ipma.pt/)
+[300-04] IPMA sea forecast for the Lisboa coast on 2026-11-19: waves of 3.6 to 4.1 metres from NW, sea temperature 17.4 to 17.6 °C. (https://data.promptugal.news/api/v1/ipma-sea/latest.json; read 2026-11-18 20:31 UTC; licence the source's terms https://api.ipma.pt/)
+[300-05] PrompTugal.news published ‘Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI’ on 2026-11-16, filed under Lisbon. (https://promptugal.news/api/v1/by-place/lisboa/feed.json; read 2026-11-18 21:01 UTC; licence the source's terms https://www.portugalglobal.pt/)
+[300-06] PrompTugal.news published ‘Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology’ on 2026-11-05, filed under Lisbon. (https://promptugal.news/api/v1/by-place/lisboa/feed.json; read 2026-11-18 21:01 UTC; licence the source's terms https://vestbee.com/)
+[300-07] PrompTugal.news published ‘University of Lisbon builds two AI data centres’ on 2026-07-24, filed under Lisbon. (https://promptugal.news/api/v1/by-place/lisboa/feed.json; read 2026-11-18 21:01 UTC; licence the source's terms https://www.portugalglobal.pt/)
+
+Cost: 0.000766 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.

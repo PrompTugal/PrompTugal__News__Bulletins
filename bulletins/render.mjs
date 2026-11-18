@@ -46,7 +46,7 @@ function page({ title, description, path, body, depth }) {
 <main>
 ${body}
 <nav class="fast" aria-label="Pages"><a href="${up}">Index</a>${fast}<a href="${up}how/">How it is made</a></nav>
-<p class="dim">${LABEL}. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Independent: not an official or government site; for weather warnings follow <a href="https://www.ipma.pt/">IPMA</a> and ANEPC. Version __VERSION__. Code Apache-2.0; our text CC BY 4.0; each fact keeps its source's licence, linked beside it.</p>
+<p class="dim">${LABEL}. Part of <a href="https://promptugal.news/">PrompTugal.news</a>. Independent: not an official or government site; for weather warnings follow <a href="https://www.ipma.pt/">IPMA</a> and ANEPC. Free: this site carries no billing. Version __VERSION__. Code Apache-2.0; our text CC BY 4.0; each fact keeps its source's licence, linked beside it.</p>
 </main>
 </body>
 </html>

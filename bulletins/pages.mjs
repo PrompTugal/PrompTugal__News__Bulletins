@@ -6,6 +6,6 @@ export const PAGES = {
   400: { title: 'Summit and tech', slug: 'summit-and-tech', about: 'The summit and technology: the latest articles on the summit and AI, and the library\'s catalogue and fact-checker.' },
   500: { title: 'Weather', slug: 'weather', about: 'Weather across Portugal from IPMA: warnings, forecasts, sea and fire risk.' },
   600: { title: 'Data', slug: 'data', about: 'data.promptugal.news: each public source we read, when it was last read and what it holds.' },
-  700: { title: 'London', slug: 'london', about: 'Beyond Portugal: London, the first place outside Portugal (Dinis, 18 November 2026). Built from London data on data.promptugal.news as it lands.', waiting: 'No London data has landed on data.promptugal.news yet. This page fills itself when the first London source is published.' },
+  700: { title: 'London', slug: 'london', about: 'Beyond Portugal: London, the first place outside Portugal (Dinis, 18 November 2026). Built from London data on data.promptugal.news: Open-Meteo forecasts and Environment Agency flood warnings. Not a warning service: follow the Environment Agency and the Met Office.', waiting: 'No London data has landed on data.promptugal.news yet. This page fills itself when the first London source is published.' },
   800: { title: 'Our newsroom', slug: 'newsroom', about: 'What the PrompTugal.news agents did: commits, status files and the telemetry counts.' },
 };

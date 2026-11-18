@@ -106,6 +106,31 @@ await safe('data catalogue', async () => {
   }
 });
 
+// Page 700, London: data.promptugal.news's place file (data.b@, 18 Nov 2026). Each block keeps its own
+// source, read time and licence: Open-Meteo (CC BY 4.0, "Weather data by Open-Meteo.com") and the
+// Environment Agency's flood warnings (Open Government Licence). Not a warning service.
+await safe('london', async () => {
+  const j = await getJSON(`${D}/by-place/now/london.json`);
+  const block = (b) => ({ origin: b?.source || b?.provenance?.source, read_at: b?.read_at || b?.provenance?.read_at || j.read_at,
+    licence: { name: clean([b?.license?.name || b?.licence?.name || b?.licence || "the source's terms", b?.attribution || b?.credit].filter((x) => typeof x === 'string' && x).join('; '), 160), url: b?.license?.url || b?.licence?.url || null },
+    by: clean(b?.provenance?.by || b?.by || 'data.promptugal.news', 160) });
+  const src = `${D}/by-place/now/london.json`;
+  const f = j.forecast;
+  for (const d of (f?.days || []).filter((d) => d.date === day(now) || d.date === tomorrow).slice(0, 2)) {
+    if (![d.t_min_c, d.t_max_c].every(Number.isFinite)) continue;
+    const when = d.date === day(now) ? `today (${d.date})` : `tomorrow (${d.date})`;
+    add('700', { ...block(f), source: src, text: `Open-Meteo forecast for London ${when}: minimum ${d.t_min_c} °C, maximum ${d.t_max_c} °C${Number.isFinite(d.rain_mm) ? `, rain ${d.rain_mm} mm` : ''}.` });
+  }
+  const w = j.floods?.warnings;
+  if (Array.isArray(w)) {
+    const by = {}; for (const x of w) { const s = clean(x.severity, 40) || 'unstated'; by[s] = (by[s] || 0) + 1; }
+    add('700', { ...block(j.floods), source: src, text: w.length
+      ? `The Environment Agency lists ${w.length} flood ${w.length === 1 ? 'warning or alert' : 'warnings and alerts'} for the London area (${Object.entries(by).map(([k, v]) => `${v} ${k}`).join(', ')}).`
+      : 'The Environment Agency lists no flood warning or alert for the London area.' });
+    for (const x of w.slice(0, 3)) add('700', { ...block(j.floods), source: src, origin: x.url || block(j.floods).origin, text: `Environment Agency, ${clean(x.severity, 40)}: ${clean(x.area, 120)}.` });
+  }
+});
+
 // promptugal.news's own articles, by place and by topic (JSON Feed). Titles as published.
 for (const [page, feed, label] of [['100', 'by-place/portugal', 'Portugal'], ['200', 'by-place/algarve', 'the Algarve'], ['300', 'by-place/lisboa', 'Lisbon'], ['400', 'topics/the-summit', 'the summit'], ['400', 'topics/ai', 'AI'], ['700', 'by-place/london', 'London']]) {
   await safe(`feed ${feed}`, async () => {

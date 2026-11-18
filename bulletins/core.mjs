@@ -44,7 +44,7 @@ export function clean(s, max = 240) {
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
 // A link is shown only if it is https and on one of our hosts or a known source host.
-const LINK_HOSTS = /(^|\.)(promptugal\.news|ipma\.pt|adsb\.lol|creativecommons\.org|opendatacommons\.org|dados\.gov\.pt|meteoalarm\.org)$/i;
+const LINK_HOSTS = /(^|\.)(promptugal\.news|ipma\.pt|adsb\.lol|creativecommons\.org|opendatacommons\.org|dados\.gov\.pt|meteoalarm\.org|open-meteo\.com|environment\.data\.gov\.uk|check-for-flooding\.service\.gov\.uk|nationalarchives\.gov\.uk)$/i;
 export function safeLink(url) {
   try {
     const u = new URL(url);

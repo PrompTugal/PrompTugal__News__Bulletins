@@ -100,7 +100,7 @@ await safe('data catalogue', async () => {
   }
   // Page 700, London (Dinis, 18 Nov 2026, about 22:20 UTC): every London or UK source the data site
   // lists, as it lands. Headline only until each source's own fields are read here.
-  for (const s of j.sources.filter((s) => s.status !== 'archived' && /london|^uk-|-uk$|tfl|ea-flood/i.test(s.id))) {
+  for (const s of j.sources.filter((s) => s.status !== 'archived' && /london|^uk-|-uk$|tfl|ea-flood/i.test(s.id) && !/open-meteo/i.test(s.id))) {
     add('700', { text: `${clean(s.title, 120)}, read ${s.cadence}, last at ${s.read_at.replace('T', ' ').slice(0, 16)} UTC: ${clean(s.headline, 120)}.`, source: s.latest || `${D}/`, origin: s.page, read_at: s.read_at,
       licence: { name: clean(s.terms_summary ? "the source's terms (on its card)" : "the source's terms", 60), url: s.card || s.page || null }, by: 'data.promptugal.news catalogue' });
   }
@@ -115,7 +115,10 @@ await safe('london', async () => {
     licence: { name: clean([b?.license?.name || b?.licence?.name || b?.licence || "the source's terms", b?.attribution || b?.credit].filter((x) => typeof x === 'string' && x).join('; '), 160), url: b?.license?.url || b?.licence?.url || null },
     by: clean(b?.provenance?.by || b?.by || 'data.promptugal.news', 160) });
   const src = `${D}/by-place/now/london.json`;
-  const f = j.forecast;
+  // The London forecast is off until Dinis chooses a source: Open-Meteo's free API is for
+  // non-commercial use (data.b@'s reading of its terms, relayed by conductor.b@, 18 Nov 2026, 23:02 UTC).
+  // Set LONDON_FORECAST=open-meteo only once a source is chosen and its terms allow our use.
+  const f = process.env.LONDON_FORECAST === 'open-meteo' ? j.forecast : null;
   for (const d of (f?.days || []).filter((d) => d.date === day(now) || d.date === tomorrow).slice(0, 2)) {
     if (![d.t_min_c, d.t_max_c].every(Number.isFinite)) continue;
     const when = d.date === day(now) ? `today (${d.date})` : `tomorrow (${d.date})`;

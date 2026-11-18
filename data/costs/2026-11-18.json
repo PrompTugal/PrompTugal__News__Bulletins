@@ -366,7 +366,27 @@
    "prompt_tokens": 792,
    "completion_tokens": 1232,
    "cost_usd": 0.000688248
+  },
+  {
+   "at": "2026-11-18T23:02:28.746Z",
+   "what": "script for P700",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 517,
+   "completion_tokens": 676,
+   "cost_usd": 0.000385803
+  },
+  {
+   "at": "2026-11-18T23:02:35.800Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 792,
+   "completion_tokens": 1084,
+   "cost_usd": 0.000614988
   }
  ],
- "total_usd": 0.024147
+ "total_usd": 0.025148
 }

@@ -1,9 +1,9 @@
 {
  "page": 700,
  "title": "London",
- "about": "Beyond Portugal: London, the first place outside Portugal (Dinis, 18 November 2026). Built from London data on data.promptugal.news: Environment Agency flood warnings and river data, and the London sources the data site reads. No forecast yet: the London forecast waits until a source is chosen whose terms allow our use. Not a warning service: follow the Environment Agency and the Met Office.",
+ "about": "Beyond Portugal: London, the first place outside Portugal (Dinis, 18 November 2026). Built from London data on data.promptugal.news: the Open-Meteo forecast (Weather data by Open-Meteo.com, CC BY 4.0, used under its free non-commercial terms), Environment Agency flood warnings and river data, and the London sources the data site reads. Not a warning service: follow the Environment Agency and the Met Office.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T23:02:23Z",
+ "made": "2026-11-18T23:03:31Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,39 +11,50 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-18T23:02:28.750Z",
-  "facts_sha256": "68e3a3a11f33065f80c6377ca6b1771d",
+  "written": "2026-11-18T23:03:36.434Z",
+  "facts_sha256": "ce682427111dc6ffe881b57f9197784a",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000385803,
+  "cost_usd": 0.000510939,
   "tokens": {
-   "prompt": 517,
-   "completion": 676
+   "prompt": 706,
+   "completion": 891
   },
   "note": null,
   "sentences": [
    {
     "text": "The Environment Agency lists 2 flood warnings and alerts for the London area.",
     "facts": [
-     "700-03"
+     "700-06"
     ]
    },
    {
-    "text": "The two flood alerts cover the Upper River Colne and Radlett Brook, and the Lower Lee tributaries.",
+    "text": "A flood alert is listed for the Upper River Colne and Radlett Brook.",
     "facts": [
-     "700-04",
+     "700-07"
+    ]
+   },
+   {
+    "text": "A flood alert is also listed for the Lower Lee tributaries.",
+    "facts": [
+     "700-08"
+    ]
+   },
+   {
+    "text": "The Open-Meteo forecast for London today, 2026-11-18, is a minimum of 9 °C, a maximum of 13 °C and 4 mm of rain.",
+    "facts": [
+     "700-04"
+    ]
+   },
+   {
+    "text": "The Open-Meteo forecast for London tomorrow, 2026-11-19, is a minimum of 7.2 °C, a maximum of 10.7 °C and 5.4 mm of rain.",
+    "facts": [
      "700-05"
     ]
    },
    {
-    "text": "The Environment Agency feed for London was last read at 2026-11-18 22:51 UTC, showing 2 warnings, 10 stations and 10 rain gauges.",
+    "text": "Environment Agency flood warnings and Thames levels were last read at 2026-11-18 22:51 UTC, covering 10 stations and 10 rain gauges.",
     "facts": [
      "700-01"
-    ]
-   },
-   {
-    "text": "TfL JamCams were last read at 2026-11-18 22:57 UTC, with 889 cameras.",
-    "facts": [
-     "700-02"
     ]
    }
   ],
@@ -64,6 +75,18 @@
   },
   {
    "id": "700-02",
+   "text": "London forecast (Open-Meteo), read every 6 hours, last at 2026-11-18 22:57 UTC: 72 hourly.",
+   "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
+   "origin": "https://data.promptugal.news/sources/open-meteo-london/",
+   "read_at": "2026-11-18T22:57:24Z",
+   "licence": {
+    "name": "the source's terms (on its card)",
+    "url": "https://data.promptugal.news/api/v1/open-meteo-london/card.json"
+   },
+   "by": "data.promptugal.news catalogue"
+  },
+  {
+   "id": "700-03",
    "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-18 22:57 UTC: 889 cameras.",
    "source": "https://data.promptugal.news/api/v1/tfl-jamcams/latest.json",
    "origin": "https://data.promptugal.news/sources/tfl-jamcams/",
@@ -75,7 +98,31 @@
    "by": "data.promptugal.news catalogue"
   },
   {
-   "id": "700-03",
+   "id": "700-04",
+   "text": "Open-Meteo forecast for London today (2026-11-18): minimum 9 °C, maximum 13 °C, rain 4 mm.",
+   "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
+   "origin": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
+   "read_at": "2026-11-18T22:57:24Z",
+   "licence": {
+    "name": "CC BY 4.0; Weather data by Open-Meteo.com",
+    "url": "https://open-meteo.com/en/licence"
+   },
+   "by": "data.promptugal.news"
+  },
+  {
+   "id": "700-05",
+   "text": "Open-Meteo forecast for London tomorrow (2026-11-19): minimum 7.2 °C, maximum 10.7 °C, rain 5.4 mm.",
+   "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
+   "origin": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
+   "read_at": "2026-11-18T22:57:24Z",
+   "licence": {
+    "name": "CC BY 4.0; Weather data by Open-Meteo.com",
+    "url": "https://open-meteo.com/en/licence"
+   },
+   "by": "data.promptugal.news"
+  },
+  {
+   "id": "700-06",
    "text": "The Environment Agency lists 2 flood warnings and alerts for the London area (2 Flood alert).",
    "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
    "origin": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
@@ -87,7 +134,7 @@
    "by": "data.promptugal.news"
   },
   {
-   "id": "700-04",
+   "id": "700-07",
    "text": "Environment Agency, Flood alert: Upper River Colne and Radlett Brook.",
    "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
    "origin": "https://check-for-flooding.service.gov.uk/target-area/062WAF28UpColne",
@@ -99,7 +146,7 @@
    "by": "data.promptugal.news"
   },
   {
-   "id": "700-05",
+   "id": "700-08",
    "text": "Environment Agency, Flood alert: Lower Lee tributaries.",
    "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
    "origin": "https://check-for-flooding.service.gov.uk/target-area/062WAF53LLTribs",

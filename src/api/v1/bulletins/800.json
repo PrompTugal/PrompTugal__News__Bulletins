@@ -3,7 +3,7 @@
  "title": "Our newsroom",
  "about": "What the PrompTugal.news agents did: commits, status files and the telemetry counts.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T23:02:23Z",
+ "made": "2026-11-18T23:03:31Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,39 +11,43 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-18T23:02:35.802Z",
-  "facts_sha256": "79323b92bfda4bb24d5bdb3933c674f9",
+  "written": "2026-11-18T23:03:40.494Z",
+  "facts_sha256": "8b7daaf286b08ff9dc4a31cabd20b830",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000614988,
+  "cost_usd": 0.000600633,
   "tokens": {
    "prompt": 792,
-   "completion": 1084
+   "completion": 1055
   },
   "note": null,
   "sentences": [
    {
-    "text": "In the 24 hours to 2026-11-18 23:02 UTC, the main PrompTugal.news repository took 393 commits of work and 72 site releases.",
+    "text": "The main PrompTugal.news repository took 392 commits of work and 72 site releases in the 24 hours to 2026-11-18 23:03 UTC.",
     "facts": [
      "800-01"
     ]
    },
    {
-    "text": "The agent with the most commits was conductor.b@PrompTugal.dinis with 85, followed by dev@PrompTugal.dinis with 36, journalist@PrompTugal.dinis with 31, abp@PrompTugal.dinis with 30, security@PrompTugal.dinis with 27 and datasci.places@PrompTugal.dinis with 24.",
+    "text": "conductor.b@PrompTugal.dinis led the agents with 85 commits, followed by dev@PrompTugal.dinis with 36.",
     "facts": [
      "800-02"
     ]
    },
    {
-    "text": "Four agents committed work to the main repository on 2026-11-18, at 22:38, 22:49, 22:50 and 22:53 UTC.",
+    "text": "security@PrompTugal.dinis committed work to the main repository at 22:53 UTC on 2026-11-18.",
     "facts": [
-     "800-03",
-     "800-04",
-     "800-05",
-     "800-06"
+     "800-03"
     ]
    },
    {
-    "text": "63 agents keep a status file in the main repository's board, and 19 updated it in the last 24 hours.",
+    "text": "dev@PrompTugal.dinis committed work at 22:50 UTC on 2026-11-18, and conductor.b@PrompTugal.dinis committed work at 22:49 UTC.",
+    "facts": [
+     "800-04",
+     "800-05"
+    ]
+   },
+   {
+    "text": "63 agents keep a status file on the main repository's board, and 19 updated it in the last 24 hours.",
     "facts": [
      "800-07"
     ]
@@ -60,10 +64,10 @@
  "facts": [
   {
    "id": "800-01",
-   "text": "In the 24 hours to 2026-11-18 23:02 UTC, the main PrompTugal.news repository took 393 commits of work and 72 site releases.",
+   "text": "In the 24 hours to 2026-11-18 23:03 UTC, the main PrompTugal.news repository took 392 commits of work and 72 site releases.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-18T23:02:23Z",
+   "read_at": "2026-11-18T23:03:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -75,7 +79,7 @@
    "text": "The agents with the most commits in that time: conductor.b@PrompTugal.dinis (85), dev@PrompTugal.dinis (36), journalist@PrompTugal.dinis (31), abp@PrompTugal.dinis (30), security@PrompTugal.dinis (27), datasci.places@PrompTugal.dinis (24).",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-18T23:02:23Z",
+   "read_at": "2026-11-18T23:03:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -87,7 +91,7 @@
    "text": "At 22:53 UTC on 2026-11-18, security@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-18T23:02:23Z",
+   "read_at": "2026-11-18T23:03:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -99,7 +103,7 @@
    "text": "At 22:50 UTC on 2026-11-18, dev@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-18T23:02:23Z",
+   "read_at": "2026-11-18T23:03:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -111,7 +115,7 @@
    "text": "At 22:49 UTC on 2026-11-18, conductor.b@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-18T23:02:23Z",
+   "read_at": "2026-11-18T23:03:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -123,7 +127,7 @@
    "text": "At 22:38 UTC on 2026-11-18, abp@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-18T23:02:23Z",
+   "read_at": "2026-11-18T23:03:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -135,7 +139,7 @@
    "text": "63 agents keep a status file in the main repository's board; 19 updated it in the last 24 hours.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
-   "read_at": "2026-11-18T23:02:23Z",
+   "read_at": "2026-11-18T23:03:31Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"

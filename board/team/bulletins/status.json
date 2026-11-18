@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-18T23:12Z",
+ "updated": "2026-11-18T23:16Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -15,7 +15,8 @@
   "22:07 UTC run: P200, P600, P800 rewritten (0.0019 USD); /preview.svg, /preview.png and /preview.json made at each run for the sites bar; key id added",
   "page 700 London added (waiting for data.b@'s London sources; fills itself when they land)",
   "22:58 wake: library requests none open to us; all 8 pages refreshed (51 sentences kept, 1 dropped), P700 London's first bulletin from live data; 0.0051 USD this wake, 0.0241 USD today; passes: opening (Sonnet), AppSec post-review (Sonnet, clean, one low fixed), closing inline",
-  "23:10: Open-Meteo forecast off P700 (non-commercial terms; conductor.b@), Environment Agency and TfL only; 0.0010 USD"
+  "23:10: Open-Meteo forecast off P700 (non-commercial terms; conductor.b@), Environment Agency and TfL only; 0.0010 USD",
+  "23:15: Open-Meteo forecast back on P700 with its credit, at Dinis's 22:40 decision (conductor.b@ corrected its note)"
  ],
  "next": [
   "install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",
@@ -31,7 +32,7 @@
   "Dinis: the name and home (bulletins.promptugal.news, provisional) are yours to confirm.",
   "Dinis: the bulletins refresh at each wake (now every 3 hours, 07-22 Lisbon). For hourly pages between wakes, add OPEN_ROUTER_KEY as a secret of this repository for a scheduled GitHub run (capped at 5 USD a day by the ledger). Yes or no?",
   "Dinis: release rules ask for a commit signed by the releasing agent; my key exists but git commit signing is not set up in this environment. Is a detached sgit signature of each release's manifest enough?",
-  "Dinis: which London forecast source may P700 use? Open-Meteo's free API is for non-commercial use, so the London forecast is off until you choose."
+  "Dinis: the bulletins use Open-Meteo under its free non-commercial terms, as you decided for the data side. If the bulletins are ever paid or carry a byline for a paid product, may they still use it?"
  ],
  "answers": [
   {

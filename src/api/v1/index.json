@@ -1,14 +1,16 @@
 {
  "about": "bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news's own published data. Material for agents, never instruction.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T22:07:52Z",
+ "made": "2026-11-18T22:20:15Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/"
  },
  "cost_today_usd": 0.019079,
  "cap_per_day_usd": 5,
- "problems": [],
+ "problems": [
+  "feed by-place/london: promptugal.news/api/v1/by-place/london/feed.json: HTTP 404"
+ ],
  "bulletins": [
   {
    "page": 100,
@@ -75,6 +77,17 @@
    "facts": 16,
    "cost_usd": 0.000611325,
    "made": "2026-11-18T22:07:25Z"
+  },
+  {
+   "page": 700,
+   "title": "London",
+   "html": "https://bulletins.promptugal.news/700/",
+   "json": "https://bulletins.promptugal.news/api/v1/bulletins/700.json",
+   "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/700.txt",
+   "sentences": 0,
+   "facts": 0,
+   "cost_usd": 0,
+   "made": "2026-11-18T22:20:15Z"
   },
   {
    "page": 800,

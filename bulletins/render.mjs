@@ -56,7 +56,7 @@ ${body}
 function bulletinBody(n, p, facts, script, made) {
   const kept = script?.kept || [];
   const ref = (ids) => ids.map((id) => `<a href="#f-${esc(id)}">${esc(id)}</a>`).join(' ');
-  const lines = kept.length
+  const lines = !facts.length ? `<p>${esc(p.waiting || 'No facts for this page yet.')}</p>` : kept.length
     ? `<ol class="script">${kept.map((s) => `<li>${esc(s.text)} <sup>${ref(s.facts)}</sup></li>`).join('')}</ol>`
     : `<p class="dim">No checked script this hour: the facts below are the bulletin.</p><ol class="script">${facts.map((f) => `<li>${esc(f.text)} <sup>${ref([f.id])}</sup></li>`).join('')}</ol>`;
   const sources = facts.map((f) => {

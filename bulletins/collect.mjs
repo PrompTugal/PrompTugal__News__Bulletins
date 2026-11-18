@@ -98,10 +98,16 @@ await safe('data catalogue', async () => {
   for (const s of j.sources.filter((s) => s.status !== 'archived')) {
     add('600', { text: `${clean(s.title, 120)}, read ${s.cadence}, last at ${s.read_at.replace('T', ' ').slice(0, 16)} UTC: ${clean(s.headline, 90)}; status ${s.status}.`, source: s.latest || `${D}/`, origin: s.page, read_at: s.read_at, licence: CC, by: 'data.promptugal.news catalogue' });
   }
+  // Page 700, London (Dinis, 18 Nov 2026, about 22:20 UTC): every London or UK source the data site
+  // lists, as it lands. Headline only until each source's own fields are read here.
+  for (const s of j.sources.filter((s) => s.status !== 'archived' && /london|\buk\b|-uk\b|^uk-|tfl/i.test(`${s.id} ${s.title}`))) {
+    add('700', { text: `${clean(s.title, 120)}, read ${s.cadence}, last at ${s.read_at.replace('T', ' ').slice(0, 16)} UTC: ${clean(s.headline, 120)}.`, source: s.latest || `${D}/`, origin: s.page, read_at: s.read_at,
+      licence: { name: clean(s.terms_summary ? "the source's terms (on its card)" : "the source's terms", 60), url: s.card || s.page || null }, by: 'data.promptugal.news catalogue' });
+  }
 });
 
 // promptugal.news's own articles, by place and by topic (JSON Feed). Titles as published.
-for (const [page, feed, label] of [['100', 'by-place/portugal', 'Portugal'], ['200', 'by-place/algarve', 'the Algarve'], ['300', 'by-place/lisboa', 'Lisbon'], ['400', 'topics/the-summit', 'the summit'], ['400', 'topics/ai', 'AI']]) {
+for (const [page, feed, label] of [['100', 'by-place/portugal', 'Portugal'], ['200', 'by-place/algarve', 'the Algarve'], ['300', 'by-place/lisboa', 'Lisbon'], ['400', 'topics/the-summit', 'the summit'], ['400', 'topics/ai', 'AI'], ['700', 'by-place/london', 'London']]) {
   await safe(`feed ${feed}`, async () => {
     const j = await getJSON(`${P}/${feed}/feed.json`);
     const items = [...j.items].filter((i) => i.date_published).sort((a, b) => b.date_published.localeCompare(a.date_published)).slice(0, 3);

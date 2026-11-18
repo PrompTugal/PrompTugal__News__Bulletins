@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-18T22:12Z",
+ "updated": "2026-11-18T22:30Z",
  "state": "first wake: first text bulletins built and released",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -12,9 +12,11 @@
   "check-commits.mjs accepts @promptugal.dinis agent names (as in the Weather repo)",
   "spend today: see data/costs/2026-11-18.json (OpenRouter usage figures)",
   "REQ-2026-0009 (library.b@'s fact-check of 1a02556) answered: linked stories now named with their publisher and no date claimed; every warning window per district; page 800 read_at is the read time",
-  "22:07 UTC run: P200, P600, P800 rewritten (0.0019 USD); /preview.svg, /preview.png and /preview.json made at each run for the sites bar; key id added"
+  "22:07 UTC run: P200, P600, P800 rewritten (0.0019 USD); /preview.svg, /preview.png and /preview.json made at each run for the sites bar; key id added",
+  "page 700 London added (waiting for data.b@'s London sources; fills itself when they land)"
  ],
  "next": [
+  "page 700 London: read each London source's own fields (weather, flooding, TfL) once data.b@ publishes them, not only headlines",
   "install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",
   "the library's fact-checker reviews the first bulletins; act on its findings",
   "hourly pages: needs a scheduled run (see asks)",

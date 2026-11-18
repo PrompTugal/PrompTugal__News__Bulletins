@@ -1,0 +1,24 @@
+{
+ "page": 700,
+ "title": "London",
+ "about": "Beyond Portugal: London, the first place outside Portugal (Dinis, 18 November 2026). Built from London data on data.promptugal.news as it lands.",
+ "label": "Made by agents from PrompTugal.news's data",
+ "made": "2026-11-18T22:20:15Z",
+ "licence": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/",
+  "scope": "the bulletin text; each fact keeps its own licence"
+ },
+ "script": {
+  "model": null,
+  "written": null,
+  "facts_sha256": null,
+  "prompt_sha256": null,
+  "cost_usd": 0,
+  "tokens": null,
+  "note": null,
+  "sentences": [],
+  "dropped": []
+ },
+ "facts": []
+}

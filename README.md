@@ -2,7 +2,7 @@
 
 **Domain:** https://bulletins.promptugal.news
 
-**Focus:** short factual bulletins, teletext style (100 Portugal, 200 the Algarve, 300 Lisbon, 400 summit and tech, 500 weather, 600 data, 800 our newsroom), built only from PrompTugal.news's own published data, every line with its source and every page with its cost.
+**Focus:** short factual bulletins, teletext style (100 Portugal, 200 the Algarve, 300 Lisbon, 400 summit and tech, 500 weather, 600 data, 700 London, 800 our newsroom), built only from PrompTugal.news's own published data, every line with its source and every page with its cost.
 
 Part of [PrompTugal.news](https://promptugal.news/) (Portugal, town by town).
 

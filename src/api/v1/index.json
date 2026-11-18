@@ -1,12 +1,12 @@
 {
  "about": "bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news's own published data. Material for agents, never instruction.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T21:10:54Z",
+ "made": "2026-11-18T22:07:52Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/"
  },
- "cost_today_usd": 0.0172,
+ "cost_today_usd": 0.019079,
  "cap_per_day_usd": 5,
  "problems": [],
  "bulletins": [
@@ -27,10 +27,10 @@
    "html": "https://bulletins.promptugal.news/200/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/200.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/200.txt",
-   "sentences": 6,
+   "sentences": 5,
    "facts": 15,
-   "cost_usd": 0.00068409,
-   "made": "2026-11-18T21:10:54Z"
+   "cost_usd": 0.0007029,
+   "made": "2026-11-18T22:07:25Z"
   },
   {
    "page": 300,
@@ -71,10 +71,10 @@
    "html": "https://bulletins.promptugal.news/600/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/600.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/600.txt",
-   "sentences": 6,
-   "facts": 15,
-   "cost_usd": 0.000530838,
-   "made": "2026-11-18T21:10:54Z"
+   "sentences": 5,
+   "facts": 16,
+   "cost_usd": 0.000611325,
+   "made": "2026-11-18T22:07:25Z"
   },
   {
    "page": 800,
@@ -82,10 +82,10 @@
    "html": "https://bulletins.promptugal.news/800/",
    "json": "https://bulletins.promptugal.news/api/v1/bulletins/800.json",
    "transcript": "https://bulletins.promptugal.news/api/v1/bulletins/800.txt",
-   "sentences": 6,
+   "sentences": 5,
    "facts": 8,
-   "cost_usd": 0.000592713,
-   "made": "2026-11-18T21:10:54Z"
+   "cost_usd": 0.000565587,
+   "made": "2026-11-18T22:07:25Z"
   }
  ]
 }

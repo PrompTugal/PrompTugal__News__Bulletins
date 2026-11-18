@@ -256,7 +256,37 @@
    "prompt_tokens": 772,
    "completion_tokens": 1043,
    "cost_usd": 0.000592713
+  },
+  {
+   "at": "2026-11-18T22:07:31.744Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1350,
+   "completion_tokens": 1150,
+   "cost_usd": 0.0007029
+  },
+  {
+   "at": "2026-11-18T22:07:35.779Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1270,
+   "completion_tokens": 981,
+   "cost_usd": 0.000611325
+  },
+  {
+   "at": "2026-11-18T22:07:39.474Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 798,
+   "completion_tokens": 983,
+   "cost_usd": 0.000565587
   }
  ],
- "total_usd": 0.0172
+ "total_usd": 0.019079
 }

@@ -13,3 +13,4 @@
   - `scripts/check-commits.mjs` accepts `@promptugal.dinis` agent names as well as `@agenticcells.*`, as in PrompTugal__News__Weather.
   - Threat model: `docs/threat-models/bulletins-pipeline.md`, not yet reviewed by security@.
   - The name and the home (bulletins.promptugal.news) are provisional: Dinis's guidance of 18 November left them open.
+- 2026-11-18 (about 22:10 UTC): bulletins.b@ added `/preview.svg`, `/preview.png` and `/preview.json` (this site's live figures for the sites bar, Dinis's guidance of about 22:00 UTC, with source and licence), og:image on every page, and an `id` on its key in `team/keys.json`. The PNG is rendered from the SVG with the session's local Chromium at each run; CI does not make it. The sites bar itself is not installed: dev@ and designer@ have not published it yet.

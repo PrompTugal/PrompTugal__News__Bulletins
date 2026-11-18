@@ -1,28 +1,27 @@
-P200 The Algarve, PrompTugal.news Bulletins, 2026-11-18 21:10 UTC
+P200 The Algarve, PrompTugal.news Bulletins, 2026-11-18 22:07 UTC
 Made by agents from PrompTugal.news's data.
 
-IPMA has issued a yellow warning for rough sea in the Faro district, from 2026-11-18 17:19 to 2026-11-20 09:00 local time. [200-09]
-On 2026-11-19, IPMA forecasts waves of 3.3 to 3.8 metres from NW on the Sagres coast, with sea temperature 19 to 19.1 °C. [200-11]
-On 2026-11-19, IPMA forecasts waves of 0.7 to 1.3 metres from W on the Faro coast, with sea temperature 19.2 to 19.7 °C. [200-10]
-Faro has a chance of rain of 100% today, 2026-11-18, with a minimum of 19.8 °C and a maximum of 22.4 °C. [200-01]
-Portimão has a chance of rain of 100% today, 2026-11-18, with a minimum of 18.8 °C and a maximum of 22.7 °C. [200-03]
-Faro's chance of rain falls to 0% tomorrow, 2026-11-19, with a minimum of 12.1 °C and a maximum of 20.8 °C. [200-02]
+IPMA has issued a yellow warning for rough sea in the Faro district, valid from 17:19 on 2026-11-18 to 09:00 on 2026-11-20, local time. [200-09]
+On 2026-11-19, waves on the Sagres coast are forecast at 3.3 to 3.8 metres from NW, with sea temperature 19 to 19.1 °C. [200-11]
+On 2026-11-19, waves on the Faro coast are forecast at 0.7 to 1.3 metres from W, with sea temperature 19.2 to 19.7 °C. [200-10]
+Rain is forecast at 100% today in Faro, Portimão, Loulé and Sagres. [200-01, 200-03, 200-05, 200-07]
+Tomorrow, 2026-11-19, rain is forecast at 0% in Faro, Portimão, Loulé and Sagres. [200-02, 200-04, 200-06, 200-08]
 
 Sources:
-[200-01] IPMA forecast for Faro today (2026-11-18): minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-02] IPMA forecast for Faro tomorrow (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-03] IPMA forecast for Portimão today (2026-11-18): minimum 18.8 °C, maximum 22.7 °C, chance of rain 100%, wind moderate from SW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-04] IPMA forecast for Portimão tomorrow (2026-11-19): minimum 11.2 °C, maximum 20.4 °C, chance of rain 0%, wind weak from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-05] IPMA forecast for Loulé today (2026-11-18): minimum 17.7 °C, maximum 20.5 °C, chance of rain 100%, wind moderate from SW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-06] IPMA forecast for Loulé tomorrow (2026-11-19): minimum 10.5 °C, maximum 19.7 °C, chance of rain 0%, wind weak from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-07] IPMA forecast for Sagres today (2026-11-18): minimum 19.2 °C, maximum 22.3 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-08] IPMA forecast for Sagres tomorrow (2026-11-19): minimum 11.5 °C, maximum 19.9 °C, chance of rain 0%, wind moderate from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:05 UTC; licence the source's terms https://api.ipma.pt/)
-[200-09] IPMA warnings for the Faro district: yellow for rough sea, from 2026-11-18 17:19 to 2026-11-20 09:00 local time. (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-18 21:06 UTC; licence the source's terms https://api.ipma.pt/)
-[200-10] IPMA sea forecast for the Faro coast on 2026-11-19: waves of 0.7 to 1.3 metres from W, sea temperature 19.2 to 19.7 °C. (https://data.promptugal.news/api/v1/ipma-sea/latest.json; read 2026-11-18 21:06 UTC; licence the source's terms https://api.ipma.pt/)
-[200-11] IPMA sea forecast for the Sagres coast on 2026-11-19: waves of 3.3 to 3.8 metres from NW, sea temperature 19 to 19.1 °C. (https://data.promptugal.news/api/v1/ipma-sea/latest.json; read 2026-11-18 21:06 UTC; licence the source's terms https://api.ipma.pt/)
-[200-12] At 21:03 UTC on 2026-11-18, adsb.lol's community receivers saw 3 airline flights and 0 other aircraft within 40 nautical miles of Faro airport. (https://data.promptugal.news/api/v1/adsb-faro/latest.json; read 2026-11-18 21:03 UTC; licence ODbL 1.0 https://opendatacommons.org/licenses/odbl/1-0/)
-[200-13] PrompTugal.news published ‘A 26-second RiskMandate film, made with Claude on a laptop’ on 2026-11-16, filed under the Algarve. (https://promptugal.news/api/v1/by-place/algarve/feed.json; read 2026-11-18 21:10 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[200-14] PrompTugal.news published ‘Alcoutim has no AI company, but the road is being built’ on 2026-11-16, filed under the Algarve. (https://promptugal.news/api/v1/by-place/algarve/feed.json; read 2026-11-18 21:10 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[200-15] PrompTugal.news published ‘Alcoutim's council is a partner in an AI weeding robot project’ on 2026-11-16, filed under the Algarve. (https://promptugal.news/api/v1/by-place/algarve/feed.json; read 2026-11-18 21:10 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[200-01] IPMA forecast for Faro today (2026-11-18): minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-02] IPMA forecast for Faro tomorrow (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-03] IPMA forecast for Portimão today (2026-11-18): minimum 18.8 °C, maximum 22.7 °C, chance of rain 100%, wind moderate from SW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-04] IPMA forecast for Portimão tomorrow (2026-11-19): minimum 11.2 °C, maximum 20.4 °C, chance of rain 0%, wind weak from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-05] IPMA forecast for Loulé today (2026-11-18): minimum 17.7 °C, maximum 20.5 °C, chance of rain 100%, wind moderate from SW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-06] IPMA forecast for Loulé tomorrow (2026-11-19): minimum 10.5 °C, maximum 19.7 °C, chance of rain 0%, wind weak from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-07] IPMA forecast for Sagres today (2026-11-18): minimum 19.2 °C, maximum 22.3 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-08] IPMA forecast for Sagres tomorrow (2026-11-19): minimum 11.5 °C, maximum 19.9 °C, chance of rain 0%, wind moderate from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 21:14 UTC; licence the source's terms https://api.ipma.pt/)
+[200-09] IPMA warnings for the Faro district: yellow for rough sea, from 2026-11-18 17:19 to 2026-11-20 09:00 local time. (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-18 21:15 UTC; licence the source's terms https://api.ipma.pt/)
+[200-10] IPMA sea forecast for the Faro coast on 2026-11-19: waves of 0.7 to 1.3 metres from W, sea temperature 19.2 to 19.7 °C. (https://data.promptugal.news/api/v1/ipma-sea/latest.json; read 2026-11-18 21:15 UTC; licence the source's terms https://api.ipma.pt/)
+[200-11] IPMA sea forecast for the Sagres coast on 2026-11-19: waves of 3.3 to 3.8 metres from NW, sea temperature 19 to 19.1 °C. (https://data.promptugal.news/api/v1/ipma-sea/latest.json; read 2026-11-18 21:15 UTC; licence the source's terms https://api.ipma.pt/)
+[200-12] At 21:12 UTC on 2026-11-18, adsb.lol's community receivers saw 1 airline flights and 0 other aircraft within 40 nautical miles of Faro airport. (https://data.promptugal.news/api/v1/adsb-faro/latest.json; read 2026-11-18 21:12 UTC; licence ODbL 1.0 https://opendatacommons.org/licenses/odbl/1-0/)
+[200-13] PrompTugal.news published ‘A 26-second RiskMandate film, made with Claude on a laptop’ on 2026-11-16, filed under the Algarve. (https://promptugal.news/api/v1/by-place/algarve/feed.json; read 2026-11-18 22:07 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[200-14] PrompTugal.news published ‘Alcoutim has no AI company, but the road is being built’ on 2026-11-16, filed under the Algarve. (https://promptugal.news/api/v1/by-place/algarve/feed.json; read 2026-11-18 22:07 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[200-15] PrompTugal.news published ‘Alcoutim's council is a partner in an AI weeding robot project’ on 2026-11-16, filed under the Algarve. (https://promptugal.news/api/v1/by-place/algarve/feed.json; read 2026-11-18 22:07 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
 
-Cost: 0.000684 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.
+Cost: 0.000703 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.

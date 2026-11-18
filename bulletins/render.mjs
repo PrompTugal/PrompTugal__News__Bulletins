@@ -37,6 +37,9 @@ function page({ title, description, path, body, depth }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:image" content="${SITE}/preview.png">
 <style>${CSS}</style>
 </head>
 <body>
@@ -141,4 +144,36 @@ export function renderHow() {
 <li><a href="${gh}/team/keys.json">The agent's public key</a> (bulletins.b@PrompTugal.dinis).</li>
 <li><a href="https://promptugal.news/principles/">Principles</a> and <a href="https://promptugal.news/report/">report a problem</a>, on promptugal.news.</li>
 </ul>` }));
+}
+
+// The site's own preview for the sites bar (Dinis, 18 Nov 2026, about 22:00 UTC): an infographic of
+// our live numbers, with provenance and licence, at /preview.svg (and preview.json saying where each
+// figure comes from). Every value is escaped.
+export function renderPreview(factsFile, scripts) {
+  const made = factsFile.made;
+  const mono = 'font-family="DejaVu Sans Mono,Menlo,Consolas,monospace"';
+  const sentences = Object.values(scripts).reduce((a, s) => a + (s?.kept?.length || 0), 0);
+  const facts = Object.values(scripts).reduce((a, s) => a + (s?.facts?.length || 0), 0);
+  const costs = readJSON(join(ROOT, 'data', 'costs', `${made.slice(0, 10)}.json`), { total_usd: 0 });
+  const figs = [[String(Object.keys(PAGES).length), 'pages'], [String(sentences), 'checked sentences'], [String(facts), 'facts with sources'], [`${Number(costs.total_usd || 0).toFixed(3)} USD`, 'spent on models today']];
+  const cells = figs.map(([v, l], i) => {
+    const x = 40 + (i % 2) * 580, y = 280 + Math.floor(i / 2) * 150;
+    return `<text x="${x}" y="${y}" ${mono} font-size="72" font-weight="700" fill="#0ff">${esc(v)}</text>\n<text x="${x}" y="${y + 40}" ${mono} font-size="26" fill="#fff">${esc(l)}</text>`;
+  }).join('\n');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
+<title id="t">PrompTugal.news Bulletins, ${esc(fmt(made))}</title>
+<desc id="d">${esc(figs.map(([v, l]) => `${v} ${l}`).join(', '))}. From bulletins.promptugal.news/api/v1/index.json. CC BY 4.0.</desc>
+<rect width="1200" height="630" fill="#000"/>
+<rect width="1200" height="70" fill="#58f"/>
+<text x="40" y="47" ${mono} font-size="30" font-weight="700" fill="#000">P100  PrompTugal.news Bulletins</text>
+<text x="1160" y="47" text-anchor="end" ${mono} font-size="24" fill="#000">${esc(fmt(made))}</text>
+<text x="40" y="150" ${mono} font-size="40" fill="#ff0">Short factual bulletins, teletext style</text>
+${cells}
+<text x="40" y="590" ${mono} font-size="17" fill="#bbb">${esc(LABEL)}. Source: bulletins.promptugal.news/api/v1/index.json. CC BY 4.0.</text>
+</svg>
+`;
+  writeFileSync(src('preview.svg'), svg);
+  writeJSON(src('preview.json'), { about: 'What /preview.svg and /preview.png show, and where each figure comes from.', made,
+    licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' }, figures: figs.map(([value, label]) => ({ value, label })),
+    source: `${SITE}/api/v1/index.json`, costs: `https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/data/costs/${made.slice(0, 10)}.json`, by: 'bulletins/render.mjs (code, no model)' });
 }

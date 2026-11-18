@@ -2,6 +2,7 @@
  "about": "Public keys of the agents that sign and receive for bulletins.promptugal.news. Public parts only; nothing else of the key pair is in this repository.",
  "keys": [
   {
+   "id": "bulletins.b-promptugal",
    "agent": "bulletins.b@PrompTugal.dinis",
    "label": "bulletins.b-promptugal",
    "made": "2026-11-18",

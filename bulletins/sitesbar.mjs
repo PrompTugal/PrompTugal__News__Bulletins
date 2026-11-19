@@ -1,6 +1,7 @@
-// The PrompTugal sites bar, v1.1.0 (Dinis, 18 Nov 2026, main repo board/guidance/2026-11-18-the-sites-bar.md;
-// cleared by conductor.b@ on 19 Nov, 00:55 UTC, after security@'s review of these exact files).
-// The vendored files live in src/assets/sites-bar/1.1.0/, pinned by sha256 below and checked at every build.
+// The PrompTugal sites bar, v1.1.1 (Dinis, 18 Nov 2026, main repo board/guidance/2026-11-18-the-sites-bar.md;
+// 1.1.1 cleared by security@'s ruling of 19 Nov, 01:30 UTC, relayed by conductor.b@).
+// The vendored files live in src/assets/sites-bar/1.1.1/, pinned below in SRI form (sha256-<base64> of the whole file),
+// compared in full at every build, and compared in full with the registry's bar.integrity when it names this version.
 // At build: read promptugal.news/api/v1/sites.json, render the bar's HTML with the vendored renderer.
 // If the renderer refuses the registry it returns '' and the pages are published without a bar (never a
 // hand-made one). If the registry cannot be read, the last good bar is kept (data/sites-bar/last.html).
@@ -11,20 +12,20 @@ import { pathToFileURL } from 'node:url';
 import { ROOT, getJSON, writeJSON } from './core.mjs';
 import { writeFileSync, mkdirSync } from 'node:fs';
 
-export const BAR_VERSION = '1.1.0';
+export const BAR_VERSION = '1.1.1';
 export const BAR_DIR = `assets/sites-bar/${BAR_VERSION}`;
 const PINS = {
-  'sites-bar-render.mjs': 'b9b50ae32fd5dc234ba6e9b4660061afb25554b542a1c779f68d1d8c61a98dbc',
-  'sites-bar.css': '302e2544eb34e3d6ce8d8e14fe2918c9f658a587f62d47d4ca20b2b4f3f7854d',
-  'sites-bar.js': 'bc97a820a8f4fbda60ff65c3073be6fe79b2d1d3ee954257e3a59bca7429e9b0',
+  render: ['sites-bar-render.mjs', 'sha256-qi/wub3SbA90q6Ab+p5TtTd6ewAuMtiDA1L6e3nzou4='],
+  css: ['sites-bar.css', 'sha256-xz+fEE+rY1AK+9NgKEz+qBRUgeuirUoTBuDWfXFPB1U='],
+  js: ['sites-bar.js', 'sha256-CocgHABQfdAOZrH/4dwXFz0kdfQtd8dfQfUNG9Cd4zM='],
 };
 const HERE = 'bulletins.promptugal.news';
 const LAST = join(ROOT, 'data', 'sites-bar', 'last.html');
 
 export function verifyPins() {
-  for (const [f, want] of Object.entries(PINS)) {
-    const got = createHash('sha256').update(readFileSync(join(ROOT, 'src', BAR_DIR, f))).digest('hex');
-    if (got !== want) throw new Error(`sites bar ${f}: sha256 does not match its pin`);
+  for (const [f, want] of Object.values(PINS)) {
+    const got = 'sha256-' + createHash('sha256').update(readFileSync(join(ROOT, 'src', BAR_DIR, f))).digest('base64');
+    if (got !== want) throw new Error(`sites bar ${f}: its sha256 does not match its pin`);
   }
 }
 
@@ -38,6 +39,10 @@ export async function loadBar() {
     console.log(`sites bar: registry not read (${String(e.message).slice(0, 80)}); ${kept ? 'kept the last bar' : 'no bar'}`);
     return kept;
   }
+  // The registry's own pins must equal ours, in full, when it names this version; a newer version waits for a review.
+  if (reg?.bar?.version === BAR_VERSION) for (const [k, [f, want]] of Object.entries(PINS)) {
+    if (reg.bar.integrity?.[k] !== want) throw new Error(`sites bar ${f}: the registry's pin is not ours`);
+  } else console.log(`sites bar: the registry names ${String(reg?.bar?.version).slice(0, 12)}, we keep ${BAR_VERSION} until it is reviewed`);
   const html = render(reg, { here: HERE });
   if (!html) { console.log('sites bar: the renderer refused the registry; published without a bar'); return ''; }
   mkdirSync(join(ROOT, 'data', 'sites-bar'), { recursive: true });

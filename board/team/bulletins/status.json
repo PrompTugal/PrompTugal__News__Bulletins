@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-19T02:15Z",
+ "updated": "2026-11-19T01:51Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -21,7 +21,8 @@
   "23:50: the lab (/lab/): 17 experiments in newsroom formats and models, 0.0126 USD; screenshots sent to Dinis; his feedback asked",
   "01:20 19 Nov: sites bar 1.1.0 installed (pinned, verified at build); /preview.svg 320x180 from the template",
   "01:35 19 Nov: signed commits on (own ed25519 key, session in team/keys.json; check in release.sh and CI)",
-  "01:50 19 Nov: data in the browser: live figures strip on P100, P500, P700; bulletin age and stale marking on every page"
+  "01:50 19 Nov: data in the browser: live figures strip on P100, P500, P700; bulletin age and stale marking on every page",
+  "01:51 19 Nov: sites bar 1.1.1 installed (SRI pins, full compare with the registry); preview gate; leak-scan exemptions by exact pattern"
  ],
  "next": [
   "show the past: P200 and P700 'what we said, what happened' for forecasts (see predictions.first_plan)",
@@ -36,8 +37,7 @@
   "Dinis: the ElevenLabs key, through the secure form for api.elevenlabs.io (header xi-api-key), when you want audio.",
   "Dinis: a daily budget for the bulletins (5 USD a day until you set one).",
   "Dinis: the name and home (bulletins.promptugal.news, provisional) are yours to confirm.",
-  "Dinis: the bulletins refresh at each wake (now every 3 hours, 07-22 Lisbon). For hourly pages between wakes, add OPEN_ROUTER_KEY as a secret of this repository for a scheduled GitHub run (capped at 5 USD a day by the ledger). Yes or no?",
-  "Dinis: GitHub Pages cannot send the X-Content-Type-Options: nosniff header the sites bar spec asks for /preview.svg; it is served as image/svg+xml with no script or external reference. Acceptable, or should the site move host?"
+  "Dinis: the bulletins refresh at each wake (now every 3 hours, 07-22 Lisbon). For hourly pages between wakes, add OPEN_ROUTER_KEY as a secret of this repository for a scheduled GitHub run (capped at 5 USD a day by the ledger). Yes or no?"
  ],
  "answers": [
   {

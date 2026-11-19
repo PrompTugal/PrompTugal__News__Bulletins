@@ -28,7 +28,7 @@ nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(-
 // The PrompTugal sites bar (vendored, pinned: see sitesbar.mjs). Set once per build with setBar().
 let BAR = '';
 export const setBar = (html) => { BAR = String(html || ''); };
-const BAR_DIR = 'assets/sites-bar/1.1.0';
+const BAR_DIR = 'assets/sites-bar/1.1.1';
 
 export function page({ title, description, path, body, depth }) {
   const up = depth ? '../'.repeat(depth) : './';
@@ -216,6 +216,8 @@ ${cells}
   <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read ${read} · CC BY 4.0</text>
 </svg>
 `;
+  // The gate for the sites bar's preview (security@, 19 Nov): no script, foreignObject, event attribute or outside reference.
+  if (/<script|foreignObject|\son[a-z]+\s*=|href\s*=|url\(|@import|<image|<use/i.test(small)) throw new Error('preview.svg failed its gate');
   writeFileSync(src('preview.svg'), small);
   writeJSON(src('preview.json'), { about: 'What /preview.svg and /preview.png show, and where each figure comes from.', made,
     licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' }, figures: figs.map(([value, label]) => ({ value, label })),

@@ -87,21 +87,21 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
-  // bulletins.b@ (19 Nov 2026): the sha256 pins of the three vendored sites bar files (public file hashes,
-  // given by conductor.b@ after security@'s review), checked at every build. Hashes, not secrets.
-  ['bulletins/sitesbar.mjs', 'long high-entropy string', 'sha256 pins of the vendored sites bar 1.1.0 files'],
-  // bulletins.b@ (19 Nov 2026): the agents' git SSH signing public keys and their fingerprints (Dinis's signed-commits
-  // guidance of 19 Nov). team/keys.json is already the one file for public keys; the "private" word check still applies.
-  ['team/keys.json', 'long high-entropy string', 'ssh-ed25519 public keys and fingerprints for commit signing'],
+  // bulletins.b@ (19 Nov 2026, security@'s ruling of 01:30 UTC): the published plain forms in team/keys.json only, each by
+  // its field and exact pattern. Private-key words, a JWK d, tokens and any other high-entropy field still fail.
+  ['team/keys.json', 'long high-entropy string', 'an ssh-ed25519 public key line, without its comment', /^\s*"ssh_public_key": "ssh-ed25519 [A-Za-z0-9+/]{68}",?$/],
+  ['team/keys.json', 'long high-entropy string', 'an ssh key fingerprint', /^\s*"fingerprint": "SHA256:[A-Za-z0-9+/]{43}",?$/],
+  // The sites bar's SRI pins (public file hashes), one per vendored file, in their exact form.
+  ['bulletins/sitesbar.mjs', 'long high-entropy string', 'an SRI pin of a vendored sites bar file', /^\s+(render|css|js): \['sites-bar(-render)?\.(mjs|css|js)', 'sha256-[A-Za-z0-9+/]{43}='\],$/],
 ];
-const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
+const allowed = (path, kind, line = '') => ALLOW.some(([p, k, , re]) => p === path && k === kind && re.test(line));
 
 const PUBLIC_KEY_FILES = (p) => p === 'team/keys.json' || /^team\/keys\/[a-z0-9-]+\.json$/.test(p);
 
 // Returns a list of {line, kind} for one file's text. Never returns the match.
 export function scanText(path, text) {
   const found = [];
-  const add = (line, kind) => { if (!allowed(path, kind)) found.push({ line, kind }); };
+  const add = (line, kind, text = '') => { if (!allowed(path, kind, text)) found.push({ line, kind }); };
   let body = text;
   if (PUBLIC_KEY_FILES(path)) {
     if (/private|passphrase|secret|seed/i.test(text)) add(0, 'public key file mentions a private part');
@@ -117,7 +117,7 @@ export function scanText(path, text) {
       const v = m[1];
       if (/[0-9]/.test(v) && /[A-Za-z]/.test(v) && entropy(v) >= 3.5) { add(n, 'secret-looking value assigned to a secret name'); break; }
     }
-    if (highEntropy(line)) add(n, 'long high-entropy string');
+    if (highEntropy(line)) add(n, 'long high-entropy string', line);
   });
   return found;
 }

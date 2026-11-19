@@ -144,18 +144,33 @@ const uncomment = (t) => t.split('\n').filter((l) => !/^\s*#/.test(l)).map((l) =
     && /actions\/runs\/\$\{run%%:\*\}\/jobs/.test(checks) && /select\(\.name == "checks" and \.conclusion == "success"\)/.test(checks)
     && /git ls-files -- _site/.test(checks) && /\[ -L scripts \]/.test(checks) && /-name \.gitattributes -type f -print -exec rm -f/.test(checks)
     && /if: github\.ref == 'refs\/heads\/dev'/.test(checks) && /no verified anchor A/.test(checks) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(checks)
-    && /git show "\$A:scripts\/check-signatures\.mjs" > "\$RUNNER_TEMP\/check-signatures\.mjs"/.test(checks) && /git show "\$A:scripts\/check-commits\.mjs" > "\$RUNNER_TEMP\/check-commits\.mjs"/.test(checks)
-    && /git show "\$A:scripts\/leak-scan\.mjs" > scripts\/leak-scan\.trusted\.mjs/.test(checks) && /case "\$mode" in 100644\|100755\)/.test(checks) && /case "\$NODE" in \/\*\)/.test(checks)
+    && /git cat-file blob "\$A:scripts\/check-signatures\.mjs" > "\$RUNNER_TEMP\/check-signatures\.mjs"/.test(checks) && /git cat-file blob "\$A:scripts\/check-commits\.mjs" > "\$RUNNER_TEMP\/check-commits\.mjs"/.test(checks)
+    && /git cat-file blob "\$A:scripts\/leak-scan\.mjs" > scripts\/leak-scan\.trusted\.mjs/.test(checks) && /case "\$mode" in 100644\|100755\)/.test(checks) && /case "\$NODE" in \/\*\)/.test(checks)
     && /actions\/download-artifact@v4/.test(checks) && !/node scripts\/(?!leak-scan\.trusted)/.test(checks) && !/uses: \.\//.test(checks) && !/git describe|--tags/.test(checks);
   results.push(`${ok9 ? 'pass' : 'FAIL'}  pages.yml: the checks job runs no pushed code and takes every checker from A`);
   const okGate = /needs: \[build, checks\]/.test(deploy) && /needs\.checks\.result == 'success'/.test(tag) && /github\.ref == 'refs\/heads\/dev'/.test(deploy) && /github\.ref == 'refs\/heads\/dev'/.test(tag) && !/node scripts\/(check-signatures|check-commits|leak-scan)(\.trusted)?\.mjs/.test(build);
   results.push(`${okGate ? 'pass' : 'FAIL'}  pages.yml: deploy and tag need the checks job, and the build job (pushed code, GITHUB_ENV) runs no security check`);
   // The site is vetted and unpacked before any trusted copy is written (events.b@), and configs come from A (signals.b@).
-  const iTar = checks.indexOf('tar -xf'), iFirstCopy = checks.indexOf('git show "$A:scripts/');
+  const iTar = checks.indexOf('tar -xf'), iFirstCopy = checks.indexOf('git cat-file blob "$A:scripts/');
   const okTar = /tar -tvf/.test(checks) && /grep -Ev '\^\[-d\]'/.test(checks) && /-C "\$RUNNER_TEMP\/site"/.test(checks) && /find "\$RUNNER_TEMP\/site" -type l/.test(checks) && /mv "\$RUNNER_TEMP\/site" _site/.test(checks) && iTar > 0 && iFirstCopy > iTar;
   results.push(`${okTar ? 'pass' : 'FAIL'}  pages.yml: the site archive is vetted and unpacked before any trusted copy is written, then checked for symlinks`);
-  const okCfg = /git show "\$A:scripts\/commit-exemptions\.json" > scripts\/commit-exemptions\.json/.test(checks) && /rm -f scripts\/commit-exemptions\.json/.test(checks);
+  const okCfg = /git cat-file blob "\$A:scripts\/commit-exemptions\.json" > scripts\/commit-exemptions\.json/.test(checks) && /rm -f scripts\/commit-exemptions\.json/.test(checks);
   results.push(`${okCfg ? 'pass' : 'FAIL'}  pages.yml: the trailer check's exemptions come from A, never the pushed tree`);
+  const okAttr = /GIT_ATTR_SOURCE: 4b825dc642cb6eb9a060e54bf8d69288fbee4904/.test(checks) && /GIT_CONFIG_VALUE_0: \/dev\/null/.test(checks) && /older than 2\.42/.test(checks) && !/git show "\$A/.test(checks);
+  results.push(`${okAttr ? 'pass' : 'FAIL'}  pages.yml: pushed attributes are off (empty-tree attribute source, git 2.42+, no attributes file), and A's files are read as raw blobs`);
+  // Every shell step parses (cyber.b@'s finding: a stray quote broke a run): each run: block goes through bash -n.
+  const raw = readFileSync(join(HERE, '../.github/workflows/pages.yml'), 'utf8').split('\n');
+  const blocks = [];
+  for (let i = 0; i < raw.length; i++) {
+    const m = raw[i].match(/^(\s*)(?:- )?run: (\|)?(.*)$/);
+    if (!m) continue;
+    if (!m[2]) { blocks.push(m[3]); continue; }
+    const ind = raw[i + 1]?.match(/^(\s*)/)[1].length || 0, body = [];
+    for (let j = i + 1; j < raw.length && (raw[j].trim() === '' || raw[j].match(/^(\s*)/)[1].length >= ind); j++) body.push(raw[j].slice(ind));
+    blocks.push(body.join('\n'));
+  }
+  const bad = blocks.map((b, k) => [k, spawnSync('bash', ['-n'], { input: b.replace(/\$\{\{[^}]*\}\}/g, 'X'), encoding: 'utf8' })]).filter(([, r]) => r.status !== 0);
+  results.push(`${blocks.length && !bad.length ? 'pass' : 'FAIL'}  pages.yml: all ${blocks.length} run steps parse as bash${bad.length ? ` (step ${bad.map(([k]) => k).join(', ')}: ${bad[0][1].stderr.trim().slice(0, 120)})` : ''}`);
 }
 console.log(results.join('\n'));
 const failed = results.filter((r) => r.startsWith('FAIL')).length;

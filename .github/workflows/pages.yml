@@ -68,6 +68,11 @@ jobs:
     env:
       GIT_NO_REPLACE_OBJECTS: '1'
       NODE_OPTIONS: ''
+      # Pushed attributes off, index included (events.b@'s finding): attributes come from the empty tree only (git 2.42+).
+      GIT_ATTR_SOURCE: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: core.attributesFile
+      GIT_CONFIG_VALUE_0: /dev/null
     steps:
       - uses: actions/checkout@v4
         with:
@@ -87,6 +92,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          v=$(git version | sed -E 's/^git version ([0-9]+)\.([0-9]+).*/\1 \2/'); set -- $v
+          { [ "$1" -gt 2 ] || { [ "$1" -eq 2 ] && [ "$2" -ge 42 ]; }; } || { echo "git $1.$2 is older than 2.42: GIT_ATTR_SOURCE would be ignored" >&2; exit 1; }
           test "$(git rev-parse --is-shallow-repository)" = false || { echo "a shallow clone (control 6)" >&2; exit 1; }
           # The pushed tree may not steer where this job writes (live.b@'s finding): no tracked _site, no symlinked
           # scripts/ or _site, and every pushed .gitattributes removed before any git command reads files.
@@ -121,15 +128,15 @@ jobs:
           rm -rf _site; mv "$RUNNER_TEMP/site" _site
           # Every config the checks read comes from A too (signals.b@'s finding): A's commit-exemptions.json, or none.
           rm -f scripts/commit-exemptions.json
-          if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git show "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
-          git show "$A:scripts/check-commits.mjs" > "$RUNNER_TEMP/check-commits.mjs"
-          git show "$A:scripts/check-signatures.mjs" > "$RUNNER_TEMP/check-signatures.mjs"
+          if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git cat-file blob "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
+          git cat-file blob "$A:scripts/check-commits.mjs" > "$RUNNER_TEMP/check-commits.mjs"
+          git cat-file blob "$A:scripts/check-signatures.mjs" > "$RUNNER_TEMP/check-signatures.mjs"
           "$NODE" "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"
           "$NODE" "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"
           # The leak scan finds the repository from its own path, so A's copy is placed beside the scripts it scans
           # (scripts/leak-scan.trusted.mjs, git-ignored); it is A's code, not the pushed tree's. It scans the same
           # artifact the deploy job deploys (library.b@'s finding: the deployed bytes are the scanned bytes).
-          git show "$A:scripts/leak-scan.mjs" > scripts/leak-scan.trusted.mjs
+          git cat-file blob "$A:scripts/leak-scan.mjs" > scripts/leak-scan.trusted.mjs
           "$NODE" scripts/leak-scan.trusted.mjs
   deploy:
     needs: [build, checks]

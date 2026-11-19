@@ -25,7 +25,8 @@
     "made": "2026-11-19",
     "made_with": "ssh-keygen -t ed25519 (OpenSSH 9.6)",
     "use": "git commit signatures (gpg.format ssh), checked by scripts/check-signatures.mjs"
-   }
+   },
+   "session_url": "https://claude.ai/code/session_01Kw9UwEwArsTwsHK8qeZgW5"
   }
  ]
 }

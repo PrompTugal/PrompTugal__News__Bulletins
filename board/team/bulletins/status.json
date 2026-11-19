@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-19T01:51Z",
+ "updated": "2026-11-19T01:52Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -22,7 +22,8 @@
   "01:20 19 Nov: sites bar 1.1.0 installed (pinned, verified at build); /preview.svg 320x180 from the template",
   "01:35 19 Nov: signed commits on (own ed25519 key, session in team/keys.json; check in release.sh and CI)",
   "01:50 19 Nov: data in the browser: live figures strip on P100, P500, P700; bulletin age and stale marking on every page",
-  "01:51 19 Nov: sites bar 1.1.1 installed (SRI pins, full compare with the registry); preview gate; leak-scan exemptions by exact pattern"
+  "01:51 19 Nov: sites bar 1.1.1 installed (SRI pins, full compare with the registry); preview gate; leak-scan exemptions by exact pattern",
+  "01:52 19 Nov: signature check meets security@'s five controls; full session URL published"
  ],
  "next": [
   "show the past: P200 and P700 'what we said, what happened' for forecasts (see predictions.first_plan)",

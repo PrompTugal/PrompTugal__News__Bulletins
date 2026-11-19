@@ -10,6 +10,9 @@
 //    add its own key and pass. A new or rotated key must come in a commit signed by a key already listed.
 //  - Nothing is exempted by author or committer name (anyone can set those). This repository's CI makes no
 //    commits (it only pushes tags), so there is no exemption at all.
+// security@'s ruling of 19 Nov, 01:30 UTC adds: every commit in the range is checked, merges and side branches
+// included; one failure refuses the whole range (the script exits 1, release.sh does not push and CI does not
+// deploy); the Claude-Session: trailer must equal the full session URL published with the key.
 // The one trust anchor is TRUST_ANCHOR, the commit that added this check and the first key: it is checked
 // against its own team/keys.json, because no earlier commit holds a key. Older commits are not checked.
 // Written by bulletins.b@PrompTugal.dinis. Node built-ins and git (with ssh-keygen) only.
@@ -37,12 +40,13 @@ function keysAt(rev) {
   const ok = keys.filter((k) => k.status !== 'superseded' && typeof k.git_signing?.ssh_public_key === 'string' && /^ssh-ed25519 [A-Za-z0-9+/=]+$/.test(k.git_signing.ssh_public_key) && typeof k.session === 'string' && typeof k.agent === 'string' && /^[a-z0-9.-]+@[A-Za-z0-9.-]+$/.test(k.agent));
   const file = join(dir, `allowed-${rev.slice(0, 12)}`);
   writeFileSync(file, ok.map((k) => `${k.agent} namespaces="git" ${k.git_signing.ssh_public_key}`).join('\n') + '\n');
-  return { file, sessions: new Map(ok.map((k) => [k.agent.toLowerCase(), k.session])), count: ok.length };
+  const url = (k) => k.session_url || `https://claude.ai/code/${k.session}`;
+  return { file, sessions: new Map(ok.map((k) => [k.agent.toLowerCase(), url(k)])), count: ok.length };
 }
 
 const zero = /^0+$/;
 const before = beforeArg && !zero.test(beforeArg) && tryGit('rev-parse', '--verify', '--quiet', `${beforeArg}^{commit}`);
-const added = lines(git('rev-list', '--no-merges', ...(before ? [`${before}..${after}`] : [after])));
+const added = lines(git('rev-list', ...(before ? [`${before}..${after}`] : [after]))); // merges and side branches included
 const descendants = new Set([TRUST_ANCHOR, ...lines(git('rev-list', '--ancestry-path', `${TRUST_ANCHOR}..${after}`))]);
 const errors = [];
 let checked = 0;
@@ -50,12 +54,12 @@ for (const c of added) {
   if (!descendants.has(c) && Number(git('log', '-1', '--format=%ct', c)) < anchorTime) continue; // older than the check
   checked++;
   const subject = git('log', '-1', '--format=%s', c).slice(0, 70);
-  const parent = lines(git('log', '-1', '--format=%P', c))[0];
+  const parent = git('log', '-1', '--format=%P', c).split(/\s+/).filter(Boolean)[0]; // the first parent's keys, merges included
   const k = keysAt(c === TRUST_ANCHOR || !parent ? c : parent);
   if (!k.count) { errors.push(`${c.slice(0, 7)} ${subject}: no published signing key in its parent's team/keys.json`); continue; }
   const [status, signer] = git('-c', `gpg.ssh.allowedSignersFile=${k.file}`, 'log', '-1', '--format=%G?%n%GS', c).split('\n');
   const agent = lines(git('log', '-1', '--format=%(trailers:key=Agent,valueonly)', c)).map((s) => s.trim())[0] || '';
-  const session = (lines(git('log', '-1', '--format=%(trailers:key=Claude-Session,valueonly)', c))[0] || '').trim().replace(/^https:\/\/claude\.ai\/code\//, '');
+  const session = (lines(git('log', '-1', '--format=%(trailers:key=Claude-Session,valueonly)', c))[0] || '').trim(); // compared in full
   if (status !== 'G') errors.push(`${c.slice(0, 7)} ${subject}: not signed with a key published before it (status ${status || 'none'})`);
   else if ((signer || '').toLowerCase() !== agent.toLowerCase()) errors.push(`${c.slice(0, 7)} ${subject}: signed by ${signer}, but its Agent: is ${agent || 'missing'}`);
   else if (k.sessions.get(agent.toLowerCase()) !== session) errors.push(`${c.slice(0, 7)} ${subject}: Claude-Session: ${session || 'missing'} is not the session published with ${agent}'s key`);

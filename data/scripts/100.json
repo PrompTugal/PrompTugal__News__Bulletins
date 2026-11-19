@@ -1,16 +1,16 @@
 {
  "page": "100",
- "facts_sha256": "52977665ae98836a0bf7cbd05f65e9b4",
- "facts_made": "2026-11-19T08:00:32Z",
+ "facts_sha256": "71349ed42168daaff3aee1ddd4dfea78",
+ "facts_made": "2026-11-19T11:01:00Z",
  "model": "anthropic/claude-haiku-5.5",
  "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
  "facts": [
   {
    "id": "100-01",
-   "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W.",
+   "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.4 °C, chance of rain 0%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-   "read_at": "2026-11-19T07:06:29Z",
+   "read_at": "2026-11-19T10:08:15Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -19,10 +19,10 @@
   },
   {
    "id": "100-02",
-   "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.4 °C, maximum 15.9 °C, chance of rain 100%, wind moderate from W.",
+   "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.5 °C, maximum 16.6 °C, chance of rain 100%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1131200.json",
-   "read_at": "2026-11-19T07:06:34Z",
+   "read_at": "2026-11-19T10:08:20Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -31,10 +31,10 @@
   },
   {
    "id": "100-03",
-   "text": "IPMA forecast for Faro today (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW.",
+   "text": "IPMA forecast for Faro today (2026-11-19): minimum 11.8 °C, maximum 20.7 °C, chance of rain 16%, wind moderate from NW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-   "read_at": "2026-11-19T07:06:12Z",
+   "read_at": "2026-11-19T10:07:58Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -46,7 +46,7 @@
    "text": "IPMA lists 18 active weather warnings in 25 areas of Portugal (7 orange, 11 yellow).",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-   "read_at": "2026-11-19T07:07:42Z",
+   "read_at": "2026-11-19T10:09:28Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -58,7 +58,7 @@
    "text": "PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/atm-currency-conversion-portugal-mark-up.html",
-   "read_at": "2026-11-19T08:00:32Z",
+   "read_at": "2026-11-19T11:01:00Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -70,7 +70,7 @@
    "text": "PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/the-payment-desk-that-could-not-take-payment.html",
-   "read_at": "2026-11-19T08:00:32Z",
+   "read_at": "2026-11-19T11:01:00Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -82,7 +82,7 @@
    "text": "PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/who-wrote-this-who-checked-it-who-signs-it.html",
-   "read_at": "2026-11-19T08:00:32Z",
+   "read_at": "2026-11-19T11:01:00Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -90,7 +90,7 @@
    "by": "promptugal.news JSON Feed"
   }
  ],
- "written": "2026-11-19T08:00:37.368Z",
+ "written": "2026-11-19T11:01:06.513Z",
  "kept": [
   {
    "text": "IPMA lists 18 active weather warnings in 25 areas of Portugal, 7 orange and 11 yellow.",
@@ -99,31 +99,31 @@
    ]
   },
   {
-   "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W.",
+   "text": "For Lisboa today, 2026-11-19, IPMA forecasts a minimum of 12.8 °C and a maximum of 18.4 °C, with a 0% chance of rain and moderate wind from W.",
    "facts": [
     "100-01"
    ]
   },
   {
-   "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.4 °C, maximum 15.9 °C, chance of rain 100%, wind moderate from W.",
+   "text": "For Porto today, 2026-11-19, IPMA forecasts a minimum of 12.5 °C and a maximum of 16.6 °C, with a 100% chance of rain and moderate wind from W.",
    "facts": [
     "100-02"
    ]
   },
   {
-   "text": "IPMA forecast for Faro today (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW.",
+   "text": "For Faro today, 2026-11-19, IPMA forecasts a minimum of 11.8 °C and a maximum of 20.7 °C, with a 16% chance of rain and moderate wind from NW.",
    "facts": [
     "100-03"
    ]
   },
   {
-   "text": "PrompTugal.news published 'A Portuguese ATM offered a 13.6% mark-up, twice, with a flag' on 2026-11-17, filed under Portugal.",
+   "text": "PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal.",
    "facts": [
     "100-05"
    ]
   },
   {
-   "text": "Also on 2026-11-17, PrompTugal.news published 'The payment desk that could not take payment' and 'Who wrote this, who checked it, and who signs it', both filed under Portugal.",
+   "text": "On the same day, 2026-11-17, PrompTugal.news also published ‘The payment desk that could not take payment’ and ‘Who wrote this, who checked it, and who signs it’, both filed under Portugal.",
    "facts": [
     "100-06",
     "100-07"
@@ -131,9 +131,9 @@
   }
  ],
  "dropped": [],
- "cost_usd": 0.000562023,
+ "cost_usd": 0.000596673,
  "tokens": {
   "prompt": 717,
-  "completion": 992
+  "completion": 1062
  }
 }

@@ -9,26 +9,43 @@ import { existsSync, readFileSync, appendFileSync, mkdirSync, statSync } from 'n
 import { join } from 'node:path';
 import { ROOT, readJSON, clean, sha } from './core.mjs';
 
-const FILE = join(ROOT, 'data', 'predictions', 'predictions.jsonl');
-const SITE = 'bulletins.promptugal.news';
+export const FILE = join(ROOT, 'data', 'predictions', 'predictions.jsonl');
+export const SITE = 'bulletins.promptugal.news';
 const PAGES = { 200: 'IPMA', 700: 'Open-Meteo' }; // page -> who made the forecast
 const MAX_LINES_PER_RUN = 50, MAX_BYTES = 5 * 1024 * 1024;
-const minute = (iso) => (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(String(iso)) ? String(iso).slice(0, 16) + 'Z' : null);
-const https = (u) => { if (typeof u !== 'string' || /[\s"'<>\\]/.test(u)) return null; try { const x = new URL(u); return x.protocol === 'https:' && !x.username && !x.password ? x.href : null; } catch { return null; } };
+// A time as YYYY-MM-DDTHH:MMZ in UTC (an offset is converted, not dropped); null if it does not parse.
+export const minute = (iso) => { if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(String(iso))) return null; const d = new Date(String(iso)); return isNaN(d) ? null : d.toISOString().slice(0, 16) + 'Z'; };
+export const https = (u) => { if (typeof u !== 'string' || /[\s"'<>\\]/.test(u)) return null; try { const x = new URL(u); return x.protocol === 'https:' && !x.username && !x.password ? x.href : null; } catch { return null; } };
 const reEsc = (t) => t.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
 // A number is quoted when it stands alone: no digit, point or minus just before it, no digit or decimal part after.
-const quoted = (n, text) => new RegExp(`(?<![0-9.\\-])${reEsc(n)}(?![0-9]|\\.[0-9])`).test(text);
-const okValue = (v) => v && typeof v === 'object' && Object.keys(v).length && Object.entries(v).every(([k, x]) => ['t_min_c', 't_max_c', 'rain_prob_pct', 'rain_mm'].includes(k) && Number.isFinite(x) && x >= -60 && x <= 500);
+export const quoted = (n, text) => new RegExp(`(?<![0-9.\\-])${reEsc(n)}(?![0-9]|\\.[0-9])`).test(text);
+export const okValue = (v) => v && typeof v === 'object' && Object.keys(v).length && Object.entries(v).every(([k, x]) => ['t_min_c', 't_max_c', 'rain_prob_pct', 'rain_mm'].includes(k) && Number.isFinite(x) && x >= -60 && x <= 500);
 
 // The last value kept for each subject and due day. A line that does not parse is skipped, never repaired.
+export function readLines() {
+  if (!existsSync(FILE)) return [];
+  return readFileSync(FILE, 'utf8').split('\n').map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter((x) => x && typeof x === 'object');
+}
+// Appends lines (never rewrites); a torn last line gets its newline first.
+export function appendLines(lines) {
+  if (!lines.length) return;
+  mkdirSync(join(ROOT, 'data', 'predictions'), { recursive: true });
+  const torn = existsSync(FILE) && statSync(FILE).size > 0 && !readFileSync(FILE, 'utf8').endsWith('\n');
+  appendFileSync(FILE, (torn ? '\n' : '') + lines.map((x) => JSON.stringify(x) + '\n').join(''), { flag: 'a' });
+}
+
 function lastValues() {
   const last = new Map();
   if (!existsSync(FILE)) return last;
   for (const line of readFileSync(FILE, 'utf8').split('\n')) {
     let x; try { x = JSON.parse(line); } catch { continue; }
-    if (x?.type === 'prediction' && typeof x.subject === 'string' && typeof x.due === 'string') last.set(`${x.subject}|${x.due}`, JSON.stringify(x.value ?? null));
+    // The latest shown, not the last in the file: backfilled lines (bulletins/predictions-backfill.mjs) come later in the file.
+    if (x?.type !== 'prediction' || typeof x.subject !== 'string' || typeof x.due !== 'string') continue;
+    const at = minute(x.shown_at); if (!at) continue;
+    const k = `${x.subject}|${x.due}`, prev = last.get(k);
+    if (!prev || at >= prev.at) last.set(k, { at, val: JSON.stringify(x.value ?? null) });
   }
-  return last;
+  return new Map([...last].map(([k, v]) => [k, v.val]));
 }
 
 export function keepPredictions() {
@@ -58,12 +75,7 @@ export function keepPredictions() {
       if (out.length >= MAX_LINES_PER_RUN) break pages;
     }
   }
-  if (out.length) {
-    mkdirSync(join(ROOT, 'data', 'predictions'), { recursive: true });
-    // A last line left without its newline gets one first, so the new line never joins it.
-    const torn = existsSync(FILE) && statSync(FILE).size > 0 && !readFileSync(FILE, 'utf8').endsWith('\n');
-    appendFileSync(FILE, (torn ? '\n' : '') + out.map((x) => JSON.stringify(x) + '\n').join(''), { flag: 'a' });
-  }
+  appendLines(out);
   console.log(`predictions: ${out.length} new line(s)`);
   return out.length;
 }

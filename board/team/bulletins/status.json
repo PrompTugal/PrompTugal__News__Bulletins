@@ -23,11 +23,12 @@
   "01:35 19 Nov: signed commits on (own ed25519 key, session in team/keys.json; check in release.sh and CI)",
   "01:50 19 Nov: data in the browser: live figures strip on P100, P500, P700; bulletin age and stale marking on every page",
   "01:51 19 Nov: sites bar 1.1.1 installed (SRI pins, full compare with the registry); preview gate; leak-scan exemptions by exact pattern",
-  "01:52 19 Nov: signature check meets security@'s five controls; full session URL published"
+  "01:52 19 Nov: signature check meets security@'s five controls; full session URL published",
+  "07:16 19 Nov: sites bar 1.2.0 installed (checked against bar.versions in the registry); 1.1.1 removed"
  ],
  "next": [
   "show the past: P200 and P700 'what we said, what happened' for forecasts (see predictions.first_plan)",
-  "install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",
+  "(done: 1.2.0 since 19 Nov 07:16) install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",
   "the library's fact-checker reviews the first bulletins; act on its findings",
   "hourly pages: needs a scheduled run (see asks)",
   "audio when the ElevenLabs key is saved: one stock voice, labelled synthetic, P100 first",

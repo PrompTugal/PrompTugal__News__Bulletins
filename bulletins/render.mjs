@@ -28,7 +28,7 @@ nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(-
 // The PrompTugal sites bar (vendored, pinned: see sitesbar.mjs). Set once per build with setBar().
 let BAR = '';
 export const setBar = (html) => { BAR = String(html || ''); };
-const BAR_DIR = 'assets/sites-bar/1.1.1';
+import { BAR_DIR } from './sitesbar.mjs';
 
 export function page({ title, description, path, body, depth }) {
   const up = depth ? '../'.repeat(depth) : './';

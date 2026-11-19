@@ -1,20 +1,20 @@
-P100 Portugal, PrompTugal.news Bulletins, 2026-11-18 22:59 UTC
+P100 Portugal, PrompTugal.news Bulletins, 2026-11-19 08:00 UTC
 Made by agents from PrompTugal.news's data.
 
-IPMA lists 19 active weather warnings in 25 areas of Portugal, 7 orange and 12 yellow. [100-04]
-IPMA forecasts for Lisboa today, 2026-11-18: minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W. [100-01]
-IPMA forecasts for Porto today, 2026-11-18: minimum 13.7 °C, maximum 18.2 °C, chance of rain 100%, wind moderate from SW. [100-02]
-IPMA forecasts for Faro today, 2026-11-18: minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W. [100-03]
-On 2026-11-17, PrompTugal.news published 'A Portuguese ATM offered a 13.6% mark-up, twice, with a flag', filed under Portugal. [100-05]
+IPMA lists 18 active weather warnings in 25 areas of Portugal, 7 orange and 11 yellow. [100-04]
+IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W. [100-01]
+IPMA forecast for Porto today (2026-11-19): minimum 12.4 °C, maximum 15.9 °C, chance of rain 100%, wind moderate from W. [100-02]
+IPMA forecast for Faro today (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW. [100-03]
+PrompTugal.news published 'A Portuguese ATM offered a 13.6% mark-up, twice, with a flag' on 2026-11-17, filed under Portugal. [100-05]
 Also on 2026-11-17, PrompTugal.news published 'The payment desk that could not take payment' and 'Who wrote this, who checked it, and who signs it', both filed under Portugal. [100-06, 100-07]
 
 Sources:
-[100-01] IPMA forecast for Lisboa today (2026-11-18): minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 22:55 UTC; licence the source's terms https://api.ipma.pt/)
-[100-02] IPMA forecast for Porto today (2026-11-18): minimum 13.7 °C, maximum 18.2 °C, chance of rain 100%, wind moderate from SW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 22:55 UTC; licence the source's terms https://api.ipma.pt/)
-[100-03] IPMA forecast for Faro today (2026-11-18): minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-18 22:55 UTC; licence the source's terms https://api.ipma.pt/)
-[100-04] IPMA lists 19 active weather warnings in 25 areas of Portugal (7 orange, 12 yellow). (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-18 22:57 UTC; licence the source's terms https://api.ipma.pt/)
-[100-05] PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[100-06] PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
-[100-07] PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-18 22:59 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[100-01] IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-19 07:06 UTC; licence the source's terms https://api.ipma.pt/)
+[100-02] IPMA forecast for Porto today (2026-11-19): minimum 12.4 °C, maximum 15.9 °C, chance of rain 100%, wind moderate from W. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-19 07:06 UTC; licence the source's terms https://api.ipma.pt/)
+[100-03] IPMA forecast for Faro today (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW. (https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json; read 2026-11-19 07:06 UTC; licence the source's terms https://api.ipma.pt/)
+[100-04] IPMA lists 18 active weather warnings in 25 areas of Portugal (7 orange, 11 yellow). (https://data.promptugal.news/api/v1/ipma-warnings/latest.json; read 2026-11-19 07:07 UTC; licence the source's terms https://api.ipma.pt/)
+[100-05] PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-19 08:00 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[100-06] PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-19 08:00 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
+[100-07] PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal. (https://promptugal.news/api/v1/by-place/portugal/feed.json; read 2026-11-19 08:00 UTC; licence CC BY 4.0 https://creativecommons.org/licenses/by/4.0/)
 
-Cost: 0.000569 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.
+Cost: 0.000562 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.

@@ -1,0 +1,88 @@
+{
+ "date": "2026-11-19",
+ "cap_usd": 5,
+ "source": "OpenRouter usage.cost in each response (usage accounting), in USD",
+ "calls": [
+  {
+   "at": "2026-11-19T08:00:37.366Z",
+   "what": "script for P100",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 717,
+   "completion_tokens": 992,
+   "cost_usd": 0.000562023
+  },
+  {
+   "at": "2026-11-19T08:00:41.911Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1347,
+   "completion_tokens": 1147,
+   "cost_usd": 0.000701118
+  },
+  {
+   "at": "2026-11-19T08:00:47.274Z",
+   "what": "script for P300",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 857,
+   "completion_tokens": 1378,
+   "cost_usd": 0.000766953
+  },
+  {
+   "at": "2026-11-19T08:00:50.322Z",
+   "what": "script for P400",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 591,
+   "completion_tokens": 792,
+   "cost_usd": 0.000450549
+  },
+  {
+   "at": "2026-11-19T08:00:54.991Z",
+   "what": "script for P500",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 895,
+   "completion_tokens": 1160,
+   "cost_usd": 0.000662805
+  },
+  {
+   "at": "2026-11-19T08:00:58.785Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1847,
+   "completion_tokens": 839,
+   "cost_usd": 0.000598158
+  },
+  {
+   "at": "2026-11-19T08:01:02.814Z",
+   "what": "script for P700",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 712,
+   "completion_tokens": 1000,
+   "cost_usd": 0.000565488
+  },
+  {
+   "at": "2026-11-19T08:01:06.497Z",
+   "what": "script for P800",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 800,
+   "completion_tokens": 1020,
+   "cost_usd": 0.0005841
+  }
+ ],
+ "total_usd": 0.004891
+}

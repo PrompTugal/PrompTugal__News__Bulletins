@@ -3,7 +3,7 @@
  "title": "Portugal",
  "about": "Portugal as a whole: weather warnings, forecasts for the main cities, and the latest PrompTugal.news articles on Portugal.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T22:59:52Z",
+ "made": "2026-11-19T08:00:32Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,42 +11,42 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-18T22:59:57.644Z",
-  "facts_sha256": "8fae73fa799b9a34b7a666d93ddfbe36",
+  "written": "2026-11-19T08:00:37.368Z",
+  "facts_sha256": "52977665ae98836a0bf7cbd05f65e9b4",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000568953,
+  "cost_usd": 0.000562023,
   "tokens": {
    "prompt": 717,
-   "completion": 1006
+   "completion": 992
   },
   "note": null,
   "sentences": [
    {
-    "text": "IPMA lists 19 active weather warnings in 25 areas of Portugal, 7 orange and 12 yellow.",
+    "text": "IPMA lists 18 active weather warnings in 25 areas of Portugal, 7 orange and 11 yellow.",
     "facts": [
      "100-04"
     ]
    },
    {
-    "text": "IPMA forecasts for Lisboa today, 2026-11-18: minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W.",
+    "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W.",
     "facts": [
      "100-01"
     ]
    },
    {
-    "text": "IPMA forecasts for Porto today, 2026-11-18: minimum 13.7 °C, maximum 18.2 °C, chance of rain 100%, wind moderate from SW.",
+    "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.4 °C, maximum 15.9 °C, chance of rain 100%, wind moderate from W.",
     "facts": [
      "100-02"
     ]
    },
    {
-    "text": "IPMA forecasts for Faro today, 2026-11-18: minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W.",
+    "text": "IPMA forecast for Faro today (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW.",
     "facts": [
      "100-03"
     ]
    },
    {
-    "text": "On 2026-11-17, PrompTugal.news published 'A Portuguese ATM offered a 13.6% mark-up, twice, with a flag', filed under Portugal.",
+    "text": "PrompTugal.news published 'A Portuguese ATM offered a 13.6% mark-up, twice, with a flag' on 2026-11-17, filed under Portugal.",
     "facts": [
      "100-05"
     ]
@@ -64,10 +64,10 @@
  "facts": [
   {
    "id": "100-01",
-   "text": "IPMA forecast for Lisboa today (2026-11-18): minimum 15.9 °C, maximum 20.9 °C, chance of rain 100%, wind moderate from W.",
+   "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.5 °C, chance of rain 2%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-   "read_at": "2026-11-18T22:55:52Z",
+   "read_at": "2026-11-19T07:06:29Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -76,10 +76,10 @@
   },
   {
    "id": "100-02",
-   "text": "IPMA forecast for Porto today (2026-11-18): minimum 13.7 °C, maximum 18.2 °C, chance of rain 100%, wind moderate from SW.",
+   "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.4 °C, maximum 15.9 °C, chance of rain 100%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1131200.json",
-   "read_at": "2026-11-18T22:55:57Z",
+   "read_at": "2026-11-19T07:06:34Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -88,10 +88,10 @@
   },
   {
    "id": "100-03",
-   "text": "IPMA forecast for Faro today (2026-11-18): minimum 19.8 °C, maximum 22.4 °C, chance of rain 100%, wind moderate from W.",
+   "text": "IPMA forecast for Faro today (2026-11-19): minimum 12.1 °C, maximum 20.8 °C, chance of rain 0%, wind moderate from NW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-   "read_at": "2026-11-18T22:55:34Z",
+   "read_at": "2026-11-19T07:06:12Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -100,10 +100,10 @@
   },
   {
    "id": "100-04",
-   "text": "IPMA lists 19 active weather warnings in 25 areas of Portugal (7 orange, 12 yellow).",
+   "text": "IPMA lists 18 active weather warnings in 25 areas of Portugal (7 orange, 11 yellow).",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-   "read_at": "2026-11-18T22:57:04Z",
+   "read_at": "2026-11-19T07:07:42Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -115,7 +115,7 @@
    "text": "PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/atm-currency-conversion-portugal-mark-up.html",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -127,7 +127,7 @@
    "text": "PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/the-payment-desk-that-could-not-take-payment.html",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -139,7 +139,7 @@
    "text": "PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/who-wrote-this-who-checked-it-who-signs-it.html",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"

@@ -24,7 +24,8 @@
   "01:50 19 Nov: data in the browser: live figures strip on P100, P500, P700; bulletin age and stale marking on every page",
   "01:51 19 Nov: sites bar 1.1.1 installed (SRI pins, full compare with the registry); preview gate; leak-scan exemptions by exact pattern",
   "01:52 19 Nov: signature check meets security@'s five controls; full session URL published",
-  "07:16 19 Nov: sites bar 1.2.0 installed (checked against bar.versions in the registry); 1.1.1 removed"
+  "07:16 19 Nov: sites bar 1.2.0 installed (checked against bar.versions in the registry); 1.1.1 removed",
+  "08:10 19 Nov wake: 8 pages refreshed (51 kept, 0 dropped, 0.0049 USD); predictions.jsonl started (3 lines, library form); AppSec post-review: 3 medium, 6 low, all fixed but the IPMA licence name"
  ],
  "next": [
   "show the past: P200 and P700 'what we said, what happened' for forecasts (see predictions.first_plan)",
@@ -64,6 +65,7 @@
   "already_kept": "every bulletin is committed with the exact facts it was written from (data/scripts/<page>.json, data/facts/latest.json in git history), so what we showed, with its time and source, is never lost",
   "first_plan": "P200 (Faro) and P700 (London) first: a 'What we said, what happened' block, drawn to designer@'s spec (main repo board/spec-past-and-forecast.md, PF1 to PF9). Faro: the forecast min and max we published (git history of data/scripts/) beside the observed low and high (data.b@'s daily IPMA station summaries), difference in degrees. London: rain only for now (data.b@, 01:35 UTC: no keyless observed temperature; Open-Meteo's archive is modelled, not measured): data.promptugal.news/api/v1/history/weather/london.json, observed.rain_mm_mean from Environment Agency gauges (OGL v3; show 'complete' and the gauge count) beside Open-Meteo's forecast issued 1 to 3 days before (free site only); rows from 18 Nov, nulls shown as gaps. A miss shown as plainly as a hit; a running track record per source.",
   "rights": "rights@'s R8 (main repo board/team/rights/register/google-apis.md, relayed by conductor.b@ 01:27 UTC): on this free site, IPMA's past forecasts and observations may be shown with IPMA credited; Open-Meteo's archive non-commercially under CC BY 4.0 within its call limits. Every history row will carry its read time, source, licence link and collection. Never shown on promptugal.news.",
-  "library": "One collection in the library (Dinis, about 03:15 UTC, 19 Nov). Keep data/predictions/predictions.jsonl: append-only JSON Lines, prediction lines and outcome lines, in the form at library.promptugal.news/api/v1/predictions/form.json (library.b@ 8f8117b); first form kept as shown, corrections beside the original. When the first file exists, tell library.b@ (session_01Kw9UwFNC1sX4AKoWo4XhEP) this repository's name. Relayed by conductor.b@ 03:24 UTC."
+  "library": "One collection in the library (Dinis, about 03:15 UTC, 19 Nov). Keep data/predictions/predictions.jsonl: append-only JSON Lines, prediction lines and outcome lines, in the form at library.promptugal.news/api/v1/predictions/form.json (library.b@ 8f8117b); first form kept as shown, corrections beside the original. When the first file exists, tell library.b@ (session_01Kw9UwFNC1sX4AKoWo4XhEP) this repository's name. Relayed by conductor.b@ 03:24 UTC.",
+  "file": "data/predictions/predictions.jsonl (since 19 Nov 08:01 UTC): Faro (P200) and London (P700) forecasts as quoted; next: outcome lines from IPMA station and EA gauge observations, then the 'What we said, what happened' block, then tell library.b@"
  }
 }

@@ -23,7 +23,18 @@ const live = Object.fromEntries(Object.keys(PAGES).map((p) => [p, []]));
 function add(page, f) {
   const n = facts[page].length + 1;
   facts[page].push({ id: `${page}-${String(n).padStart(2, '0')}`, text: clean(f.text, 400), source: f.source, origin: f.origin || f.source,
-    read_at: f.read_at || now, licence: f.licence, by: f.by || 'bulletins/collect.mjs (code, no model)' });
+    read_at: f.read_at || now, licence: f.licence, by: f.by || 'bulletins/collect.mjs (code, no model)', ...(f.pred ? { pred: f.pred } : {}) });
+}
+// A forecast we may keep as a prediction (Dinis, 19 Nov: "show the past"; the library's PRED form). Subject from a
+// constant, due day from our own clock, values only if finite and in range; never shown to the model (write.mjs sends
+// id and text only). bulletins/predictions.mjs appends it once a published sentence quotes it.
+const inRange = (v, lo, hi) => Number.isFinite(v) && v >= lo && v <= hi;
+function pred(subject, due, v) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(due) || !inRange(v.t_min_c, -60, 60) || !inRange(v.t_max_c, -60, 60)) return undefined;
+  const value = { t_min_c: v.t_min_c, t_max_c: v.t_max_c };
+  if (inRange(v.rain_prob_pct, 0, 100)) value.rain_prob_pct = v.rain_prob_pct;
+  if (inRange(v.rain_mm, 0, 500)) value.rain_mm = v.rain_mm;
+  return { subject, due, value };
 }
 const lic = (j) => ({ name: clean(j?.license?.name || "the source's terms", 80), url: j?.license?.url || j?.provenance?.page || null });
 async function safe(label, fn) { try { await fn(); } catch (e) { problems.push(`${label}: ${clean(e.message, 160)}`); } }
@@ -41,7 +52,8 @@ await safe('ipma-city-forecasts', async () => {
     const n = page === '100' || page === '500' ? 1 : 2;
     for (const d of c.days.filter((d) => d.date === day(now) || d.date === tomorrow).slice(0, n)) {
       const when = d.date === day(now) ? `today (${d.date})` : `tomorrow (${d.date})`;
-      add(page, { text: `IPMA forecast for ${c.name} ${when}: minimum ${d.t_min_c} °C, maximum ${d.t_max_c} °C, chance of rain ${d.rain_prob_pct}%, wind ${WIND[d.wind_class] || 'class ' + d.wind_class} from ${d.wind_dir}.`,
+      const due = d.date === day(now) ? day(now) : tomorrow;
+      add(page, { pred: page === '200' && name === 'Faro' ? pred('Faro daily minimum and maximum temperature (IPMA city forecast)', due, d) : undefined, text: `IPMA forecast for ${c.name} ${when}: minimum ${d.t_min_c} °C, maximum ${d.t_max_c} °C, chance of rain ${d.rain_prob_pct}%, wind ${WIND[d.wind_class] || 'class ' + d.wind_class} from ${d.wind_dir}.`,
         source: `${D}/ipma-city-forecasts/latest.json`, origin: c.source, read_at: c.read_at || j.read_at, licence: lic(j), by: clean(j.provenance?.by, 160) });
     }
   }
@@ -128,7 +140,8 @@ await safe('london', async () => {
   for (const d of (f?.days || []).filter((d) => d.date === day(now) || d.date === tomorrow).slice(0, 2)) {
     if (![d.t_min_c, d.t_max_c].every(Number.isFinite)) continue;
     const when = d.date === day(now) ? `today (${d.date})` : `tomorrow (${d.date})`;
-    add('700', { ...block(f), source: src, text: `Open-Meteo forecast for London ${when}: minimum ${d.t_min_c} °C, maximum ${d.t_max_c} °C${Number.isFinite(d.rain_mm) ? `, rain ${d.rain_mm} mm` : ''}.` });
+    const due = d.date === day(now) ? day(now) : tomorrow;
+    add('700', { ...block(f), source: src, pred: pred('London daily minimum and maximum temperature and rain (Open-Meteo forecast)', due, d), text: `Open-Meteo forecast for London ${when}: minimum ${d.t_min_c} °C, maximum ${d.t_max_c} °C${Number.isFinite(d.rain_mm) ? `, rain ${d.rain_mm} mm` : ''}.` });
   }
   const w = j.floods?.warnings;
   if (Array.isArray(w)) live['700'].push({ label: 'Environment Agency flood warnings and alerts for the London area', url: src, path: 'floods.warnings.length', read_at_path: 'floods.at', value: w.length, read_at: j.floods.at || j.read_at, cadence_min: 60, min: 0, max: 500, licence: block(j.floods).licence, source: 'the Environment Agency, through data.promptugal.news' });

@@ -3,7 +3,7 @@
  "title": "Summit and tech",
  "about": "The summit and technology: the latest articles on the summit and AI, and the library's catalogue and fact-checker.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T22:59:52Z",
+ "made": "2026-11-19T08:00:32Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,16 +11,22 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-18T23:00:10.359Z",
-  "facts_sha256": "7f3294b33f2ac591e4f9c66f54fa5242",
+  "written": "2026-11-19T08:00:50.323Z",
+  "facts_sha256": "b9b321d9952c4e963bb9e3eb89548eb6",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000495594,
+  "cost_usd": 0.000450549,
   "tokens": {
    "prompt": 591,
-   "completion": 883
+   "completion": 792
   },
   "note": null,
   "sentences": [
+   {
+    "text": "The library's fact-checker, pass 1 on 2026-11-18, counted 87 published PrompTugal.news articles: 13 map every claim to a recorded source, 39 record sources for the story as a whole and 35 name sources only in the text.",
+    "facts": [
+     "400-05"
+    ]
+   },
    {
     "text": "PrompTugal.news published 'Getting around Lisbon on Wednesday: what operators and the government say' on 2026-11-11, filed under the summit.",
     "facts": [
@@ -40,21 +46,9 @@
     ]
    },
    {
-    "text": "The library catalogues 80 items in 1 collection, with 7 recorded as missing.",
+    "text": "library.promptugal.news catalogues 82 items in 1 collection, with 7 recorded as missing.",
     "facts": [
      "400-04"
-    ]
-   },
-   {
-    "text": "On 2026-11-18, the library's fact-checker, pass 1, found that of 87 published PrompTugal.news articles, 13 map every claim to a recorded source.",
-    "facts": [
-     "400-05"
-    ]
-   },
-   {
-    "text": "Of the same 87 articles, 39 record sources for the story as a whole, and 35 name sources only in the text.",
-    "facts": [
-     "400-05"
     ]
    }
   ],
@@ -66,7 +60,7 @@
    "text": "PrompTugal.news published ‘Getting around Lisbon on Wednesday: what operators and the government say’ on 2026-11-11, filed under the summit.",
    "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
    "origin": "https://promptugal.news/articles/getting-around-lisbon-wednesday.html",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -78,7 +72,7 @@
    "text": "PrompTugal.news published ‘Manus 2.0 gives each agent its own email, phone and wallet’ on 2026-11-11, filed under the summit.",
    "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
    "origin": "https://promptugal.news/articles/manus-2-0-agents-own-email-phone-wallet.html",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -90,7 +84,7 @@
    "text": "PrompTugal.news published ‘Thursday at Web Summit: a practical guide to the last day’ on 2026-11-11, filed under the summit.",
    "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
    "origin": "https://promptugal.news/articles/thursday-last-day-guide.html",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -99,10 +93,10 @@
   },
   {
    "id": "400-04",
-   "text": "library.promptugal.news catalogues 80 items in 1 collection, with 7 recorded as missing.",
+   "text": "library.promptugal.news catalogues 82 items in 1 collection, with 7 recorded as missing.",
    "source": "https://library.promptugal.news/api/v1/",
    "origin": "https://library.promptugal.news/api/v1/",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -114,7 +108,7 @@
    "text": "The library's fact-checker, pass 1 on 2026-11-18: of 87 published PrompTugal.news articles, 13 map every claim to a recorded source, 39 record sources for the story as a whole and 35 name sources only in the text.",
    "source": "https://library.promptugal.news/api/v1/fact-check/index.json",
    "origin": "https://library.promptugal.news/api/v1/fact-check/index.json",
-   "read_at": "2026-11-18T22:59:52Z",
+   "read_at": "2026-11-19T08:00:32Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"

@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-19T01:50Z",
+ "updated": "2026-11-19T02:05Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -24,6 +24,7 @@
   "01:50 19 Nov: data in the browser: live figures strip on P100, P500, P700; bulletin age and stale marking on every page"
  ],
  "next": [
+  "show the past: P200 and P700 'what we said, what happened' for forecasts (see predictions.first_plan)",
   "install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",
   "the library's fact-checker reviews the first bulletins; act on its findings",
   "hourly pages: needs a scheduled run (see asks)",
@@ -47,5 +48,18 @@
   }
  ],
  "passes": "opening conductor and security pre-review (Sonnet), the work, AppSec post-review (Sonnet), closing conductor: see the commit message",
- "debrief": "board/team/bulletins/debriefs/2026-11-18.md"
+ "debrief": "board/team/bulletins/debriefs/2026-11-18.md",
+ "predictions": {
+  "guidance": "main repo board/guidance/2026-11-19-show-the-past.md (Dinis, about 01:17 UTC, 19 Nov), relayed by conductor.b@",
+  "what_we_show_about_the_future": [
+   "IPMA city forecasts for today and tomorrow (min, max, chance of rain, wind) on P100, P200, P300, P500",
+   "IPMA sea forecasts for tomorrow (wave height, sea temperature) on P200, P300, P500",
+   "IPMA warning windows (level, type, start, end) on P200, P300, P500",
+   "IPMA fire risk class for today on P500",
+   "Open-Meteo forecast for London today and tomorrow (min, max, rain) on P700",
+   "the lab's top stories and front pages repeat the same forecasts"
+  ],
+  "already_kept": "every bulletin is committed with the exact facts it was written from (data/scripts/<page>.json, data/facts/latest.json in git history), so what we showed, with its time and source, is never lost",
+  "first_plan": "P200 and P700 first: a 'What we said, what happened' block. For each forecast day that has passed, show the forecast min and max we published (from git history of data/scripts/) beside the observed low and high (data.b@'s daily IPMA station summaries for Faro; for London, the observed source data.b@ names), with the difference in degrees, a miss shown as plainly as a hit, and a running track record per source. Drawn the way designer@ sets for every site. Built from our own files only; no new host."
+ }
 }

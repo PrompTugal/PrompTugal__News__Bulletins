@@ -86,8 +86,8 @@ try {
   // Control 7: a push that replaces the checker with one that always passes is still checked by the base's copy.
   fresh('t14'); commit('tamper with the checker', { sign: false, files: { 'scripts/check-signatures.mjs': "console.log('OK'); process.exit(0);\n" } });
   expect('a pushed commit cannot replace its own checker', base, 'tamper with the checker: not signed');
-  // The CI rule (security@, 14:17): the checker comes from A, the last commit a passing run verified (the last
-  // successful deployment); refuse a missing A, an A that is not an ancestor of AFTER, and an A without the checker;
+  // The CI rule (security@, 14:17 and 14:26): the checker comes from A, the last commit a passing run verified (the head
+  // of this workflow's latest successful push run on dev); refuse a missing A, an A that is not an ancestor of AFTER, and an A without the checker;
   // check A..AFTER. ciRun mirrors .github/workflows/pages.yml (whose text the wiring test below asserts).
   const ciRun = (before, after) => {
     if (!/^[0-9a-f]{40}$/.test(String(before))) return { code: 1, out: 'no verified anchor A' };
@@ -99,7 +99,7 @@ try {
     return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
   };
   const ciExpect = (name, r, want) => results.push(`${r.code === 1 && r.out.includes(want) ? 'pass' : 'FAIL'}  ${name}${r.code === 1 && r.out.includes(want) ? '' : ` (got ${r.code}: ${r.out.slice(0, 80)})`}`);
-  fresh('t17'); commit('good after'); ciExpect('a missing A (no verified deployment) fails', ciRun('', 'HEAD'), 'no verified anchor A');
+  fresh('t17'); commit('good after'); ciExpect('a missing A (no successful run) fails', ciRun('', 'HEAD'), 'no verified anchor A');
   fresh('t18side'); commit('elsewhere'); const elsewhere = git('rev-parse', 'HEAD');
   fresh('t18'); commit('force-pushed'); ciExpect('A not an ancestor of AFTER (a force push) fails', ciRun(elsewhere, 'HEAD'), 'not an ancestor');
   fresh('t19'); git('rm', '-q', 'scripts/check-signatures.mjs'); commit('a release without the checker'); const noChecker = git('rev-parse', 'HEAD'); commit('next push');
@@ -123,8 +123,8 @@ try {
   rmSync(dir, { recursive: true, force: true });
 }
 // Controls 7 and 9 in the real wiring. release.sh takes every security check from origin/dev. The Pages workflow runs
-// them in their own 'checks' job, which runs no pushed code: each checker comes from A (the last successful
-// github-pages deployment, from GitHub's API), with GIT_NO_REPLACE_OBJECTS set, NODE_OPTIONS cleared, regular files only
+// them in their own 'checks' job, which runs no pushed code: each checker comes from A (the head of the latest
+// successful push run of this workflow on dev, from GitHub's API), with GIT_NO_REPLACE_OBJECTS set, NODE_OPTIONS cleared, regular files only
 // and an absolute node; the site comes in as an artifact. Deploy and tag need that job. A GITHUB_ENV written by a
 // pushed build step lives in the build job only, so it cannot change the result (security@'s test for control 9).
 {
@@ -138,7 +138,7 @@ try {
   const job = (name) => { const m = w.match(new RegExp(`\n  ${name}:\n([\\s\\S]*?)(?=\n  [a-z]+:\n|$)`)); return m ? m[1] : ''; };
   const checks = job('checks'), build = job('build'), deploy = job('deploy'), tag = job('tag');
   const ok9 = /needs: build/.test(checks) && /GIT_NO_REPLACE_OBJECTS: '1'/.test(checks) && /NODE_OPTIONS: ''/.test(checks)
-    && /deployments\?environment=github-pages/.test(checks) && /no verified anchor A/.test(checks) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(checks)
+    && /actions\/workflows\/pages\.yml\/runs\?branch=dev&event=push&status=success/.test(checks) && /\.conclusion == "success"/.test(checks) && !/deployments/.test(checks) && /no verified anchor A/.test(checks) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(checks)
     && /git show "\$A:scripts\/check-signatures\.mjs" > "\$RUNNER_TEMP\/check-signatures\.mjs"/.test(checks) && /git show "\$A:scripts\/check-commits\.mjs" > "\$RUNNER_TEMP\/check-commits\.mjs"/.test(checks)
     && /git show "\$A:scripts\/leak-scan\.mjs" > scripts\/leak-scan\.trusted\.mjs/.test(checks) && /case "\$mode" in 100644\|100755\)/.test(checks) && /case "\$NODE" in \/\*\)/.test(checks)
     && /actions\/download-artifact@v4/.test(checks) && !/node scripts\/(?!leak-scan\.trusted)/.test(checks) && !/uses: \.\//.test(checks) && !/git describe|--tags/.test(checks);

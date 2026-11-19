@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
-  deployments: read # to read the last successful github-pages deployment, the trusted anchor A (security@, 14:17)
+  actions: read # to read this workflow's last successful push run on dev, the trusted anchor A (security@, 14:26)
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -57,8 +57,8 @@ jobs:
           path: _site
   # Control 9 (security@'s fifth ruling, 19 Nov 14:20): the signature, trailer and leak checks run in their own job,
   # which runs no pushed code. It checks out the pushed commits as data, takes each checker from A (the newest commit a
-  # passing run verified: the last successful github-pages deployment, read from GitHub's API, never from git or a
-  # tag), and reads the built site only as data (the Pages artifact). Deploy and tag need it. A GITHUB_ENV or
+  # passing run verified: the head of this workflow's latest successful push run on dev, read from GitHub's API, never
+  # from git, a tag or a deployment), and reads the built site only as data (the Pages artifact). Deploy and tag need it. A GITHUB_ENV or
   # GITHUB_PATH written by a pushed build step stays in the build job and cannot reach this one.
   checks:
     needs: build
@@ -87,13 +87,11 @@ jobs:
           set -euo pipefail
           test "$(git rev-parse --is-shallow-repository)" = false || { echo "a shallow clone (control 6)" >&2; exit 1; }
           NODE="$(command -v node)"; case "$NODE" in /*) ;; *) echo "node is not an absolute path" >&2; exit 1;; esac
-          A=""
-          for id in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=50" --jq '.[].id'); do
-            if [ "$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=1" --jq '.[0].state')" = success ]; then
-              A=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id" --jq .sha); break
-            fi
-          done
-          echo "$A" | grep -Eq '^[0-9a-f]{40}$' || { echo "no verified anchor A (no successful github-pages deployment found)" >&2; exit 1; }
+          # A (security@'s sixth ruling, 14:26): the head of this workflow's latest successful push run on dev. Only
+          # GitHub Actions creates runs; anyone with write access could create a "successful deployment".
+          A=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=20" \
+            --jq '[.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success")][0].head_sha // ""')
+          echo "$A" | grep -Eq '^[0-9a-f]{40}$' || { echo "no verified anchor A (no successful push run of this workflow on dev)" >&2; exit 1; }
           git merge-base --is-ancestor "$A" "$AFTER" || { echo "A ($A) is not an ancestor of AFTER: a force push" >&2; exit 1; }
           for c in leak-scan check-commits check-signatures; do
             mode=$(git ls-tree "$A" "scripts/$c.mjs" | cut -d' ' -f1)

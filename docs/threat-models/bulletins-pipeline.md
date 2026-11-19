@@ -64,3 +64,7 @@ bulletins/past.mjs builds the block at render time from local files only (no fet
 ## Predictions in the library's form (19 November, 14:10 UTC)
 
 The first predictions file did not match the library's form and could not be corrected without editing lines, which the form forbids. It is kept unchanged as data/predictions/predictions-v0.jsonl; predictions.jsonl starts again from the same committed scripts, one line per quantity. Text fields have [ ] < > and backticks removed (the library refuses them). The file passes the library's own checker (pred-form.mjs, pure functions, read before use). Nothing in the file is fetched or run by the library.
+
+## Controls 6 to 8, widened (19 November, 14:12 UTC)
+
+security@'s rulings of 14:07 and 14:08. The signing check refuses a shallow clone, and CI fails one. The leak scan, the trailer check and the signing check run from the last release's copy (git show into scripts/<name>.trusted.mjs, git-ignored), never from the pushed tree; a missing copy fails closed. Skips by ancestry only. Tests in scripts/test-check-signatures.mjs (18). Residual: the workflow YAML and release.sh come from the pushed tree or the releaser's checkout (branch protection, Dinis's).

@@ -15,8 +15,10 @@
 // deploy); the Claude-Session: trailer must equal the full session URL published with the key.
 // The one trust anchor is TRUST_ANCHOR, the commit that added this check and the first key: it is checked
 // against its own team/keys.json, because no earlier commit holds a key. Older commits are not checked.
-// Control 7 (same finding): this file is never run from the tree it checks. release.sh and CI take it from the last
-// release (origin/dev, or the last release tag) with git show, so a push cannot change its own checker.
+// Control 7 (same finding; widened by security@ at 14:08): this file, check-commits.mjs and leak-scan.mjs are never
+// run from the tree they check. release.sh and CI take each from the last release (origin/dev, or the last release
+// tag) with git show into scripts/<name>.trusted.mjs (git-ignored) and run that copy; a missing copy fails, with no
+// fallback. Control 8: a commit is skipped only if it is an ancestor of the trust anchor, never by what a tree holds.
 // Written by bulletins.b@PrompTugal.dinis. Node built-ins and git (with ssh-keygen) only.
 import { execFileSync } from 'node:child_process';
 import { writeFileSync, mkdtempSync, rmSync } from 'node:fs';
@@ -30,6 +32,8 @@ const lines = (s) => (s ? s.split('\n').filter(Boolean) : []);
 
 const [beforeArg, afterArg] = process.argv.slice(2);
 const after = afterArg || 'HEAD';
+// A shallow clone hides parents, so a commit could look like an orphan or skip its parent's keys: refuse it (security@, 14:07).
+if (git('rev-parse', '--is-shallow-repository') !== 'false') { console.error('check-signatures: a shallow clone; fetch the whole history (fetch-depth 0)'); process.exit(1); }
 if (tryGit('cat-file', '-e', `${TRUST_ANCHOR}^{commit}`) === null) { console.error('check-signatures: the trust anchor commit is not in this clone (fetch more history)'); process.exit(1); }
 
 const dir = mkdtempSync(join(tmpdir(), 'sig-'));

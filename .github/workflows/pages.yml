@@ -41,36 +41,31 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Every commit since the last release carries an Agent trailer
-        # From the last release tag, not github.event.before: GitHub drops a pending run when a
-        # newer one queues, and the surviving run's "before" is the dropped push's head, so the
-        # dropped push's commits were never checked (specialist.code@ finding 3b).
+      - name: Not a shallow clone (security@, control 6)
+        run: test "$(git rev-parse --is-shallow-repository)" = false
+      - name: The security checks, taken from the last release (controls 7 and 8; a missing copy fails, no fallback)
+        # From the last release tag, not github.event.before: GitHub drops a pending run when a newer one queues
+        # (specialist.code@ finding 3b). Every check below runs from that release's copy, never the pushed tree's.
         env:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
         run: |
           last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER" 2>/dev/null || true)
-          node scripts/check-commits.mjs "${last:-$BEFORE}" "$AFTER"
+          base="${last:-$BEFORE}"
+          echo "TRUSTED_BASE=$base" >> "$GITHUB_ENV"
+          for c in leak-scan check-commits check-signatures; do git show "$base:scripts/$c.mjs" > "scripts/$c.trusted.mjs"; done
+          node scripts/check-commits.trusted.mjs "$base" "$AFTER"
+          node scripts/check-signatures.trusted.mjs "$base" "$AFTER"
       - name: The signature check's own tests (throwaway repository and keys)
         run: node scripts/test-check-signatures.mjs
-      - name: Every commit since the last release is signed by its agent's published key
-        env:
-          BEFORE: ${{ github.event.before }}
-          AFTER: ${{ github.sha }}
-        run: |
-          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER" 2>/dev/null || true)
-          # Control 7: run the check from the last release's copy, never from the pushed tree; fails closed if absent.
-          base="${last:-$BEFORE}"
-          git show "$base:scripts/check-signatures.mjs" > "$RUNNER_TEMP/check-signatures.mjs"
-          node "$RUNNER_TEMP/check-signatures.mjs" "$base" "$AFTER"
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
       - run: node scripts/validate.mjs
       - name: The leak scan's key rules (tests)
         run: node scripts/test-leak-scan.mjs
-      - name: Leak scan (tracked files and the built site)
-        run: node scripts/leak-scan.mjs
+      - name: Leak scan (tracked files and the built site), from the last release's copy
+        run: node scripts/leak-scan.trusted.mjs
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
       - if: steps.mode.outputs.deploy == 'true'

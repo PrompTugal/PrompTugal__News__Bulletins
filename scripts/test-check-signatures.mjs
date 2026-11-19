@@ -86,15 +86,27 @@ try {
   // Control 7: a push that replaces the checker with one that always passes is still checked by the base's copy.
   fresh('t14'); commit('tamper with the checker', { sign: false, files: { 'scripts/check-signatures.mjs': "console.log('OK'); process.exit(0);\n" } });
   expect('a pushed commit cannot replace its own checker', base, 'tamper with the checker: not signed');
+  // Control 8: a commit that deletes the checker and adds an unsigned change is still checked, and fails.
+  fresh('t15'); git('rm', '-q', 'scripts/check-signatures.mjs'); commit('delete the checker and slip in a change', { sign: false, files: { 'x.txt': 'x\n' } });
+  expect('a commit that removes the checker and adds an unsigned change fails', base, 'delete the checker and slip in a change: not signed');
+  // Control 6: the check refuses a shallow clone (it hides parents).
+  fresh('t16'); commit('good, in a shallow clone');
+  execFileSync('git', ['clone', '-q', '--depth', '1', '--branch', 't16', `file://${repo}`, join(dir, 'shallow')]);
+  writeFileSync(join(dir, 'shallow-check.mjs'), git('show', `${base}:scripts/check-signatures.mjs`));
+  const sh = spawnSync(process.execPath, [join(dir, 'shallow-check.mjs'), 'HEAD~0', 'HEAD'], { cwd: join(dir, 'shallow'), encoding: 'utf8' });
+  results.push(`${sh.status === 1 && /a shallow clone/.test(sh.stderr) ? 'pass' : 'FAIL'}  the check refuses a shallow clone`);
 } finally {
   rmSync(dir, { recursive: true, force: true });
 }
-// Control 7 in the real wiring: release.sh and the Pages workflow must take the checker from the last release with git
-// show, and must never run the pushed tree's scripts/check-signatures.mjs (post-review finding, 19 Nov).
-for (const [f, extract] of [['release.sh', /git show origin\/dev:scripts\/check-signatures\.mjs > "\$TRUSTED\/check-signatures\.mjs"/], ['../.github/workflows/pages.yml', /git show "\$base:scripts\/check-signatures\.mjs" > "\$RUNNER_TEMP\/check-signatures\.mjs"/]]) {
+// Control 7 (widened) in the real wiring: release.sh and the Pages workflow take every security check (the signature
+// check, the trailer check, the leak scan) from the last release with git show, and never run the pushed tree's copy.
+for (const f of ['release.sh', '../.github/workflows/pages.yml']) {
   const t = readFileSync(join(HERE, f), 'utf8');
-  const direct = /^\s*node scripts\/check-signatures\.mjs/m.test(t);
-  results.push(`${extract.test(t) && !direct ? 'pass' : 'FAIL'}  ${f.replace('../', '')} runs the check from the last release's copy, never the pushed tree's`);
+  const extracts = f === 'release.sh' ? /git show "origin\/dev:scripts\/\$1\.mjs" > "scripts\/\$1\.trusted\.mjs"/.test(t) && /trusted leak-scan; trusted check-commits; trusted check-signatures/.test(t)
+    : /for c in leak-scan check-commits check-signatures; do git show "\$base:scripts\/\$c\.mjs" > "scripts\/\$c\.trusted\.mjs"; done/.test(t);
+  const runs = ['leak-scan', 'check-commits', 'check-signatures'].every((c) => new RegExp(`node scripts/${c}\\.trusted\\.mjs`).test(t));
+  const direct = /node scripts\/(leak-scan|check-commits|check-signatures)\.mjs/.test(t);
+  results.push(`${extracts && runs && !direct ? 'pass' : 'FAIL'}  ${f.replace('../', '')} runs every security check from the last release's copy, never the pushed tree's`);
 }
 console.log(results.join('\n'));
 const failed = results.filter((r) => r.startsWith('FAIL')).length;

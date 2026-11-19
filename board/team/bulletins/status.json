@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-19T16:51Z",
+ "updated": "2026-11-19T16:58Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -31,7 +31,7 @@
   "14:10 19 Nov: predictions file redone in the library's form (27 lines, checker clean); old file kept as predictions-v0.jsonl; post-review: 1 low fixed (London rain paired with a stale showing)"
  ],
  "next": [
-  "control 10, no symlinks (security@ ed70bd996, relayed by conductor.b@ 16:50 UTC 19 Nov), at the 19:00 to 20:00 Lisbon wake. The checks job refuses: a mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checked-out tree, and any symlink in a downloaded artifact. Exceptions only from an exceptions file in A's tree, each with a reason. Tests: a pushed symlink fails, a listed one passes, one listed only in the pushed tree fails. Commit id to conductor.b@",
+  "control 10, no symlinks (security@ ed70bd996, relayed by conductor.b@ 16:50 UTC 19 Nov), at the 19:00 to 20:00 Lisbon wake. The checks job refuses: a mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checked-out tree, and any symlink in a downloaded artifact. Exceptions only from an exceptions file in A's tree, each with a reason. Tests: a pushed symlink fails, a listed one passes, one listed only in the pushed tree fails. Paths are read NUL-separated (git diff-tree -z, ls-files -z, tar --null) and compared to the exceptions as whole strings, never line by line or with grep -xF (events.b@'s 44d5402, relayed 16:57 UTC); a test with a newline in a symlink's name. Commit id to conductor.b@",
   "outcomes for 19 and 20 Nov once those days are complete in data.promptugal.news's history",
   "the drawn chart for the past block (designer@'s PF2 to PF4)",
   "the library's fact-checker reviews the first bulletins; act on its findings",

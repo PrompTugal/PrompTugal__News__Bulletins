@@ -36,3 +36,7 @@ At Dinis's word (19 November, about 01:13 UTC: "load the data in the browser"). 
 ## Not covered yet
 - No scheduled run: the hourly pages need either a scheduled job with the key as a repository secret (Dinis's decision) or a wake of this session each hour.
 - Audio (ElevenLabs) and video are not built; each will get its own section here before it runs.
+
+## The sites bar's pins (19 November, 04:56 UTC)
+
+security@'s ruling of 04:51 UTC, option 1 (main repo board/team/security/reviews/2026-11-19-0120-ruling-public-keys-in-leak-scans.md, last addendum). No SRI pin is written into this repository, so the leak scan exempts none. At every build `bulletins/sitesbar.mjs` reads `bar.integrity` from promptugal.news/api/v1/sites.json and compares each pin in full with the digest of the vendored file, before the renderer is imported. A mismatch stops the build. If the registry cannot be read, gives no pin in SRI form for a file, or names another version, the pages go out without a bar. Threat: a changed registry cannot change our vendored files; it can only stop the bar. Threat: someone changes a vendored file in this repository; its digest no longer matches the registry and the build stops. Accepted: when promptugal.news is down at build time, the bar is missing until the next build (before, the last checked bar was kept).

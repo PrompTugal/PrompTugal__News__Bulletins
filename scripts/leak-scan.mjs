@@ -91,8 +91,8 @@ const ALLOW = [
   // its field and exact pattern. Private-key words, a JWK d, tokens and any other high-entropy field still fail.
   ['team/keys.json', 'long high-entropy string', 'an ssh-ed25519 public key line, without its comment', /^\s*"ssh_public_key": "ssh-ed25519 [A-Za-z0-9+/]{68}",?$/],
   ['team/keys.json', 'long high-entropy string', 'an ssh key fingerprint', /^\s*"fingerprint": "SHA256:[A-Za-z0-9+/]{43}",?$/],
-  // The sites bar's SRI pins (public file hashes), one per vendored file, in their exact form.
-  ['bulletins/sitesbar.mjs', 'long high-entropy string', 'an SRI pin of a vendored sites bar file', /^\s+(render|css|js): \['sites-bar(-render)?\.(mjs|css|js)', 'sha256-[A-Za-z0-9+/]{43}='\],$/],
+  // No SRI pin is exempted: security@'s ruling of 19 Nov, 04:51 UTC, option 1. The sites bar's pins are read from the
+  // registry at build (bulletins/sitesbar.mjs) and never copied into this repository.
 ];
 const allowed = (path, kind, line = '') => ALLOW.some(([p, k, , re]) => p === path && k === kind && re.test(line));
 

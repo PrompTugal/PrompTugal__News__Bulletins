@@ -98,7 +98,7 @@ function bulletinBody(n, p, facts, script, made, live) {
 <p class="dim">${esc(p.about)}</p>
 <h2>The bulletin</h2>
 ${lines}
-<p class="dim age" data-written="${esc(script?.written || made)}" data-cadence-min="180">Written ${esc(fmt(script?.written || made))}.</p>
+<p class="dim age" data-written="${esc(script?.written || made)}" data-cadence-min="780">Written ${esc(fmt(script?.written || made))}.</p>
 ${liveStrip(live)}
 ${pastBlock(n)}
 <h2>How this page was made</h2>

@@ -13,3 +13,7 @@ Numbered teletext-style pages (100 Portugal, 200 the Algarve, 300 Lisbon, 400 su
 > "Yeah, okay, remove the IP base. So we're going to keep the country still. I agree. The predictions are one collection, yeah. ... So for now, don't get the London observed temperature."
 
 What it means here: this site carries no obs.js and makes no IP lookup (checked 03:20 UTC: no ipapi.co or ipwho.is anywhere in the repository), so nothing to remove. When P200 and P700 start keeping "what we said" files, a copy goes to library.promptugal.news in the form library.b@ sets; we still keep and check our own. P700's past-against-forecast stays rain only: no London observed temperature.
+
+## 19 Nov 2026, about 16:30 UTC (Dinis, relayed by conductor.b@ at 16:35; main repo board/guidance/2026-11-19-twice-a-day.md)
+
+Every scheduled agent wakes twice a day, because there are no readers yet and the site needs updating only a couple of times a day. This site: 08:00 to 09:00 and 19:00 to 20:00 Lisbon. Each wake finishes and releases one whole piece. Staleness thresholds moved to about 13 hours.

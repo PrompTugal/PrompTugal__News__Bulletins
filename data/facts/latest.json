@@ -1,5 +1,5 @@
 {
- "made": "2026-11-19T14:09:51Z",
+ "made": "2026-11-19T16:38:53Z",
  "live": {
   "100": [
    {
@@ -8,8 +8,8 @@
     "path": "counts.active",
     "read_at_path": "read_at",
     "value": 39,
-    "read_at": "2026-11-19T14:08:15Z",
-    "cadence_min": 60,
+    "read_at": "2026-11-19T16:07:30Z",
+    "cadence_min": 520,
     "min": 0,
     "max": 2000,
     "licence": {
@@ -29,8 +29,8 @@
     "path": "counts.active",
     "read_at_path": "read_at",
     "value": 39,
-    "read_at": "2026-11-19T14:08:15Z",
-    "cadence_min": 60,
+    "read_at": "2026-11-19T16:07:30Z",
+    "cadence_min": 520,
     "min": 0,
     "max": 2000,
     "licence": {
@@ -48,8 +48,8 @@
     "path": "floods.warnings.length",
     "read_at_path": "floods.at",
     "value": 2,
-    "read_at": "2026-11-19T14:04:12Z",
-    "cadence_min": 60,
+    "read_at": "2026-11-19T16:04:01Z",
+    "cadence_min": 520,
     "min": 0,
     "max": 500,
     "licence": {
@@ -75,7 +75,7 @@
     "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.4 °C, chance of rain 0%, wind moderate from W.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-    "read_at": "2026-11-19T14:07:02Z",
+    "read_at": "2026-11-19T16:06:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -87,7 +87,7 @@
     "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.5 °C, maximum 16.6 °C, chance of rain 100%, wind moderate from W.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1131200.json",
-    "read_at": "2026-11-19T14:07:07Z",
+    "read_at": "2026-11-19T16:06:23Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -99,7 +99,7 @@
     "text": "IPMA forecast for Faro today (2026-11-19): minimum 11.8 °C, maximum 20.7 °C, chance of rain 16%, wind moderate from NW.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-    "read_at": "2026-11-19T14:06:45Z",
+    "read_at": "2026-11-19T16:06:00Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -111,7 +111,7 @@
     "text": "IPMA lists 39 active weather warnings in 25 areas of Portugal (14 orange, 25 yellow).",
     "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-    "read_at": "2026-11-19T14:08:15Z",
+    "read_at": "2026-11-19T16:07:30Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -123,7 +123,7 @@
     "text": "PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal.",
     "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
     "origin": "https://promptugal.news/articles/atm-currency-conversion-portugal-mark-up.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -135,7 +135,7 @@
     "text": "PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal.",
     "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
     "origin": "https://promptugal.news/articles/the-payment-desk-that-could-not-take-payment.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -147,7 +147,7 @@
     "text": "PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal.",
     "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
     "origin": "https://promptugal.news/articles/who-wrote-this-who-checked-it-who-signs-it.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -161,7 +161,7 @@
     "text": "IPMA forecast for Faro today (2026-11-19): minimum 11.8 °C, maximum 20.7 °C, chance of rain 16%, wind moderate from NW.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-    "read_at": "2026-11-19T14:06:45Z",
+    "read_at": "2026-11-19T16:06:00Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -182,7 +182,7 @@
     "text": "IPMA forecast for Faro tomorrow (2026-11-20): minimum 9.3 °C, maximum 18.3 °C, chance of rain 0%, wind weak from N.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-    "read_at": "2026-11-19T14:06:45Z",
+    "read_at": "2026-11-19T16:06:00Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -203,7 +203,7 @@
     "text": "IPMA forecast for Portimão today (2026-11-19): minimum 10.9 °C, maximum 20.2 °C, chance of rain 0%, wind weak from NW.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081100.json",
-    "read_at": "2026-11-19T14:06:50Z",
+    "read_at": "2026-11-19T16:06:05Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -215,7 +215,7 @@
     "text": "IPMA forecast for Portimão tomorrow (2026-11-20): minimum 10 °C, maximum 18.3 °C, chance of rain 0%, wind weak from S.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081100.json",
-    "read_at": "2026-11-19T14:06:50Z",
+    "read_at": "2026-11-19T16:06:05Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -227,7 +227,7 @@
     "text": "IPMA forecast for Loulé today (2026-11-19): minimum 10.2 °C, maximum 19.5 °C, chance of rain 8%, wind weak from NW.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080800.json",
-    "read_at": "2026-11-19T14:06:52Z",
+    "read_at": "2026-11-19T16:06:08Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -239,7 +239,7 @@
     "text": "IPMA forecast for Loulé tomorrow (2026-11-20): minimum 8.9 °C, maximum 18.2 °C, chance of rain 0%, wind weak from NE.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080800.json",
-    "read_at": "2026-11-19T14:06:52Z",
+    "read_at": "2026-11-19T16:06:08Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -251,7 +251,7 @@
     "text": "IPMA forecast for Sagres today (2026-11-19): minimum 11.6 °C, maximum 19.5 °C, chance of rain 2%, wind moderate from NW.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081505.json",
-    "read_at": "2026-11-19T14:06:47Z",
+    "read_at": "2026-11-19T16:06:03Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -263,7 +263,7 @@
     "text": "IPMA forecast for Sagres tomorrow (2026-11-20): minimum 10 °C, maximum 18.6 °C, chance of rain 0%, wind weak from SE.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081505.json",
-    "read_at": "2026-11-19T14:06:47Z",
+    "read_at": "2026-11-19T16:06:03Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -275,7 +275,7 @@
     "text": "IPMA warnings for the Faro district: yellow for rough sea, from 2026-11-19 12:25 to 2026-11-20 09:00 local time.",
     "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-    "read_at": "2026-11-19T14:08:15Z",
+    "read_at": "2026-11-19T16:07:30Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -287,7 +287,7 @@
     "text": "IPMA sea forecast for the Faro coast on 2026-11-20: waves of 0.7 to 1 metres from W, sea temperature 19.1 to 19.3 °C.",
     "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-    "read_at": "2026-11-19T14:08:03Z",
+    "read_at": "2026-11-19T16:07:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -299,7 +299,7 @@
     "text": "IPMA sea forecast for the Sagres coast on 2026-11-20: waves of 2.2 to 3.5 metres from NW, sea temperature 18.6 to 18.7 °C.",
     "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-    "read_at": "2026-11-19T14:08:03Z",
+    "read_at": "2026-11-19T16:07:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -308,10 +308,10 @@
    },
    {
     "id": "200-12",
-    "text": "At 14:04 UTC on 2026-11-19, adsb.lol's community receivers saw 3 airline flights and 0 other aircraft within 40 nautical miles of Faro airport.",
+    "text": "At 15:03 UTC on 2026-11-19, adsb.lol's community receivers saw 4 airline flights and 0 other aircraft within 40 nautical miles of Faro airport.",
     "source": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
     "origin": "https://api.adsb.lol/v2/point/37.0144/-7.9659/40",
-    "read_at": "2026-11-19T14:04:04Z",
+    "read_at": "2026-11-19T15:03:38Z",
     "licence": {
      "name": "ODbL 1.0",
      "url": "https://opendatacommons.org/licenses/odbl/1-0/"
@@ -323,7 +323,7 @@
     "text": "PrompTugal.news published ‘A 26-second RiskMandate film, made with Claude on a laptop’ on 2026-11-16, filed under the Algarve.",
     "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
     "origin": "https://promptugal.news/articles/riskmandate-film-claude-laptop.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -335,7 +335,7 @@
     "text": "PrompTugal.news published ‘Alcoutim has no AI company, but the road is being built’ on 2026-11-16, filed under the Algarve.",
     "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
     "origin": "https://promptugal.news/articles/alcoutim-ai-path-runs-through-the-guadiana.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -347,7 +347,7 @@
     "text": "PrompTugal.news published ‘Alcoutim's council is a partner in an AI weeding robot project’ on 2026-11-16, filed under the Algarve.",
     "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
     "origin": "https://promptugal.news/articles/alcoutim-council-in-a-weeding-robot-project.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -361,7 +361,7 @@
     "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.4 °C, chance of rain 0%, wind moderate from W.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-    "read_at": "2026-11-19T14:07:02Z",
+    "read_at": "2026-11-19T16:06:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -373,7 +373,7 @@
     "text": "IPMA forecast for Lisboa tomorrow (2026-11-20): minimum 13 °C, maximum 17.3 °C, chance of rain 22%, wind moderate from S.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-    "read_at": "2026-11-19T14:07:02Z",
+    "read_at": "2026-11-19T16:06:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -385,7 +385,7 @@
     "text": "IPMA warnings for the Lisboa district: yellow for rough sea, from 2026-11-19 12:25 to 2026-11-20 09:00 local time; yellow for rain, from 2026-11-21 12:00 to 2026-11-21 18:00 local time.",
     "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-    "read_at": "2026-11-19T14:08:15Z",
+    "read_at": "2026-11-19T16:07:30Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -397,7 +397,7 @@
     "text": "IPMA sea forecast for the Lisboa coast on 2026-11-20: waves of 2.1 to 3.5 metres from NW, sea temperature 17.5 to 17.6 °C.",
     "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-    "read_at": "2026-11-19T14:08:03Z",
+    "read_at": "2026-11-19T16:07:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -409,7 +409,7 @@
     "text": "PrompTugal.news's Lisbon feed links to ‘Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI’, a story published by portugalglobal.pt, not by PrompTugal.news.",
     "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
     "origin": "https://www.portugalglobal.pt/en/news/2026/novembro/web-summit-features-humanoid-robots-and-record-chinese-presence/",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "the publisher's terms (linked, not copied)",
      "url": "https://www.portugalglobal.pt/en/news/2026/novembro/web-summit-features-humanoid-robots-and-record-chinese-presence/"
@@ -421,7 +421,7 @@
     "text": "PrompTugal.news's Lisbon feed links to ‘Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology’, a story published by vestbee.com, not by PrompTugal.news.",
     "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
     "origin": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "the publisher's terms (linked, not copied)",
      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026"
@@ -433,7 +433,7 @@
     "text": "PrompTugal.news's Lisbon feed links to ‘University of Lisbon builds two AI data centres’, a story published by portugalglobal.pt, not by PrompTugal.news.",
     "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
     "origin": "https://www.portugalglobal.pt/en/news/2026/julho/university-of-lisbon-to-invest-20m-in-ai-science-data-centres/",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "the publisher's terms (linked, not copied)",
      "url": "https://www.portugalglobal.pt/en/news/2026/julho/university-of-lisbon-to-invest-20m-in-ai-science-data-centres/"
@@ -447,7 +447,7 @@
     "text": "PrompTugal.news published ‘Getting around Lisbon on Wednesday: what operators and the government say’ on 2026-11-11, filed under the summit.",
     "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
     "origin": "https://promptugal.news/articles/getting-around-lisbon-wednesday.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -459,7 +459,7 @@
     "text": "PrompTugal.news published ‘Manus 2.0 gives each agent its own email, phone and wallet’ on 2026-11-11, filed under the summit.",
     "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
     "origin": "https://promptugal.news/articles/manus-2-0-agents-own-email-phone-wallet.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -471,7 +471,7 @@
     "text": "PrompTugal.news published ‘Thursday at Web Summit: a practical guide to the last day’ on 2026-11-11, filed under the summit.",
     "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
     "origin": "https://promptugal.news/articles/thursday-last-day-guide.html",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -483,7 +483,7 @@
     "text": "library.promptugal.news catalogues 82 items in 1 collection, with 7 recorded as missing.",
     "source": "https://library.promptugal.news/api/v1/",
     "origin": "https://library.promptugal.news/api/v1/",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -495,7 +495,7 @@
     "text": "The library's fact-checker, pass 1 on 2026-11-18: of 87 published PrompTugal.news articles, 13 map every claim to a recorded source, 39 record sources for the story as a whole and 35 name sources only in the text.",
     "source": "https://library.promptugal.news/api/v1/fact-check/index.json",
     "origin": "https://library.promptugal.news/api/v1/fact-check/index.json",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -509,7 +509,7 @@
     "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.4 °C, chance of rain 0%, wind moderate from W.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-    "read_at": "2026-11-19T14:07:02Z",
+    "read_at": "2026-11-19T16:06:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -521,7 +521,7 @@
     "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.5 °C, maximum 16.6 °C, chance of rain 100%, wind moderate from W.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1131200.json",
-    "read_at": "2026-11-19T14:07:07Z",
+    "read_at": "2026-11-19T16:06:23Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -533,7 +533,7 @@
     "text": "IPMA forecast for Faro today (2026-11-19): minimum 11.8 °C, maximum 20.7 °C, chance of rain 16%, wind moderate from NW.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-    "read_at": "2026-11-19T14:06:45Z",
+    "read_at": "2026-11-19T16:06:00Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -545,7 +545,7 @@
     "text": "IPMA forecast for Coimbra today (2026-11-19): minimum 11.3 °C, maximum 17.4 °C, chance of rain 84%, wind moderate from W.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1060300.json",
-    "read_at": "2026-11-19T14:06:40Z",
+    "read_at": "2026-11-19T16:05:55Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -557,7 +557,7 @@
     "text": "IPMA forecast for Évora today (2026-11-19): minimum 9.2 °C, maximum 18.5 °C, chance of rain 6%, wind moderate from W.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1070500.json",
-    "read_at": "2026-11-19T14:06:42Z",
+    "read_at": "2026-11-19T16:05:58Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -569,7 +569,7 @@
     "text": "IPMA lists 39 active weather warnings in 25 areas of Portugal (14 orange, 25 yellow).",
     "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-    "read_at": "2026-11-19T14:08:15Z",
+    "read_at": "2026-11-19T16:07:30Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -581,7 +581,7 @@
     "text": "Orange or red IPMA warnings are active for rough sea in Aveiro; rain in Aveiro; rough sea in Braga; rain in Braga; rough sea in Coimbra; rain in Coimbra; rain in Guarda; rough sea in Leiria; rough sea in Porto; rain in Porto; rough sea in Viana do Castelo; rain in Viana do Castelo; rain in Viseu; rain in Vila Real.",
     "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-    "read_at": "2026-11-19T14:08:15Z",
+    "read_at": "2026-11-19T16:07:30Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -593,7 +593,7 @@
     "text": "IPMA sea forecast for the Porto coast on 2026-11-20: waves of 2.4 to 4.5 metres from NW, sea temperature 16.6 to 16.7 °C.",
     "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-    "read_at": "2026-11-19T14:08:03Z",
+    "read_at": "2026-11-19T16:07:18Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -605,7 +605,7 @@
     "text": "IPMA fire risk today for Portugal's 278 municipalities: 278 at low.",
     "source": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/rcm/rcm-d0.json",
-    "read_at": "2026-11-19T14:07:50Z",
+    "read_at": "2026-11-19T16:07:05Z",
     "licence": {
      "name": "the source's terms",
      "url": "https://api.ipma.pt/"
@@ -616,10 +616,10 @@
   "600": [
    {
     "id": "600-01",
-    "text": "data.promptugal.news lists 24 sources: 18 read without problems at their last run, 4 partly failed, 1 archived.",
+    "text": "data.promptugal.news lists 24 sources: 17 read without problems at their last run, 4 partly failed, 1 archived.",
     "source": "https://data.promptugal.news/api/v1/",
     "origin": "https://data.promptugal.news/api/v1/",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -628,10 +628,10 @@
    },
    {
     "id": "600-02",
-    "text": "Flights around Faro airport, read hourly, last at 2026-11-19 14:04 UTC: 3 airline flights, 0 other aircraft; status ok.",
+    "text": "Flights around Faro airport, read hourly, last at 2026-11-19 15:03 UTC: 4 airline flights, 0 other aircraft; status failed.",
     "source": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
     "origin": "https://data.promptugal.news/sources/adsb-faro/",
-    "read_at": "2026-11-19T14:04:04Z",
+    "read_at": "2026-11-19T15:03:38Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -652,10 +652,10 @@
    },
    {
     "id": "600-04",
-    "text": "Public live cameras: where they are and whether they are up, read hourly, last at 2026-11-19 14:04 UTC: 3 cameras; status ok.",
+    "text": "Public live cameras: where they are and whether they are up, read hourly, last at 2026-11-19 16:03 UTC: 3 cameras; status ok.",
     "source": "https://data.promptugal.news/api/v1/cams/latest.json",
     "origin": "https://data.promptugal.news/sources/cams/",
-    "read_at": "2026-11-19T14:04:09Z",
+    "read_at": "2026-11-19T16:03:57Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -676,10 +676,10 @@
    },
    {
     "id": "600-06",
-    "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 14:04 UTC: 2 warnings, 10 stations, 10 rain gauges; status ok.",
+    "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 16:04 UTC: 2 warnings, 10 stations, 10 rain gauges; status ok.",
     "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
     "origin": "https://data.promptugal.news/sources/ea-flood/",
-    "read_at": "2026-11-19T14:04:12Z",
+    "read_at": "2026-11-19T16:04:01Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -748,10 +748,10 @@
    },
    {
     "id": "600-12",
-    "text": "IPMA daily forecasts by place, read hourly, last at 2026-11-19 14:06 UTC: 35 places; status ok.",
+    "text": "IPMA daily forecasts by place, read hourly, last at 2026-11-19 16:05 UTC: 35 places; status ok.",
     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
     "origin": "https://data.promptugal.news/sources/ipma-city-forecasts/",
-    "read_at": "2026-11-19T14:06:22Z",
+    "read_at": "2026-11-19T16:05:38Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -760,10 +760,10 @@
    },
    {
     "id": "600-13",
-    "text": "IPMA fire risk, read hourly, last at 2026-11-19 14:07 UTC: 278 municipalities; status ok.",
+    "text": "IPMA fire risk, read hourly, last at 2026-11-19 16:07 UTC: 278 municipalities; status ok.",
     "source": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
     "origin": "https://data.promptugal.news/sources/ipma-fire-risk/",
-    "read_at": "2026-11-19T14:07:50Z",
+    "read_at": "2026-11-19T16:07:05Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -772,10 +772,10 @@
    },
    {
     "id": "600-14",
-    "text": "IPMA station observations, read hourly, last at 2026-11-19 14:07 UTC: 179 of 227 stations reporting; status ok.",
+    "text": "IPMA station observations, read hourly, last at 2026-11-19 16:07 UTC: 154 of 227 stations reporting; status ok.",
     "source": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
     "origin": "https://data.promptugal.news/sources/ipma-observations/",
-    "read_at": "2026-11-19T14:07:57Z",
+    "read_at": "2026-11-19T16:07:13Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -784,10 +784,10 @@
    },
    {
     "id": "600-15",
-    "text": "IPMA sea forecast, read hourly, last at 2026-11-19 14:08 UTC: 12 coastal places; status ok.",
+    "text": "IPMA sea forecast, read hourly, last at 2026-11-19 16:07 UTC: 12 coastal places; status ok.",
     "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
     "origin": "https://data.promptugal.news/sources/ipma-sea/",
-    "read_at": "2026-11-19T14:08:03Z",
+    "read_at": "2026-11-19T16:07:18Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -796,10 +796,10 @@
    },
    {
     "id": "600-16",
-    "text": "IPMA UV index, read hourly, last at 2026-11-19 14:08 UTC: 28 places; status ok.",
+    "text": "IPMA UV index, read hourly, last at 2026-11-19 16:07 UTC: 28 places; status ok.",
     "source": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
     "origin": "https://data.promptugal.news/sources/ipma-uv/",
-    "read_at": "2026-11-19T14:08:12Z",
+    "read_at": "2026-11-19T16:07:28Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -808,10 +808,10 @@
    },
    {
     "id": "600-17",
-    "text": "IPMA weather warnings, read hourly, last at 2026-11-19 14:08 UTC: 39 active warnings in 25 areas; status ok.",
+    "text": "IPMA weather warnings, read hourly, last at 2026-11-19 16:07 UTC: 39 active warnings in 25 areas; status ok.",
     "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
     "origin": "https://data.promptugal.news/sources/ipma-warnings/",
-    "read_at": "2026-11-19T14:08:15Z",
+    "read_at": "2026-11-19T16:07:30Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -820,10 +820,10 @@
    },
    {
     "id": "600-18",
-    "text": "MeteoAlarm CAP feed for Portugal, read hourly, last at 2026-11-19 14:08 UTC: 80 messages, 39 not expired; status ok.",
+    "text": "MeteoAlarm CAP feed for Portugal, read hourly, last at 2026-11-19 16:07 UTC: 80 messages, 39 not expired; status ok.",
     "source": "https://data.promptugal.news/api/v1/meteoalarm-pt/latest.json",
     "origin": "https://data.promptugal.news/sources/meteoalarm-pt/",
-    "read_at": "2026-11-19T14:08:17Z",
+    "read_at": "2026-11-19T16:07:33Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -880,10 +880,10 @@
    },
    {
     "id": "600-23",
-    "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 14:08 UTC: 889 cameras; status ok.",
+    "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 16:07 UTC: 889 cameras; status ok.",
     "source": "https://data.promptugal.news/api/v1/tfl-jamcams/latest.json",
     "origin": "https://data.promptugal.news/sources/tfl-jamcams/",
-    "read_at": "2026-11-19T14:08:21Z",
+    "read_at": "2026-11-19T16:07:37Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -906,10 +906,10 @@
   "700": [
    {
     "id": "700-01",
-    "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 14:04 UTC: 2 warnings, 10 stations, 10 rain gauges.",
+    "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 16:04 UTC: 2 warnings, 10 stations, 10 rain gauges.",
     "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
     "origin": "https://data.promptugal.news/sources/ea-flood/",
-    "read_at": "2026-11-19T14:04:12Z",
+    "read_at": "2026-11-19T16:04:01Z",
     "licence": {
      "name": "the source's terms (on its card)",
      "url": "https://data.promptugal.news/api/v1/ea-flood/card.json"
@@ -930,10 +930,10 @@
    },
    {
     "id": "700-03",
-    "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 14:08 UTC: 889 cameras.",
+    "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 16:07 UTC: 889 cameras.",
     "source": "https://data.promptugal.news/api/v1/tfl-jamcams/latest.json",
     "origin": "https://data.promptugal.news/sources/tfl-jamcams/",
-    "read_at": "2026-11-19T14:08:21Z",
+    "read_at": "2026-11-19T16:07:37Z",
     "licence": {
      "name": "the source's terms (on its card)",
      "url": "https://data.promptugal.news/api/v1/tfl-jamcams/card.json"
@@ -987,7 +987,7 @@
     "text": "The Environment Agency lists 2 flood warnings and alerts for the London area (2 Warning no longer in force).",
     "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
     "origin": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
-    "read_at": "2026-11-19T14:04:12Z",
+    "read_at": "2026-11-19T16:04:01Z",
     "licence": {
      "name": "Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)",
      "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
@@ -999,7 +999,7 @@
     "text": "Environment Agency, Warning no longer in force: Upper River Colne and Radlett Brook.",
     "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
     "origin": "https://check-for-flooding.service.gov.uk/target-area/062WAF28UpColne",
-    "read_at": "2026-11-19T14:04:12Z",
+    "read_at": "2026-11-19T16:04:01Z",
     "licence": {
      "name": "Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)",
      "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
@@ -1011,7 +1011,7 @@
     "text": "Environment Agency, Warning no longer in force: Lower Lee tributaries.",
     "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
     "origin": "https://check-for-flooding.service.gov.uk/target-area/062WAF53LLTribs",
-    "read_at": "2026-11-19T14:04:12Z",
+    "read_at": "2026-11-19T16:04:01Z",
     "licence": {
      "name": "Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)",
      "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
@@ -1022,10 +1022,10 @@
   "800": [
    {
     "id": "800-01",
-    "text": "In the 24 hours to 2026-11-19 14:09 UTC, the main PrompTugal.news repository took 502 commits of work and 88 site releases.",
+    "text": "In the 24 hours to 2026-11-19 16:38 UTC, the main PrompTugal.news repository took 382 commits of work and 75 site releases.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -1034,10 +1034,10 @@
    },
    {
     "id": "800-02",
-    "text": "The agents with the most commits in that time: conductor.b@PrompTugal.dinis (107), dev@PrompTugal.dinis (58), security@PrompTugal.dinis (41), abp@PrompTugal.dinis (36), journalist@PrompTugal.dinis (32), telemetry.b@PrompTugal.dinis (29).",
+    "text": "The agents with the most commits in that time: conductor.b@PrompTugal.dinis (66), dev@PrompTugal.dinis (47), security@PrompTugal.dinis (33), abp@PrompTugal.dinis (29), journalist@PrompTugal.dinis (27), telemetry.b@PrompTugal.dinis (25).",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -1049,7 +1049,7 @@
     "text": "At 13:53 UTC on 2026-11-19, ontologist@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -1061,7 +1061,7 @@
     "text": "At 13:48 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -1073,7 +1073,7 @@
     "text": "At 13:46 UTC on 2026-11-19, journalist@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -1085,7 +1085,7 @@
     "text": "At 13:46 UTC on 2026-11-19, place.algarve.central@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -1097,7 +1097,7 @@
     "text": "65 agents keep a status file in the main repository's board; 20 updated it in the last 24 hours.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
-    "read_at": "2026-11-19T14:09:51Z",
+    "read_at": "2026-11-19T16:38:53Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"

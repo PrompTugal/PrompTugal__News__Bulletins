@@ -1,8 +1,8 @@
 {
  "about": "Our checked copy of https://data.promptugal.news/api/v1/history/weather/faro.json (observed values only), read by bulletins/outcomes.mjs.",
  "source": "https://data.promptugal.news/api/v1/history/weather/faro.json",
- "read_at": "2026-11-19T14:09Z",
- "data_read_at": "2026-11-19T14:07Z",
+ "read_at": "2026-11-19T16:38Z",
+ "data_read_at": "2026-11-19T16:07Z",
  "first_day": "2026-11-17",
  "licence": {
   "name": "the source's terms",
@@ -33,9 +33,9 @@
    "date": "2026-11-19",
    "observed": {
     "low_c": 16.4,
-    "high_c": 20.6,
+    "high_c": 21.3,
     "rain_mm": 0.3,
-    "hours": 14,
+    "hours": 16,
     "complete": false
    }
   }

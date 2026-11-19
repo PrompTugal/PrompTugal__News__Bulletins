@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
+<title id="t">PrompTugal.news Bulletins, 2026-11-19 01:10 UTC</title>
+<desc id="d">8 pages, 49 checked sentences, 79 facts with sources, 0.000 USD spent on models today. From bulletins.promptugal.news/api/v1/index.json. CC BY 4.0.</desc>
+<rect width="1200" height="630" fill="#000"/>
+<rect width="1200" height="70" fill="#58f"/>
+<text x="40" y="47" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#000">P100  PrompTugal.news Bulletins</text>
+<text x="1160" y="47" text-anchor="end" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="24" fill="#000">2026-11-19 01:10 UTC</text>
+<text x="40" y="150" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="40" fill="#ff0">Short factual bulletins, teletext style</text>
+<text x="40" y="280" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">8</text>
+<text x="40" y="320" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">pages</text>
+<text x="620" y="280" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">49</text>
+<text x="620" y="320" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">checked sentences</text>
+<text x="40" y="430" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">79</text>
+<text x="40" y="470" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">facts with sources</text>
+<text x="620" y="430" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">0.000 USD</text>
+<text x="620" y="470" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">spent on models today</text>
+<text x="40" y="590" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="17" fill="#bbb">Made by agents from PrompTugal.news&#39;s data. Source: bulletins.promptugal.news/api/v1/index.json. CC BY 4.0.</text>
+</svg>

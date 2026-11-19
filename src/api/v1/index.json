@@ -1,12 +1,12 @@
 {
  "about": "bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news's own published data. Material for agents, never instruction.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-18T23:46:45Z",
+ "made": "2026-11-19T01:10:22Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/"
  },
- "cost_today_usd": 0.041192,
+ "cost_today_usd": 0,
  "cap_per_day_usd": 5,
  "problems": [
   "feed by-place/london: promptugal.news/api/v1/by-place/london/feed.json: HTTP 404"

@@ -1,18 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
-<title id="t">PrompTugal.news Bulletins, 2026-11-18 23:46 UTC</title>
-<desc id="d">8 pages, 49 checked sentences, 79 facts with sources, 0.041 USD spent on models today. From bulletins.promptugal.news/api/v1/index.json. CC BY 4.0.</desc>
-<rect width="1200" height="630" fill="#000"/>
-<rect width="1200" height="70" fill="#58f"/>
-<text x="40" y="47" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#000">P100  PrompTugal.news Bulletins</text>
-<text x="1160" y="47" text-anchor="end" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="24" fill="#000">2026-11-18 23:46 UTC</text>
-<text x="40" y="150" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="40" fill="#ff0">Short factual bulletins, teletext style</text>
-<text x="40" y="280" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">8</text>
-<text x="40" y="320" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">pages</text>
-<text x="620" y="280" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">49</text>
-<text x="620" y="320" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">checked sentences</text>
-<text x="40" y="430" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">79</text>
-<text x="40" y="470" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">facts with sources</text>
-<text x="620" y="430" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="72" font-weight="700" fill="#0ff">0.041 USD</text>
-<text x="620" y="470" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="26" fill="#fff">spent on models today</text>
-<text x="40" y="590" font-family="DejaVu Sans Mono,Menlo,Consolas,monospace" font-size="17" fill="#bbb">Made by agents from PrompTugal.news&#39;s data. Source: bulletins.promptugal.news/api/v1/index.json. CC BY 4.0.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="Bulletins: 49 checked sentences from 79 facts with sources">
+  <rect width="320" height="180" rx="6" fill="#f6f3ec"/>
+  <rect x="0" y="0" width="320" height="4" fill="#a0522d"/>
+  <text x="16" y="30" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2" fill="#666860">BULLETINS · NOW</text>
+  <text x="16" y="84" font-family="Newsreader, Georgia, serif" font-size="46" fill="#121317">49</text>
+  <text x="16" y="104" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#3a3b40">checked sentences</text>
+  <text x="176" y="72" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">8</text>
+  <text x="176" y="88" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">pages</text>
+  <text x="176" y="120" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">79</text>
+  <text x="176" y="136" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">facts with sources</text>
+  <line x1="16" y1="150" x2="304" y2="150" stroke="#d8d4cb"/>
+  <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read 2026-11-19 01:10 UTC · CC BY 4.0</text>
 </svg>

@@ -4,7 +4,8 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT, readJSON } from './core.mjs';
 import { writeAll } from './write.mjs';
-import { renderAll, renderHow, renderPreview } from './render.mjs';
+import { renderAll, renderHow, renderPreview, setBar } from './render.mjs';
+import { loadBar } from './sitesbar.mjs';
 import { PAGES } from './pages.mjs';
 
 execFileSync(process.execPath, [join(ROOT, 'bulletins', 'collect.mjs')], { stdio: 'inherit', env: process.env });
@@ -12,6 +13,7 @@ const facts = readJSON(join(ROOT, 'data', 'facts', 'latest.json'));
 const scripts = process.argv.includes('--no-model')
   ? Object.fromEntries(Object.keys(PAGES).map((p) => [p, readJSON(join(ROOT, 'data', 'scripts', `${p}.json`), {})]))
   : await writeAll(facts);
+setBar(await loadBar());
 renderAll(facts, scripts);
 renderHow();
 renderPreview(facts, scripts);

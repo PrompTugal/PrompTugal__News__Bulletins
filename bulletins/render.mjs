@@ -25,16 +25,27 @@ ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{c
 nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
 nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}`;
 
+// The PrompTugal sites bar (vendored, pinned: see sitesbar.mjs). Set once per build with setBar().
+let BAR = '';
+export const setBar = (html) => { BAR = String(html || ''); };
+const BAR_DIR = 'assets/sites-bar/1.1.0';
+
 export function page({ title, description, path, body, depth }) {
   const up = depth ? '../'.repeat(depth) : './';
   const fast = Object.entries(PAGES).map(([n, p]) => `<a href="${up}${n}/">${n} ${esc(p.title)}</a>`).join('');
+  // The bar's own script and stylesheet come from this host; its pop-up shows other PrompTugal sites'
+  // /preview.svg and reads their /version.json, so img-src and connect-src name those hosts.
+  const bar = BAR ? `<link rel="stylesheet" href="${up}${BAR_DIR}/sites-bar.css">\n<script src="${up}${BAR_DIR}/sites-bar.js" defer></script>\n` : '';
+  const csp = BAR
+    ? "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://promptugal.news https://*.promptugal.news; connect-src https://promptugal.news https://*.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'"
+    : "default-src 'self'; style-src 'unsafe-inline'; img-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'";
   return `<!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; img-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'">
-<title>${esc(title)}</title>
+<meta http-equiv="Content-Security-Policy" content="${csp}">
+${bar}<title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
 <meta property="og:title" content="${esc(title)}">
@@ -43,6 +54,7 @@ export function page({ title, description, path, body, depth }) {
 <style>${CSS}</style>
 </head>
 <body>
+${BAR}
 <main>
 ${body}
 <nav class="fast" aria-label="Pages"><a href="${up}">Index</a>${fast}<a href="${up}how/">How it is made</a><a href="${up}lab/">The lab</a></nav>
@@ -172,7 +184,26 @@ ${cells}
 <text x="40" y="590" ${mono} font-size="17" fill="#bbb">${esc(LABEL)}. Source: bulletins.promptugal.news/api/v1/index.json. CC BY 4.0.</text>
 </svg>
 `;
-  writeFileSync(src('preview.svg'), svg);
+  // The 1200 by 630 card is for social links (preview.png is made from it).
+  writeFileSync(src('social.svg'), svg);
+  // /preview.svg for the sites bar: 320 by 180, from designer@'s template (main repo
+  // design/sites-bar/preview-template.svg.txt): no script, no external reference, system fonts only.
+  const read = esc(fmt(made));
+  const small = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="Bulletins: ${esc(`${figs[1][0]} checked sentences from ${figs[2][0]} facts with sources`)}">
+  <rect width="320" height="180" rx="6" fill="#f6f3ec"/>
+  <rect x="0" y="0" width="320" height="4" fill="#a0522d"/>
+  <text x="16" y="30" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2" fill="#666860">BULLETINS · NOW</text>
+  <text x="16" y="84" font-family="Newsreader, Georgia, serif" font-size="46" fill="#121317">${esc(figs[1][0])}</text>
+  <text x="16" y="104" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#3a3b40">checked sentences</text>
+  <text x="176" y="72" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${esc(figs[0][0])}</text>
+  <text x="176" y="88" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">pages</text>
+  <text x="176" y="120" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${esc(figs[2][0])}</text>
+  <text x="176" y="136" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">facts with sources</text>
+  <line x1="16" y1="150" x2="304" y2="150" stroke="#d8d4cb"/>
+  <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read ${read} · CC BY 4.0</text>
+</svg>
+`;
+  writeFileSync(src('preview.svg'), small);
   writeJSON(src('preview.json'), { about: 'What /preview.svg and /preview.png show, and where each figure comes from.', made,
     licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' }, figures: figs.map(([value, label]) => ({ value, label })),
     source: `${SITE}/api/v1/index.json`, costs: `https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/data/costs/${made.slice(0, 10)}.json`, by: 'bulletins/render.mjs (code, no model)' });

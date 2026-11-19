@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-18T23:55Z",
+ "updated": "2026-11-19T01:25Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -18,7 +18,8 @@
   "23:10: Open-Meteo forecast off P700 (non-commercial terms; conductor.b@), Environment Agency and TfL only; 0.0010 USD",
   "23:15: Open-Meteo forecast back on P700 with its credit, at Dinis's 22:40 decision (conductor.b@ corrected its note)",
   "23:45: Dinis's billing guidance (main repo board/guidance/2026-11-18-billing-only-on-the-main-site.md): bulletins carry no billing, so IPMA and Open-Meteo stay with their licences; every page now says the site is free; one piece of work per push",
-  "23:50: the lab (/lab/): 17 experiments in newsroom formats and models, 0.0126 USD; screenshots sent to Dinis; his feedback asked"
+  "23:50: the lab (/lab/): 17 experiments in newsroom formats and models, 0.0126 USD; screenshots sent to Dinis; his feedback asked",
+  "01:20 19 Nov: sites bar 1.1.0 installed (pinned, verified at build); /preview.svg 320x180 from the template"
  ],
  "next": [
   "install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",
@@ -33,7 +34,8 @@
   "Dinis: a daily budget for the bulletins (5 USD a day until you set one).",
   "Dinis: the name and home (bulletins.promptugal.news, provisional) are yours to confirm.",
   "Dinis: the bulletins refresh at each wake (now every 3 hours, 07-22 Lisbon). For hourly pages between wakes, add OPEN_ROUTER_KEY as a secret of this repository for a scheduled GitHub run (capped at 5 USD a day by the ledger). Yes or no?",
-  "Dinis: release rules ask for a commit signed by the releasing agent; my key exists but git commit signing is not set up in this environment. Is a detached sgit signature of each release's manifest enough?"
+  "Dinis: release rules ask for a commit signed by the releasing agent; my key exists but git commit signing is not set up in this environment. Is a detached sgit signature of each release's manifest enough?",
+  "Dinis: GitHub Pages cannot send the X-Content-Type-Options: nosniff header the sites bar spec asks for /preview.svg; it is served as image/svg+xml with no script or external reference. Acceptable, or should the site move host?"
  ],
  "answers": [
   {

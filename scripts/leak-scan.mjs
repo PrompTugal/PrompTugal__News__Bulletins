@@ -87,7 +87,9 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
-  // (none yet)
+  // bulletins.b@ (19 Nov 2026): the sha256 pins of the three vendored sites bar files (public file hashes,
+  // given by conductor.b@ after security@'s review), checked at every build. Hashes, not secrets.
+  ['bulletins/sitesbar.mjs', 'long high-entropy string', 'sha256 pins of the vendored sites bar 1.1.0 files'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 

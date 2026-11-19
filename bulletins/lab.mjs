@@ -9,7 +9,8 @@ import { ROOT, readJSON, writeJSON, esc, today } from './core.mjs';
 import { checkSentence } from './check.mjs';
 import { callJSON } from './write.mjs';
 import { PAGES } from './pages.mjs';
-import { page as shell, fmt, LABEL } from './render.mjs';
+import { page as shell, fmt, LABEL, setBar } from './render.mjs';
+import { loadBar } from './sitesbar.mjs';
 
 const RULES = [
   'Use only the facts given. Every piece of text must cite the ids of the facts it rests on.',
@@ -86,6 +87,7 @@ writeJSON(join(ROOT, 'data', 'lab', `${stamp}.json`), { made: new Date().toISOSt
 }
 
 // The lab page.
+setBar(await loadBar());
 const factById = new Map(allFacts.map((f) => [f.id, f]));
 const cite = (ids) => ids.map((id) => `<a href="../${esc(id.split('-')[0])}/#f-${esc(id)}">${esc(id)}</a>`).join(' ');
 const line = (p, tag = 'span') => (!p ? '' : p.why ? `<${tag} class="dropped">[dropped: ${esc(p.why)}] ${esc(p.text)}</${tag}>` : `<${tag}>${esc(p.text)} <sup>${cite(p.facts)}</sup></${tag}>`);

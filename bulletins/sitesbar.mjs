@@ -1,6 +1,6 @@
-// The PrompTugal sites bar, v1.2.0 (Dinis, 18 Nov 2026, main repo board/guidance/2026-11-18-the-sites-bar.md; the one
+// The PrompTugal sites bar, v1.2.1 (1.2.1 cleared by security@, Website 2d812d6da, relayed 07:54 UTC; Dinis, 18 Nov 2026, main repo board/guidance/2026-11-18-the-sites-bar.md; the one
 // switcher Dinis asked for at 03:18 on 19 Nov; 1.2.0 cleared by security@, Website 055e6c1430, relayed by conductor.b@ 07:15).
-// The vendored files live in src/assets/sites-bar/1.2.0/ (copied from the main repo at 67a07ab7). security@'s ruling of 19 Nov, 04:51 UTC (main repo
+// The vendored files live in src/assets/sites-bar/1.2.1/ (copied from the main repo at 2d812d6d). security@'s ruling of 19 Nov, 04:51 UTC (main repo
 // board/team/security/reviews/2026-11-19-0120-ruling-public-keys-in-leak-scans.md, last addendum), option 1:
 // no pin is copied into this repository. At every build the expected pins are read from the registry
 // (promptugal.news/api/v1/sites.json, bar.versions["<our version>"].integrity, append-only since 19 Nov 07:03) and
@@ -13,7 +13,7 @@ import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { ROOT, getJSON, writeJSON } from './core.mjs';
 
-export const BAR_VERSION = '1.2.0';
+export const BAR_VERSION = '1.2.1';
 export const BAR_DIR = `assets/sites-bar/${BAR_VERSION}`;
 const FILES = { render: 'sites-bar-render.mjs', css: 'sites-bar.css', js: 'sites-bar.js' };
 const SRI = /^sha(256|384|512)-[A-Za-z0-9+/]{43,86}={0,2}$/;

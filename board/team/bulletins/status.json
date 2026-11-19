@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-19T17:43Z",
+ "updated": "2026-11-19T19:35Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -32,7 +32,7 @@
  ],
  "next": [
   "control 10, no symlinks (security@ ed70bd996, relayed by conductor.b@ 16:50 UTC 19 Nov), at the 19:00 to 20:00 Lisbon wake. The checks job refuses: a mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checked-out tree, and any symlink in a downloaded artifact. Exceptions only from an exceptions file in A's tree, each with a reason. Tests: a pushed symlink fails, a listed one passes, one listed only in the pushed tree fails. Paths are read NUL-separated (git diff-tree -z, ls-files -z, tar --null) and compared to the exceptions as whole strings, never line by line or with grep -xF (events.b@'s 44d5402, relayed 16:57 UTC); a test with a newline in a symlink's name. Commit id to conductor.b@",
-  "the map (Dinis, about 17:40 UTC 19 Nov, main repo board/guidance/2026-11-19-cameras-as-links-and-the-map.md, relayed by conductor.b@ 17:42): Portugal big, London small (inset or marker), the EU small as Brussels where we have EU data; places from ontologist@'s data/site/places-registry.json; designer@'s shared look. At the 19:00 to 20:00 Lisbon wake",
+  "the map (Dinis, about 17:40 UTC 19 Nov, main repo board/guidance/2026-11-19-cameras-as-links-and-the-map.md, relayed by conductor.b@ 17:42): Portugal big, London small (inset or marker), the EU small as Brussels where we have EU data; places from ontologist@'s data/site/places-registry.json; designer@'s shared look. At the 19:00 to 20:00 Lisbon wake. Use designer@'s ptmap v1.0.0 (promptugal.news 9f5ba1d44, design/shared-map/v1.0.0/, PTMap.render(el, {places, current, london, eu, label}), spec board/spec-the-shared-map.md; relayed by conductor.b@ 19:34 UTC): build against it now, vendor it pinned like the sites bar only once dev@ lists it in api/v1/sites.json and security@ has reviewed it",
   "cameras (same word): we embed or show in full only what we have full right to use (open licence or written permission); everything else is a credited link, never re-hosted. Checked 17:45 UTC: this site embeds no camera and shows no camera image, it only quotes the catalogue's camera counts on P600 and P700, so nothing to change now; any camera added later follows this rule",
   "outcomes for 19 and 20 Nov once those days are complete in data.promptugal.news's history",
   "the drawn chart for the past block (designer@'s PF2 to PF4)",

@@ -142,7 +142,9 @@ await safe('london', async () => {
 });
 
 // promptugal.news's own articles, by place and by topic (JSON Feed). Titles as published.
-for (const [page, feed, label] of [['100', 'by-place/portugal', 'Portugal'], ['200', 'by-place/algarve', 'the Algarve'], ['300', 'by-place/lisboa', 'Lisbon'], ['400', 'topics/the-summit', 'the summit'], ['400', 'topics/ai', 'AI'], ['700', 'by-place/london', 'London']]) {
+for (const [page, feed, label] of [['100', 'by-place/portugal', 'Portugal'], ['200', 'by-place/algarve', 'the Algarve'], ['300', 'by-place/lisboa', 'Lisbon'], ['400', 'topics/the-summit', 'the summit'], ['400', 'topics/ai', 'AI']]) {
+  // No London article feed: promptugal.news/api/v1/by-place/london/feed.json went (HTTP 404, 19 Nov 07:15 UTC; the paid site carries
+  // only commercially licensed data, R13, per conductor.b@ 07:18). P700 reads London from data.promptugal.news only.
   await safe(`feed ${feed}`, async () => {
     const j = await getJSON(`${P}/${feed}/feed.json`);
     const items = [...j.items].filter((i) => i.date_published).sort((a, b) => b.date_published.localeCompare(a.date_published)).slice(0, 3);

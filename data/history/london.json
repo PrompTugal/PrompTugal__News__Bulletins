@@ -1,0 +1,37 @@
+{
+ "about": "Our checked copy of https://data.promptugal.news/api/v1/history/weather/london.json (observed values only), read by bulletins/outcomes.mjs.",
+ "source": "https://data.promptugal.news/api/v1/history/weather/london.json",
+ "read_at": "2026-11-19T14:02Z",
+ "data_read_at": "2026-11-19T13:04Z",
+ "first_day": "2026-11-17",
+ "licence": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "rows": [
+  {
+   "date": "2026-11-17",
+   "observed": {
+    "rain_mm_mean": 13.2,
+    "gauges": 7,
+    "complete": false
+   }
+  },
+  {
+   "date": "2026-11-18",
+   "observed": {
+    "rain_mm_mean": 7,
+    "gauges": 7,
+    "complete": true
+   }
+  },
+  {
+   "date": "2026-11-19",
+   "observed": {
+    "rain_mm_mean": 2.8,
+    "gauges": 7,
+    "complete": false
+   }
+  }
+ ]
+}

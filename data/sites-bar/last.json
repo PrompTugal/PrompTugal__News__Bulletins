@@ -1,7 +1,7 @@
 {
  "version": "1.2.1",
- "registry_version": "v0.1.1871",
- "read_at": "2026-11-19T11:01:33.798Z",
+ "registry_version": "v0.1.1889",
+ "read_at": "2026-11-19T14:02:09.164Z",
  "sites": 13,
  "checked_against": "promptugal.news/api/v1/sites.json bar.integrity"
 }

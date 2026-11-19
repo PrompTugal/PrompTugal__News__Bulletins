@@ -1,16 +1,16 @@
 {
  "page": "700",
- "facts_sha256": "be3ef19c31060cea535ca2a10294245e",
- "facts_made": "2026-11-19T11:01:00Z",
+ "facts_sha256": "6b5b8e7a62664d076ec9ae95250da079",
+ "facts_made": "2026-11-19T14:00:20Z",
  "model": "anthropic/claude-haiku-5.5",
  "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
  "facts": [
   {
    "id": "700-01",
-   "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 10:04 UTC: 2 warnings, 10 stations, 10 rain gauges.",
+   "text": "London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 13:04 UTC: 2 warnings, 10 stations, 10 rain gauges.",
    "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
    "origin": "https://data.promptugal.news/sources/ea-flood/",
-   "read_at": "2026-11-19T10:04:25Z",
+   "read_at": "2026-11-19T13:04:17Z",
    "licence": {
     "name": "the source's terms (on its card)",
     "url": "https://data.promptugal.news/api/v1/ea-flood/card.json"
@@ -31,10 +31,10 @@
   },
   {
    "id": "700-03",
-   "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 10:09 UTC: 889 cameras.",
+   "text": "London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 13:08 UTC: 889 cameras.",
    "source": "https://data.promptugal.news/api/v1/tfl-jamcams/latest.json",
    "origin": "https://data.promptugal.news/sources/tfl-jamcams/",
-   "read_at": "2026-11-19T10:09:34Z",
+   "read_at": "2026-11-19T13:08:43Z",
    "licence": {
     "name": "the source's terms (on its card)",
     "url": "https://data.promptugal.news/api/v1/tfl-jamcams/card.json"
@@ -88,7 +88,7 @@
    "text": "The Environment Agency lists 2 flood warnings and alerts for the London area (2 Warning no longer in force).",
    "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
    "origin": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
-   "read_at": "2026-11-19T10:04:25Z",
+   "read_at": "2026-11-19T13:04:17Z",
    "licence": {
     "name": "Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)",
     "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
@@ -100,7 +100,7 @@
    "text": "Environment Agency, Warning no longer in force: Upper River Colne and Radlett Brook.",
    "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
    "origin": "https://check-for-flooding.service.gov.uk/target-area/062WAF28UpColne",
-   "read_at": "2026-11-19T10:04:25Z",
+   "read_at": "2026-11-19T13:04:17Z",
    "licence": {
     "name": "Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)",
     "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
@@ -112,7 +112,7 @@
    "text": "Environment Agency, Warning no longer in force: Lower Lee tributaries.",
    "source": "https://data.promptugal.news/api/v1/by-place/now/london.json",
    "origin": "https://check-for-flooding.service.gov.uk/target-area/062WAF53LLTribs",
-   "read_at": "2026-11-19T10:04:25Z",
+   "read_at": "2026-11-19T13:04:17Z",
    "licence": {
     "name": "Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)",
     "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
@@ -120,55 +120,55 @@
    "by": "data.promptugal.news"
   }
  ],
- "written": "2026-11-19T11:01:28.984Z",
+ "written": "2026-11-19T14:00:48.769Z",
  "kept": [
   {
-   "text": "The Environment Agency lists 2 flood warnings and alerts for the London area.",
+   "text": "The Environment Agency lists 2 flood warnings and alerts for the London area, with 2 Warning no longer in force.",
    "facts": [
     "700-06"
    ]
   },
   {
-   "text": "The Upper River Colne and Radlett Brook warning is no longer in force.",
+   "text": "Environment Agency, Warning no longer in force: Upper River Colne and Radlett Brook.",
    "facts": [
     "700-07"
    ]
   },
   {
-   "text": "The Lower Lee tributaries warning is also no longer in force.",
+   "text": "Environment Agency, Warning no longer in force: Lower Lee tributaries.",
    "facts": [
     "700-08"
    ]
   },
   {
-   "text": "Today, 2026-11-19, the forecast for London is a minimum of 7.2 °C, a maximum of 10.6 °C and 6.5 mm of rain.",
+   "text": "Today in London, Open-Meteo forecasts a minimum of 7.2 °C, a maximum of 10.6 °C and rain of 6.5 mm.",
    "facts": [
     "700-04"
    ]
   },
   {
-   "text": "Tomorrow, 2026-11-20, the forecast for London is a minimum of 6.9 °C, a maximum of 10.2 °C and 1.1 mm of rain.",
+   "text": "Tomorrow in London, Open-Meteo forecasts a minimum of 6.9 °C, a maximum of 10.2 °C and rain of 1.1 mm.",
    "facts": [
     "700-05"
    ]
   },
   {
-   "text": "The Environment Agency's flood data, last read at 2026-11-19 10:04 UTC, covers 10 stations and 10 rain gauges.",
+   "text": "Flood warnings and Thames levels were last read at 2026-11-19 13:04 UTC, covering 2 warnings, 10 stations and 10 rain gauges.",
    "facts": [
     "700-01"
    ]
   },
   {
-   "text": "TfL JamCams lists 889 London traffic cameras, last read at 2026-11-19 10:09 UTC.",
+   "text": "TfL JamCams were last read at 2026-11-19 13:08 UTC, with 889 cameras.",
    "facts": [
     "700-03"
    ]
   }
  ],
  "dropped": [],
- "cost_usd": 0.000596574,
+ "cost_usd": 0.000602514,
  "tokens": {
   "prompt": 721,
-  "completion": 1061
+  "completion": 1073
  }
 }

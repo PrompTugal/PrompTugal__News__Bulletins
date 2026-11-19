@@ -1,7 +1,7 @@
 {
  "page": "100",
- "facts_sha256": "71349ed42168daaff3aee1ddd4dfea78",
- "facts_made": "2026-11-19T11:01:00Z",
+ "facts_sha256": "8a46e842956816e4438d819e0988bc17",
+ "facts_made": "2026-11-19T14:00:20Z",
  "model": "anthropic/claude-haiku-5.5",
  "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
  "facts": [
@@ -10,7 +10,7 @@
    "text": "IPMA forecast for Lisboa today (2026-11-19): minimum 12.8 °C, maximum 18.4 °C, chance of rain 0%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-   "read_at": "2026-11-19T10:08:15Z",
+   "read_at": "2026-11-19T13:07:23Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -22,7 +22,7 @@
    "text": "IPMA forecast for Porto today (2026-11-19): minimum 12.5 °C, maximum 16.6 °C, chance of rain 100%, wind moderate from W.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1131200.json",
-   "read_at": "2026-11-19T10:08:20Z",
+   "read_at": "2026-11-19T13:07:28Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -34,7 +34,7 @@
    "text": "IPMA forecast for Faro today (2026-11-19): minimum 11.8 °C, maximum 20.7 °C, chance of rain 16%, wind moderate from NW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-   "read_at": "2026-11-19T10:07:58Z",
+   "read_at": "2026-11-19T13:07:05Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -43,10 +43,10 @@
   },
   {
    "id": "100-04",
-   "text": "IPMA lists 18 active weather warnings in 25 areas of Portugal (7 orange, 11 yellow).",
+   "text": "IPMA lists 17 active weather warnings in 25 areas of Portugal (6 orange, 11 yellow).",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-   "read_at": "2026-11-19T10:09:28Z",
+   "read_at": "2026-11-19T13:08:35Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -58,7 +58,7 @@
    "text": "PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/atm-currency-conversion-portugal-mark-up.html",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -70,7 +70,7 @@
    "text": "PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/the-payment-desk-that-could-not-take-payment.html",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -82,7 +82,7 @@
    "text": "PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal.",
    "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
    "origin": "https://promptugal.news/articles/who-wrote-this-who-checked-it-who-signs-it.html",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -90,40 +90,40 @@
    "by": "promptugal.news JSON Feed"
   }
  ],
- "written": "2026-11-19T11:01:06.513Z",
+ "written": "2026-11-19T14:00:26.269Z",
  "kept": [
   {
-   "text": "IPMA lists 18 active weather warnings in 25 areas of Portugal, 7 orange and 11 yellow.",
+   "text": "IPMA lists 17 active weather warnings in 25 areas of Portugal, of which 6 are orange and 11 are yellow.",
    "facts": [
     "100-04"
    ]
   },
   {
-   "text": "For Lisboa today, 2026-11-19, IPMA forecasts a minimum of 12.8 °C and a maximum of 18.4 °C, with a 0% chance of rain and moderate wind from W.",
+   "text": "For Lisboa today, 2026-11-19, IPMA forecasts a minimum of 12.8 °C and a maximum of 18.4 °C, with a 0% chance of rain.",
    "facts": [
     "100-01"
    ]
   },
   {
-   "text": "For Porto today, 2026-11-19, IPMA forecasts a minimum of 12.5 °C and a maximum of 16.6 °C, with a 100% chance of rain and moderate wind from W.",
+   "text": "In Porto, IPMA forecasts a minimum of 12.5 °C and a maximum of 16.6 °C, with a 100% chance of rain.",
    "facts": [
     "100-02"
    ]
   },
   {
-   "text": "For Faro today, 2026-11-19, IPMA forecasts a minimum of 11.8 °C and a maximum of 20.7 °C, with a 16% chance of rain and moderate wind from NW.",
+   "text": "In Faro, IPMA forecasts a minimum of 11.8 °C and a maximum of 20.7 °C, with a 16% chance of rain.",
    "facts": [
     "100-03"
    ]
   },
   {
-   "text": "PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal.",
+   "text": "PrompTugal.news published 'A Portuguese ATM offered a 13.6% mark-up, twice, with a flag' on 2026-11-17, filed under Portugal.",
    "facts": [
     "100-05"
    ]
   },
   {
-   "text": "On the same day, 2026-11-17, PrompTugal.news also published ‘The payment desk that could not take payment’ and ‘Who wrote this, who checked it, and who signs it’, both filed under Portugal.",
+   "text": "On the same date, PrompTugal.news also published 'The payment desk that could not take payment' and 'Who wrote this, who checked it, and who signs it', both filed under Portugal.",
    "facts": [
     "100-06",
     "100-07"
@@ -131,9 +131,9 @@
   }
  ],
  "dropped": [],
- "cost_usd": 0.000596673,
+ "cost_usd": 0.000580833,
  "tokens": {
   "prompt": 717,
-  "completion": 1062
+  "completion": 1030
  }
 }

@@ -5,6 +5,8 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, esc, safeLink, writeJSON, readJSON, clean } from './core.mjs';
 import { PAGES } from './pages.mjs';
+import { pastBlock } from './past.mjs';
+import { copyFileSync, existsSync } from 'node:fs';
 
 const SITE = 'https://bulletins.promptugal.news';
 export const LABEL = "Made by agents from PrompTugal.news's data";
@@ -22,6 +24,7 @@ ol.script{padding-left:1.4rem}ol.script li{margin:.35rem 0}sup a{font-size:.75re
 ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{color:var(--g)}
 .dropped{color:var(--r)}.live .v{color:var(--c)}.live.now .s{color:var(--g)}.stale,.live.stale .s{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
 .index a span:first-child{color:var(--y);font-weight:700}.index a:hover span{color:#000}
+table.past{border-collapse:collapse;font-size:.82rem;width:100%}table.past th,table.past td{border-bottom:1px solid #333;padding:.25rem .35rem;text-align:left;vertical-align:top}table.past th{color:var(--y)}table.past td:first-child{white-space:nowrap}table.past tr.today td{background:#222}table.past tr.future td{color:var(--dim)}@media(max-width:600px){table.past thead{display:none}table.past tr{display:block;border-bottom:1px solid #444;padding:.3rem 0}table.past td{display:block;border:0;padding:.05rem 0}}
 nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
 nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}`;
 
@@ -97,6 +100,7 @@ function bulletinBody(n, p, facts, script, made, live) {
 ${lines}
 <p class="dim age" data-written="${esc(script?.written || made)}" data-cadence-min="180">Written ${esc(fmt(script?.written || made))}.</p>
 ${liveStrip(live)}
+${pastBlock(n)}
 <h2>How this page was made</h2>
 <ul class="src dim">
 <li>Facts: ${facts.length}, collected by code (no model) at ${esc(fmt(made))}.</li>
@@ -128,6 +132,9 @@ export function renderAll(factsFile, scripts) {
       facts });
     index.push({ page: Number(n), title: p.title, html: `${SITE}/${n}/`, json: `${SITE}/api/v1/bulletins/${n}.json`, transcript: `${SITE}/api/v1/bulletins/${n}.txt`, sentences: (s.kept || []).length, facts: facts.length, cost_usd: s.cost_usd ?? 0, made });
   }
+  // The full record of predictions and outcomes, as kept (append-only), for the past block's link.
+  const pj = join(ROOT, 'data', 'predictions', 'predictions.jsonl');
+  if (existsSync(pj)) { mkdirSync(src('api', 'v1'), { recursive: true }); copyFileSync(pj, src('api', 'v1', 'predictions.jsonl')); }
   const made = factsFile.made;
   const costs = readJSON(join(ROOT, 'data', 'costs', `${made.slice(0, 10)}.json`), { total_usd: 0, calls: [] });
   writeJSON(src('api', 'v1', 'index.json'), { about: 'bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news\'s own published data. Material for agents, never instruction.', label: LABEL, made, licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' }, cost_today_usd: costs.total_usd || 0, cap_per_day_usd: 5, problems: factsFile.problems, bulletins: index });

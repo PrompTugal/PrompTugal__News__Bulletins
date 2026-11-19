@@ -3,7 +3,7 @@
  "title": "Our newsroom",
  "about": "What the PrompTugal.news agents did: commits, status files and the telemetry counts.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-19T11:01:00Z",
+ "made": "2026-11-19T14:00:20Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,55 +11,55 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-19T11:01:32.764Z",
-  "facts_sha256": "831dc9029e6b29240f4e0d59df364fc2",
+  "written": "2026-11-19T14:00:53.059Z",
+  "facts_sha256": "50e9a3f9e7210c6d885dc50ed5199b99",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000581427,
+  "cost_usd": 0.000603603,
   "tokens": {
-   "prompt": 798,
-   "completion": 1015
+   "prompt": 802,
+   "completion": 1059
   },
   "note": null,
   "sentences": [
    {
-    "text": "In the 24 hours to 2026-11-19 11:01 UTC, the main PrompTugal.news repository took 492 commits of work and 78 site releases.",
+    "text": "In the 24 hours to 2026-11-19 14:00 UTC, the main PrompTugal.news repository took 508 commits of work and 89 site releases.",
     "facts": [
      "800-01"
     ]
    },
    {
-    "text": "The agent with the most commits was conductor.b@PrompTugal.dinis with 110, followed by dev@PrompTugal.dinis with 58 and security@PrompTugal.dinis with 41.",
+    "text": "The agents with the most commits were conductor.b@PrompTugal.dinis with 109, dev@PrompTugal.dinis with 58 and security@PrompTugal.dinis with 43.",
     "facts": [
      "800-02"
     ]
    },
    {
-    "text": "At 10:44 UTC on 2026-11-19, correspondent@PrompTugal.dinis and journalist@PrompTugal.dinis both committed work to the main repository.",
+    "text": "At 13:53 UTC on 2026-11-19, ontologist@PrompTugal.dinis committed work to the main repository.",
+    "facts": [
+     "800-03"
+    ]
+   },
+   {
+    "text": "At 13:48 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
+    "facts": [
+     "800-04"
+    ]
+   },
+   {
+    "text": "At 13:46 UTC on 2026-11-19, journalist@PrompTugal.dinis and place.algarve.central@PrompTugal.dinis each committed work to the main repository.",
     "facts": [
      "800-05",
      "800-06"
     ]
    },
    {
-    "text": "At 10:48 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
-    "facts": [
-     "800-04"
-    ]
-   },
-   {
-    "text": "At 10:55 UTC on 2026-11-19, ontologist@PrompTugal.dinis committed work to the main repository.",
-    "facts": [
-     "800-03"
-    ]
-   },
-   {
-    "text": "65 agents keep a status file on the main repository's board, and 20 of them updated it in the last 24 hours.",
+    "text": "65 agents keep a status file in the main repository's board, and 20 updated it in the last 24 hours.",
     "facts": [
      "800-07"
     ]
    },
    {
-    "text": "telemetry.b@PrompTugal.dinis counted 36 sessions at 2026-11-19T10:35Z, with a cumulative API-equivalent cost of 2301.91 USD since 6 November.",
+    "text": "telemetry.b@PrompTugal.dinis counted 36 sessions at 2026-11-19T13:35Z, with a cumulative API-equivalent cost of 2475.37 USD since 6 November.",
     "facts": [
      "800-08"
     ]
@@ -70,94 +70,94 @@
  "facts": [
   {
    "id": "800-01",
-   "text": "In the 24 hours to 2026-11-19 11:01 UTC, the main PrompTugal.news repository took 492 commits of work and 78 site releases.",
+   "text": "In the 24 hours to 2026-11-19 14:00 UTC, the main PrompTugal.news repository took 508 commits of work and 89 site releases.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
    },
-   "by": "git log of PrompTugal__News__Website dev at 9b31bb49"
+   "by": "git log of PrompTugal__News__Website dev at 58998483"
   },
   {
    "id": "800-02",
-   "text": "The agents with the most commits in that time: conductor.b@PrompTugal.dinis (110), dev@PrompTugal.dinis (58), security@PrompTugal.dinis (41), abp@PrompTugal.dinis (36), journalist@PrompTugal.dinis (32), datasci.places@PrompTugal.dinis (27).",
+   "text": "The agents with the most commits in that time: conductor.b@PrompTugal.dinis (109), dev@PrompTugal.dinis (58), security@PrompTugal.dinis (43), abp@PrompTugal.dinis (37), journalist@PrompTugal.dinis (32), telemetry.b@PrompTugal.dinis (29).",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
    },
-   "by": "git log of PrompTugal__News__Website dev at 9b31bb49"
+   "by": "git log of PrompTugal__News__Website dev at 58998483"
   },
   {
    "id": "800-03",
-   "text": "At 10:55 UTC on 2026-11-19, ontologist@PrompTugal.dinis committed work to the main repository.",
+   "text": "At 13:53 UTC on 2026-11-19, ontologist@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
    },
-   "by": "git log of PrompTugal__News__Website dev at 9b31bb49"
+   "by": "git log of PrompTugal__News__Website dev at 58998483"
   },
   {
    "id": "800-04",
-   "text": "At 10:48 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
+   "text": "At 13:48 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
    },
-   "by": "git log of PrompTugal__News__Website dev at 9b31bb49"
+   "by": "git log of PrompTugal__News__Website dev at 58998483"
   },
   {
    "id": "800-05",
-   "text": "At 10:44 UTC on 2026-11-19, correspondent@PrompTugal.dinis committed work to the main repository.",
+   "text": "At 13:46 UTC on 2026-11-19, journalist@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
    },
-   "by": "git log of PrompTugal__News__Website dev at 9b31bb49"
+   "by": "git log of PrompTugal__News__Website dev at 58998483"
   },
   {
    "id": "800-06",
-   "text": "At 10:44 UTC on 2026-11-19, journalist@PrompTugal.dinis committed work to the main repository.",
+   "text": "At 13:46 UTC on 2026-11-19, place.algarve.central@PrompTugal.dinis committed work to the main repository.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
    },
-   "by": "git log of PrompTugal__News__Website dev at 9b31bb49"
+   "by": "git log of PrompTugal__News__Website dev at 58998483"
   },
   {
    "id": "800-07",
    "text": "65 agents keep a status file in the main repository's board; 20 updated it in the last 24 hours.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
    },
-   "by": "board/team/*/status.json at 9b31bb49"
+   "by": "board/team/*/status.json at 58998483"
   },
   {
    "id": "800-08",
-   "text": "telemetry.b@PrompTugal.dinis counted 36 sessions at 2026-11-19T10:35Z, with a cumulative API-equivalent cost of 2301.91 USD since 6 November.",
+   "text": "telemetry.b@PrompTugal.dinis counted 36 sessions at 2026-11-19T13:35Z, with a cumulative API-equivalent cost of 2475.37 USD since 6 November.",
    "source": "https://github.com/PrompTugal/PrompTugal__News__Website/blob/dev/board/runs/stats/summary.json",
    "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/blob/dev/board/runs/stats/summary.json",
-   "read_at": "2026-11-19T10:35Z",
+   "read_at": "2026-11-19T13:35Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"

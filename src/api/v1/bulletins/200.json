@@ -3,7 +3,7 @@
  "title": "The Algarve",
  "about": "The Algarve: forecasts, warnings and sea for Faro district, flights around Faro airport, and the latest Algarve articles.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-19T11:01:00Z",
+ "made": "2026-11-19T14:00:20Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,13 +11,13 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-19T11:01:10.627Z",
-  "facts_sha256": "05aa20a16642792967ae3585f2c61905",
+  "written": "2026-11-19T14:00:30.558Z",
+  "facts_sha256": "51645a9ddf40c67d8f6d0b0f13d25a3c",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000651618,
+  "cost_usd": 0.000680328,
   "tokens": {
    "prompt": 1342,
-   "completion": 1048
+   "completion": 1106
   },
   "note": null,
   "sentences": [
@@ -28,33 +28,39 @@
     ]
    },
    {
-    "text": "On 2026-11-20, the IPMA sea forecast for the Sagres coast gives waves of 2.2 to 3.5 metres from NW and a sea temperature of 18.6 to 18.7 °C.",
+    "text": "On 2026-11-20, the Sagres coast is forecast to have waves of 2.2 to 3.5 metres from NW, with sea temperature 18.6 to 18.7 °C.",
     "facts": [
      "200-11"
     ]
    },
    {
-    "text": "On the same day, the Faro coast is forecast to have waves of 0.7 to 1 metres from W and a sea temperature of 19.1 to 19.3 °C.",
+    "text": "On 2026-11-20, the Faro coast is forecast to have waves of 0.7 to 1 metres from W, with sea temperature 19.1 to 19.3 °C.",
     "facts": [
      "200-10"
     ]
    },
    {
-    "text": "In Faro today, 2026-11-19, the minimum is 11.8 °C and the maximum is 20.7 °C, with a 16% chance of rain and a moderate NW wind.",
+    "text": "Faro today (2026-11-19): minimum 11.8 °C, maximum 20.7 °C, chance of rain 16%, wind moderate from NW.",
     "facts": [
      "200-01"
     ]
    },
    {
-    "text": "Sagres today is forecast at a minimum of 11.6 °C and a maximum of 19.5 °C, with a 2% chance of rain and a moderate NW wind.",
+    "text": "Portimão today (2026-11-19): minimum 10.9 °C, maximum 20.2 °C, chance of rain 0%, wind weak from NW.",
     "facts": [
-     "200-07"
+     "200-03"
     ]
    },
    {
-    "text": "Tomorrow, 2026-11-20, Faro is forecast at a minimum of 9.3 °C and a maximum of 18.3 °C, with a 0% chance of rain and a weak N wind.",
+    "text": "Faro tomorrow (2026-11-20): minimum 9.3 °C, maximum 18.3 °C, chance of rain 0%, wind weak from N.",
     "facts": [
      "200-02"
+    ]
+   },
+   {
+    "text": "Sagres tomorrow (2026-11-20): minimum 10 °C, maximum 18.6 °C, chance of rain 0%, wind weak from SE.",
+    "facts": [
+     "200-08"
     ]
    }
   ],
@@ -66,7 +72,7 @@
    "text": "IPMA forecast for Faro today (2026-11-19): minimum 11.8 °C, maximum 20.7 °C, chance of rain 16%, wind moderate from NW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-   "read_at": "2026-11-19T10:07:58Z",
+   "read_at": "2026-11-19T13:07:05Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -87,7 +93,7 @@
    "text": "IPMA forecast for Faro tomorrow (2026-11-20): minimum 9.3 °C, maximum 18.3 °C, chance of rain 0%, wind weak from N.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
-   "read_at": "2026-11-19T10:07:58Z",
+   "read_at": "2026-11-19T13:07:05Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -108,7 +114,7 @@
    "text": "IPMA forecast for Portimão today (2026-11-19): minimum 10.9 °C, maximum 20.2 °C, chance of rain 0%, wind weak from NW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081100.json",
-   "read_at": "2026-11-19T10:08:03Z",
+   "read_at": "2026-11-19T13:07:10Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -120,7 +126,7 @@
    "text": "IPMA forecast for Portimão tomorrow (2026-11-20): minimum 10 °C, maximum 18.3 °C, chance of rain 0%, wind weak from S.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081100.json",
-   "read_at": "2026-11-19T10:08:03Z",
+   "read_at": "2026-11-19T13:07:10Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -132,7 +138,7 @@
    "text": "IPMA forecast for Loulé today (2026-11-19): minimum 10.2 °C, maximum 19.5 °C, chance of rain 8%, wind weak from NW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080800.json",
-   "read_at": "2026-11-19T10:08:05Z",
+   "read_at": "2026-11-19T13:07:13Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -144,7 +150,7 @@
    "text": "IPMA forecast for Loulé tomorrow (2026-11-20): minimum 8.9 °C, maximum 18.2 °C, chance of rain 0%, wind weak from NE.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080800.json",
-   "read_at": "2026-11-19T10:08:05Z",
+   "read_at": "2026-11-19T13:07:13Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -156,7 +162,7 @@
    "text": "IPMA forecast for Sagres today (2026-11-19): minimum 11.6 °C, maximum 19.5 °C, chance of rain 2%, wind moderate from NW.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081505.json",
-   "read_at": "2026-11-19T10:08:00Z",
+   "read_at": "2026-11-19T13:07:08Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -168,7 +174,7 @@
    "text": "IPMA forecast for Sagres tomorrow (2026-11-20): minimum 10 °C, maximum 18.6 °C, chance of rain 0%, wind weak from SE.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081505.json",
-   "read_at": "2026-11-19T10:08:00Z",
+   "read_at": "2026-11-19T13:07:08Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -180,7 +186,7 @@
    "text": "IPMA warnings for the Faro district: yellow for rough sea, from 2026-11-19 07:54 to 2026-11-20 09:00 local time.",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-   "read_at": "2026-11-19T10:09:28Z",
+   "read_at": "2026-11-19T13:08:35Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -192,7 +198,7 @@
    "text": "IPMA sea forecast for the Faro coast on 2026-11-20: waves of 0.7 to 1 metres from W, sea temperature 19.1 to 19.3 °C.",
    "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-   "read_at": "2026-11-19T10:09:15Z",
+   "read_at": "2026-11-19T13:08:23Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -204,7 +210,7 @@
    "text": "IPMA sea forecast for the Sagres coast on 2026-11-20: waves of 2.2 to 3.5 metres from NW, sea temperature 18.6 to 18.7 °C.",
    "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-   "read_at": "2026-11-19T10:09:15Z",
+   "read_at": "2026-11-19T13:08:23Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -213,10 +219,10 @@
   },
   {
    "id": "200-12",
-   "text": "At 10:04 UTC on 2026-11-19, adsb.lol's community receivers saw 7 airline flights and 0 other aircraft within 40 nautical miles of Faro airport.",
+   "text": "At 11:04 UTC on 2026-11-19, adsb.lol's community receivers saw 8 airline flights and 0 other aircraft within 40 nautical miles of Faro airport.",
    "source": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
    "origin": "https://api.adsb.lol/v2/point/37.0144/-7.9659/40",
-   "read_at": "2026-11-19T10:04:18Z",
+   "read_at": "2026-11-19T11:04:46Z",
    "licence": {
     "name": "ODbL 1.0",
     "url": "https://opendatacommons.org/licenses/odbl/1-0/"
@@ -228,7 +234,7 @@
    "text": "PrompTugal.news published ‘A 26-second RiskMandate film, made with Claude on a laptop’ on 2026-11-16, filed under the Algarve.",
    "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
    "origin": "https://promptugal.news/articles/riskmandate-film-claude-laptop.html",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -240,7 +246,7 @@
    "text": "PrompTugal.news published ‘Alcoutim has no AI company, but the road is being built’ on 2026-11-16, filed under the Algarve.",
    "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
    "origin": "https://promptugal.news/articles/alcoutim-ai-path-runs-through-the-guadiana.html",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -252,7 +258,7 @@
    "text": "PrompTugal.news published ‘Alcoutim's council is a partner in an AI weeding robot project’ on 2026-11-16, filed under the Algarve.",
    "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
    "origin": "https://promptugal.news/articles/alcoutim-council-in-a-weeding-robot-project.html",
-   "read_at": "2026-11-19T11:01:00Z",
+   "read_at": "2026-11-19T14:00:20Z",
    "licence": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"

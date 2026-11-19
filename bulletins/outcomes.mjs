@@ -7,7 +7,9 @@
 //   London (Environment Agency gauges): no observed temperature (none without a key), so only the rain is judged:
 //     held if the mean of the gauges is within 2 mm of the forecast.
 // A day not yet complete is left for a later run. No model is used. Run: node bulletins/outcomes.mjs
-import { getJSON, clean } from './core.mjs';
+import { getJSON, clean, writeJSON, ROOT } from './core.mjs';
+import { join } from 'node:path';
+import { https } from './predictions.mjs';
 import { readLines, appendLines, minute } from './predictions.mjs';
 
 const H = 'https://data.promptugal.news/api/v1/history/weather';
@@ -15,13 +17,32 @@ const fin = (v, lo, hi) => Number.isFinite(v) && v >= lo && v <= hi;
 const r1 = (v) => Math.round(v * 10) / 10;
 const now = minute(new Date().toISOString());
 
+// A checked local copy of the history we read, so pages are built from files (no fetch at render): dates by pattern,
+// numbers only if finite and in range, complete only if exactly true; licence and source kept for the page's source line.
+const NUMS = { low_c: [-60, 60], high_c: [-60, 60], rain_mm: [0, 500], hours: [0, 24], rain_mm_mean: [0, 500], gauges: [0, 1000] };
+function keepCopy(place, j) {
+  const day = (d) => /^\d{4}-\d{2}-\d{2}$/.test(String(d)) ? String(d) : null;
+  const obs = (o) => Object.fromEntries([...Object.entries(NUMS).filter(([k, [lo, hi]]) => fin(o?.[k], lo, hi)).map(([k]) => [k, o[k]]), ['complete', o?.complete === true]]);
+  writeJSON(join(ROOT, 'data', 'history', `${place}.json`), {
+    about: `Our checked copy of ${H}/${place}.json (observed values only), read by bulletins/outcomes.mjs.`,
+    source: `${H}/${place}.json`, read_at: now, data_read_at: minute(j.data_read_at),
+    // The first day we keep (the last 60 rows), so the page never claims a start it does not show.
+    first_day: [day(j.first_day), day((j.rows || []).slice(-60)[0]?.date)].filter(Boolean).sort().pop() || null,
+    licence: { name: clean(j.license?.name || "the source's terms", 120), url: https(j.license?.url) },
+    rows: (j.rows || []).slice(-60).map((r) => ({ date: day(r?.date), observed: obs(r?.observed) })).filter((r) => r.date) });
+}
+
 export async function keepOutcomes() {
   const lines = readLines();
   const done = new Set(lines.filter((x) => x.type === 'outcome').map((x) => x.of));
   const preds = lines.filter((x) => x.type === 'prediction' && !done.has(x.id) && /^\d{4}-\d{2}-\d{2}$/.test(String(x.due)));
   const rows = {};
   for (const place of ['faro', 'london']) {
-    try { const j = await getJSON(`${H}/${place}.json`); rows[place] = new Map((j.rows || []).filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(String(r?.date))).map((r) => [r.date, r.observed || {}])); }
+    try {
+      const j = await getJSON(`${H}/${place}.json`);
+      rows[place] = new Map((j.rows || []).filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(String(r?.date))).map((r) => [r.date, r.observed || {}]));
+      keepCopy(place, j);
+    }
     catch (e) { console.log(`outcomes: ${place} history not read (${clean(e.message, 80)})`); }
   }
   const out = [];

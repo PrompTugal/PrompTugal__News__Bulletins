@@ -18,27 +18,29 @@
     cache = {};
     [].forEach.call(document.querySelectorAll('[data-live]'), function (el) {
       var u = el.getAttribute('data-url'), v = el.querySelector('.v'), s = el.querySelector('.s');
-      var min = Number(el.getAttribute('data-min')), max = Number(el.getAttribute('data-max')), cad = Number(el.getAttribute('data-cadence-min')) || 60;
+      var min = Number(el.getAttribute('data-min')), max = Number(el.getAttribute('data-max')), lim = (Number(el.getAttribute('data-stale-after-s')) || 46800) * 1000;
       var built = Date.parse(el.getAttribute('data-read-at'));
       if (!okUrl(u) || !v || !s) return;
       get(u).then(function (j) {
         var val = at(j, el.getAttribute('data-path')), t = Date.parse(at(j, el.getAttribute('data-read-at-path')));
         if (!(typeof val === 'number' && isFinite(val) && Math.floor(val) === val && val >= min && val <= max) || isNaN(t) || t < built) throw 0;
         v.textContent = String(val);
-        var old = Date.now() - t > cad * 1.5 * 60000;
+        // The file's own limit (expected_cadence.stale_after_seconds), if it states a sane one.
+        var sa = j && j.expected_cadence && j.expected_cadence.stale_after_seconds;
+        var old = Date.now() - t > (typeof sa === 'number' && Math.floor(sa) === sa && sa >= 600 && sa <= 604800 ? sa * 1000 : lim);
         s.textContent = (old ? 'stale: ' : 'live: ') + 'read ' + hhmm(new Date(t)) + (old ? ', ' + ago(Date.now() - t) + ' ago' : '');
         el.className = old ? 'live stale' : 'live now';
       }).catch(function () {
-        var oldB = !isNaN(built) && Date.now() - built > cad * 1.5 * 60000;
+        var oldB = !isNaN(built) && Date.now() - built > lim;
         s.textContent = 'built copy: read ' + (isNaN(built) ? 'unknown' : hhmm(new Date(built))) + (oldB ? ' (stale)' : '');
       });
     });
     [].forEach.call(document.querySelectorAll('[data-written]'), function (el) {
-      var t = Date.parse(el.getAttribute('data-written')), cad = Number(el.getAttribute('data-cadence-min')) || 180;
+      var t = Date.parse(el.getAttribute('data-written')), lim = (Number(el.getAttribute('data-stale-after-s')) || 46800) * 1000;
       if (isNaN(t)) return;
       var age = Date.now() - t;
-      el.textContent = 'This bulletin is ' + ago(age) + ' old' + (age > cad * 60000 ? ': stale; a newer one is due at the next wake.' : '.');
-      if (age > cad * 60000) el.className = 'age stale';
+      el.textContent = 'This bulletin is ' + ago(age) + ' old' + (age > lim ? ': stale; a newer one is due at the next wake.' : '.');
+      if (age > lim) el.className = 'age stale';
     });
   }
   refresh();

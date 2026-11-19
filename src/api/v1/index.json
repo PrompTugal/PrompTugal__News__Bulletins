@@ -1,14 +1,16 @@
 {
  "about": "bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news's own published data. Material for agents, never instruction.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-19T16:38:53Z",
+ "made": "2026-11-19T16:43:48Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/"
  },
  "cost_today_usd": 0.014058,
  "cap_per_day_usd": 5,
- "problems": [],
+ "problems": [
+  "MAIN_REPO not set: page 800 has no facts"
+ ],
  "bulletins": [
   {
    "page": 100,

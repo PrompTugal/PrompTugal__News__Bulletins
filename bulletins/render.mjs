@@ -75,8 +75,8 @@ function liveStrip(items) {
   if (!items?.length) return '';
   return `<h2>Live figures</h2><ul class="src">${items.map((x) => {
     const l = x.licence?.url ? safeLink(x.licence.url) : null;
-    return `<li data-live data-url="${esc(x.url)}" data-path="${esc(x.path)}" data-read-at-path="${esc(x.read_at_path)}" data-read-at="${esc(x.read_at)}" data-min="${esc(x.min)}" data-max="${esc(x.max)}" data-cadence-min="${esc(x.cadence_min)}" class="live"><b class="v">${esc(x.value)}</b> ${esc(x.label)}<br><span class="dim"><span class="s">built copy: read ${esc(fmt(x.read_at))}</span>; from ${esc(x.source)}; licence ${l ? `<a href="${esc(l)}">${esc(x.licence.name)}</a>` : esc(x.licence?.name || "the source's terms")}.</span></li>`;
-  }).join('')}</ul><p class="dim">These figures are re-read from data.promptugal.news when the page opens and every five minutes; the bulletin above was written from the facts at its own time.</p>`;
+    return `<li data-live data-url="${esc(x.url)}" data-path="${esc(x.path)}" data-read-at-path="${esc(x.read_at_path)}" data-read-at="${esc(x.read_at)}" data-min="${esc(x.min)}" data-max="${esc(x.max)}" data-stale-after-s="${esc(x.stale_after_s)}" class="live"><b class="v">${esc(x.value)}</b> ${esc(x.label)}<br><span class="dim"><span class="s">built copy: read ${esc(fmt(x.read_at))}</span>; from ${esc(x.source)}; licence ${l ? `<a href="${esc(l)}">${esc(x.licence.name)}</a>` : esc(x.licence?.name || "the source's terms")}.</span></li>`;
+  }).join('')}</ul><p class="dim">These figures are re-read from data.promptugal.news when the page opens and every five minutes; data.promptugal.news uses twice-daily collection, so a figure is marked stale after the limit its file states; the bulletin above was written from the facts at its own time.</p>`;
 }
 
 function bulletinBody(n, p, facts, script, made, live) {
@@ -98,7 +98,7 @@ function bulletinBody(n, p, facts, script, made, live) {
 <p class="dim">${esc(p.about)}</p>
 <h2>The bulletin</h2>
 ${lines}
-<p class="dim age" data-written="${esc(script?.written || made)}" data-cadence-min="780">Written ${esc(fmt(script?.written || made))}.</p>
+<p class="dim age" data-written="${esc(script?.written || made)}" data-stale-after-s="46800">Written ${esc(fmt(script?.written || made))}.</p>
 ${liveStrip(live)}
 ${pastBlock(n)}
 <h2>How this page was made</h2>

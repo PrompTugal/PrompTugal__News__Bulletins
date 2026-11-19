@@ -10,6 +10,8 @@ import { getJSON, clean, writeJSON, ROOT } from './core.mjs';
 import { PAGES } from './pages.mjs';
 
 const D = 'https://data.promptugal.news/api/v1';
+// The file's own staleness limit (conductor.b@, 16:41 UTC 19 Nov), range-checked; 13 hours if missing or odd.
+const staleAfter = (j) => { const v = j?.expected_cadence?.stale_after_seconds; return Number.isInteger(v) && v >= 600 && v <= 7 * 86400 ? v : 46800; };
 const P = 'https://promptugal.news/api/v1';
 const L = 'https://library.promptugal.news/api/v1';
 const CC = { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
@@ -17,8 +19,8 @@ const now = new Date().toISOString().replace(/\.\d+Z$/, 'Z');
 const facts = Object.fromEntries(Object.keys(PAGES).map((p) => [p, []]));
 const problems = [];
 // Live figures (Dinis, 19 Nov 2026, about 01:13 UTC: "load the data in the browser"): for each, the built value
-// (cadence 520 minutes: data is collected twice a day since Dinis's word of about 16:30 UTC on 19 Nov, so a figure is
-// marked stale only after 1.5 x 520 = 780 minutes, about 13 hours)
+// (twice-daily collection since Dinis's word of about 16:30 UTC on 19 Nov: a figure is stale after the file's own
+// expected_cadence.stale_after_seconds, data.b@ 8f6a905, read by staleAfter(); 46800 seconds, 13 hours, if absent)
 // and where the page's script re-reads it (our own data host only), with the bounds it must pass.
 const live = Object.fromEntries(Object.keys(PAGES).map((p) => [p, []]));
 
@@ -69,7 +71,7 @@ await safe('ipma-warnings', async () => {
   const levels = ['red', 'orange', 'yellow'].filter((k) => lv[k]).map((k) => `${lv[k]} ${k}`).join(', ');
   const national = `IPMA lists ${j.counts.active} active weather warnings in ${j.counts.areas} areas of Portugal${levels ? ` (${levels})` : ''}.`;
   add('100', { ...base, text: national }); add('500', { ...base, text: national });
-  for (const p of ['100', '500']) live[p].push({ label: 'active IPMA weather warnings in Portugal', url: `${D}/ipma-warnings/latest.json`, path: 'counts.active', read_at_path: 'read_at', value: j.counts.active, read_at: j.read_at, cadence_min: 520, min: 0, max: 2000, licence: lic(j), source: 'IPMA, through data.promptugal.news' });
+  for (const p of ['100', '500']) live[p].push({ label: 'active IPMA weather warnings in Portugal', url: `${D}/ipma-warnings/latest.json`, path: 'counts.active', read_at_path: 'read_at', value: j.counts.active, read_at: j.read_at, stale_after_s: staleAfter(j), min: 0, max: 2000, licence: lic(j), source: 'IPMA, through data.promptugal.news' });
   const by = new Map();
   for (const a of j.active) { const k = `${a.area_name}|${a.type}`; const prev = by.get(k); const rank = { yellow: 1, orange: 2, red: 3 };
     if (!prev || rank[a.level] > rank[prev.level]) by.set(k, a); }
@@ -146,7 +148,7 @@ await safe('london', async () => {
     add('700', { ...block(f), source: src, pred: pred('London daily minimum and maximum temperature and rain (Open-Meteo forecast)', due, d), text: `Open-Meteo forecast for London ${when}: minimum ${d.t_min_c} °C, maximum ${d.t_max_c} °C${Number.isFinite(d.rain_mm) ? `, rain ${d.rain_mm} mm` : ''}.` });
   }
   const w = j.floods?.warnings;
-  if (Array.isArray(w)) live['700'].push({ label: 'Environment Agency flood warnings and alerts for the London area', url: src, path: 'floods.warnings.length', read_at_path: 'floods.at', value: w.length, read_at: j.floods.at || j.read_at, cadence_min: 520, min: 0, max: 500, licence: block(j.floods).licence, source: 'the Environment Agency, through data.promptugal.news' });
+  if (Array.isArray(w)) live['700'].push({ label: 'Environment Agency flood warnings and alerts for the London area', url: src, path: 'floods.warnings.length', read_at_path: 'floods.at', value: w.length, read_at: j.floods.at || j.read_at, stale_after_s: staleAfter(j), min: 0, max: 500, licence: block(j.floods).licence, source: 'the Environment Agency, through data.promptugal.news' });
   if (Array.isArray(w)) {
     const by = new Map(); for (const x of w) { const s = clean(x.severity, 40) || 'unstated'; by.set(s, (by.get(s) || 0) + 1); }
     add('700', { ...block(j.floods), source: src, text: w.length

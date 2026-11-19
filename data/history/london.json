@@ -1,7 +1,7 @@
 {
  "about": "Our checked copy of https://data.promptugal.news/api/v1/history/weather/london.json (observed values only), read by bulletins/outcomes.mjs.",
  "source": "https://data.promptugal.news/api/v1/history/weather/london.json",
- "read_at": "2026-11-19T16:38Z",
+ "read_at": "2026-11-19T16:43Z",
  "data_read_at": "2026-11-19T16:04Z",
  "first_day": "2026-11-17",
  "licence": {

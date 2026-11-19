@@ -25,7 +25,7 @@
   "01:51 19 Nov: sites bar 1.1.1 installed (SRI pins, full compare with the registry); preview gate; leak-scan exemptions by exact pattern",
   "01:52 19 Nov: signature check meets security@'s five controls; full session URL published",
   "07:16 19 Nov: sites bar 1.2.0 installed (checked against bar.versions in the registry); 1.1.1 removed",
-  "08:10 19 Nov wake: 8 pages refreshed (51 kept, 0 dropped, 0.0049 USD); predictions.jsonl started (3 lines, library form); AppSec post-review: 3 medium, 6 low, all fixed but the IPMA licence name"
+  "08:02 19 Nov wake: 8 pages refreshed (51 kept, 0 dropped, 0.0049 USD); predictions.jsonl started (3 lines, library form); AppSec post-review: 3 medium, 6 low, all fixed but the IPMA licence name"
  ],
  "next": [
   "show the past: P200 and P700 'what we said, what happened' for forecasts (see predictions.first_plan)",

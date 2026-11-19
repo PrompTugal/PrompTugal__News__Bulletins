@@ -12,19 +12,20 @@ import { ROOT, readJSON, esc, safeLink } from './core.mjs';
 import { readLines } from './predictions.mjs';
 
 const PLACES = {
-  200: { place: 'faro', name: 'Faro', station: "IPMA's station Faro (Aeródromo)", maker: 'IPMA', subject: 'Faro ' },
-  700: { place: 'london', name: 'London', station: "the Environment Agency's London rain gauges", maker: 'Open-Meteo (CC BY 4.0, weather data by Open-Meteo.com)', subject: 'London ' },
+  200: { place: 'faro', name: 'Faro', station: "IPMA's station Faro (Aeródromo)", maker: 'IPMA', subject: 'Faro, ' },
+  700: { place: 'london', name: 'London', station: "the Environment Agency's London rain gauges", maker: 'Open-Meteo (CC BY 4.0, weather data by Open-Meteo.com)', subject: 'London, ' },
 };
 const n1 = (v) => (Number.isFinite(v) ? String(Math.round(v * 10) / 10) : null);
 const signed = (v) => (Number.isFinite(v) ? (v > 0 ? '+' : v < 0 ? '−' : '±') + String(Math.abs(Math.round(v * 10) / 10)) : '');
 const prevDay = (d) => new Date(Date.parse(d + 'T12:00:00Z') - 864e5).toISOString().slice(0, 10);
 
-function said(p, page) {
-  if (!p) return 'nothing shown';
-  const v = p.value || {};
-  const t = `${n1(v.t_min_c)} to ${n1(v.t_max_c)} °C`;
-  const rain = page === '200' ? (Number.isFinite(v.rain_prob_pct) ? `, ${v.rain_prob_pct}% chance of rain` : '') : (Number.isFinite(v.rain_mm) ? `, ${n1(v.rain_mm)} mm of rain` : '');
-  return `${t}${rain} (shown ${p.shown_at.slice(5, 10)} ${p.shown_at.slice(11, 16)} UTC${p.shown_at.slice(0, 10) === p.due ? ', the same day' : ''})`;
+// A showing: the temperature line and, shown at the same time, the rain line for the same day.
+function said(t, r, page, moment) {
+  if (!t) return 'nothing shown';
+  const when = moment || t.shown_at;
+  const v = t.value || {};
+  const rain = r?.value ? (Number.isFinite(r.value.probability) ? `, ${Math.round(r.value.probability * 100)}% chance of rain` : Number.isFinite(r.value.value) ? `, ${n1(r.value.value)} mm of rain` : '') : '';
+  return `${n1(v.low)} to ${n1(v.high)} °C${rain} (shown ${when.slice(5, 10)} ${when.slice(11, 16)} UTC${when.slice(0, 10) === t.due ? ', the same day' : ''})`;
 }
 function measured(o, page) {
   if (!o) return 'no reading';
@@ -42,12 +43,19 @@ export function pastBlock(page, today = new Date().toISOString().slice(0, 10)) {
   const h = readJSON(join(ROOT, 'data', 'history', `${P.place}.json`), null);
   const lines = readLines();
   const preds = lines.filter((x) => x.type === 'prediction' && String(x.subject).startsWith(P.subject) && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/.test(String(x.shown_at)));
+  const temps = preds.filter((x) => String(x.subject).includes('low and high'));
+  const rains = preds.filter((x) => !String(x.subject).includes('low and high'));
+  // A line is only written when its value changes, so what stood at a moment is the latest line shown by then.
+  const at = (list, due, moment) => list.filter((x) => x.due === due && x.shown_at <= moment).sort((a, b) => a.shown_at.localeCompare(b.shown_at)).pop() || null;
   const outcome = new Map(lines.filter((x) => x.type === 'outcome').map((x) => [x.of, x]));
-  if (!h || !Array.isArray(h.rows) || !preds.length) return '';
+  if (!h || !Array.isArray(h.rows) || !temps.length) return '';
   // What we said for a day: the last one shown the day before (PF7's default); if none, the first one shown at all.
+  // The moment: the last showing for that day made the day before; if none, the first showing at all. Returns the
+  // temperature and rain lines as they stood then, and the moment itself.
   const pick = (due) => {
-    const forDay = preds.filter((p) => p.due === due).sort((a, b) => a.shown_at.localeCompare(b.shown_at));
-    return forDay.filter((p) => p.shown_at.slice(0, 10) === prevDay(due)).pop() || forDay[0] || null;
+    const forDay = preds.filter((p) => p.due === due).map((p) => p.shown_at).sort();
+    const moment = forDay.filter((t) => t.slice(0, 10) === prevDay(due)).pop() || forDay[0];
+    return moment ? { t: at(temps, due, moment), rn: at(rains, due, moment), moment } : { t: null, rn: null, moment: null };
   };
   const first = h.first_day && /^\d{4}-\d{2}-\d{2}$/.test(h.first_day) ? h.first_day : h.rows[0]?.date;
   // Every day from the first to today, a gap row where the file has none (PF5: never filled in).
@@ -59,19 +67,23 @@ export function pastBlock(page, today = new Date().toISOString().slice(0, 10)) {
   const body = [];
   let judged = 0, held = 0, sameDay = 0, gaps = 0;
   for (const r of past) {
-    const p = pick(r.date), o = r.observed, out = p ? outcome.get(p.id) : null;
-    const dayBefore = p && p.shown_at.slice(0, 10) === prevDay(r.date);
-    if (out && dayBefore && out.result !== 'gap') { judged++; if (out.result === 'held') held++; }
-    else if (out && !dayBefore && out.result !== 'gap') sameDay++;
-    else if (r.date < today && !(out && out.result !== 'gap')) gaps++;
-    const gap = out?.difference ? Object.entries(out.difference).map(([k, v]) => `${k === 't_min_c' ? 'low' : k === 't_max_c' ? 'high' : 'rain'} ${signed(v)}${k === 'rain_mm' ? ' mm' : '°'}`).join(', ') : '';
-    const word = out ? (out.result === 'held' ? '✓ held' : out.result === 'missed' ? '✗ missed' : 'gap') : null;
-    const res = word ? (dayBefore || out.result === 'gap' ? word : `${word} (shown the same day, not counted)`) : (r.date === today ? 'today: not judged yet' : o?.complete ? 'not judged' : 'no full day');
-    body.push(row([`${esc(r.date === today ? `Today, ${r.date}` : r.date)}`, `Measured: ${esc(measured(o, page))}`, `We said: ${esc(said(p, page))}`, esc(gap || '·'), esc(res)], r.date === today ? 'today' : ''));
+    const { t, rn, moment } = pick(r.date), o = r.observed;
+    const outs = [t, rn].filter(Boolean).map((x) => outcome.get(x.id)).filter(Boolean);
+    const judgedOuts = outs.filter((x) => x.result !== 'gap');
+    const dayBefore = moment && moment.slice(0, 10) === prevDay(r.date);
+    // A day counts as held only if every judged part held (temperature, and rain where it is judged).
+    if (judgedOuts.length && dayBefore) { judged++; if (judgedOuts.every((x) => x.result === 'held')) held++; }
+    else if (judgedOuts.length) sameDay++;
+    else if (r.date < today) gaps++;
+    const gap = outs.map((x) => x.difference).filter(Boolean).join(', ');
+    const part = (x, name) => { const out = x ? outcome.get(x.id) : null; return out ? `${name} ${out.result === 'held' ? '✓ held' : out.result === 'missed' ? '✗ missed' : 'not judged (' + out.gap + ')'}` : null; };
+    const words = [part(t, 'temperature'), part(rn, 'rain')].filter(Boolean).join('; ');
+    const res = words ? (dayBefore ? words : `${words} (shown the same day, not counted)`) : (r.date === today ? 'today: not judged yet' : o?.complete ? 'not judged' : 'no full day');
+    body.push(row([`${esc(r.date === today ? `Today, ${r.date}` : r.date)}`, `Measured: ${esc(measured(o, page))}`, `We said: ${esc(said(t, rn, page, moment))}`, esc(gap || '·'), esc(res)], r.date === today ? 'today' : ''));
   }
   for (const d of future) {
-    const p = preds.filter((x) => x.due === d).sort((a, b) => a.shown_at.localeCompare(b.shown_at)).pop();
-    body.push(row([esc(d), 'Forecast', `We say: ${esc(said(p, page))}`, '·', 'to come'], 'future'));
+    const moment = preds.filter((x) => x.due === d).map((x) => x.shown_at).sort().pop();
+    body.push(row([esc(d), 'Forecast', `We say: ${esc(said(at(temps, d, moment), at(rains, d, moment), page, moment))}`, '·', 'to come'], 'future'));
   }
   const src = safeLink(h.source), lic = h.licence?.url ? safeLink(h.licence.url) : null;
   const days = past.filter((r) => r.date < today).length;

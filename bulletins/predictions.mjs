@@ -34,6 +34,20 @@ export function appendLines(lines) {
   appendFileSync(FILE, (torn ? '\n' : '') + lines.map((x) => JSON.stringify(x) + '\n').join(''), { flag: 'a' });
 }
 
+// One line per quantity, in the library's form (library.b@, 19 Nov 14:05 UTC; PrompTugal__News__Library
+// content/predictions/form.md): the low and high as one range, and the rain (a chance, as a probability from 0 to 1,
+// or an amount in mm) as another. A line is backfilled when it was recorded after its day was over.
+export function formLines({ page, maker, due, shown, v, source, licence, said, recordedDay }) {
+  const place = page === '200' ? 'Faro' : 'London';
+  const base = { type: 'prediction', site: SITE, page: `https://${SITE}/${page}/`, shown_at: shown, said_by: `${maker}, quoted by ${SITE}`.slice(0, 80),
+    source, licence, kind: 'forecast', due, said: clean(said, 300).replace(/[\[\]<>`]/g, '') };
+  if (recordedDay && due < recordedDay) base.backfilled = true;
+  const parts = [[`${place}, low and high on ${due}`, 'temp', { quantity: 't_min..t_max', unit: '°C', low: v.t_min_c, high: v.t_max_c }]];
+  if (Number.isFinite(v.rain_prob_pct)) parts.push([`${place}, chance of rain on ${due}`, 'rain', { quantity: 'rain', probability: Math.round(v.rain_prob_pct) / 100 }]);
+  else if (Number.isFinite(v.rain_mm)) parts.push([`${place}, rain on ${due}`, 'rain', { quantity: 'rain', unit: 'mm', value: v.rain_mm }]);
+  return parts.map(([subject, tag, value]) => ({ ...base, id: `bul-${page}-${due}-${tag}-${sha(subject + shown + JSON.stringify(value)).slice(0, 10)}`, subject, value }));
+}
+
 function lastValues() {
   const last = new Map();
   if (!existsSync(FILE)) return last;
@@ -66,12 +80,12 @@ export function keepPredictions() {
       const licence = https(f.licence?.url) ? { name: clean(f.licence.name, 160), url: https(f.licence.url) } : null;
       const source = https(f.source);
       if (!licence || !source) continue;
-      const key = `${p.subject}|${p.due}`, val = JSON.stringify(p.value);
-      if (last.get(key) === val) continue;
-      last.set(key, val);
-      out.push({ type: 'prediction', id: `bul-${page}-${p.due}-${sha(key + shown + val).slice(0, 12)}`, site: SITE,
-        page: `https://${SITE}/${page}/`, shown_at: shown, said_by: `${maker}, quoted by ${SITE}`, source, licence,
-        kind: 'forecast', subject: clean(p.subject, 160), due: p.due, said: clean(sent.text, 320), value: p.value });
+      for (const line of formLines({ page, maker, due: p.due, shown, v: p.value, source, licence, said: sent.text, recordedDay: new Date().toISOString().slice(0, 10) })) {
+        const key = `${line.subject}|${line.due}`, val = JSON.stringify(line.value);
+        if (last.get(key) === val) continue;
+        last.set(key, val);
+        out.push(line);
+      }
       if (out.length >= MAX_LINES_PER_RUN) break pages;
     }
   }

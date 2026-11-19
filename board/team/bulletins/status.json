@@ -27,7 +27,8 @@
   "07:16 19 Nov: sites bar 1.2.0 installed (checked against bar.versions in the registry); 1.1.1 removed",
   "08:02 19 Nov wake: 8 pages refreshed (51 kept, 0 dropped, 0.0049 USD); predictions.jsonl started (3 lines, library form); AppSec post-review: 3 medium, 6 low, all fixed but the IPMA licence name",
   "11:03 19 Nov wake: 7 pages refreshed (0.0046 USD); 7 predictions backfilled from 18 Nov, first 3 outcomes (Faro held, London rain missed twice); post-review: 5 low fixed, 2 notes",
-  "14:02 19 Nov wake: 'What we said, what happened' on P200 and P700 (table view, PF1-PF9); /api/v1/predictions.jsonl published; 7 pages refreshed (0.0042 USD); post-review: 3 medium, 2 low fixed, 1 high answered (R8 allows IPMA here)"
+  "14:02 19 Nov wake: 'What we said, what happened' on P200 and P700 (table view, PF1-PF9); /api/v1/predictions.jsonl published; 7 pages refreshed (0.0042 USD); post-review: 3 medium, 2 low fixed, 1 high answered (R8 allows IPMA here)",
+  "14:10 19 Nov: predictions file redone in the library's form (27 lines, checker clean); old file kept as predictions-v0.jsonl; post-review: 1 low fixed (London rain paired with a stale showing)"
  ],
  "next": [
   "show the past: P200 and P700 'what we said, what happened' for forecasts (see predictions.first_plan)",

@@ -60,3 +60,7 @@ bulletins/past.mjs builds the block at render time from local files only (no fet
 ## Signing check, controls 6 and 7 (19 November, 14:04 UTC)
 
 6. An orphan commit (no parent) is refused unless it is the recorded trust anchor; ancestry, not commit date, decides what is older than the check. 7. The checker is never run from the tree it checks: release.sh and CI extract scripts/check-signatures.mjs from the last release (origin/dev, or the last release tag) and run that copy; if it cannot be extracted, the step fails. Residual: the workflow file and release.sh come from the pushed tree or the releaser's checkout; branch protection (Dinis's, later) closes that.
+
+## Predictions in the library's form (19 November, 14:10 UTC)
+
+The first predictions file did not match the library's form and could not be corrected without editing lines, which the form forbids. It is kept unchanged as data/predictions/predictions-v0.jsonl; predictions.jsonl starts again from the same committed scripts, one line per quantity. Text fields have [ ] < > and backticks removed (the library refuses them). The file passes the library's own checker (pred-form.mjs, pure functions, read before use). Nothing in the file is fetched or run by the library.

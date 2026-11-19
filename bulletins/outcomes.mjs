@@ -46,32 +46,39 @@ export async function keepOutcomes() {
     catch (e) { console.log(`outcomes: ${place} history not read (${clean(e.message, 80)})`); }
   }
   const out = [];
+  const sgn = (d, u) => `${d > 0 ? '+' : d < 0 ? '-' : '±'}${Math.abs(d)} ${u}`;
   for (const p of preds.slice(0, 50)) {
-    const v = p.value || {};
-    if (String(p.subject).startsWith('Faro ')) {
+    const v = p.value || {}, subj = String(p.subject);
+    const gap = (why) => out.push({ type: 'outcome', of: p.id, checked_at: now, result: 'gap', gap: why });
+    if (subj.startsWith('Faro, ')) {
       const o = rows.faro?.get(p.due);
-      if (!o || o.complete !== true || !fin(o.low_c, -60, 60) || !fin(o.high_c, -60, 60)) continue;
-      if (!fin(v.t_min_c, -60, 60) || !fin(v.t_max_c, -60, 60)) { out.push({ type: 'outcome', of: p.id, checked_at: now, result: 'gap', gap: 'the prediction gives no minimum and maximum to compare' }); continue; }
-      if (fin(v.rain_prob_pct, 0, 100) && !fin(o.rain_mm, 0, 500)) { out.push({ type: 'outcome', of: p.id, checked_at: now, result: 'gap', gap: `IPMA's station gave no rain total for ${p.due}` }); continue; }
-      const dLow = r1(o.low_c - v.t_min_c), dHigh = r1(o.high_c - v.t_max_c);
-      const tempOk = Math.abs(dLow) <= 2 && Math.abs(dHigh) <= 2;
-      let rainTxt = '', rainOk = true;
-      if (fin(v.rain_prob_pct, 0, 100) && fin(o.rain_mm, 0, 500)) {
-        const rained = o.rain_mm >= 0.2; rainOk = (v.rain_prob_pct >= 50) === rained;
-        rainTxt = ` and ${o.rain_mm} mm of rain (${v.rain_prob_pct}% chance was given)`;
+      if (!o || o.complete !== true) continue;
+      const ev = [`${H}/faro.json`];
+      if (subj.startsWith('Faro, low and high')) {
+        if (!fin(o.low_c, -60, 60) || !fin(o.high_c, -60, 60)) { gap(`IPMA's station gave no low and high for ${p.due}`); continue; }
+        if (!fin(v.low, -60, 60) || !fin(v.high, -60, 60)) { gap('the prediction gives no low and high to compare'); continue; }
+        const dLow = r1(o.low_c - v.low), dHigh = r1(o.high_c - v.high);
+        out.push({ type: 'outcome', of: p.id, checked_at: now, result: Math.abs(dLow) <= 2 && Math.abs(dHigh) <= 2 ? 'held' : 'missed',
+          happened: `IPMA's station Faro (Aeródromo) recorded a low of ${o.low_c} °C and a high of ${o.high_c} °C on ${p.due}.`,
+          value: { quantity: 't_min..t_max', unit: '°C', low: o.low_c, high: o.high_c }, difference: `low ${sgn(dLow, '°C')}, high ${sgn(dHigh, '°C')}`, evidence: ev });
+      } else if (subj.startsWith('Faro, chance of rain')) {
+        if (!fin(o.rain_mm, 0, 500)) { gap(`IPMA's station gave no rain total for ${p.due}`); continue; }
+        if (!fin(v.probability, 0, 1)) { gap('the prediction gives no chance of rain'); continue; }
+        const rained = o.rain_mm >= 0.2;
+        out.push({ type: 'outcome', of: p.id, checked_at: now, result: (v.probability >= 0.5) === rained ? 'held' : 'missed',
+          happened: `IPMA's station Faro (Aeródromo) recorded ${o.rain_mm} mm of rain on ${p.due} (${rained ? 'rain' : 'no rain'}, counting 0.2 mm or more as rain).`,
+          value: { quantity: 'rain', unit: 'mm', value: o.rain_mm }, evidence: ev });
       }
-      out.push({ type: 'outcome', of: p.id, checked_at: now, result: tempOk && rainOk ? 'held' : 'missed',
-        happened: `IPMA's station Faro (Aeródromo) recorded a low of ${o.low_c} °C and a high of ${o.high_c} °C on ${p.due}${rainTxt}, ${fin(o.hours, 1, 24) ? Math.round(o.hours) : 'unknown'} hours of readings.`,
-        evidence: `${H}/faro.json`, value: { low_c: o.low_c, high_c: o.high_c, rain_mm: fin(o.rain_mm, 0, 500) ? o.rain_mm : null },
-        difference: { t_min_c: dLow, t_max_c: dHigh } });
-    } else if (String(p.subject).startsWith('London ')) {
+    } else if (subj.startsWith('London, ')) {
       const o = rows.london?.get(p.due);
-      if (!o || o.complete !== true || !fin(o.rain_mm_mean, 0, 500) || !fin(o.gauges, 1, 1000)) continue;
-      if (!fin(v.rain_mm, 0, 500)) { out.push({ type: 'outcome', of: p.id, checked_at: now, result: 'gap', gap: 'no rain amount was forecast, and London has no observed temperature without a key' }); continue; }
-      const d = r1(o.rain_mm_mean - v.rain_mm);
+      if (!o || o.complete !== true) continue;
+      if (subj.startsWith('London, low and high')) { gap('no observed London temperature without a key'); continue; }
+      if (!fin(o.rain_mm_mean, 0, 500) || !fin(o.gauges, 1, 1000)) { gap(`the Environment Agency gauges gave no full day for ${p.due}`); continue; }
+      if (!fin(v.value, 0, 500)) { gap('the prediction gives no rain amount'); continue; }
+      const d = r1(o.rain_mm_mean - v.value);
       out.push({ type: 'outcome', of: p.id, checked_at: now, result: Math.abs(d) <= 2 ? 'held' : 'missed',
-        happened: `The Environment Agency's ${o.gauges} London rain gauges recorded a mean of ${o.rain_mm_mean} mm on ${p.due}. The temperatures are not judged: there is no observed London temperature without a key.`,
-        evidence: `${H}/london.json`, value: { rain_mm_mean: o.rain_mm_mean, gauges: Math.round(o.gauges) }, difference: { rain_mm: d } });
+        happened: `The Environment Agency's ${Math.round(o.gauges)} London rain gauges recorded a mean of ${o.rain_mm_mean} mm on ${p.due}.`,
+        value: { quantity: 'rain', unit: 'mm', value: o.rain_mm_mean }, difference: sgn(d, 'mm'), evidence: [`${H}/london.json`] });
     }
   }
   appendLines(out);

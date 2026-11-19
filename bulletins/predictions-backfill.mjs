@@ -7,7 +7,7 @@
 // already in the file (same subject, due day, value and shown_at) is skipped. Run: node bulletins/predictions-backfill.mjs
 import { execFileSync } from 'node:child_process';
 import { ROOT, clean, sha } from './core.mjs';
-import { SITE, https, quoted, okValue, minute, readLines, appendLines } from './predictions.mjs';
+import { https, quoted, okValue, minute, readLines, appendLines, formLines } from './predictions.mjs';
 
 const git = (...a) => execFileSync('git', a, { cwd: ROOT, encoding: 'utf8', maxBuffer: 4 << 20 });
 const num = '(-?\\d{1,3}(?:\\.\\d{1,2})?)';
@@ -21,7 +21,8 @@ const FORMS = {
     value: (m) => ({ t_min_c: +m[2], t_max_c: +m[3], rain_mm: +m[4] }) },
 };
 
-const have = new Set(readLines().filter((x) => x.type === 'prediction').map((x) => `${x.subject}|${x.due}|${JSON.stringify(x.value)}|${x.shown_at}`));
+const have = new Set(readLines().filter((x) => x.type === 'prediction').map((x) => `${x.subject}|${JSON.stringify(x.value)}|${x.shown_at}`));
+const recordedDay = new Date().toISOString().slice(0, 10);
 const out = [];
 for (const [page, form] of Object.entries(FORMS)) {
   const revs = git('log', '--reverse', '--format=%H', '--', `data/scripts/${page}.json`).split('\n').filter((r) => /^[0-9a-f]{40}$/.test(r)).slice(-200);
@@ -38,13 +39,12 @@ for (const [page, form] of Object.entries(FORMS)) {
       if (!okValue(value) || !Object.values(value).map(String).every((n) => quoted(n, String(sent.text)))) continue;
       const source = https(f.source), url = https(f.licence?.url);
       if (!source || !url) continue;
-      const key = `${form.subject}|${due}`, val = JSON.stringify(value);
-      if (last.get(key) === val) continue;
-      last.set(key, val);
-      if (have.has(`${key}|${val}|${shown}`)) continue;
-      out.push({ type: 'prediction', id: `bul-${page}-${due}-${sha(key + shown + val).slice(0, 12)}`, site: SITE, page: `https://${SITE}/${page}/`,
-        shown_at: shown, said_by: `${form.maker}, quoted by ${SITE}`, source, licence: { name: clean(f.licence.name, 160), url },
-        kind: 'forecast', subject: form.subject, due, said: clean(sent.text, 320), value });
+      for (const line of formLines({ page, maker: form.maker, due, shown, v: value, source, licence: { name: clean(f.licence.name, 160), url }, said: String(sent.text), recordedDay })) {
+        const key = line.subject, val = JSON.stringify(line.value);
+        if (last.get(key) === val) continue;
+        last.set(key, val);
+        if (!have.has(`${key}|${val}|${shown}`)) out.push(line);
+      }
     }
   }
 }

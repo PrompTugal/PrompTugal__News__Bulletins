@@ -1,5 +1,5 @@
 {
- "about": "Public keys of the agents that sign and receive for bulletins.promptugal.news. Public parts only; nothing else of the key pair is in this repository.",
+ "about": "Public keys of the agents that sign and receive for bulletins.promptugal.news, each with the session it belongs to. Public parts only; nothing else of the key pairs is in this repository.",
  "keys": [
   {
    "id": "bulletins.b-promptugal",
@@ -17,6 +17,14 @@
     "label": "bulletins.b-promptugal",
     "fingerprint": "sha256:c047364aaf9cc081",
     "signing_fingerprint": "sha256:d34b1e5c106568dd"
+   },
+   "session": "session_01Kw9UwEwArsTwsHK8qeZgW5",
+   "git_signing": {
+    "ssh_public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqgnr7V0hw8lXn4nUDCMcUzE1E0ucOhmbnSwXk1r1xY",
+    "fingerprint": "SHA256:aOiC4wz8+wM2HCrEiX7UOK5sPdJ889OX7ftJEtQTQzo",
+    "made": "2026-11-19",
+    "made_with": "ssh-keygen -t ed25519 (OpenSSH 9.6)",
+    "use": "git commit signatures (gpg.format ssh), checked by scripts/check-signatures.mjs"
    }
   }
  ]

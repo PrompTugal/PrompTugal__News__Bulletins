@@ -90,6 +90,9 @@ const ALLOW = [
   // bulletins.b@ (19 Nov 2026): the sha256 pins of the three vendored sites bar files (public file hashes,
   // given by conductor.b@ after security@'s review), checked at every build. Hashes, not secrets.
   ['bulletins/sitesbar.mjs', 'long high-entropy string', 'sha256 pins of the vendored sites bar 1.1.0 files'],
+  // bulletins.b@ (19 Nov 2026): the agents' git SSH signing public keys and their fingerprints (Dinis's signed-commits
+  // guidance of 19 Nov). team/keys.json is already the one file for public keys; the "private" word check still applies.
+  ['team/keys.json', 'long high-entropy string', 'ssh-ed25519 public keys and fingerprints for commit signing'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 

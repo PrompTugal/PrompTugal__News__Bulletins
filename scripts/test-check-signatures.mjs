@@ -140,16 +140,19 @@ const uncomment = (t) => t.split('\n').filter((l) => !/^\s*#/.test(l)).map((l) =
   const job = (name) => { const m = w.match(new RegExp(`\n  ${name}:\n([\\s\\S]*?)(?=\n  [a-z]+:\n|$)`)); return m ? m[1] : ''; };
   const checks = job('checks'), build = job('build'), deploy = job('deploy'), tag = job('tag');
   const ok9 = /needs: build/.test(checks) && /GIT_NO_REPLACE_OBJECTS: '1'/.test(checks) && /NODE_OPTIONS: ''/.test(checks)
-    && /actions\/workflows\/pages\.yml\/runs\?branch=dev&event=push&status=success/.test(checks) && /\.conclusion == "success"/.test(checks) && !/deployments/.test(checks) && /no verified anchor A/.test(checks) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(checks)
+    && /actions\/workflows\/pages\.yml\/runs\?branch=dev&event=push&status=success/.test(checks) && /\.conclusion == "success"/.test(checks) && !/deployments/.test(checks)
+    && /actions\/runs\/\$\{run%%:\*\}\/jobs/.test(checks) && /select\(\.name == "checks" and \.conclusion == "success"\)/.test(checks)
+    && /git ls-files -- _site/.test(checks) && /\[ -L scripts \]/.test(checks) && /-name \.gitattributes -type f -print -exec rm -f/.test(checks)
+    && /if: github\.ref == 'refs\/heads\/dev'/.test(checks) && /no verified anchor A/.test(checks) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(checks)
     && /git show "\$A:scripts\/check-signatures\.mjs" > "\$RUNNER_TEMP\/check-signatures\.mjs"/.test(checks) && /git show "\$A:scripts\/check-commits\.mjs" > "\$RUNNER_TEMP\/check-commits\.mjs"/.test(checks)
     && /git show "\$A:scripts\/leak-scan\.mjs" > scripts\/leak-scan\.trusted\.mjs/.test(checks) && /case "\$mode" in 100644\|100755\)/.test(checks) && /case "\$NODE" in \/\*\)/.test(checks)
     && /actions\/download-artifact@v4/.test(checks) && !/node scripts\/(?!leak-scan\.trusted)/.test(checks) && !/uses: \.\//.test(checks) && !/git describe|--tags/.test(checks);
   results.push(`${ok9 ? 'pass' : 'FAIL'}  pages.yml: the checks job runs no pushed code and takes every checker from A`);
-  const okGate = /needs: \[build, checks\]/.test(deploy) && /needs\.checks\.result == 'success'/.test(tag) && !/node scripts\/(check-signatures|check-commits|leak-scan)(\.trusted)?\.mjs/.test(build);
+  const okGate = /needs: \[build, checks\]/.test(deploy) && /needs\.checks\.result == 'success'/.test(tag) && /github\.ref == 'refs\/heads\/dev'/.test(deploy) && /github\.ref == 'refs\/heads\/dev'/.test(tag) && !/node scripts\/(check-signatures|check-commits|leak-scan)(\.trusted)?\.mjs/.test(build);
   results.push(`${okGate ? 'pass' : 'FAIL'}  pages.yml: deploy and tag need the checks job, and the build job (pushed code, GITHUB_ENV) runs no security check`);
   // The site is vetted and unpacked before any trusted copy is written (events.b@), and configs come from A (signals.b@).
   const iTar = checks.indexOf('tar -xf'), iFirstCopy = checks.indexOf('git show "$A:scripts/');
-  const okTar = /tar -tvf/.test(checks) && /grep -Ev '\^\[-d\]'/.test(checks) && /find _site -type l/.test(checks) && iTar > 0 && iFirstCopy > iTar;
+  const okTar = /tar -tvf/.test(checks) && /grep -Ev '\^\[-d\]'/.test(checks) && /-C "\$RUNNER_TEMP\/site"/.test(checks) && /find "\$RUNNER_TEMP\/site" -type l/.test(checks) && /mv "\$RUNNER_TEMP\/site" _site/.test(checks) && iTar > 0 && iFirstCopy > iTar;
   results.push(`${okTar ? 'pass' : 'FAIL'}  pages.yml: the site archive is vetted and unpacked before any trusted copy is written, then checked for symlinks`);
   const okCfg = /git show "\$A:scripts\/commit-exemptions\.json" > scripts\/commit-exemptions\.json/.test(checks) && /rm -f scripts\/commit-exemptions\.json/.test(checks);
   results.push(`${okCfg ? 'pass' : 'FAIL'}  pages.yml: the trailer check's exemptions come from A, never the pushed tree`);

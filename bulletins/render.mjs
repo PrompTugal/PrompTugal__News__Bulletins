@@ -20,7 +20,7 @@ h2{font-size:1.05rem;color:var(--c);margin:1.6rem 0 .4rem;text-transform:upperca
 .label{display:inline-block;background:var(--b);color:#000;font-weight:700;padding:0 .4rem}.dim{color:var(--dim);font-size:.88rem}
 ol.script{padding-left:1.4rem}ol.script li{margin:.35rem 0}sup a{font-size:.75rem;color:var(--g);text-decoration:none}
 ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{color:var(--g)}
-.dropped{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
+.dropped{color:var(--r)}.live .v{color:var(--c)}.live.now .s{color:var(--g)}.stale,.live.stale .s{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
 .index a span:first-child{color:var(--y);font-weight:700}.index a:hover span{color:#000}
 nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
 nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}`;
@@ -35,10 +35,12 @@ export function page({ title, description, path, body, depth }) {
   const fast = Object.entries(PAGES).map(([n, p]) => `<a href="${up}${n}/">${n} ${esc(p.title)}</a>`).join('');
   // The bar's own script and stylesheet come from this host; its pop-up shows other PrompTugal sites'
   // /preview.svg and reads their /version.json, so img-src and connect-src name those hosts.
-  const bar = BAR ? `<link rel="stylesheet" href="${up}${BAR_DIR}/sites-bar.css">\n<script src="${up}${BAR_DIR}/sites-bar.js" defer></script>\n` : '';
+  const bar = (BAR ? `<link rel="stylesheet" href="${up}${BAR_DIR}/sites-bar.css">\n<script src="${up}${BAR_DIR}/sites-bar.js" defer></script>\n` : '')
+    + `<script src="${up}assets/live.js" defer></script>\n`;
+  // Live figures read data.promptugal.news only (live.js); the bar's pop-up reads the other sites' version.json.
   const csp = BAR
     ? "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://promptugal.news https://*.promptugal.news; connect-src https://promptugal.news https://*.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'"
-    : "default-src 'self'; style-src 'unsafe-inline'; img-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'";
+    : "default-src 'self'; style-src 'unsafe-inline'; img-src 'self'; connect-src https://data.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'";
   return `<!doctype html>
 <html lang="en-GB">
 <head>
@@ -65,7 +67,16 @@ ${body}
 `;
 }
 
-function bulletinBody(n, p, facts, script, made) {
+// The live strip: figures re-read in the browser from data.promptugal.news (live.js), built values as the fallback.
+function liveStrip(items) {
+  if (!items?.length) return '';
+  return `<h2>Live figures</h2><ul class="src">${items.map((x) => {
+    const l = x.licence?.url ? safeLink(x.licence.url) : null;
+    return `<li data-live data-url="${esc(x.url)}" data-path="${esc(x.path)}" data-read-at-path="${esc(x.read_at_path)}" data-read-at="${esc(x.read_at)}" data-min="${esc(x.min)}" data-max="${esc(x.max)}" data-cadence-min="${esc(x.cadence_min)}" class="live"><b class="v">${esc(x.value)}</b> ${esc(x.label)}<br><span class="dim"><span class="s">built copy: read ${esc(fmt(x.read_at))}</span>; from ${esc(x.source)}; licence ${l ? `<a href="${esc(l)}">${esc(x.licence.name)}</a>` : esc(x.licence?.name || "the source's terms")}.</span></li>`;
+  }).join('')}</ul><p class="dim">These figures are re-read from data.promptugal.news when the page opens and every five minutes; the bulletin above was written from the facts at its own time.</p>`;
+}
+
+function bulletinBody(n, p, facts, script, made, live) {
   const kept = script?.kept || [];
   const ref = (ids) => ids.map((id) => `<a href="#f-${esc(id)}">${esc(id)}</a>`).join(' ');
   const lines = !facts.length ? `<p>${esc(p.waiting || 'No facts for this page yet.')}</p>` : kept.length
@@ -84,6 +95,8 @@ function bulletinBody(n, p, facts, script, made) {
 <p class="dim">${esc(p.about)}</p>
 <h2>The bulletin</h2>
 ${lines}
+<p class="dim age" data-written="${esc(script?.written || made)}" data-cadence-min="180">Written ${esc(fmt(script?.written || made))}.</p>
+${liveStrip(live)}
 <h2>How this page was made</h2>
 <ul class="src dim">
 <li>Facts: ${facts.length}, collected by code (no model) at ${esc(fmt(made))}.</li>
@@ -105,7 +118,7 @@ export function renderAll(factsFile, scripts) {
     const made = s.facts_made || factsFile.made;
     const kept = s.kept?.length ? s.kept : facts.map((f) => ({ text: f.text, facts: [f.id] }));
     mkdirSync(src(n), { recursive: true });
-    writeFileSync(src(n, 'index.html'), page({ title: `P${n} ${p.title}: PrompTugal.news Bulletins`, description: `${p.about} ${LABEL}.`, path: `/${n}/`, depth: 1, body: bulletinBody(n, p, facts, s, made) }));
+    writeFileSync(src(n, 'index.html'), page({ title: `P${n} ${p.title}: PrompTugal.news Bulletins`, description: `${p.about} ${LABEL}.`, path: `/${n}/`, depth: 1, body: bulletinBody(n, p, facts, s, made, factsFile.live?.[n]) }));
     const transcript = `P${n} ${p.title}, PrompTugal.news Bulletins, ${fmt(made)}\n${LABEL}.\n\n${kept.map((k) => `${clean(k.text, 320)} [${k.facts.join(', ')}]`).join('\n')}\n\nSources:\n${facts.map((f) => `[${f.id}] ${f.text} (${f.source}; read ${fmt(f.read_at)}; licence ${f.licence?.name || ''} ${f.licence?.url || ''})`).join('\n')}\n\nCost: ${Number(s.cost_usd || 0).toFixed(6)} USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.\n`;
     mkdirSync(src('api', 'v1', 'bulletins'), { recursive: true });
     writeFileSync(src('api', 'v1', 'bulletins', `${n}.txt`), transcript);

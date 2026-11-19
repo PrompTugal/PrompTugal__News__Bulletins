@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-19T01:35Z",
+ "updated": "2026-11-19T01:50Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -20,7 +20,8 @@
   "23:45: Dinis's billing guidance (main repo board/guidance/2026-11-18-billing-only-on-the-main-site.md): bulletins carry no billing, so IPMA and Open-Meteo stay with their licences; every page now says the site is free; one piece of work per push",
   "23:50: the lab (/lab/): 17 experiments in newsroom formats and models, 0.0126 USD; screenshots sent to Dinis; his feedback asked",
   "01:20 19 Nov: sites bar 1.1.0 installed (pinned, verified at build); /preview.svg 320x180 from the template",
-  "01:35 19 Nov: signed commits on (own ed25519 key, session in team/keys.json; check in release.sh and CI)"
+  "01:35 19 Nov: signed commits on (own ed25519 key, session in team/keys.json; check in release.sh and CI)",
+  "01:50 19 Nov: data in the browser: live figures strip on P100, P500, P700; bulletin age and stale marking on every page"
  ],
  "next": [
   "install the sites bar when dev@ and designer@ publish it (vendored, pinned by version and sha256; registry rendered with escaping, https *.promptugal.news links only)",

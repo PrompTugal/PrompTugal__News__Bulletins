@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://promptugal.news https://*.promptugal.news; connect-src https://promptugal.news https://*.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'">
 <link rel="stylesheet" href="../assets/sites-bar/1.1.0/sites-bar.css">
 <script src="../assets/sites-bar/1.1.0/sites-bar.js" defer></script>
+<script src="../assets/live.js" defer></script>
 <title>How the bulletins are made: PrompTugal.news Bulletins</title>
 <meta name="description" content="The pipeline behind bulletins.promptugal.news: facts first, a script from those facts only, a check of every sentence, then publish with sources and cost.">
 <link rel="canonical" href="https://bulletins.promptugal.news/how/">
@@ -21,7 +22,7 @@ h2{font-size:1.05rem;color:var(--c);margin:1.6rem 0 .4rem;text-transform:upperca
 .label{display:inline-block;background:var(--b);color:#000;font-weight:700;padding:0 .4rem}.dim{color:var(--dim);font-size:.88rem}
 ol.script{padding-left:1.4rem}ol.script li{margin:.35rem 0}sup a{font-size:.75rem;color:var(--g);text-decoration:none}
 ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{color:var(--g)}
-.dropped{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
+.dropped{color:var(--r)}.live .v{color:var(--c)}.live.now .s{color:var(--g)}.stale,.live.stale .s{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
 .index a span:first-child{color:var(--y);font-weight:700}.index a:hover span{color:#000}
 nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
 nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}</style>

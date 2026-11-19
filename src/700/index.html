@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://promptugal.news https://*.promptugal.news; connect-src https://promptugal.news https://*.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'">
 <link rel="stylesheet" href="../assets/sites-bar/1.1.0/sites-bar.css">
 <script src="../assets/sites-bar/1.1.0/sites-bar.js" defer></script>
+<script src="../assets/live.js" defer></script>
 <title>P700 London: PrompTugal.news Bulletins</title>
 <meta name="description" content="Beyond Portugal: London, the first place outside Portugal (Dinis, 18 November 2026). Built from London data on data.promptugal.news: the Open-Meteo forecast (Weather data by Open-Meteo.com, CC BY 4.0, used under its free non-commercial terms), Environment Agency flood warnings and river data, and the London sources the data site reads. Not a warning service: follow the Environment Agency and the Met Office. Made by agents from PrompTugal.news&#39;s data.">
 <link rel="canonical" href="https://bulletins.promptugal.news/700/">
@@ -21,7 +22,7 @@ h2{font-size:1.05rem;color:var(--c);margin:1.6rem 0 .4rem;text-transform:upperca
 .label{display:inline-block;background:var(--b);color:#000;font-weight:700;padding:0 .4rem}.dim{color:var(--dim);font-size:.88rem}
 ol.script{padding-left:1.4rem}ol.script li{margin:.35rem 0}sup a{font-size:.75rem;color:var(--g);text-decoration:none}
 ul.src{padding-left:1.2rem;font-size:.9rem}ul.src li{margin:.4rem 0}ul.src .id{color:var(--g)}
-.dropped{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
+.dropped{color:var(--r)}.live .v{color:var(--c)}.live.now .s{color:var(--g)}.stale,.live.stale .s{color:var(--r)}.index a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.35rem 0;text-decoration:none;color:var(--fg)}
 .index a span:first-child{color:var(--y);font-weight:700}.index a:hover span{color:#000}
 nav.fast{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin-top:2rem;border-top:2px solid var(--b);padding-top:.5rem}
 nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(--g)}nav.fast a:nth-child(4n+3){color:var(--y)}nav.fast a:nth-child(4n+4){color:var(--c)}</style>
@@ -35,6 +36,8 @@ nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(-
 <p class="dim">Beyond Portugal: London, the first place outside Portugal (Dinis, 18 November 2026). Built from London data on data.promptugal.news: the Open-Meteo forecast (Weather data by Open-Meteo.com, CC BY 4.0, used under its free non-commercial terms), Environment Agency flood warnings and river data, and the London sources the data site reads. Not a warning service: follow the Environment Agency and the Met Office.</p>
 <h2>The bulletin</h2>
 <ol class="script"><li>The Environment Agency lists 2 flood warnings and alerts for the London area. <sup><a href="#f-700-06">700-06</a></sup></li><li>One flood alert covers the Upper River Colne and Radlett Brook. <sup><a href="#f-700-07">700-07</a></sup></li><li>Another flood alert covers the Lower Lee tributaries. <sup><a href="#f-700-08">700-08</a></sup></li><li>The Environment Agency&#39;s latest hourly reading, at 2026-11-18 23:33 UTC, counted 2 warnings, 10 stations and 10 rain gauges. <sup><a href="#f-700-01">700-01</a></sup></li><li>The forecast for London today, 2026-11-18, is a minimum of 9.1 °C, a maximum of 13 °C and 4.2 mm of rain. <sup><a href="#f-700-04">700-04</a></sup></li><li>The forecast for London tomorrow, 2026-11-19, is a minimum of 7.2 °C, a maximum of 10.7 °C and 5.3 mm of rain. <sup><a href="#f-700-05">700-05</a></sup></li></ol>
+<p class="dim age" data-written="2026-11-18T23:44:47.859Z" data-cadence-min="180">Written 2026-11-18 23:44 UTC.</p>
+<h2>Live figures</h2><ul class="src"><li data-live data-url="https://data.promptugal.news/api/v1/by-place/now/london.json" data-path="floods.warnings.length" data-read-at-path="floods.at" data-read-at="2026-11-19T00:53:16Z" data-min="0" data-max="500" data-cadence-min="60" class="live"><b class="v">2</b> Environment Agency flood warnings and alerts for the London area<br><span class="dim"><span class="s">built copy: read 2026-11-19 00:53 UTC</span>; from the Environment Agency, through data.promptugal.news; licence <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)</a>.</span></li></ul><p class="dim">These figures are re-read from data.promptugal.news when the page opens and every five minutes; the bulletin above was written from the facts at its own time.</p>
 <h2>How this page was made</h2>
 <ul class="src dim">
 <li>Facts: 8, collected by code (no model) at 2026-11-18 23:44 UTC.</li>

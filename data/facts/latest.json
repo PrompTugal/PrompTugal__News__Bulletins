@@ -1,5 +1,66 @@
 {
- "made": "2026-11-19T01:10:22Z",
+ "made": "2026-11-19T01:15:51Z",
+ "live": {
+  "100": [
+   {
+    "label": "active IPMA weather warnings in Portugal",
+    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
+    "path": "counts.active",
+    "read_at_path": "read_at",
+    "value": 19,
+    "read_at": "2026-11-19T00:59:10Z",
+    "cadence_min": 60,
+    "min": 0,
+    "max": 2000,
+    "licence": {
+     "name": "the source's terms",
+     "url": "https://api.ipma.pt/"
+    },
+    "source": "IPMA, through data.promptugal.news"
+   }
+  ],
+  "200": [],
+  "300": [],
+  "400": [],
+  "500": [
+   {
+    "label": "active IPMA weather warnings in Portugal",
+    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
+    "path": "counts.active",
+    "read_at_path": "read_at",
+    "value": 19,
+    "read_at": "2026-11-19T00:59:10Z",
+    "cadence_min": 60,
+    "min": 0,
+    "max": 2000,
+    "licence": {
+     "name": "the source's terms",
+     "url": "https://api.ipma.pt/"
+    },
+    "source": "IPMA, through data.promptugal.news"
+   }
+  ],
+  "600": [],
+  "700": [
+   {
+    "label": "Environment Agency flood warnings and alerts for the London area",
+    "url": "https://data.promptugal.news/api/v1/by-place/now/london.json",
+    "path": "floods.warnings.length",
+    "read_at_path": "floods.at",
+    "value": 2,
+    "read_at": "2026-11-19T00:53:16Z",
+    "cadence_min": 60,
+    "min": 0,
+    "max": 500,
+    "licence": {
+     "name": "Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta)",
+     "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    "source": "the Environment Agency, through data.promptugal.news"
+   }
+  ],
+  "800": []
+ },
  "by": "bulletins.b@PrompTugal.dinis (bulletins/collect.mjs, code, no model)",
  "licence": {
   "name": "CC BY 4.0",
@@ -64,7 +125,7 @@
     "text": "PrompTugal.news published ‘A Portuguese ATM offered a 13.6% mark-up, twice, with a flag’ on 2026-11-17, filed under Portugal.",
     "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
     "origin": "https://promptugal.news/articles/atm-currency-conversion-portugal-mark-up.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -76,7 +137,7 @@
     "text": "PrompTugal.news published ‘The payment desk that could not take payment’ on 2026-11-17, filed under Portugal.",
     "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
     "origin": "https://promptugal.news/articles/the-payment-desk-that-could-not-take-payment.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -88,7 +149,7 @@
     "text": "PrompTugal.news published ‘Who wrote this, who checked it, and who signs it’ on 2026-11-17, filed under Portugal.",
     "source": "https://promptugal.news/api/v1/by-place/portugal/feed.json",
     "origin": "https://promptugal.news/articles/who-wrote-this-who-checked-it-who-signs-it.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -246,7 +307,7 @@
     "text": "PrompTugal.news published ‘A 26-second RiskMandate film, made with Claude on a laptop’ on 2026-11-16, filed under the Algarve.",
     "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
     "origin": "https://promptugal.news/articles/riskmandate-film-claude-laptop.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -258,7 +319,7 @@
     "text": "PrompTugal.news published ‘Alcoutim has no AI company, but the road is being built’ on 2026-11-16, filed under the Algarve.",
     "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
     "origin": "https://promptugal.news/articles/alcoutim-ai-path-runs-through-the-guadiana.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -270,7 +331,7 @@
     "text": "PrompTugal.news published ‘Alcoutim's council is a partner in an AI weeding robot project’ on 2026-11-16, filed under the Algarve.",
     "source": "https://promptugal.news/api/v1/by-place/algarve/feed.json",
     "origin": "https://promptugal.news/articles/alcoutim-council-in-a-weeding-robot-project.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -332,7 +393,7 @@
     "text": "PrompTugal.news's Lisbon feed links to ‘Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI’, a story published by portugalglobal.pt, not by PrompTugal.news.",
     "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
     "origin": "https://www.portugalglobal.pt/en/news/2026/novembro/web-summit-features-humanoid-robots-and-record-chinese-presence/",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "the publisher's terms (linked, not copied)",
      "url": "https://www.portugalglobal.pt/en/news/2026/novembro/web-summit-features-humanoid-robots-and-record-chinese-presence/"
@@ -344,7 +405,7 @@
     "text": "PrompTugal.news's Lisbon feed links to ‘Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology’, a story published by vestbee.com, not by PrompTugal.news.",
     "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
     "origin": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "the publisher's terms (linked, not copied)",
      "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026"
@@ -356,7 +417,7 @@
     "text": "PrompTugal.news's Lisbon feed links to ‘University of Lisbon builds two AI data centres’, a story published by portugalglobal.pt, not by PrompTugal.news.",
     "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
     "origin": "https://www.portugalglobal.pt/en/news/2026/julho/university-of-lisbon-to-invest-20m-in-ai-science-data-centres/",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "the publisher's terms (linked, not copied)",
      "url": "https://www.portugalglobal.pt/en/news/2026/julho/university-of-lisbon-to-invest-20m-in-ai-science-data-centres/"
@@ -370,7 +431,7 @@
     "text": "PrompTugal.news published ‘Getting around Lisbon on Wednesday: what operators and the government say’ on 2026-11-11, filed under the summit.",
     "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
     "origin": "https://promptugal.news/articles/getting-around-lisbon-wednesday.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -382,7 +443,7 @@
     "text": "PrompTugal.news published ‘Manus 2.0 gives each agent its own email, phone and wallet’ on 2026-11-11, filed under the summit.",
     "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
     "origin": "https://promptugal.news/articles/manus-2-0-agents-own-email-phone-wallet.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -394,7 +455,7 @@
     "text": "PrompTugal.news published ‘Thursday at Web Summit: a practical guide to the last day’ on 2026-11-11, filed under the summit.",
     "source": "https://promptugal.news/api/v1/topics/the-summit/feed.json",
     "origin": "https://promptugal.news/articles/thursday-last-day-guide.html",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -406,7 +467,7 @@
     "text": "library.promptugal.news catalogues 80 items in 1 collection, with 7 recorded as missing.",
     "source": "https://library.promptugal.news/api/v1/",
     "origin": "https://library.promptugal.news/api/v1/",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -418,7 +479,7 @@
     "text": "The library's fact-checker, pass 1 on 2026-11-18: of 87 published PrompTugal.news articles, 13 map every claim to a recorded source, 39 record sources for the story as a whole and 35 name sources only in the text.",
     "source": "https://library.promptugal.news/api/v1/fact-check/index.json",
     "origin": "https://library.promptugal.news/api/v1/fact-check/index.json",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -542,7 +603,7 @@
     "text": "data.promptugal.news lists 23 sources: 18 read without problems at their last run, 3 partly failed, 1 archived.",
     "source": "https://data.promptugal.news/api/v1/",
     "origin": "https://data.promptugal.news/api/v1/",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -915,87 +976,87 @@
   "800": [
    {
     "id": "800-01",
-    "text": "In the 24 hours to 2026-11-19 01:10 UTC, the main PrompTugal.news repository took 418 commits of work and 71 site releases.",
+    "text": "In the 24 hours to 2026-11-19 01:15 UTC, the main PrompTugal.news repository took 423 commits of work and 71 site releases.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
     },
-    "by": "git log of PrompTugal__News__Website dev at 142cc903"
+    "by": "git log of PrompTugal__News__Website dev at 28510929"
    },
    {
     "id": "800-02",
-    "text": "The agents with the most commits in that time: conductor.b@PrompTugal.dinis (96), dev@PrompTugal.dinis (42), abp@PrompTugal.dinis (31), journalist@PrompTugal.dinis (30), security@PrompTugal.dinis (29), datasci.places@PrompTugal.dinis (25).",
+    "text": "The agents with the most commits in that time: conductor.b@PrompTugal.dinis (99), dev@PrompTugal.dinis (41), abp@PrompTugal.dinis (32), security@PrompTugal.dinis (30), journalist@PrompTugal.dinis (30), datasci.places@PrompTugal.dinis (25).",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
     },
-    "by": "git log of PrompTugal__News__Website dev at 142cc903"
+    "by": "git log of PrompTugal__News__Website dev at 28510929"
    },
    {
     "id": "800-03",
-    "text": "At 01:08 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
+    "text": "At 01:14 UTC on 2026-11-19, security@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
     },
-    "by": "git log of PrompTugal__News__Website dev at 142cc903"
+    "by": "git log of PrompTugal__News__Website dev at 28510929"
    },
    {
     "id": "800-04",
-    "text": "At 01:07 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
+    "text": "At 01:13 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
     },
-    "by": "git log of PrompTugal__News__Website dev at 142cc903"
+    "by": "git log of PrompTugal__News__Website dev at 28510929"
    },
    {
     "id": "800-05",
-    "text": "At 01:06 UTC on 2026-11-19, dev@PrompTugal.dinis committed work to the main repository.",
+    "text": "At 01:13 UTC on 2026-11-19, conductor.b@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
     },
-    "by": "git log of PrompTugal__News__Website dev at 142cc903"
+    "by": "git log of PrompTugal__News__Website dev at 28510929"
    },
    {
     "id": "800-06",
-    "text": "At 01:03 UTC on 2026-11-19, rights@PrompTugal.dinis committed work to the main repository.",
+    "text": "At 01:13 UTC on 2026-11-19, abp@PrompTugal.dinis committed work to the main repository.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/commits/dev",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
     },
-    "by": "git log of PrompTugal__News__Website dev at 142cc903"
+    "by": "git log of PrompTugal__News__Website dev at 28510929"
    },
    {
     "id": "800-07",
     "text": "64 agents keep a status file in the main repository's board; 20 updated it in the last 24 hours.",
     "source": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
     "origin": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/board/team",
-    "read_at": "2026-11-19T01:10:22Z",
+    "read_at": "2026-11-19T01:15:51Z",
     "licence": {
      "name": "CC BY 4.0",
      "url": "https://creativecommons.org/licenses/by/4.0/"
     },
-    "by": "board/team/*/status.json at 142cc903"
+    "by": "board/team/*/status.json at 28510929"
    },
    {
     "id": "800-08",

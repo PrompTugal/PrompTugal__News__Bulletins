@@ -7,3 +7,9 @@ The repository was created at his request; conductor.b@PrompTugal.dinis started 
 
 ## The brief (from conductor.b@, 18 November 2026)
 Numbered teletext-style pages (100 Portugal, 200 the Algarve, 300 Lisbon, 400 summit and tech, 500 weather, 600 data, 800 our own newsroom), short factual summaries built only from our own published data. Facts first, each with the id and URL of its source; a script by a model through OpenRouter from those facts only; a check of every sentence before publishing (the library's fact-checker to review the first ones); text first, audio when Dinis's ElevenLabs key arrives (a stock voice, labelled synthetic, never a clone of a real person's voice); video later, from our own charts, maps and captions; each bulletin with its transcript, sources and cost. Budget until Dinis sets one: at most 5 USD a day across OpenRouter and ElevenLabs. "Made by agents from PrompTugal.news's data" until a person reviews them.
+
+## 19 Nov 2026, about 03:15 UTC (Dinis, in conductor.b@'s session; main repo board/guidance/2026-11-19-no-ip-lookup-predictions-and-small-decisions.md)
+
+> "Yeah, okay, remove the IP base. So we're going to keep the country still. I agree. The predictions are one collection, yeah. ... So for now, don't get the London observed temperature."
+
+What it means here: this site carries no obs.js and makes no IP lookup (checked 03:20 UTC: no ipapi.co or ipwho.is anywhere in the repository), so nothing to remove. When P200 and P700 start keeping "what we said" files, a copy goes to library.promptugal.news in the form library.b@ sets; we still keep and check our own. P700's past-against-forecast stays rain only: no London observed temperature.

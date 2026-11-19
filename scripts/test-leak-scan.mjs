@@ -30,6 +30,15 @@ expect('an ssh-ed25519 key in the published field name of another file fails', k
 expect('an ssh-ed25519 key in code fails', kinds('bulletins/core.mjs', `const k = '${ed()}';`), PUB);
 expect('an ssh-rsa key fails, even in team/keys.json', kinds('team/keys.json', keysLine(rsa())), PUB);
 expect('an ecdsa key fails in a status file', kinds('board/team/bulletins/status.json', `"k": "${ecdsa()}"`), PUB);
+for (const [name, k] of [
+  ['ecdsa-sha2-nistp384', 'ecdsa-' + 'sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQ' + b64(100)],
+  ['ecdsa-sha2-nistp521', 'ecdsa-' + 'sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjE' + b64(130)],
+  ['sk-ssh-ed25519@openssh.com', 'sk-' + 'ssh-ed25519@openssh.com AAAAGnNrLXNzaC1' + 'lZDI1NTE5QG9wZW5zc2guY29t' + b64(60)],
+  ['sk-ecdsa-sha2-nistp256@openssh.com', 'sk-' + 'ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNh' + 'LXNoYTItbmlzdHAy' + 'NTZAb3BlbnNzaC5jb20' + b64(90)],
+]) {
+  expect(`an ${name} key fails in its published field`, kinds('team/keys.json', keysLine(k)), PUB);
+  expect(`an ${name} key fails in code`, kinds('bulletins/core.mjs', `const k = '${k}';`), PUB);
+}
 expect('a key line with a comment after it fails', kinds('team/keys.json', `  "ssh_public_key": "${ed()} me@host",`), PUB);
 expect('the words ssh-ed25519 without a key pass', kinds('README.md', 'Commits are signed with an ssh-ed25519 key.'), 'clean');
 

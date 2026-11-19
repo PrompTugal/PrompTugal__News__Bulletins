@@ -122,16 +122,29 @@ try {
 } finally {
   rmSync(dir, { recursive: true, force: true });
 }
-// Control 7 (widened) in the real wiring: release.sh and the Pages workflow take every security check (the signature
-// check, the trailer check, the leak scan) from the last release with git show, and never run the pushed tree's copy.
-for (const f of ['release.sh', '../.github/workflows/pages.yml']) {
-  const t = readFileSync(join(HERE, f), 'utf8');
-  const extracts = f === 'release.sh' ? /git show "origin\/dev:scripts\/\$1\.mjs" > "scripts\/\$1\.trusted\.mjs"/.test(t) && /trusted leak-scan; trusted check-commits; trusted check-signatures/.test(t)
-    : /for c in leak-scan check-commits check-signatures; do git show "\$A:scripts\/\$c\.mjs" > "scripts\/\$c\.trusted\.mjs"; done/.test(t)
-      && /deployments\?environment=github-pages/.test(t) && /no verified anchor A/.test(t) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(t) && !/git describe|--tags|git show "\$(base|last|BEFORE)/.test(t);
-  const runs = ['leak-scan', 'check-commits', 'check-signatures'].every((c) => new RegExp(`node scripts/${c}\\.trusted\\.mjs`).test(t));
-  const direct = /node scripts\/(leak-scan|check-commits|check-signatures)\.mjs/.test(t);
-  results.push(`${extracts && runs && !direct ? 'pass' : 'FAIL'}  ${f.replace('../', '')} runs every security check from the last release's copy, never the pushed tree's`);
+// Controls 7 and 9 in the real wiring. release.sh takes every security check from origin/dev. The Pages workflow runs
+// them in their own 'checks' job, which runs no pushed code: each checker comes from A (the last successful
+// github-pages deployment, from GitHub's API), with GIT_NO_REPLACE_OBJECTS set, NODE_OPTIONS cleared, regular files only
+// and an absolute node; the site comes in as an artifact. Deploy and tag need that job. A GITHUB_ENV written by a
+// pushed build step lives in the build job only, so it cannot change the result (security@'s test for control 9).
+{
+  const t = readFileSync(join(HERE, 'release.sh'), 'utf8');
+  const ok = /git show "origin\/dev:scripts\/\$1\.mjs" > "scripts\/\$1\.trusted\.mjs"/.test(t) && /trusted leak-scan; trusted check-commits; trusted check-signatures/.test(t)
+    && ['leak-scan', 'check-commits', 'check-signatures'].every((c) => new RegExp(`node scripts/${c}\\.trusted\\.mjs`).test(t)) && !/node scripts\/(leak-scan|check-commits|check-signatures)\.mjs/.test(t);
+  results.push(`${ok ? 'pass' : 'FAIL'}  release.sh runs every security check from the last release's copy, never the pushed tree's`);
+}
+{
+  const w = readFileSync(join(HERE, '../.github/workflows/pages.yml'), 'utf8');
+  const job = (name) => { const m = w.match(new RegExp(`\n  ${name}:\n([\\s\\S]*?)(?=\n  [a-z]+:\n|$)`)); return m ? m[1] : ''; };
+  const checks = job('checks'), build = job('build'), deploy = job('deploy'), tag = job('tag');
+  const ok9 = /needs: build/.test(checks) && /GIT_NO_REPLACE_OBJECTS: '1'/.test(checks) && /NODE_OPTIONS: ''/.test(checks)
+    && /deployments\?environment=github-pages/.test(checks) && /no verified anchor A/.test(checks) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(checks)
+    && /git show "\$A:scripts\/check-signatures\.mjs" > "\$RUNNER_TEMP\/check-signatures\.mjs"/.test(checks) && /git show "\$A:scripts\/check-commits\.mjs" > "\$RUNNER_TEMP\/check-commits\.mjs"/.test(checks)
+    && /git show "\$A:scripts\/leak-scan\.mjs" > scripts\/leak-scan\.trusted\.mjs/.test(checks) && /case "\$mode" in 100644\|100755\)/.test(checks) && /case "\$NODE" in \/\*\)/.test(checks)
+    && /actions\/download-artifact@v4/.test(checks) && !/node scripts\/(?!leak-scan\.trusted)/.test(checks) && !/uses: \.\//.test(checks) && !/git describe|--tags/.test(checks);
+  results.push(`${ok9 ? 'pass' : 'FAIL'}  pages.yml: the checks job runs no pushed code and takes every checker from A`);
+  const okGate = /needs: \[build, checks\]/.test(deploy) && /needs\.checks\.result == 'success'/.test(tag) && !/node scripts\/(check-signatures|check-commits|leak-scan)(\.trusted)?\.mjs/.test(build);
+  results.push(`${okGate ? 'pass' : 'FAIL'}  pages.yml: deploy and tag need the checks job, and the build job (pushed code, GITHUB_ENV) runs no security check`);
 }
 console.log(results.join('\n'));
 const failed = results.filter((r) => r.startsWith('FAIL')).length;

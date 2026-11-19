@@ -68,3 +68,7 @@ The first predictions file did not match the library's form and could not be cor
 ## Controls 6 to 8, widened (19 November, 14:12 UTC)
 
 security@'s rulings of 14:07 and 14:08. The signing check refuses a shallow clone, and CI fails one. The leak scan, the trailer check and the signing check run from the last release's copy (git show into scripts/<name>.trusted.mjs, git-ignored), never from the pushed tree; a missing copy fails closed. Skips by ancestry only. Tests in scripts/test-check-signatures.mjs (18). Residual: the workflow YAML and release.sh come from the pushed tree or the releaser's checkout (branch protection, Dinis's).
+
+## Control 9: a checks job that runs no pushed code (19 November, 14:23 UTC)
+
+security@'s fifth ruling. The build job runs the pushed code (build, validator, tests) and uploads the site. The checks job then checks out the commits only as data. It reads A from GitHub's deployments API, never from git or a tag, and runs A's checkers: from RUNNER_TEMP for the trailer and signing checks, and from scripts/leak-scan.trusted.mjs for the leak scan, which needs its own path. It uses an absolute node, GIT_NO_REPLACE_OBJECTS=1, cleared NODE_OPTIONS and regular files only, and reads the site from the artifact. Deploy and tag need it, and GITHUB_ENV and GITHUB_PATH do not cross jobs. Residual: the workflow file is still from the pushed tree (branch protection, Dinis's).

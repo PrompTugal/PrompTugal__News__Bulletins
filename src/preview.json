@@ -1,6 +1,6 @@
 {
  "about": "What /preview.svg and /preview.png show, and where each figure comes from.",
- "made": "2026-11-19T19:46:51Z",
+ "made": "2026-11-19T20:02:27Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -11,15 +11,15 @@
    "label": "pages"
   },
   {
-   "value": "52",
+   "value": "54",
    "label": "checked sentences"
   },
   {
-   "value": "83",
+   "value": "84",
    "label": "facts with sources"
   },
   {
-   "value": "0.014 USD",
+   "value": "0.018 USD",
    "label": "spent on models today"
   }
  ],

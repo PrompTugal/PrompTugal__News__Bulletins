@@ -44,6 +44,8 @@ jobs:
           node-version: 22
       - name: The signature check's own tests (throwaway repository and keys)
         run: node scripts/test-check-signatures.mjs
+      - name: Control 10's own tests (no symlinks; throwaway repositories)
+        run: node scripts/test-check-symlinks.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
@@ -86,7 +88,7 @@ jobs:
         with:
           name: github-pages
           path: ${{ runner.temp }}/pages-artifact
-      - name: The security checks, from the last verified commit A (controls 1 to 9)
+      - name: The security checks, from the last verified commit A (controls 1 to 10)
         env:
           AFTER: ${{ github.sha }}
           GH_TOKEN: ${{ github.token }}
@@ -126,6 +128,26 @@ jobs:
           tar -xf "$RUNNER_TEMP/pages-artifact/artifact.tar" -C "$RUNNER_TEMP/site" --no-same-owner --no-same-permissions
           if [ -n "$(find "$RUNNER_TEMP/site" -type l | head -1)" ]; then echo "a symlink in the site" >&2; exit 1; fi
           rm -rf _site; mv "$RUNNER_TEMP/site" _site
+          # Control 10, no symlinks (security@ ed70bd996; events.b@ 44d5402; library.b@ LIB-2026-069): A's checker and A's
+          # exceptions (path and target, each with a reason) read every commit of A..AFTER (merges too), AFTER's tree,
+          # the checkout and the site, NUL-separated and as bytes. Bootstrap: only while A is at or before bf0c2fc28639
+          # (the last commit without the checker) is AFTER's copy used; any later A must carry it.
+          if git cat-file -e "$A:scripts/check-symlinks.mjs" 2>/dev/null; then
+            git cat-file blob "$A:scripts/check-symlinks.mjs" > "$RUNNER_TEMP/check-symlinks.mjs"
+          elif git merge-base --is-ancestor "$A" bf0c2fc28639c0a6023c686a0316e3476fe22ade; then
+            # Only the reviewed checker (its blob id, pinned here) may bootstrap: a neutered copy is refused.
+            test "$(git rev-parse "$AFTER:scripts/check-symlinks.mjs")" = 5001415bc3284f9f49fbdd07a954fbc8b07e2e49 || { echo "control 10 bootstrap: AFTER's checker is not the reviewed one" >&2; exit 1; }
+            echo "control 10 bootstrap: A predates the checker, so this run uses the reviewed copy from AFTER"
+            git cat-file blob "$AFTER:scripts/check-symlinks.mjs" > "$RUNNER_TEMP/check-symlinks.mjs"
+          else
+            echo "scripts/check-symlinks.mjs is missing from A (control 10)" >&2; exit 1
+          fi
+          ex=()
+          if git cat-file -e "$A:scripts/symlink-exceptions.json" 2>/dev/null; then
+            git cat-file blob "$A:scripts/symlink-exceptions.json" > "$RUNNER_TEMP/symlink-exceptions.json"
+            ex=(--exceptions "$RUNNER_TEMP/symlink-exceptions.json")
+          fi
+          "$NODE" "$RUNNER_TEMP/check-symlinks.mjs" "$A" "$AFTER" ${ex[@]+"${ex[@]}"} --site _site
           # Every config the checks read comes from A too (signals.b@'s finding): A's commit-exemptions.json, or none.
           rm -f scripts/commit-exemptions.json
           if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git cat-file blob "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi

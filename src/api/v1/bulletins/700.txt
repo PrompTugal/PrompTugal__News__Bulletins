@@ -1,22 +1,22 @@
-P700 London, PrompTugal.news Bulletins, 2026-11-19 14:00 UTC
+P700 London, PrompTugal.news Bulletins, 2026-11-19 20:02 UTC
 Made by agents from PrompTugal.news's data.
 
-The Environment Agency lists 2 flood warnings and alerts for the London area, with 2 Warning no longer in force. [700-06]
-Environment Agency, Warning no longer in force: Upper River Colne and Radlett Brook. [700-07]
-Environment Agency, Warning no longer in force: Lower Lee tributaries. [700-08]
-Today in London, Open-Meteo forecasts a minimum of 7.2 °C, a maximum of 10.6 °C and rain of 6.5 mm. [700-04]
-Tomorrow in London, Open-Meteo forecasts a minimum of 6.9 °C, a maximum of 10.2 °C and rain of 1.1 mm. [700-05]
-Flood warnings and Thames levels were last read at 2026-11-19 13:04 UTC, covering 2 warnings, 10 stations and 10 rain gauges. [700-01]
-TfL JamCams were last read at 2026-11-19 13:08 UTC, with 889 cameras. [700-03]
+The Environment Agency lists 2 flood warnings and alerts for the London area. [700-06]
+The Environment Agency says the Upper River Colne and Radlett Brook warning is no longer in force. [700-07]
+The Environment Agency says the Lower Lee tributaries warning is no longer in force. [700-08]
+Today's London forecast for 2026-11-19 gives a minimum of 7.2 °C, a maximum of 10.6 °C and 6.5 mm of rain. [700-04]
+Tomorrow's London forecast for 2026-11-20 gives a minimum of 6.9 °C, a maximum of 10.2 °C and 1.1 mm of rain. [700-05]
+Flood warnings and Thames levels are read hourly from 10 stations and 10 rain gauges, last at 2026-11-19 18:04 UTC. [700-01]
+London traffic cameras number 889 (TfL JamCams), read hourly, last at 2026-11-19 18:15 UTC. [700-03]
 
 Sources:
-[700-01] London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 13:04 UTC: 2 warnings, 10 stations, 10 rain gauges. (https://data.promptugal.news/api/v1/ea-flood/latest.json; read 2026-11-19 13:04 UTC; licence the source's terms (on its card) https://data.promptugal.news/api/v1/ea-flood/card.json)
+[700-01] London flood warnings and Thames levels (Environment Agency), read hourly, last at 2026-11-19 18:04 UTC: 2 warnings, 10 stations, 10 rain gauges. (https://data.promptugal.news/api/v1/ea-flood/latest.json; read 2026-11-19 18:04 UTC; licence the source's terms (on its card) https://data.promptugal.news/api/v1/ea-flood/card.json)
 [700-02] London forecast (Open-Meteo), read every 6 hours, last at 2026-11-19 06:15 UTC: 72 hourly. (https://data.promptugal.news/api/v1/open-meteo-london/latest.json; read 2026-11-19 06:15 UTC; licence the source's terms (on its card) https://data.promptugal.news/api/v1/open-meteo-london/card.json)
-[700-03] London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 13:08 UTC: 889 cameras. (https://data.promptugal.news/api/v1/tfl-jamcams/latest.json; read 2026-11-19 13:08 UTC; licence the source's terms (on its card) https://data.promptugal.news/api/v1/tfl-jamcams/card.json)
+[700-03] London traffic cameras (TfL JamCams), read hourly, last at 2026-11-19 18:15 UTC: 889 cameras. (https://data.promptugal.news/api/v1/tfl-jamcams/latest.json; read 2026-11-19 18:15 UTC; licence the source's terms (on its card) https://data.promptugal.news/api/v1/tfl-jamcams/card.json)
 [700-04] Open-Meteo forecast for London today (2026-11-19): minimum 7.2 °C, maximum 10.6 °C, rain 6.5 mm. (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 06:15 UTC; licence CC BY 4.0; Weather data by Open-Meteo.com https://open-meteo.com/en/licence)
 [700-05] Open-Meteo forecast for London tomorrow (2026-11-20): minimum 6.9 °C, maximum 10.2 °C, rain 1.1 mm. (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 06:15 UTC; licence CC BY 4.0; Weather data by Open-Meteo.com https://open-meteo.com/en/licence)
-[700-06] The Environment Agency lists 2 flood warnings and alerts for the London area (2 Warning no longer in force). (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 13:04 UTC; licence Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta) https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
-[700-07] Environment Agency, Warning no longer in force: Upper River Colne and Radlett Brook. (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 13:04 UTC; licence Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta) https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
-[700-08] Environment Agency, Warning no longer in force: Lower Lee tributaries. (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 13:04 UTC; licence Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta) https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+[700-06] The Environment Agency lists 2 flood warnings and alerts for the London area (2 Warning no longer in force). (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 18:04 UTC; licence Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta) https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+[700-07] Environment Agency, Warning no longer in force: Upper River Colne and Radlett Brook. (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 18:04 UTC; licence Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta) https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+[700-08] Environment Agency, Warning no longer in force: Lower Lee tributaries. (https://data.promptugal.news/api/v1/by-place/now/london.json; read 2026-11-19 18:04 UTC; licence Open Government Licence v3.0; this uses Environment Agency flood and river level data from the real-time data API (Beta) https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
 
-Cost: 0.000603 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.
+Cost: 0.000544 USD. Licence of this bulletin: CC BY 4.0; each fact keeps its source's licence.

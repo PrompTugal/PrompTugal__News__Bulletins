@@ -31,8 +31,8 @@ export const MAP_DATA = {
 const digest = (f, algo) => `${algo}-` + createHash(algo).update(readFileSync(join(ROOT, 'src', MAP_DIR, f))).digest('base64');
 let ON = false;
 export const mapOn = () => ON;
-// The map is drawn only if the registry lists 1.0.0 with a pin for each file and every vendored file matches its
-// pin. If the registry cannot be read or does not list it, the map is left off (logged). A mismatch stops the build.
+// The map is drawn only if the registry lists 1.0.0 with a pin for each file, every vendored file matches its pin,
+// and map.review reads "passed". If the registry cannot be read or does not list it, the map is left off (logged). A mismatch stops the build.
 export async function checkMap() {
   ON = false;
   let reg = null;
@@ -40,11 +40,15 @@ export async function checkMap() {
   const m = reg?.map;
   const pins = m?.versions?.[MAP_VERSION]?.integrity || m?.versions?.[MAP_VERSION] || (m?.version === MAP_VERSION ? m.integrity : null);
   if (!pins || typeof pins !== 'object') { console.log(`map: off, the registry does not list ptmap ${MAP_VERSION}`); return false; }
+  // The registry's install note: vendor it only once map.review reads "passed" (security@).
+  const reviewed = /^passed\b/.test(String(m.review || ''));
+  if (!reviewed) { console.log(`map: off, the registry's review reads "${String(m.review || '').replace(/[^\w :()@.-]/g, '').slice(0, 60)}"`); }
   for (const f of FILES) {
     const want = pins[f] ?? pins[f.replace('ptmap.', '')];
     if (typeof want !== 'string' || !SRI.test(want)) throw new Error(`ptmap ${f}: the registry lists ${MAP_VERSION} without a pin in SRI form`);
     if (digest(f, want.slice(0, want.indexOf('-'))) !== want) throw new Error(`ptmap ${f}: does not match the registry's pin`);
   }
-  ON = true;
-  return true;
+  // The pins are checked either way; the map is drawn only once the review has passed.
+  ON = reviewed;
+  return ON;
 }

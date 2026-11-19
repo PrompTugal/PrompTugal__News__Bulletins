@@ -29,6 +29,14 @@ node scripts/leak-scan.trusted.mjs
 trailers
 node scripts/test-check-signatures.mjs >/dev/null # the check's own tests first (conductor.b@, 19 Nov 02:16 UTC)
 node scripts/check-signatures.trusted.mjs origin/dev HEAD
+# Control 10 (no symlinks): its tests, then origin/dev's copy of the check (HEAD's only while origin/dev has none).
+node scripts/test-check-symlinks.mjs >/dev/null
+symlinks() {
+  if git cat-file -e origin/dev:scripts/check-symlinks.mjs 2>/dev/null; then git show origin/dev:scripts/check-symlinks.mjs > scripts/check-symlinks.trusted.mjs; else test "$(git hash-object scripts/check-symlinks.mjs)" = 5001415bc3284f9f49fbdd07a954fbc8b07e2e49 || { echo "control 10: no checker on origin/dev and HEAD's is not the reviewed one" >&2; return 1; }; cp scripts/check-symlinks.mjs scripts/check-symlinks.trusted.mjs; fi
+  local ex=(); if git cat-file -e origin/dev:scripts/symlink-exceptions.json 2>/dev/null; then git show origin/dev:scripts/symlink-exceptions.json > "$(git rev-parse --git-dir)/symlink-exceptions.json"; ex=(--exceptions "$(git rev-parse --git-dir)/symlink-exceptions.json"); fi
+  node scripts/check-symlinks.trusted.mjs "$(git rev-parse origin/dev)" "$(git rev-parse HEAD)" ${ex[@]+"${ex[@]}"} --site src
+}
+symlinks
 for i in 1 2 3 4 5; do
   git fetch -q origin dev
   git rebase -q origin/dev
@@ -39,6 +47,7 @@ for i in 1 2 3 4 5; do
   node scripts/leak-scan.trusted.mjs >/dev/null
   trailers >/dev/null
   node scripts/check-signatures.trusted.mjs origin/dev HEAD >/dev/null
+  symlinks >/dev/null
   if git -c push.negotiate=true push -q origin HEAD:dev; then echo "released $(git rev-parse --short HEAD) to dev"; exit 0; fi
   sleep $((i * 3))
 done

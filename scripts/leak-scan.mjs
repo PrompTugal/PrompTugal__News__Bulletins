@@ -30,6 +30,10 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DASHES = '-'.repeat(5);
 const PRIVATE_BLOCK = new RegExp(`${DASHES}BEGIN [A-Z0-9 ]*PRIVATE KEY( BLOCK)?${DASHES}`);
 const PUBLIC_BLOCK = new RegExp(`${DASHES}BEGIN (?:RSA |EC )?PUBLIC KEY${DASHES}[\\s\\S]*?${DASHES}END (?:RSA |EC )?PUBLIC KEY${DASHES}`, 'g');
+// An OpenSSH public key (security@'s ruling, Website 1acd10498, relayed 19 Nov 05:14 UTC): flagged everywhere except
+// its one published field, team/keys.json git_signing.ssh_public_key (the allowed-signers file is made in a temporary
+// directory at check time and never stored). The entropy rule alone missed about 1 in 75 keys (library.b@).
+const SSH_PUBLIC = /\b(?:ssh-ed25519|ssh-rsa|ssh-dss|ecdsa-sha2-nistp(?:256|384|521)|sk-ssh-ed25519@openssh\.com|sk-ecdsa-sha2-nistp256@openssh\.com) AAAA[A-Za-z0-9+/]{20,}/;
 const PUBLIC_BEGIN = new RegExp(`${DASHES}BEGIN (?:RSA |EC |PGP )?PUBLIC KEY( BLOCK)?${DASHES}`);
 
 // Exact shapes: [kind, regex]. Order matters only for the report.
@@ -90,6 +94,7 @@ const ALLOW = [
   // bulletins.b@ (19 Nov 2026, security@'s ruling of 01:30 UTC): the published plain forms in team/keys.json only, each by
   // its field and exact pattern. Private-key words, a JWK d, tokens and any other high-entropy field still fail.
   ['team/keys.json', 'long high-entropy string', 'an ssh-ed25519 public key line, without its comment', /^\s*"ssh_public_key": "ssh-ed25519 [A-Za-z0-9+/]{68}",?$/],
+  ['team/keys.json', 'ssh public key outside its published field', 'the same published line', /^\s*"ssh_public_key": "ssh-ed25519 [A-Za-z0-9+/]{68}",?$/],
   ['team/keys.json', 'long high-entropy string', 'an ssh key fingerprint', /^\s*"fingerprint": "SHA256:[A-Za-z0-9+/]{43}",?$/],
   // No SRI pin is exempted: security@'s ruling of 19 Nov, 04:51 UTC, option 1. The sites bar's pins are read from the
   // registry at build (bulletins/sitesbar.mjs) and never copied into this repository.
@@ -112,6 +117,7 @@ export function scanText(path, text) {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);
     if (PUBLIC_BEGIN.test(line)) add(n, 'public key outside team/keys');
+    if (SSH_PUBLIC.test(line)) add(n, 'ssh public key outside its published field', line);
     if (vaultPair(line)) add(n, 'sgit vault key shape (passphrase:vault_id)');
     for (const m of line.matchAll(ASSIGN)) {
       const v = m[1];

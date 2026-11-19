@@ -9,6 +9,7 @@ cd "$(dirname "$0")/.."
 git fetch -q origin dev
 node scripts/build.mjs
 node scripts/validate.mjs
+node scripts/test-leak-scan.mjs >/dev/null # the scan's key rules, each tested (security@, 05:14 UTC)
 node scripts/leak-scan.mjs
 node scripts/check-commits.mjs origin/dev HEAD
 node scripts/test-check-signatures.mjs >/dev/null # the check's own tests first (conductor.b@, 19 Nov 02:16 UTC)

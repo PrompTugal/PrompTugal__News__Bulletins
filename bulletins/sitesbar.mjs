@@ -18,6 +18,18 @@ export const BAR_DIR = `assets/sites-bar/${BAR_VERSION}`;
 const FILES = { render: 'sites-bar-render.mjs', css: 'sites-bar.css', js: 'sites-bar.js' };
 const SRI = /^sha(256|384|512)-[A-Za-z0-9+/]{43,86}={0,2}$/;
 const HERE = 'bulletins.promptugal.news';
+const STATUS = join(ROOT, 'board', 'team', 'bulletins', 'status.json');
+
+// Records in status.json which pieces are off and why (security@'s ruling, Website 1acd10498: the build log and
+// status.json say "<piece> <version> off: the registry names <newer>"). null clears the entry.
+function markOff(why) {
+  let st; try { st = JSON.parse(readFileSync(STATUS, 'utf8')); } catch { return; }
+  const off = (st.off || []).filter((x) => !x.startsWith('sites bar '));
+  if (why) off.push(why);
+  if (off.length) st.off = off; else delete st.off;
+  writeFileSync(STATUS, JSON.stringify(st, null, 1) + '\n');
+}
+const off = (why) => { const line = `sites bar ${BAR_VERSION} off: ${why}`; console.log(line); markOff(line); return ''; };
 
 // Throws if any vendored file does not match the registry's pin for it, in full.
 export function checkAgainstRegistry(reg) {
@@ -33,15 +45,13 @@ export function checkAgainstRegistry(reg) {
 export async function loadBar() {
   let reg;
   try { reg = await getJSON('https://promptugal.news/api/v1/sites.json'); }
-  catch (e) { console.log(`sites bar: registry not read (${String(e.message).slice(0, 80)}); published without a bar`); return ''; }
-  if (reg?.bar?.version !== BAR_VERSION) {
-    console.log(`sites bar: the registry names ${String(reg?.bar?.version).slice(0, 12)}, we vendor ${BAR_VERSION}; published without a bar until the new version is reviewed`);
-    return '';
-  }
+  catch (e) { return off(`the registry could not be read (${String(e.message).replace(/[^\w .:-]/g, '').slice(0, 60)})`); }
+  if (reg?.bar?.version !== BAR_VERSION) return off(`the registry names ${String(reg?.bar?.version).replace(/[^\w.-]/g, '').slice(0, 12)}`);
   checkAgainstRegistry(reg); // before the renderer is imported
   const { render } = await import(pathToFileURL(join(ROOT, 'src', BAR_DIR, FILES.render)).href);
   const html = render(reg, { here: HERE });
-  if (!html) { console.log('sites bar: the renderer refused the registry; published without a bar'); return ''; }
+  if (!html) return off('the renderer refused the registry');
+  markOff(null);
   mkdirSync(join(ROOT, 'data', 'sites-bar'), { recursive: true });
   writeJSON(join(ROOT, 'data', 'sites-bar', 'last.json'), { version: BAR_VERSION, registry_version: reg.version || null, read_at: new Date().toISOString(), sites: (reg.sites || []).length, checked_against: 'promptugal.news/api/v1/sites.json bar.integrity' });
   return html;

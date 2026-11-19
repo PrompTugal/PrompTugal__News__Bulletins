@@ -25,8 +25,11 @@ function commit(msg, { signer = 'a', agent = A, session = SA, sign = true, files
   git(...args);
   return git('rev-parse', 'HEAD');
 }
+// As release.sh and CI run it (control 7): the checker is taken from the base commit with git show, never from HEAD.
 function check(base) {
-  const r = spawnSync(process.execPath, ['scripts/check-signatures.mjs', base, 'HEAD'], { cwd: repo, encoding: 'utf8' });
+  const file = join(dir, 'trusted-check-signatures.mjs');
+  writeFileSync(file, git('show', `${base}:scripts/check-signatures.mjs`));
+  const r = spawnSync(process.execPath, [file, base, 'HEAD'], { cwd: repo, encoding: 'utf8' });
   return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
 }
 const results = [];
@@ -69,8 +72,29 @@ try {
   expect('an unsigned merge fails', base, 'unsigned merge: not signed with a key published before it');
   fresh('t11'); git('-c', 'user.name=github-actions[bot]', '-c', 'user.email=41898282+github-actions[bot]@users.noreply.github.com', '-c', 'commit.gpgsign=false', 'commit', '-q', '--allow-empty', '-m', 'ci commit');
   expect('a commit claiming to be CI by name is not exempt', base, 'ci commit: not signed');
+  // Control 6: an orphan commit (no parent) that brings its own keys, signed by them, is refused, even with an old date.
+  fresh('t12'); git('checkout', '-q', '--orphan', 'orphan');
+  commit('orphan with its own keys', { signer: 'b', agent: 'b.agent@PrompTugal.dinis', session: 'https://claude.ai/code/session_B', files: { 'team/keys.json': keysFile([['b.agent@PrompTugal.dinis', pb, 'https://claude.ai/code/session_B']]) } });
+  const orphan = git('rev-parse', 'HEAD');
+  fresh('t12m'); git('-c', `user.signingkey=${join(dir, 'a.pub')}`, '-c', 'commit.gpgsign=true', 'merge', '-q', '-s', 'ours', '--allow-unrelated-histories', '--no-ff', orphan, '-m', 'merge an orphan' + trailers(A, SA));
+  expect('an orphan commit carrying its own keys is refused', base, 'orphan with its own keys: a commit with no parent, and not the trust anchor');
+  fresh('t13'); git('checkout', '-q', '--orphan', 'orphan-old');
+  run('git', ['-c', `user.signingkey=${join(dir, 'b.pub')}`, '-c', 'commit.gpgsign=true', 'commit', '-q', '--allow-empty', '-m', 'backdated orphan' + trailers('b.agent@PrompTugal.dinis', 'https://claude.ai/code/session_B')], { env: { ...process.env, GIT_AUTHOR_DATE: '2001-01-01T00:00:00Z', GIT_COMMITTER_DATE: '2001-01-01T00:00:00Z' } });
+  const old = git('rev-parse', 'HEAD');
+  fresh('t13m'); git('-c', `user.signingkey=${join(dir, 'a.pub')}`, '-c', 'commit.gpgsign=true', 'merge', '-q', '-s', 'ours', '--allow-unrelated-histories', '--no-ff', old, '-m', 'merge a backdated orphan' + trailers(A, SA));
+  expect('a backdated orphan is not skipped as older than the check', base, 'backdated orphan: a commit with no parent, and not the trust anchor');
+  // Control 7: a push that replaces the checker with one that always passes is still checked by the base's copy.
+  fresh('t14'); commit('tamper with the checker', { sign: false, files: { 'scripts/check-signatures.mjs': "console.log('OK'); process.exit(0);\n" } });
+  expect('a pushed commit cannot replace its own checker', base, 'tamper with the checker: not signed');
 } finally {
   rmSync(dir, { recursive: true, force: true });
+}
+// Control 7 in the real wiring: release.sh and the Pages workflow must take the checker from the last release with git
+// show, and must never run the pushed tree's scripts/check-signatures.mjs (post-review finding, 19 Nov).
+for (const [f, extract] of [['release.sh', /git show origin\/dev:scripts\/check-signatures\.mjs > "\$TRUSTED\/check-signatures\.mjs"/], ['../.github/workflows/pages.yml', /git show "\$base:scripts\/check-signatures\.mjs" > "\$RUNNER_TEMP\/check-signatures\.mjs"/]]) {
+  const t = readFileSync(join(HERE, f), 'utf8');
+  const direct = /^\s*node scripts\/check-signatures\.mjs/m.test(t);
+  results.push(`${extract.test(t) && !direct ? 'pass' : 'FAIL'}  ${f.replace('../', '')} runs the check from the last release's copy, never the pushed tree's`);
 }
 console.log(results.join('\n'));
 const failed = results.filter((r) => r.startsWith('FAIL')).length;

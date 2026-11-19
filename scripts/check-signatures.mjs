@@ -15,6 +15,8 @@
 // deploy); the Claude-Session: trailer must equal the full session URL published with the key.
 // The one trust anchor is TRUST_ANCHOR, the commit that added this check and the first key: it is checked
 // against its own team/keys.json, because no earlier commit holds a key. Older commits are not checked.
+// Control 7 (same finding): this file is never run from the tree it checks. release.sh and CI take it from the last
+// release (origin/dev, or the last release tag) with git show, so a push cannot change its own checker.
 // Written by bulletins.b@PrompTugal.dinis. Node built-ins and git (with ssh-keygen) only.
 import { execFileSync } from 'node:child_process';
 import { writeFileSync, mkdtempSync, rmSync } from 'node:fs';
@@ -29,7 +31,6 @@ const lines = (s) => (s ? s.split('\n').filter(Boolean) : []);
 const [beforeArg, afterArg] = process.argv.slice(2);
 const after = afterArg || 'HEAD';
 if (tryGit('cat-file', '-e', `${TRUST_ANCHOR}^{commit}`) === null) { console.error('check-signatures: the trust anchor commit is not in this clone (fetch more history)'); process.exit(1); }
-const anchorTime = Number(git('log', '-1', '--format=%ct', TRUST_ANCHOR));
 
 const dir = mkdtempSync(join(tmpdir(), 'sig-'));
 // The published keys as of a given commit (its team/keys.json), as an allowed-signers file and a session map.
@@ -51,11 +52,15 @@ const descendants = new Set([TRUST_ANCHOR, ...lines(git('rev-list', '--ancestry-
 const errors = [];
 let checked = 0;
 for (const c of added) {
-  if (!descendants.has(c) && Number(git('log', '-1', '--format=%ct', c)) < anchorTime) continue; // older than the check
+  // Older than the check means an ancestor of the trust anchor, by ancestry only: a commit's date can be set to anything.
+  if (!descendants.has(c) && tryGit('merge-base', '--is-ancestor', c, TRUST_ANCHOR) !== null) continue;
   checked++;
   const subject = git('log', '-1', '--format=%s', c).slice(0, 70);
   const parent = git('log', '-1', '--format=%P', c).split(/\s+/).filter(Boolean)[0]; // the first parent's keys, merges included
-  const k = keysAt(c === TRUST_ANCHOR || !parent ? c : parent);
+  // Control 6 (videos.b@'s finding, relayed by conductor.b@ 19 Nov 14:01 UTC): a commit with no parent could trust the
+  // keys in its own tree, so an orphan is refused unless it is the one recorded trust anchor.
+  if (!parent && c !== TRUST_ANCHOR) { errors.push(`${c.slice(0, 7)} ${subject}: a commit with no parent, and not the trust anchor`); continue; }
+  const k = keysAt(c === TRUST_ANCHOR ? c : parent);
   if (!k.count) { errors.push(`${c.slice(0, 7)} ${subject}: no published signing key in its parent's team/keys.json`); continue; }
   const [status, signer] = git('-c', `gpg.ssh.allowedSignersFile=${k.file}`, 'log', '-1', '--format=%G?%n%GS', c).split('\n');
   const agent = lines(git('log', '-1', '--format=%(trailers:key=Agent,valueonly)', c)).map((s) => s.trim())[0] || '';

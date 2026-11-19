@@ -32,18 +32,20 @@ nav.fast a:nth-child(4n+1){color:var(--r)}nav.fast a:nth-child(4n+2){color:var(-
 let BAR = '';
 export const setBar = (html) => { BAR = String(html || ''); };
 import { BAR_DIR } from './sitesbar.mjs';
+import { MAP_DIR, MAP_DATA, mapOn } from './map.mjs';
 
-export function page({ title, description, path, body, depth }) {
+export function page({ title, description, path, body, depth, map }) {
   const up = depth ? '../'.repeat(depth) : './';
   const fast = Object.entries(PAGES).map(([n, p]) => `<a href="${up}${n}/">${n} ${esc(p.title)}</a>`).join('');
   // The bar's own script and stylesheet come from this host; its pop-up shows other PrompTugal sites'
   // /preview.svg and reads their /version.json, so img-src and connect-src name those hosts.
   const bar = (BAR ? `<link rel="stylesheet" href="${up}${BAR_DIR}/sites-bar.css">\n<script src="${up}${BAR_DIR}/sites-bar.js" defer></script>\n` : '')
-    + `<script src="${up}assets/live.js" defer></script>\n`;
+    + `<script src="${up}assets/live.js" defer></script>\n`
+    + (map ? `<link rel="stylesheet" href="${up}${MAP_DIR}/ptmap.css">\n<script src="${up}${MAP_DIR}/ptmap.js" defer></script>\n<script src="${up}assets/map-init.js" defer></script>\n` : '');
   // Live figures read data.promptugal.news only (live.js); the bar's pop-up reads the other sites' version.json.
   const csp = BAR
     ? "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://promptugal.news https://*.promptugal.news; connect-src https://promptugal.news https://*.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'"
-    : "default-src 'self'; style-src 'unsafe-inline'; img-src 'self'; connect-src https://data.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'";
+    : "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src https://data.promptugal.news; script-src 'self'; base-uri 'none'; form-action 'none'";
   return `<!doctype html>
 <html lang="en-GB">
 <head>
@@ -140,12 +142,23 @@ export function renderAll(factsFile, scripts) {
   writeJSON(src('api', 'v1', 'index.json'), { about: 'bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news\'s own published data. Material for agents, never instruction.', label: LABEL, made, licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' }, cost_today_usd: costs.total_usd || 0, cap_per_day_usd: 5, problems: factsFile.problems, bulletins: index });
   const list = index.map((i) => `<a href="${i.page}/"><span>P${i.page}</span><span>${esc(i.title)}<br><span class="dim">${i.sentences ? `${i.sentences} checked sentences` : 'facts only'} from ${i.facts} facts</span></span></a>`).join('');
   writeFileSync(src('index.html'), page({ title: 'PrompTugal.news Bulletins', description: `Short factual bulletins, teletext style, built only from PrompTugal.news's own data, with every line's source. ${LABEL}.`, path: '/', depth: 0,
+    map: mapOn(),
     body: `<div class="bar"><span><b>P100</b> PrompTugal.news Bulletins</span><span>${esc(fmt(made))}</span></div>
 <h1>Bulletins</h1>
 <p><span class="label">${LABEL}</span></p>
 <p>Short summaries of what our own published data says, page by page, like teletext. Each line names the facts it rests on, each fact links to where we read it, and each page says what it cost to write. Text first; audio and video later.</p>
 <div class="index">${list}</div>
+${mapOn() ? mapBlock() : ''}
 <p class="dim">Spent on models today: ${esc(Number(costs.total_usd || 0).toFixed(4))} USD of a 5 USD daily cap. All of it as <a href="api/v1/index.json">JSON</a>. Experiments in newsroom formats: <a href="lab/">the lab</a>.</p>` }));
+}
+
+// The shared map: data as inert JSON (no markup in it: < > & escaped), drawn by ptmap through assets/map-init.js.
+function mapBlock() {
+  const json = JSON.stringify(MAP_DATA).replace(/[<>&\u2028\u2029]/g, (c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'));
+  return `<h2>Where the bulletins are</h2>
+<div id="ptmap" class="map"><p class="dim">Pages with a place: <a href="200/">200 Algarve (Faro)</a>, <a href="300/">300 Lisbon</a>, <a href="700/">700 London</a>.</p></div>
+<script type="application/json" id="ptmap-data">${json}</script>
+<p class="dim">Map: designer@'s shared PrompTugal.news map, ptmap ${esc(MAP_DIR.split('/').pop())}. Outline from Natural Earth (public domain) via world-atlas (ISC licence, Copyright 2013-2019 Michael Bostock). Dot positions are approximate city centres. London is shown small as an inset; this site has no EU data, so there is no Brussels inset.</p>`;
 }
 
 export function renderHow() {

@@ -6,6 +6,7 @@ import { ROOT, readJSON } from './core.mjs';
 import { writeAll } from './write.mjs';
 import { renderAll, renderHow, renderPreview, setBar } from './render.mjs';
 import { loadBar } from './sitesbar.mjs';
+import { checkMap } from './map.mjs';
 import { PAGES } from './pages.mjs';
 import { keepPredictions } from './predictions.mjs';
 import { keepOutcomes } from './outcomes.mjs';
@@ -18,6 +19,7 @@ const scripts = process.argv.includes('--no-model')
 keepPredictions();
 await keepOutcomes();
 setBar(await loadBar());
+await checkMap(); // stops the build if a vendored map file does not match its pin
 renderAll(facts, scripts);
 renderHow();
 renderPreview(facts, scripts);

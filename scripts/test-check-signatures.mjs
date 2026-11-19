@@ -86,23 +86,30 @@ try {
   // Control 7: a push that replaces the checker with one that always passes is still checked by the base's copy.
   fresh('t14'); commit('tamper with the checker', { sign: false, files: { 'scripts/check-signatures.mjs': "console.log('OK'); process.exit(0);\n" } });
   expect('a pushed commit cannot replace its own checker', base, 'tamper with the checker: not signed');
-  // The CI rule (security@, 14:11): the checker comes from BEFORE; refuse a missing BEFORE, a force push, and a BEFORE
-  // that has no checker. ciRun mirrors .github/workflows/pages.yml (whose text the wiring test below asserts).
+  // The CI rule (security@, 14:17): the checker comes from A, the last commit a passing run verified (the last
+  // successful deployment); refuse a missing A, an A that is not an ancestor of AFTER, and an A without the checker;
+  // check A..AFTER. ciRun mirrors .github/workflows/pages.yml (whose text the wiring test below asserts).
   const ciRun = (before, after) => {
-    if (!before || /^0{40}$/.test(before)) return { code: 1, out: 'no BEFORE' };
-    if (spawnSync('git', ['merge-base', '--is-ancestor', before, after], { cwd: repo }).status !== 0) return { code: 1, out: 'BEFORE is not an ancestor of AFTER' };
+    if (!/^[0-9a-f]{40}$/.test(String(before))) return { code: 1, out: 'no verified anchor A' };
+    if (spawnSync('git', ['merge-base', '--is-ancestor', before, after], { cwd: repo }).status !== 0) return { code: 1, out: 'A is not an ancestor of AFTER' };
     const show = spawnSync('git', ['show', `${before}:scripts/check-signatures.mjs`], { cwd: repo, encoding: 'utf8' });
-    if (show.status !== 0) return { code: 1, out: 'no checker in BEFORE' };
+    if (show.status !== 0) return { code: 1, out: 'no checker in A' };
     writeFileSync(join(dir, 'ci-check.mjs'), show.stdout);
     const r = spawnSync(process.execPath, [join(dir, 'ci-check.mjs'), before, after], { cwd: repo, encoding: 'utf8' });
     return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
   };
   const ciExpect = (name, r, want) => results.push(`${r.code === 1 && r.out.includes(want) ? 'pass' : 'FAIL'}  ${name}${r.code === 1 && r.out.includes(want) ? '' : ` (got ${r.code}: ${r.out.slice(0, 80)})`}`);
-  fresh('t17'); commit('good after'); ciExpect('a missing BEFORE (new branch) fails', ciRun('0'.repeat(40), 'HEAD'), 'no BEFORE');
+  fresh('t17'); commit('good after'); ciExpect('a missing A (no verified deployment) fails', ciRun('', 'HEAD'), 'no verified anchor A');
   fresh('t18side'); commit('elsewhere'); const elsewhere = git('rev-parse', 'HEAD');
-  fresh('t18'); commit('force-pushed'); ciExpect('BEFORE not an ancestor of AFTER (a force push) fails', ciRun(elsewhere, 'HEAD'), 'not an ancestor');
+  fresh('t18'); commit('force-pushed'); ciExpect('A not an ancestor of AFTER (a force push) fails', ciRun(elsewhere, 'HEAD'), 'not an ancestor');
   fresh('t19'); git('rm', '-q', 'scripts/check-signatures.mjs'); commit('a release without the checker'); const noChecker = git('rev-parse', 'HEAD'); commit('next push');
-  ciExpect('a BEFORE with no checker (a missing release copy) fails, with no fallback', ciRun(noChecker, 'HEAD'), 'no checker in BEFORE');
+  ciExpect('an A with no checker (a missing release copy) fails, with no fallback', ciRun(noChecker, 'HEAD'), 'no checker in A');
+  // A dropped run: A is verified, BEFORE (the dropped push's head) was never checked; its unsigned commit is in A..AFTER.
+  fresh('t20'); const verified = git('rev-parse', 'HEAD'); commit('unsigned, from a dropped run', { sign: false }); commit('the surviving push');
+  ciExpect('an unsigned commit from a dropped run (between A and BEFORE) fails', ciRun(verified, 'HEAD'), 'unsigned, from a dropped run: not signed');
+  // A pushed tag on an unverified commit is never used: the anchor is read from the deployment record, not from tags.
+  fresh('t21'); commit('unverified, tagged', { sign: false }); git('tag', 'v0.1.999');
+  ciExpect('a pushed tag on an unverified commit is not used as the anchor', ciRun(base, 'HEAD'), 'unverified, tagged: not signed');
   // Control 8: a commit that deletes the checker and adds an unsigned change is still checked, and fails.
   fresh('t15'); git('rm', '-q', 'scripts/check-signatures.mjs'); commit('delete the checker and slip in a change', { sign: false, files: { 'x.txt': 'x\n' } });
   expect('a commit that removes the checker and adds an unsigned change fails', base, 'delete the checker and slip in a change: not signed');
@@ -120,8 +127,8 @@ try {
 for (const f of ['release.sh', '../.github/workflows/pages.yml']) {
   const t = readFileSync(join(HERE, f), 'utf8');
   const extracts = f === 'release.sh' ? /git show "origin\/dev:scripts\/\$1\.mjs" > "scripts\/\$1\.trusted\.mjs"/.test(t) && /trusted leak-scan; trusted check-commits; trusted check-signatures/.test(t)
-    : /for c in leak-scan check-commits check-signatures; do git show "\$BEFORE:scripts\/\$c\.mjs" > "scripts\/\$c\.trusted\.mjs"; done/.test(t)
-      && /case "\$BEFORE" in ''\|0{40}\) .*exit 1;; esac/.test(t) && /git merge-base --is-ancestor "\$BEFORE" "\$AFTER" \|\| \{/.test(t) && !/git show "\$(base|last)/.test(t);
+    : /for c in leak-scan check-commits check-signatures; do git show "\$A:scripts\/\$c\.mjs" > "scripts\/\$c\.trusted\.mjs"; done/.test(t)
+      && /deployments\?environment=github-pages/.test(t) && /no verified anchor A/.test(t) && /git merge-base --is-ancestor "\$A" "\$AFTER" \|\| \{/.test(t) && !/git describe|--tags|git show "\$(base|last|BEFORE)/.test(t);
   const runs = ['leak-scan', 'check-commits', 'check-signatures'].every((c) => new RegExp(`node scripts/${c}\\.trusted\\.mjs`).test(t));
   const direct = /node scripts\/(leak-scan|check-commits|check-signatures)\.mjs/.test(t);
   results.push(`${extracts && runs && !direct ? 'pass' : 'FAIL'}  ${f.replace('../', '')} runs every security check from the last release's copy, never the pushed tree's`);

@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  deployments: read # to read the last successful github-pages deployment, the trusted anchor A (security@, 14:17)
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -43,23 +44,26 @@ jobs:
           node-version: 22
       - name: Not a shallow clone (security@, control 6)
         run: test "$(git rev-parse --is-shallow-repository)" = false
-      - name: The security checks, taken from the last release (controls 7 and 8; a missing copy fails, no fallback)
-        # From the last release tag, not github.event.before: GitHub drops a pending run when a newer one queues
-        # (specialist.code@ finding 3b). Every check below runs from that release's copy, never the pushed tree's.
+      - name: The security checks, from the last verified commit A (controls 7 and 8; security@'s ruling of 14:17)
+        # A is the newest commit a passing run verified: the sha of the last successful github-pages deployment, from
+        # GitHub's own record (deployments API, read with this run's token), which a pusher cannot write. Tags are not
+        # used. The run fails if A is missing or not an ancestor of AFTER. The range checked is A..AFTER, so commits of
+        # a dropped run are covered, and every check runs from A's tree, never from the pushed tree.
         env:
-          BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          # security@'s ruling of 14:11: the checker comes from BEFORE (what dev pointed to before this push, already
-          # checked), never from a tag, the trust anchor or the pushed tree. Refuse a missing BEFORE, a force push
-          # (BEFORE not an ancestor of AFTER) and a BEFORE without the checker (git show fails, the step fails).
-          case "$BEFORE" in ''|0000000000000000000000000000000000000000) echo "no BEFORE: a new branch or a missing push base" >&2; exit 1;; esac
-          git merge-base --is-ancestor "$BEFORE" "$AFTER" || { echo "BEFORE is not an ancestor of AFTER: a force push" >&2; exit 1; }
-          for c in leak-scan check-commits check-signatures; do git show "$BEFORE:scripts/$c.mjs" > "scripts/$c.trusted.mjs"; done
-          # The range starts at the last release tag reachable from BEFORE (so a dropped run's commits are still checked).
-          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE" 2>/dev/null || true)
-          node scripts/check-commits.trusted.mjs "${last:-$BEFORE}" "$AFTER"
-          node scripts/check-signatures.trusted.mjs "${last:-$BEFORE}" "$AFTER"
+          A=""
+          for id in $(gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=50" --jq '.[].id'); do
+            if [ "$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=1" --jq '.[0].state')" = success ]; then
+              A=$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id" --jq .sha); break
+            fi
+          done
+          echo "$A" | grep -Eq '^[0-9a-f]{40}$' || { echo "no verified anchor A (no successful github-pages deployment found)" >&2; exit 1; }
+          git merge-base --is-ancestor "$A" "$AFTER" || { echo "A ($A) is not an ancestor of AFTER: a force push" >&2; exit 1; }
+          for c in leak-scan check-commits check-signatures; do git show "$A:scripts/$c.mjs" > "scripts/$c.trusted.mjs"; done
+          node scripts/check-commits.trusted.mjs "$A" "$AFTER"
+          node scripts/check-signatures.trusted.mjs "$A" "$AFTER"
       - name: The signature check's own tests (throwaway repository and keys)
         run: node scripts/test-check-signatures.mjs
       - run: node scripts/build.mjs

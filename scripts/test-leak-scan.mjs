@@ -1,7 +1,7 @@
 // Tests for the leak scan's key rules (security@'s ruling, Website 1acd10498, relayed by conductor.b@ 19 Nov 05:14 UTC:
 // "give each rule a test"). Every key-shaped string is built at run time, so this file holds none.
 // Run: node scripts/test-leak-scan.mjs (prints OK or fails).
-import { scanText } from './leak-scan.mjs';
+import { scanText, printableRuns } from './leak-scan.mjs';
 import { randomBytes } from 'node:crypto';
 
 const D = '-'.repeat(5);
@@ -42,6 +42,13 @@ for (const [name, k] of [
 expect('a key line with a comment after it fails', kinds('team/keys.json', `  "ssh_public_key": "${ed()} me@host",`), PUB);
 expect('the words ssh-ed25519 without a key pass', kinds('README.md', 'Commits are signed with an ssh-ed25519 key.'), 'clean');
 
+// A file with a NUL byte is scanned by its printable runs, never skipped (library.b@'s LIB-2026-067).
+{
+  const bin = Buffer.concat([Buffer.from([0, 1, 2, 0]), Buffer.from(`x ${header('OPENSSH ')} y`), Buffer.from([0, 255, 0]), Buffer.from(ed()), Buffer.from([0])]);
+  const k = kinds('assets/image.png', printableRuns(bin));
+  expect('a private key header inside a binary file is found', k, PRIV);
+  expect('an ssh public key inside a binary file is found', k, PUB);
+}
 console.log(results.join('\n'));
 const failed = results.filter((r) => r.startsWith('FAIL')).length;
 if (failed) { console.error(`FAILED (${failed} of ${results.length} tests)`); process.exit(1); }

@@ -15,9 +15,18 @@ node scripts/test-leak-scan.mjs >/dev/null # the scan's key rules, each tested (
 trap 'rm -f scripts/*.trusted.mjs' EXIT
 # BEFORE is origin/dev (already checked); refuse unless it is an ancestor of what is pushed (no force push).
 trusted() { git merge-base --is-ancestor origin/dev HEAD || { echo "origin/dev is not an ancestor of HEAD" >&2; exit 1; }; git show "origin/dev:scripts/$1.mjs" > "scripts/$1.trusted.mjs"; }
+# Config from the base too (signals.b@'s finding): the trailer check reads origin/dev's exemptions, not the pushed ones.
+trailers() {
+  local keep; keep=$(mktemp); [ -e scripts/commit-exemptions.json ] && cp scripts/commit-exemptions.json "$keep" || : > "$keep"
+  rm -f scripts/commit-exemptions.json
+  if git cat-file -e origin/dev:scripts/commit-exemptions.json 2>/dev/null; then git show origin/dev:scripts/commit-exemptions.json > scripts/commit-exemptions.json; fi
+  local rc=0; node scripts/check-commits.trusted.mjs origin/dev HEAD || rc=$?
+  if [ -s "$keep" ]; then cp "$keep" scripts/commit-exemptions.json; elif ! git cat-file -e HEAD:scripts/commit-exemptions.json 2>/dev/null; then rm -f scripts/commit-exemptions.json; fi
+  rm -f "$keep"; return $rc
+}
 trusted leak-scan; trusted check-commits; trusted check-signatures
 node scripts/leak-scan.trusted.mjs
-node scripts/check-commits.trusted.mjs origin/dev HEAD
+trailers
 node scripts/test-check-signatures.mjs >/dev/null # the check's own tests first (conductor.b@, 19 Nov 02:16 UTC)
 node scripts/check-signatures.trusted.mjs origin/dev HEAD
 for i in 1 2 3 4 5; do
@@ -28,7 +37,7 @@ for i in 1 2 3 4 5; do
   node scripts/validate.mjs >/dev/null
   trusted leak-scan; trusted check-commits; trusted check-signatures
   node scripts/leak-scan.trusted.mjs >/dev/null
-  node scripts/check-commits.trusted.mjs origin/dev HEAD >/dev/null
+  trailers >/dev/null
   node scripts/check-signatures.trusted.mjs origin/dev HEAD >/dev/null
   if git -c push.negotiate=true push -q origin HEAD:dev; then echo "released $(git rev-parse --short HEAD) to dev"; exit 0; fi
   sleep $((i * 3))

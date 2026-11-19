@@ -97,15 +97,25 @@ jobs:
             mode=$(git ls-tree "$A" "scripts/$c.mjs" | cut -d' ' -f1)
             case "$mode" in 100644|100755) ;; *) echo "scripts/$c.mjs in A is missing or not a regular file (mode ${mode:-none})" >&2; exit 1;; esac
           done
+          # The built site first, before any trusted copy exists (events.b@'s finding): the archive's listing is vetted
+          # (plain files and directories only, no absolute path, no ..), it is unpacked, then no symlink may remain.
+          rm -rf _site; mkdir _site
+          tar -tvf "$RUNNER_TEMP/pages-artifact/artifact.tar" > "$RUNNER_TEMP/listing.txt"
+          if grep -Ev '^[-d]' "$RUNNER_TEMP/listing.txt" | grep -q .; then echo "the site archive holds something other than files and directories" >&2; exit 1; fi
+          if tar -tf "$RUNNER_TEMP/pages-artifact/artifact.tar" | grep -Eq '^/|(^|/)\.\.(/|$)'; then echo "the site archive holds an absolute or .. path" >&2; exit 1; fi
+          tar -xf "$RUNNER_TEMP/pages-artifact/artifact.tar" -C _site --no-same-owner --no-same-permissions
+          if [ -n "$(find _site -type l | head -1)" ]; then echo "a symlink in the site" >&2; exit 1; fi
+          # Every config the checks read comes from A too (signals.b@'s finding): A's commit-exemptions.json, or none.
+          rm -f scripts/commit-exemptions.json
+          if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git show "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
           git show "$A:scripts/check-commits.mjs" > "$RUNNER_TEMP/check-commits.mjs"
           git show "$A:scripts/check-signatures.mjs" > "$RUNNER_TEMP/check-signatures.mjs"
           "$NODE" "$RUNNER_TEMP/check-commits.mjs" "$A" "$AFTER"
           "$NODE" "$RUNNER_TEMP/check-signatures.mjs" "$A" "$AFTER"
           # The leak scan finds the repository from its own path, so A's copy is placed beside the scripts it scans
-          # (scripts/leak-scan.trusted.mjs, git-ignored); it is A's code, not the pushed tree's. The built site comes
-          # from the artifact, as data.
+          # (scripts/leak-scan.trusted.mjs, git-ignored); it is A's code, not the pushed tree's. It scans the same
+          # artifact the deploy job deploys (library.b@'s finding: the deployed bytes are the scanned bytes).
           git show "$A:scripts/leak-scan.mjs" > scripts/leak-scan.trusted.mjs
-          rm -rf _site; mkdir _site; tar -xf "$RUNNER_TEMP/pages-artifact/artifact.tar" -C _site
           "$NODE" scripts/leak-scan.trusted.mjs
   deploy:
     needs: [build, checks]

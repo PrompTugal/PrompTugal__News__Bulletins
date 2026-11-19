@@ -19,7 +19,7 @@
 // Public keys are allowed only in team/keys.json and team/keys/*.json, and only
 // when those files hold no private part. Any change to the allowlist below must
 // be narrow (one path, one kind) and say why.
-import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
+import { readFileSync, existsSync, statSync, lstatSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -130,13 +130,17 @@ export function scanText(path, text) {
 
 function isBinary(buf) { return buf.subarray(0, 8000).includes(0); }
 
+// Never follows a symlink (library.b@'s finding, LIB-2026-067): a link is returned as itself and refused below.
 function walk(dir) {
   if (!existsSync(dir)) return [];
   return readdirSync(dir).flatMap((n) => {
     const p = join(dir, n);
-    return statSync(p).isDirectory() ? walk(p) : [p];
+    const st = lstatSync(p);
+    return st.isDirectory() && !st.isSymbolicLink() ? walk(p) : [p];
   });
 }
+// A file with a NUL byte is not skipped: its printable runs of 8 or more characters are scanned as lines.
+export const printableRuns = (buf) => (buf.toString('latin1').match(/[\x20-\x7e]{8,}/g) || []).join('\n');
 
 function scanTree() {
   const files = execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], { cwd: root })
@@ -156,11 +160,14 @@ function scanTree() {
     if (p.startsWith('.sg_vault/local/')) { errors.push(`${p}: a file from .sg_vault/local/ is in the tree (it holds vault keys)`); continue; }
     if (p.startsWith('.sg_vault/bare/')) { skipped++; continue; } // ciphertext, protected by the vault key
     const full = join(root, p);
-    if (!existsSync(full) || statSync(full).isDirectory()) continue; // deleted in the working tree
+    let st; try { st = lstatSync(full); } catch { continue; } // deleted in the working tree
+    if (st.isSymbolicLink()) { errors.push(`${p}: a symlink (never followed; not allowed in the tree or the site)`); continue; }
+    if (st.isDirectory()) continue;
     const buf = readFileSync(full);
-    if (isBinary(buf)) { skipped++; continue; }
+    const binary = isBinary(buf);
+    if (binary) skipped++;
     count++;
-    const t = buf.toString('utf8');
+    const t = binary ? printableRuns(buf) : buf.toString('utf8');
     for (const f of scanText(p, t)) errors.push(`${p}:${f.line}: ${f.kind}`);
     for (const x of secrets) if (x && x.length >= 8 && t.includes(x)) errors.push(`${p}: holds this checkout's vault key or token`);
   }
@@ -202,5 +209,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.error(`FAILED (${errors.length}) in ${count} ${history ? 'commits' : 'files'}`);
     process.exit(1);
   }
-  console.log(history ? `OK (${count} commits)` : `OK (${count} files, ${skipped} binary skipped)`);
+  console.log(history ? `OK (${count} commits)` : `OK (${count} files, ${skipped} of them binary, scanned by their printable runs)`);
 }

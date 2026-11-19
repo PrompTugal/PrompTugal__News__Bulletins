@@ -11,6 +11,7 @@ node scripts/build.mjs
 node scripts/validate.mjs
 node scripts/leak-scan.mjs
 node scripts/check-commits.mjs origin/dev HEAD
+node scripts/test-check-signatures.mjs >/dev/null # the check's own tests first (conductor.b@, 19 Nov 02:16 UTC)
 node scripts/check-signatures.mjs origin/dev HEAD
 for i in 1 2 3 4 5; do
   git fetch -q origin dev

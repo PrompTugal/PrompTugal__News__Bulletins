@@ -13,7 +13,8 @@ node scripts/test-leak-scan.mjs >/dev/null # the scan's key rules, each tested (
 # Controls 7 and 8 (security@, 19 Nov 14:07 and 14:08): every security check runs from the last release's copy
 # (origin/dev), never from the tree being pushed; a missing copy stops the release (set -e), with no fallback.
 trap 'rm -f scripts/*.trusted.mjs' EXIT
-trusted() { git show "origin/dev:scripts/$1.mjs" > "scripts/$1.trusted.mjs"; }
+# BEFORE is origin/dev (already checked); refuse unless it is an ancestor of what is pushed (no force push).
+trusted() { git merge-base --is-ancestor origin/dev HEAD || { echo "origin/dev is not an ancestor of HEAD" >&2; exit 1; }; git show "origin/dev:scripts/$1.mjs" > "scripts/$1.trusted.mjs"; }
 trusted leak-scan; trusted check-commits; trusted check-signatures
 node scripts/leak-scan.trusted.mjs
 node scripts/check-commits.trusted.mjs origin/dev HEAD

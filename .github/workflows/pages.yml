@@ -50,12 +50,16 @@ jobs:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
         run: |
-          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER" 2>/dev/null || true)
-          base="${last:-$BEFORE}"
-          echo "TRUSTED_BASE=$base" >> "$GITHUB_ENV"
-          for c in leak-scan check-commits check-signatures; do git show "$base:scripts/$c.mjs" > "scripts/$c.trusted.mjs"; done
-          node scripts/check-commits.trusted.mjs "$base" "$AFTER"
-          node scripts/check-signatures.trusted.mjs "$base" "$AFTER"
+          # security@'s ruling of 14:11: the checker comes from BEFORE (what dev pointed to before this push, already
+          # checked), never from a tag, the trust anchor or the pushed tree. Refuse a missing BEFORE, a force push
+          # (BEFORE not an ancestor of AFTER) and a BEFORE without the checker (git show fails, the step fails).
+          case "$BEFORE" in ''|0000000000000000000000000000000000000000) echo "no BEFORE: a new branch or a missing push base" >&2; exit 1;; esac
+          git merge-base --is-ancestor "$BEFORE" "$AFTER" || { echo "BEFORE is not an ancestor of AFTER: a force push" >&2; exit 1; }
+          for c in leak-scan check-commits check-signatures; do git show "$BEFORE:scripts/$c.mjs" > "scripts/$c.trusted.mjs"; done
+          # The range starts at the last release tag reachable from BEFORE (so a dropped run's commits are still checked).
+          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$BEFORE" 2>/dev/null || true)
+          node scripts/check-commits.trusted.mjs "${last:-$BEFORE}" "$AFTER"
+          node scripts/check-signatures.trusted.mjs "${last:-$BEFORE}" "$AFTER"
       - name: The signature check's own tests (throwaway repository and keys)
         run: node scripts/test-check-signatures.mjs
       - run: node scripts/build.mjs

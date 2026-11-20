@@ -1,4 +1,4 @@
-# Synthetic presenters as data: how they are made
+# Synthetic presenters as data: version 1
 
 This explains how bulletins.promptugal.news makes synthetic presenters for its video bulletins, so that a person, or another model such as ChatGPT, can rebuild it, extend it or do it differently.
 
@@ -6,10 +6,25 @@ This explains how bulletins.promptugal.news makes synthetic presenters for its v
 - **Written by:** bulletins.b@PrompTugal.dinis.
 - **Licence:** code Apache-2.0, text CC BY 4.0.
 
-What it produces today, all at bulletins.promptugal.news/lab/:
-- `presenters/index.html`: twelve presenters, each driven live in the browser by one voice and one set of actions.
-- `presenters/presenters.mp4`: the twelve side by side, 27.7 s, 1280x720.
-- `video/200-animated.mp4` and `video/play.html`: one full bulletin with a presenter.
+**This is version 1.** Its files are frozen in `src/lab/presenters/v1/` and served at bulletins.promptugal.news/lab/presenters/v1/. Version 1 never changes: a later version goes in a new folder (see "Making version 2").
+
+**Is it all programmatic?** Yes. The only model call is the voice: OpenRouter reads our fixed text, and its transcript is checked against the text word for word. Everything else is code and data, run on one CPU with no GPU:
+- the presenters, their actions and the scenes;
+- the frames, drawn by headless Chromium;
+- the video, joined by ffmpeg.
+
+The same inputs always give the same video.
+
+What it produces, all at bulletins.promptugal.news/lab/:
+
+| Output | What it is |
+|---|---|
+| `presenters/index.html` | The twelve presenters, driven live in the browser by one voice and one set of actions; each card shows its spec |
+| `presenters/presenters.mp4` | The twelve side by side (`wall.html`) |
+| `presenters/presenters-split.mp4` | The animated bulletin on the left, the twelve on the right (`split.html`) |
+| `presenters/explainer.mp4` | How it is done, told by the presenters: they show each action on the left while the right explains it, with a live readout of the state they are applying (`explain.html`) |
+| `video/200-animated.mp4` and `video/play.html` | One full bulletin with a presenter, and a player where each sentence can be clicked |
+| `video/200.mp4` | The first, plain video bulletin |
 
 ## The idea in one paragraph
 
@@ -140,6 +155,22 @@ Nothing reads the clock or uses a random number at draw time. The same t always 
    It then renders the full bulletin.
 3. **`bulletins/presenters-video.mjs`** renders the side-by-side wall.
 
+## Every file
+
+| File | Role |
+|---|---|
+| `src/lab/presenters/presenters.json` | Layer 1: the twelve specs |
+| `src/lab/presenters/presenters.js` | Layers 2 to 4: `compile`, `build`/`apply`, `direct`, `stateAt` |
+| `src/lab/presenters/gallery.js` | Draws every spec and drives them all from one timeline (`window.renderAt`). A timeline with its own `actions` (the explainer's) is used as it is; otherwise the director writes them |
+| `src/lab/presenters/index.html`, `wall.html`, `split.html` + `split.js`, `explain.html` + `explain.js` | The gallery, the wall, the split screen and the explainer |
+| `src/lab/video/stage.js` | The bulletin's scenes: words as they are spoken, numbers that pop, bars, rain, wipes, ticker, subtitles, chapters and map. `?layout=half` gives the 640-wide version used in the split |
+| `src/lab/video/timeline.json`, `src/lab/presenters/explainer.json` | Timelines: segments, word timings, loudness per frame, actions |
+| `bulletins/voice.mjs` | The voice, with the word-for-word transcript check and the cost ledger |
+| `bulletins/video.mjs` | The plain video bulletin and its voice |
+| `bulletins/video2.mjs` | The bulletin's timeline, the stage pages and the animated bulletin |
+| `bulletins/presenters-video.mjs [wall\|split]` | The wall and split videos |
+| `bulletins/explainer.mjs [--reuse]` | The explainer: its script, voice, timeline and video. `--reuse` keeps the saved voice, at no cost |
+
 ## Rendering
 
 - **The pages:** both pages load `presenters.js`, which builds the presenters, and `gallery.js`, which runs them. In the browser, the audio element's `currentTime` is t. For the video, a page exposes `window.renderAt(t)`.
@@ -153,6 +184,25 @@ Nothing reads the clock or uses a random number at draw time. The same t always 
 2. Open `/lab/presenters/` and press play.
 3. To make it a new body plan, add a function next to `humanoid()` in `presenters.js`. It returns `{ parts, rig }` and is registered in `build()` and `compile()`.
 4. Run `node bulletins/presenters-video.mjs` to render the wall.
+
+## Making version 2
+
+1. **Copy the folder:** copy `src/lab/presenters/v1/` to `v2/`, and give `presenters.json` the version `2.0.0`. Never edit `v1/`.
+2. **Change what you need, in any layer:**
+   - new `looks` words;
+   - a new body plan (a function returning `{ parts, rig }`);
+   - a new `render` style in `draw()`;
+   - a new action: add it to the table above, give it a rule in `direct()`, and a field in `stateAt()`;
+   - a new state field, which every body plan's `apply()` must then handle or ignore.
+3. **Keep the contract:** every frame must stay a pure function of t. No `Date.now()`, no unseeded random numbers, and no network at render time.
+4. **Render and compare:** render the wall, split and explainer from `v2/`, and set them beside version 1's.
+5. **Record it:** write what changed and why in this file, under a new "Version 2" heading.
+
+Where version 2 could go, in rough order of cost:
+- Real mouth shapes from Rhubarb Lip Sync, and measured word timings from forced alignment (both free).
+- More actions: gestures, walking on, holding up a chart.
+- One presenter in three.js with VRM.
+- Hosted near-real presenters (Kling AI Avatar or Hedra), composited into the same frames as one more body plan. They are paid (about $1.70 per 30 s) and need a person's account.
 
 ## Rules every presenter follows
 

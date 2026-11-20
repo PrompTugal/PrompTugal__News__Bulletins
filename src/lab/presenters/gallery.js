@@ -6,8 +6,9 @@
   'use strict';
   var wall = document.body.classList.contains('wall');
   function h(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-  Promise.all([fetch('presenters.json', { credentials: 'omit' }).then(function (r) { return r.json(); }), fetch('../video/timeline.json', { credentials: 'omit' }).then(function (r) { return r.json(); })]).then(function (res) {
-    var P = res[0].presenters, TL = res[1], acts = window.Presenters.direct(TL, 'gallery');
+  Promise.all([fetch('presenters.json', { credentials: 'omit' }).then(function (r) { return r.json(); }), fetch(document.body.getAttribute('data-timeline') || '../video/timeline.json', { credentials: 'omit' }).then(function (r) { return r.json(); })]).then(function (res) {
+    // A timeline may carry its own actions (the explainer scripts them); otherwise the director writes them.
+    var P = res[0].presenters, TL = res[1], acts = Array.isArray(TL.actions) ? TL.actions : window.Presenters.direct(TL, 'gallery');
     var grid = document.getElementById('grid'), live = [];
     P.forEach(function (spec) {
       var card = h('figure', 'card bd-' + spec.backdrop), stage = h('div', 'pstage');
@@ -21,6 +22,7 @@
     function render(t) {
       var a = TL.amp[Math.min(TL.amp.length - 1, Math.floor(t * TL.fps))] || 0, s = window.Presenters.stateAt(acts, t, a);
       live.forEach(function (p) { p.apply(s); });
+      if (window.onPresentersFrame) window.onPresentersFrame(t, s);
       if (sub) { var said = []; TL.segs.forEach(function (sg) { if (t >= sg.start && t < sg.end) said = sg.words.filter(function (w) { return w.start <= t; }).map(function (w) { return w.w; }); }); sub.textContent = said.slice(-12).join(' '); }
       var pr = document.getElementById('prog'); if (pr) pr.style.width = (t / TL.duration * 100).toFixed(2) + '%';
     }

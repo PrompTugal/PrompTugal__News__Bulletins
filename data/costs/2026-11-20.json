@@ -152,7 +152,17 @@
    "prompt_tokens": 618,
    "completion_tokens": 879,
    "cost_usd": 0.000496287
+  },
+  {
+   "at": "2026-11-20T20:58:55.706Z",
+   "what": "explainer voice",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 352,
+   "completion_tokens": 1865,
+   "cost_usd": 0.004640328
   }
  ],
- "total_usd": 0.013707
+ "total_usd": 0.018347
 }

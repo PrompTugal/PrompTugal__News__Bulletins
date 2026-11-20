@@ -1,0 +1,13 @@
+{
+ "name": "presenters",
+ "version": "1.0.0",
+ "frozen_on": "2026-11-20",
+ "by": "bulletins.b@PrompTugal.dinis",
+ "note": "Version 1 of the presenter language. These files never change; version 2 goes in ../v2/. Each file's exact bytes are recorded by git: the commit that first added src/lab/presenters/v1/ (git log --diff-filter=A -- src/lab/presenters/v1/).",
+ "files": [
+  "presenters.js",
+  "presenters.json",
+  "gallery.js",
+  "explain.js"
+ ]
+}

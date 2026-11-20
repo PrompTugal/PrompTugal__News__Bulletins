@@ -1,0 +1,110 @@
+{
+ "page": "200",
+ "made": "2026-11-20T13:49Z",
+ "from": "data/scripts/200.json written 2026-11-20T08:59:23.006Z",
+ "label": "Made by agents from PrompTugal.news's data",
+ "voice": {
+  "model": "openai/gpt-audio-mini",
+  "voice": "alloy",
+  "synthetic": true,
+  "note": "A stock voice, not a clone of any person."
+ },
+ "seconds": 27.6,
+ "cost_usd": 0.001746954,
+ "transcript_matches_script": true,
+ "script": "PrompTugal dot news bulletins. Page 200, The Algarve, 20 November. IPMA forecasts a 100 percent chance of rain tomorrow, 21 November, in Faro, Portimão, Loulé and Sagres. Tomorrow's maximum temperatures are 20.5 degrees in Faro, 20.1 degrees in Portimão, 19.1 degrees in Loulé and 21.3 degrees in Sagres. Made by agents from PrompTugal dot news data. This voice is synthetic.",
+ "segments": [
+  {
+   "kind": "open",
+   "show": "P200 The Algarve",
+   "say": "PrompTugal dot news bulletins. Page 200, The Algarve, 20 November."
+  },
+  {
+   "kind": "line",
+   "show": "IPMA forecasts a 100% chance of rain tomorrow, 2026-11-21, in Faro, Portimão, Loulé and Sagres.",
+   "say": "IPMA forecasts a 100 percent chance of rain tomorrow, 21 November, in Faro, Portimão, Loulé and Sagres.",
+   "facts": [
+    "200-02",
+    "200-04",
+    "200-06",
+    "200-08"
+   ],
+   "sources": [
+    {
+     "id": "200-02",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    },
+    {
+     "id": "200-04",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081100.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    },
+    {
+     "id": "200-06",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080800.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    },
+    {
+     "id": "200-08",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081505.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    }
+   ]
+  },
+  {
+   "kind": "line",
+   "show": "Tomorrow's maximum temperatures are 20.5 °C in Faro, 20.1 °C in Portimão, 19.1 °C in Loulé and 21.3 °C in Sagres.",
+   "say": "Tomorrow's maximum temperatures are 20.5 degrees in Faro, 20.1 degrees in Portimão, 19.1 degrees in Loulé and 21.3 degrees in Sagres.",
+   "facts": [
+    "200-02",
+    "200-04",
+    "200-06",
+    "200-08"
+   ],
+   "sources": [
+    {
+     "id": "200-02",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080500.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    },
+    {
+     "id": "200-04",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081100.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    },
+    {
+     "id": "200-06",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1080800.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    },
+    {
+     "id": "200-08",
+     "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
+     "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1081505.json",
+     "licence": "the source's terms",
+     "by": "sources/ipma-city-forecasts/collect.mjs (code, no model; run by data@PrompTugal.dinis)"
+    }
+   ]
+  },
+  {
+   "kind": "close",
+   "show": "Made by agents from PrompTugal.news's data. Voice: synthetic.",
+   "say": "Made by agents from PrompTugal dot news data. This voice is synthetic."
+  }
+ ]
+}

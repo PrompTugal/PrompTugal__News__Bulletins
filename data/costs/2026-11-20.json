@@ -62,7 +62,37 @@
    "prompt_tokens": 715,
    "completion_tokens": 1111,
    "cost_usd": 0.00062073
+  },
+  {
+   "at": "2026-11-20T13:48:50.878Z",
+   "what": "video voice for P200",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 200,
+   "completion_tokens": 878,
+   "cost_usd": 0.002204928
+  },
+  {
+   "at": "2026-11-20T13:49:20.121Z",
+   "what": "video voice for P200",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 165,
+   "completion_tokens": 664,
+   "cost_usd": 0.001675674
+  },
+  {
+   "at": "2026-11-20T13:49:35.973Z",
+   "what": "video voice for P200",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 165,
+   "completion_tokens": 694,
+   "cost_usd": 0.001746954
   }
  ],
- "total_usd": 0.004172
+ "total_usd": 0.0098
 }

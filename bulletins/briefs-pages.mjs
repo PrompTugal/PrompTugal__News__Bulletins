@@ -33,7 +33,23 @@ for (const b of BRIEFS) {
   const html = md2(text).replace(/<code>(common|chatgpt|claude)\.md<\/code>/g, '<a href="$1.html"><code>$1.md</code></a>');
   writeFileSync(join(TO, `${b.id}.html`), page(b.title, b.about, `<p class="dim">Raw Markdown, to hand to a model: <a href="${b.id}.md">${b.id}.md</a></p>${html}`));
 }
+// One self-contained file for ChatGPT: the prompt, then everything it refers to, so a single link or upload is enough.
+const prompt = readFileSync(join(FROM, 'chatgpt.md'), 'utf8').split(/^## The prompt \(paste from here\)$/m)[1].split(/^## After ChatGPT answers$/m)[0].trim()
+  .replace('Read the attached `common.md` first.', 'Read the common brief below (part 2) first.')
+  .replace('Use the attached `presenters.json` and `presenters.js`', 'Use version 1\'s `presenters.json` and `presenters.js` (parts 4 and 5 below)');
+const fence = (lang, t) => '````' + lang + '\n' + t.replace(/\n$/, '') + '\n````';
+const bundle = ['# Presenters version 2, for ChatGPT: everything in one file',
+  `Written by bulletins.b@PrompTugal.dinis on ${new Date().toISOString().slice(0, 10)} at Dinis Cruz's request. This file holds the prompt and everything it refers to: (1) the prompt, (2) the common brief, (3) version 1's design, (4) version 1's twelve presenters as data, (5) version 1's engine. Upload it, or paste it, and say: "Follow part 1." Pictures are optional: https://riskmandate.ai/stories/images/meet-the-cast.webp, https://the-ultimate-insider.book.sgit.ai/assets/cover-a.svg and a frame of https://bulletins.promptugal.news/lab/presenters/presenters.mp4.`,
+  '## Part 1. The prompt', prompt,
+  '## Part 2. The common brief (common.md)', readFileSync(join(FROM, 'common.md'), 'utf8').replace(/^# /m, '### ').replace(/^## /gm, '#### '),
+  '## Part 3. Version 1\'s design (docs/presenters/README.md)', readFileSync(join(ROOT, 'docs', 'presenters', 'README.md'), 'utf8').replace(/^# /m, '### ').replace(/^## /gm, '#### '),
+  '## Part 4. Version 1\'s presenters (src/lab/presenters/presenters.json)', fence('json', readFileSync(join(ROOT, 'src', 'lab', 'presenters', 'presenters.json'), 'utf8')),
+  '## Part 5. Version 1\'s engine (src/lab/presenters/presenters.js)', fence('js', readFileSync(join(ROOT, 'src', 'lab', 'presenters', 'presenters.js'), 'utf8')),
+].join('\n\n') + '\n';
+writeFileSync(join(TO, 'chatgpt-all-in-one.md'), bundle);
+
 writeFileSync(join(TO, 'index.html'), page('Presenter briefs', 'Briefs for presenters version 2 in high definition, for ChatGPT and for Claude.', `<h1>Presenters version 2: the briefs</h1>
 <p>Three briefs for a high-definition version 2 of the twelve synthetic presenters: one common specification, and a prompt each for ChatGPT and for a Claude Code session, so their results can be compared side by side with <a href="../v1/">version 1</a>. Written by bulletins.b@PrompTugal.dinis on 20 November 2026 at Dinis Cruz's request.</p>
+<a class="card" href="chatgpt-all-in-one.md"><b>For ChatGPT: everything in one file</b><br>The prompt, the common brief, version 1's design, its twelve presenters and its engine, in one Markdown file: upload it or give ChatGPT the link, and say "Follow part 1".<br><span class="dim">chatgpt-all-in-one.md (${Math.round(bundle.length / 1024)} KB)</span></a>
 ${BRIEFS.map((b) => `<a class="card" href="${b.id}.html"><b>${esc(b.title)}</b><br>${esc(b.about)}<br><span class="dim">Markdown: ${b.id}.md</span></a>`).join('\n')}`));
 console.log('briefs: src/lab/presenters/briefs/ (' + BRIEFS.map((b) => b.id).join(', ') + ')');

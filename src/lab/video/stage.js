@@ -50,6 +50,8 @@
 
   function build() {
     root = document.getElementById('stage');
+    // ?layout=half: the right half of a split screen (640 x 720), without the presenter (the presenters are beside it).
+    if (/[?&]layout=half\b/.test(location.search)) document.body.classList.add('half');
     root.textContent = '';
     var bar = h('div', 'bar'); els.barL = h('span', null); els.barR = h('span', null, TL.day);
     var b = h('b', null, 'P' + TL.page); els.barL.appendChild(b); els.barL.appendChild(document.createTextNode(' PrompTugal.news Bulletins'));

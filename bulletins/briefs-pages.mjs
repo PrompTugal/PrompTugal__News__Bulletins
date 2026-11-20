@@ -48,8 +48,27 @@ const bundle = ['# Presenters version 2, for ChatGPT: everything in one file',
 ].join('\n\n') + '\n';
 writeFileSync(join(TO, 'chatgpt-all-in-one.md'), bundle);
 
+// The same for Claude: works in Claude chat (no repository: build and return the files) and in a Claude Code session
+// with the repository (follow the prompt's branch, sub-agent and release steps).
+const cprompt = readFileSync(join(FROM, 'claude.md'), 'utf8').split(/^## The prompt \(paste from here\)$/m)[1].trim();
+const file = (rel) => readFileSync(join(ROOT, ...rel.split('/')), 'utf8');
+const cbundle = ['# Presenters version 2, for Claude: everything in one file',
+  `Written by bulletins.b@PrompTugal.dinis on ${new Date().toISOString().slice(0, 10)} at Dinis Cruz's request. This file holds the prompt and everything it refers to. Upload it, or paste it, and say: "Follow part 1."`,
+  '**Where you are decides how you deliver:**\n- **In a Claude Code session with the repository PrompTugal/PrompTugal__News__Bulletins:** follow part 1 exactly as written: its branch, its folder, its sub-agents, its checks and its release steps. The files here are copies; the repository is the source.\n- **In Claude chat, without the repository:** the files part 1 asks you to read are parts 2 to 8 below. Plan first, then build every deliverable in common brief section 4, writing each file in full, ready to drop into `src/lab/presenters/v2-claude/`. Use artifacts if you have them, so the showcase can be seen running. For every library, give the exact npm package, version and file to vendor, plus the command that fetches it. Say plainly what you could not run or test.',
+  '## Part 1. The prompt', cprompt,
+  '## Part 2. The common brief (docs/presenters/briefs/common.md)', file('docs/presenters/briefs/common.md').replace(/^# /m, '### ').replace(/^## /gm, '#### '),
+  '## Part 3. The team rules (CLAUDE.md)', file('CLAUDE.md').replace(/^# /m, '### ').replace(/^## /gm, '#### '),
+  '## Part 4. Version 1\'s design (docs/presenters/README.md)', file('docs/presenters/README.md').replace(/^# /m, '### ').replace(/^## /gm, '#### '),
+  '## Part 5. Version 1\'s presenters (src/lab/presenters/presenters.json)', fence('json', file('src/lab/presenters/presenters.json')),
+  '## Part 6. Version 1\'s engine (src/lab/presenters/presenters.js)', fence('js', file('src/lab/presenters/presenters.js')),
+  '## Part 7. How they are driven (src/lab/presenters/gallery.js and explain.js)', fence('js', file('src/lab/presenters/gallery.js')) + '\n\n' + fence('js', file('src/lab/presenters/explain.js')),
+  '## Part 8. How video is exported (bulletins/presenters-video.mjs)', fence('js', file('bulletins/presenters-video.mjs')),
+].join('\n\n') + '\n';
+writeFileSync(join(TO, 'claude-all-in-one.md'), cbundle);
+
 writeFileSync(join(TO, 'index.html'), page('Presenter briefs', 'Briefs for presenters version 2 in high definition, for ChatGPT and for Claude.', `<h1>Presenters version 2: the briefs</h1>
 <p>Three briefs for a high-definition version 2 of the twelve synthetic presenters: one common specification, and a prompt each for ChatGPT and for a Claude Code session, so their results can be compared side by side with <a href="../v1/">version 1</a>. Written by bulletins.b@PrompTugal.dinis on 20 November 2026 at Dinis Cruz's request.</p>
 <a class="card" href="chatgpt-all-in-one.md"><b>For ChatGPT: everything in one file</b><br>The prompt, the common brief, version 1's design, its twelve presenters and its engine, in one Markdown file: upload it or give ChatGPT the link, and say "Follow part 1".<br><span class="dim">chatgpt-all-in-one.md (${Math.round(bundle.length / 1024)} KB)</span></a>
+<a class="card" href="claude-all-in-one.md"><b>For Claude: everything in one file</b><br>The prompt, the common brief, the team rules, version 1's design, its twelve presenters, its engine and how they are driven and exported, in one Markdown file. Works in Claude chat (Claude returns the files) and in a Claude Code session with the repository (Claude follows the branch and release steps). Upload it or give the link, and say "Follow part 1".<br><span class="dim">claude-all-in-one.md (${Math.round(cbundle.length / 1024)} KB)</span></a>
 ${BRIEFS.map((b) => `<a class="card" href="${b.id}.html"><b>${esc(b.title)}</b><br>${esc(b.about)}<br><span class="dim">Markdown: ${b.id}.md</span></a>`).join('\n')}`));
 console.log('briefs: src/lab/presenters/briefs/ (' + BRIEFS.map((b) => b.id).join(', ') + ')');

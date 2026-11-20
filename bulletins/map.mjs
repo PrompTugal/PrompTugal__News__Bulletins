@@ -1,15 +1,15 @@
 // The shared map (Dinis, about 17:40 UTC 19 Nov 2026, main repo board/guidance/2026-11-19-cameras-as-links-and-the-map.md):
-// Portugal big, London small. designer@'s ptmap 1.0.0, cleared by security@ (main repo b5fc4fdef,
-// board/team/security/reviews/2026-11-19-1937-ptmap-1.0.0.md), vendored from PrompTugal__News__Website
-// design/shared-map/v1.0.0/ into src/assets/ptmap/1.0.0/, never loaded from another host. Its outline is Natural Earth
+// Portugal big, London small. designer@'s ptmap 1.0.2 (1.0.0 cleared by security@ b5fc4fdef; 1.0.2,
+// with Object.keys in el() and world-atlas's full ISC licence (rights@ R12), passed by security@ 168c14fc5), vendored from PrompTugal__News__Website
+// design/shared-map/v1.0.2/ into src/assets/ptmap/1.0.2/, never loaded from another host. Its outline is Natural Earth
 // (public domain) via world-atlas (ISC); the ISC notice is carried in ptmap.js. No EU inset: this site has no EU data.
-// The build stops if a vendored file does not match its pin, or if the registry lists 1.0.0 with other pins.
+// The build stops if a vendored file does not match its pin, or if the registry lists this version with other pins.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, getJSON } from './core.mjs';
 
-export const MAP_VERSION = '1.0.0';
+export const MAP_VERSION = '1.0.2';
 export const MAP_DIR = `assets/ptmap/${MAP_VERSION}`;
 // The pins are read from the registry (promptugal.news/api/v1/sites.json, map), never stored here, as for the sites bar.
 const FILES = ['ptmap.js', 'ptmap.css'];
@@ -31,7 +31,7 @@ export const MAP_DATA = {
 const digest = (f, algo) => `${algo}-` + createHash(algo).update(readFileSync(join(ROOT, 'src', MAP_DIR, f))).digest('base64');
 let ON = false;
 export const mapOn = () => ON;
-// The map is drawn only if the registry lists 1.0.0 with a pin for each file, every vendored file matches its pin,
+// The map is drawn only if the registry lists this version with a pin for each file, every vendored file matches its pin,
 // and map.review reads "passed". If the registry cannot be read or does not list it, the map is left off (logged). A mismatch stops the build.
 export async function checkMap() {
   ON = false;
@@ -41,8 +41,10 @@ export async function checkMap() {
   const pins = m?.versions?.[MAP_VERSION]?.integrity || m?.versions?.[MAP_VERSION] || (m?.version === MAP_VERSION ? m.integrity : null);
   if (!pins || typeof pins !== 'object') { console.log(`map: off, the registry does not list ptmap ${MAP_VERSION}`); return false; }
   // The registry's install note: vendor it only once map.review reads "passed" (security@).
-  const reviewed = /^passed\b/.test(String(m.review || ''));
-  if (!reviewed) { console.log(`map: off, the registry's review reads "${String(m.review || '').replace(/[^\w :()@.-]/g, '').slice(0, 60)}"`); }
+  // The version's own review if the registry gives one, else the top-level review when it names this version.
+  const review = m?.versions?.[MAP_VERSION]?.review ?? (m?.version === MAP_VERSION ? m.review : '');
+  const reviewed = /^passed\b/.test(String(review || ''));
+  if (!reviewed) { console.log(`map: off, the registry's review reads "${String(review || '').replace(/[^\w :()@.-]/g, '').slice(0, 60)}"`); }
   for (const f of FILES) {
     const want = pins[f] ?? pins[f.replace('ptmap.', '')];
     if (typeof want !== 'string' || !SRI.test(want)) throw new Error(`ptmap ${f}: the registry lists ${MAP_VERSION} without a pin in SRI form`);

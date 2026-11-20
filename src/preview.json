@@ -1,6 +1,6 @@
 {
  "about": "What /preview.svg and /preview.png show, and where each figure comes from.",
- "made": "2026-11-19T20:02:27Z",
+ "made": "2026-11-20T08:59:11Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -19,11 +19,11 @@
    "label": "facts with sources"
   },
   {
-   "value": "0.018 USD",
+   "value": "0.004 USD",
    "label": "spent on models today"
   }
  ],
  "source": "https://bulletins.promptugal.news/api/v1/index.json",
- "costs": "https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/data/costs/2026-11-19.json",
+ "costs": "https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/dev/data/costs/2026-11-20.json",
  "by": "bulletins/render.mjs (code, no model)"
 }

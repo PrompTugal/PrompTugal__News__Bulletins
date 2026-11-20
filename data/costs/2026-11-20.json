@@ -1,0 +1,68 @@
+{
+ "date": "2026-11-20",
+ "cap_usd": 5,
+ "source": "OpenRouter usage.cost in each response (usage accounting), in USD",
+ "calls": [
+  {
+   "at": "2026-11-20T08:59:17.522Z",
+   "what": "script for P100",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 714,
+   "completion_tokens": 1091,
+   "cost_usd": 0.000610731
+  },
+  {
+   "at": "2026-11-20T08:59:23.005Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1345,
+   "completion_tokens": 1444,
+   "cost_usd": 0.000847935
+  },
+  {
+   "at": "2026-11-20T08:59:28.290Z",
+   "what": "script for P300",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 855,
+   "completion_tokens": 1304,
+   "cost_usd": 0.000730125
+  },
+  {
+   "at": "2026-11-20T08:59:33.262Z",
+   "what": "script for P500",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 884,
+   "completion_tokens": 1234,
+   "cost_usd": 0.000698346
+  },
+  {
+   "at": "2026-11-20T08:59:36.975Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1912,
+   "completion_tokens": 960,
+   "cost_usd": 0.000664488
+  },
+  {
+   "at": "2026-11-20T08:59:41.195Z",
+   "what": "script for P700",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 715,
+   "completion_tokens": 1111,
+   "cost_usd": 0.00062073
+  }
+ ],
+ "total_usd": 0.004172
+}

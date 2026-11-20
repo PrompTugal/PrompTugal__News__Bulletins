@@ -3,7 +3,7 @@
  "title": "Lisbon",
  "about": "Lisbon: forecast, warnings and sea, and the latest Lisbon articles.",
  "label": "Made by agents from PrompTugal.news's data",
- "made": "2026-11-20T08:59:11Z",
+ "made": "2026-11-20T19:58:38Z",
  "licence": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,57 +11,50 @@
  },
  "script": {
   "model": "anthropic/claude-haiku-5.5",
-  "written": "2026-11-20T08:59:28.291Z",
-  "facts_sha256": "6bdda0140f73fadaf1aa76f58ce2796e",
+  "written": "2026-11-20T19:58:54.613Z",
+  "facts_sha256": "21e5545044eb0f9213d0cb4336d16a28",
   "prompt_sha256": "52b7ad6f4f01c6b13a11ea9541b32258",
-  "cost_usd": 0.000730125,
+  "cost_usd": 0.000674883,
   "tokens": {
-   "prompt": 855,
-   "completion": 1304
+   "prompt": 817,
+   "completion": 1200
   },
   "note": null,
   "sentences": [
    {
-    "text": "IPMA has issued a yellow rain warning for the Lisboa district from 12:00 to 18:00 local time on 2026-11-21.",
+    "text": "IPMA has issued a yellow warning for rain in the Lisboa district, from 2026-11-21 12:00 to 2026-11-21 18:00 local time.",
     "facts": [
      "300-03"
     ]
    },
    {
-    "text": "The IPMA forecast for Lisboa tomorrow, 2026-11-21, is a minimum of 14.2 °C and a maximum of 18.8 °C, with a 100% chance of rain and a moderate wind from the S.",
+    "text": "IPMA forecasts a 100% chance of rain in Lisboa tomorrow, 2026-11-21, with a minimum of 14.5 °C and a maximum of 19.2 °C.",
     "facts": [
      "300-02"
     ]
    },
    {
-    "text": "For today, 2026-11-20, the IPMA forecast for Lisboa is a minimum of 13.3 °C and a maximum of 17.5 °C, with a 37% chance of rain and a moderate wind from the S.",
+    "text": "Wind is forecast to be moderate from S in Lisboa tomorrow.",
+    "facts": [
+     "300-02"
+    ]
+   },
+   {
+    "text": "Today, 2026-11-20, IPMA forecasts a minimum of 12.9 °C and a maximum of 17.5 °C in Lisboa, with a 33% chance of rain and moderate wind from S.",
     "facts": [
      "300-01"
     ]
    },
    {
-    "text": "A yellow warning for rough sea covers the Lisboa district from 00:50 to 09:00 local time on 2026-11-20.",
-    "facts": [
-     "300-03"
-    ]
-   },
-   {
-    "text": "The IPMA sea forecast for the Lisboa coast on 2026-11-21 gives waves of 1.6 to 2.6 metres from the W and a sea temperature of 17.6 to 17.8 °C.",
+    "text": "The IPMA sea forecast for the Lisboa coast on 2026-11-21 gives waves of 1.7 to 2.6 metres from W and a sea temperature of 17.6 to 17.8 °C.",
     "facts": [
      "300-04"
     ]
    },
    {
-    "text": "The Lisbon feed links to a portugalglobal.pt story headlined 'Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI'.",
+    "text": "The Lisbon feed links to 'Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI', a story published by portugalglobal.pt, not by PrompTugal.news.",
     "facts": [
      "300-05"
-    ]
-   },
-   {
-    "text": "Other linked Lisbon stories are 'Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology' from vestbee.com and 'University of Lisbon builds two AI data centres' from portugalglobal.pt; both are published by other outlets, not PrompTugal.news.",
-    "facts": [
-     "300-06",
-     "300-07"
     ]
    }
   ],
@@ -70,10 +63,10 @@
  "facts": [
   {
    "id": "300-01",
-   "text": "IPMA forecast for Lisboa today (2026-11-20): minimum 13.3 °C, maximum 17.5 °C, chance of rain 37%, wind moderate from S.",
+   "text": "IPMA forecast for Lisboa today (2026-11-20): minimum 12.9 °C, maximum 17.5 °C, chance of rain 33%, wind moderate from S.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-   "read_at": "2026-11-20T07:15:48Z",
+   "read_at": "2026-11-20T18:14:34Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -82,10 +75,10 @@
   },
   {
    "id": "300-02",
-   "text": "IPMA forecast for Lisboa tomorrow (2026-11-21): minimum 14.2 °C, maximum 18.8 °C, chance of rain 100%, wind moderate from S.",
+   "text": "IPMA forecast for Lisboa tomorrow (2026-11-21): minimum 14.5 °C, maximum 19.2 °C, chance of rain 100%, wind moderate from S.",
    "source": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json",
-   "read_at": "2026-11-20T07:15:48Z",
+   "read_at": "2026-11-20T18:14:34Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -94,10 +87,10 @@
   },
   {
    "id": "300-03",
-   "text": "IPMA warnings for the Lisboa district: yellow for rough sea, from 2026-11-20 00:50 to 2026-11-20 09:00 local time; yellow for rain, from 2026-11-21 12:00 to 2026-11-21 18:00 local time.",
+   "text": "IPMA warnings for the Lisboa district: yellow for rain, from 2026-11-21 12:00 to 2026-11-21 18:00 local time.",
    "source": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/warnings/warnings_www.json",
-   "read_at": "2026-11-20T07:17:00Z",
+   "read_at": "2026-11-20T18:15:47Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -106,10 +99,10 @@
   },
   {
    "id": "300-04",
-   "text": "IPMA sea forecast for the Lisboa coast on 2026-11-21: waves of 1.6 to 2.6 metres from W, sea temperature 17.6 to 17.8 °C.",
+   "text": "IPMA sea forecast for the Lisboa coast on 2026-11-21: waves of 1.7 to 2.6 metres from W, sea temperature 17.6 to 17.8 °C.",
    "source": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
    "origin": "https://api.ipma.pt/open-data/forecast/oceanography/daily/hp-daily-sea-forecast-day{0,1,2}.json",
-   "read_at": "2026-11-20T07:16:48Z",
+   "read_at": "2026-11-20T18:15:34Z",
    "licence": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/"
@@ -121,7 +114,7 @@
    "text": "PrompTugal.news's Lisbon feed links to ‘Web Summit opens in Lisbon with humanoid robots as speakers and a focus on physical AI’, a story published by portugalglobal.pt, not by PrompTugal.news.",
    "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
    "origin": "https://www.portugalglobal.pt/en/news/2026/novembro/web-summit-features-humanoid-robots-and-record-chinese-presence/",
-   "read_at": "2026-11-20T08:59:11Z",
+   "read_at": "2026-11-20T19:58:38Z",
    "licence": {
     "name": "the publisher's terms (linked, not copied)",
     "url": "https://www.portugalglobal.pt/en/news/2026/novembro/web-summit-features-humanoid-robots-and-record-chinese-presence/"
@@ -133,7 +126,7 @@
    "text": "PrompTugal.news's Lisbon feed links to ‘Lisbon drone maker Beyond Vision raises over 28 million euros to speed up AI and swarm technology’, a story published by vestbee.com, not by PrompTugal.news.",
    "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
    "origin": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026",
-   "read_at": "2026-11-20T08:59:11Z",
+   "read_at": "2026-11-20T19:58:38Z",
    "licence": {
     "name": "the publisher's terms (linked, not copied)",
     "url": "https://vestbee.com/insights/articles/top-european-funding-rounds-closed-in-october-2026"
@@ -145,7 +138,7 @@
    "text": "PrompTugal.news's Lisbon feed links to ‘University of Lisbon builds two AI data centres’, a story published by portugalglobal.pt, not by PrompTugal.news.",
    "source": "https://promptugal.news/api/v1/by-place/lisboa/feed.json",
    "origin": "https://www.portugalglobal.pt/en/news/2026/julho/university-of-lisbon-to-invest-20m-in-ai-science-data-centres/",
-   "read_at": "2026-11-20T08:59:11Z",
+   "read_at": "2026-11-20T19:58:38Z",
    "licence": {
     "name": "the publisher's terms (linked, not copied)",
     "url": "https://www.portugalglobal.pt/en/news/2026/julho/university-of-lisbon-to-invest-20m-in-ai-science-data-centres/"

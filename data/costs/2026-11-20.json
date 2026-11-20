@@ -92,7 +92,67 @@
    "prompt_tokens": 165,
    "completion_tokens": 694,
    "cost_usd": 0.001746954
+  },
+  {
+   "at": "2026-11-20T19:58:44.987Z",
+   "what": "script for P100",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 716,
+   "completion_tokens": 1093,
+   "cost_usd": 0.000611919
+  },
+  {
+   "at": "2026-11-20T19:58:49.910Z",
+   "what": "script for P200",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1313,
+   "completion_tokens": 1232,
+   "cost_usd": 0.000739827
+  },
+  {
+   "at": "2026-11-20T19:58:54.611Z",
+   "what": "script for P300",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 817,
+   "completion_tokens": 1200,
+   "cost_usd": 0.000674883
+  },
+  {
+   "at": "2026-11-20T19:58:59.039Z",
+   "what": "script for P500",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 886,
+   "completion_tokens": 1205,
+   "cost_usd": 0.000684189
+  },
+  {
+   "at": "2026-11-20T19:59:03.131Z",
+   "what": "script for P600",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 1912,
+   "completion_tokens": 1031,
+   "cost_usd": 0.000699633
+  },
+  {
+   "at": "2026-11-20T19:59:06.617Z",
+   "what": "script for P700",
+   "provider": "openrouter",
+   "model": "anthropic/claude-haiku-5.5",
+   "http": 200,
+   "prompt_tokens": 618,
+   "completion_tokens": 879,
+   "cost_usd": 0.000496287
   }
  ],
- "total_usd": 0.0098
+ "total_usd": 0.013707
 }

@@ -1,8 +1,9 @@
 {
  "agent": "bulletins.b@PrompTugal.dinis",
- "updated": "2026-11-20T09:00Z",
+ "updated": "2026-11-20T19:59Z",
  "state": "scheduled wake 22:58 UTC done: all eight pages refreshed, P700 London live",
  "done": [
+  "2026-11-20T19:59Z: bulletins rewritten; earlier today in the lab: a 30 s video bulletin with a synthetic OpenRouter voice (/lab/video/), an animated version with a holographic presenter and a player, twelve presenters as data with one action language (/lab/presenters/, docs/presenters/README.md), and tools research (docs/research/2026-11-20-synthetic-presenter-tools.md)",
   "2026-11-20T09:00Z: ptmap 1.0.2 live on the front page; first judged day on P200 (19 Nov: temperature held, rain missed); bulletins rewritten",
   "2026-11-19T20:03Z: control 10, no symlinks (scripts/check-symlinks.mjs, 13 tests, in the checks job from A and in release.sh); bulletins rewritten",
   "read CLAUDE.md, README, REALITY, scripts/ and the main repo's guidance (New from Dinis; 18 Nov cameras-provenance-and-bulletins, pipeline standard and fact-checker, inner passes and security)",
@@ -47,7 +48,8 @@
   "Dinis: a daily budget for the bulletins (5 USD a day until you set one).",
   "Dinis: the name and home (bulletins.promptugal.news, provisional) are yours to confirm.",
   "Dinis: the bulletins refresh at each wake (now every 3 hours, 07-22 Lisbon). For hourly pages between wakes, add OPEN_ROUTER_KEY as a secret of this repository for a scheduled GitHub run (capped at 5 USD a day by the ledger). Yes or no?",
-  "Dinis: is this rule right for 'what we said, what happened'? Temperatures held if within 2 °C on low and high; Faro rain held if it rained (0.2 mm or more) when the chance was 50% or more, and not otherwise; London rain held if within 2 mm of the gauges' mean. It is a proposal until you say."
+  "Dinis: is this rule right for 'what we said, what happened'? Temperatures held if within 2 °C on low and high; Faro rain held if it rained (0.2 mm or more) when the chance was 50% or more, and not otherwise; London rain held if within 2 mm of the gauges' mean. It is a proposal until you say.",
+  "Dinis: presenters, next step: (1) let a bulletin pick any presenter, (2) real mouth shapes and measured word timings, or (3) more presenters or a three.js 3D head? And a hosted near-real presenter (Kling AI Avatar through fal.ai, or Hedra, about $1.70 per 30 s) needs your account and your agreement to the spend"
  ],
  "answers": [
   {

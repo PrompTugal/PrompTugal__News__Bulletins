@@ -59,7 +59,7 @@ Every one is an original synthetic character. None is the likeness of a real per
 | holo | Tejo | Holographic male news presenter, half body, suit and tie | hologram (cyan to blue, scan lines, flicker, glow) | The flagship: volumetric hologram, depth, particles, glitch, a projector base |
 | anchor | Duarte | Traditional newsreader, side-parted dark hair, navy suit, red tie, tablet | flat vector | Studio desk, broadcast polish, papers, gestures |
 | realist | Rui | The nearest to realism: brown quiff, short beard, grey jumper | shaded (gradients) | The most realistic you can make in code: skin shading, hair strands, eye detail, subtle micro-motion |
-| teletext | Ceefax (rename proposed: "Bloco") | Teletext block-mosaic face, green hair, cyan face | 2×3 teletext mosaic, 8 colours | Stay true to teletext mosaics (sextants), with block-by-block animation and page-flip effects |
+| teletext | Ceefax | Teletext block-mosaic face, green hair, cyan face | 2×3 teletext mosaic, 8 colours | Stay true to teletext mosaics (sextants), with block-by-block animation and page-flip effects |
 | guide | The Guide | Grey-haired man with glasses, green jumper | hand-drawn, hatched (after storyboards.sgit.ai) | Rough.js-like line boil, cross-hatching |
 | agent | The Agent | Box-head robot with an antenna, tunic | hand-drawn, hatched (after storyboards.sgit.ai) | Antenna wobble, screen-face expressions |
 | conductor | Conductor | Box-head agent with a clock face, rust body, holds a card | flat (after the book's cover) | The clock hands move as its "eyes"; ZX stripes |

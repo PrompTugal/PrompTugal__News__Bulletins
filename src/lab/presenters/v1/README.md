@@ -22,7 +22,7 @@ What it produces, all at bulletins.promptugal.news/lab/:
 | `presenters/index.html` | The twelve presenters, driven live in the browser by one voice and one set of actions; each card shows its spec |
 | `presenters/presenters.mp4` | The twelve side by side (`wall.html`) |
 | `presenters/presenters-split.mp4` | The animated bulletin on the left, the twelve on the right (`split.html`) |
-| `presenters/explainer.mp4` | How it is done, told by the presenters: they show each action on the left while the right explains it, with a live readout of the state they are applying (`explain.html`) |
+| `presenters/explainer.mp4` | How it is done, told by the presenters: the left explains each action while they show it on the right, with a live readout of the state they are applying (`explain.html`) |
 | `video/200-animated.mp4` and `video/play.html` | One full bulletin with a presenter, and a player where each sentence can be clicked |
 | `video/200.mp4` | The first, plain video bulletin |
 

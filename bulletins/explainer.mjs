@@ -1,6 +1,6 @@
 // The explainer video: how the presenters are made, told by the presenters themselves (Dinis, 20 Nov 2026: "write a
 // video that actually explains how this is done ... on the right ... the explanation ... and the capabilities that
-// they have on the left"). Presenters on the left half, the explanation on the right; each action is shown by all
+// they have on the left"). The explanation on the left half, the presenters on the right; each action is shown by all
 // twelve presenters while it is explained.
 // Words: a fixed script below, written by bulletins.b@ (not data, so not fact-checked; every claim in it is about this
 // code). Voice: openai/gpt-audio-mini through OpenRouter, stock voice "alloy", transcript checked word for word.

@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="Bulletins: 51 checked sentences from 82 facts with sources">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="Bulletins: 49 checked sentences from 82 facts with sources">
   <rect width="320" height="180" rx="6" fill="#f6f3ec"/>
   <rect x="0" y="0" width="320" height="4" fill="#a0522d"/>
   <text x="16" y="30" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2" fill="#666860">BULLETINS · NOW</text>
-  <text x="16" y="84" font-family="Newsreader, Georgia, serif" font-size="46" fill="#121317">51</text>
+  <text x="16" y="84" font-family="Newsreader, Georgia, serif" font-size="46" fill="#121317">49</text>
   <text x="16" y="104" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#3a3b40">checked sentences</text>
   <text x="176" y="72" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">8</text>
   <text x="176" y="88" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">pages</text>
   <text x="176" y="120" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">82</text>
   <text x="176" y="136" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">facts with sources</text>
   <line x1="16" y1="150" x2="304" y2="150" stroke="#d8d4cb"/>
-  <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read 2026-11-20 19:58 UTC · CC BY 4.0</text>
+  <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read 2026-11-21 08:58 UTC · CC BY 4.0</text>
 </svg>

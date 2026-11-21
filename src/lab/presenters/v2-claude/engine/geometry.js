@@ -141,8 +141,10 @@ export class Kit {
   build(joints, style) {
     const groups = new Map(), meshes = [];
     for (const it of this.items) {
-      // Only the realistic style needs different materials for skin, cloth and hair; the others share one fill.
-      const slot = (style.render === 'realistic' || ['glass', 'flat', 'noink'].includes(it.slot)) ? it.slot : 'fill';
+      // Only the realistic style needs different materials for skin, cloth and hair; the others share one fill, except
+      // hatch, which keeps skin and hair apart so that faces are not hatched (bulletins.b@, 21 Nov 2026).
+      const keep = style.render === 'realistic' || ['glass', 'flat', 'noink'].includes(it.slot) || (style.render === 'hatch' && (it.slot === 'skin' || it.slot === 'hair'));
+      const slot = keep ? it.slot : 'fill';
       const k = it.joint + '|' + slot; if (!groups.has(k)) groups.set(k, { joint: it.joint, slot, fill: [], ink: [] });
       const G = groups.get(k); G.fill.push([it.g, it.col]); if (it.ink) G.ink.push([it.g, '#000']);
     }

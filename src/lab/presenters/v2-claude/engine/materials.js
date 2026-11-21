@@ -26,7 +26,7 @@ void main(){
     vec2 p = gl_FragCoord.xy * uPx; float k = floor(uTime * 8.0) + uSeed;
     float wob = sin(p.y * 0.045 + hash1(k) * 6.283) * 1.6 + sin(p.x * 0.031 + hash1(k + 3.0) * 6.283) * 1.3;
     float lum = dot(vColor, vec3(0.3, 0.6, 0.1));
-    vec3 paper = mix(vColor, vec3(0.96, 0.94, 0.88), 0.72);
+    vec3 paper = mix(vColor, vec3(0.96, 0.94, 0.88), 0.5); // was 0.72, which washed the colours out at bulletin size
     float dark = 1.0 - tone; dark = clamp(dark * 1.15 + (1.0 - lum) * 0.10, 0.0, 1.0);
     float a = abs(fract((p.x + p.y + wob) / 9.0 + hash1(k + 7.0)) - 0.5) * 2.0;
     float b = abs(fract((p.x - p.y + wob) / 9.0 + hash1(k + 11.0)) - 0.5) * 2.0;
@@ -118,7 +118,10 @@ export function makeStyle(render, looks = {}, seedN = 1) {
 
   if (render === 'flat' || render === 'line' || render === 'hatch') {
     const P = { flat: { band: 0.10, width: 2.0, weight: 0.5, lit: 0.0 }, line: { band: 0.16, width: 4.4, weight: 0.9, lit: 1 }, hatch: { band: 0, width: 1.9, weight: 0.3, boil: 2.6, hatch: 1 } }[render];
-    S.material = (slot) => mk(slot, () => (slot === 'glass' ? new THREE.MeshBasicMaterial({ color: '#dff4ff', transparent: true, opacity: 0.28, depthWrite: false }) : slot === 'flat' ? basic() : toon(P)));
+    // Hatch shades skin and hair with a flat cel band, not pen lines: at bulletin size the lines (a fixed number of
+    // pixels apart) ran through small faces and turned them to noise (Dinis, 21 Nov 2026: "The Guide looks pretty weird").
+    const plain = { band: 0.12, edge: 0.42 };
+    S.material = (slot) => mk(slot, () => (slot === 'glass' ? new THREE.MeshBasicMaterial({ color: '#dff4ff', transparent: true, opacity: 0.28, depthWrite: false }) : slot === 'flat' ? basic() : (render === 'hatch' && (slot === 'skin' || slot === 'hair')) ? toon(plain) : toon(P)));
     S.outline = (slot) => (slot === 'glass' || slot === 'flat' || slot === 'noink') ? null : mk('ink', () => { const m = inkMat(P); S.inks.push(m); return m; });
     if (render === 'hatch') { // version 1 drew each hatched outline twice with a different wobble; so does this
       const first = S.outline; S.outline2 = () => mk('ink2', () => { const m = inkMat({ ...P, pass: 1, width: 1.2 }); S.inks.push(m); return m; }); S.outline = first;

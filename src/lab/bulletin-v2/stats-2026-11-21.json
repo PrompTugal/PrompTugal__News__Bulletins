@@ -1,5 +1,5 @@
 {
- "started": "2026-11-21T17:33:12.586Z",
+ "started": "2026-11-21T18:43:53.962Z",
  "machine": {
   "cpus": 4,
   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
@@ -11,27 +11,27 @@
  "phases": [
   {
    "name": "select stories",
-   "wall_s": 0.001,
+   "wall_s": 0.002,
    "node_cpu_s": 0.001
   },
   {
    "name": "voice (OpenRouter)",
-   "wall_s": 0.121,
-   "node_cpu_s": 0.008
+   "wall_s": 0.099,
+   "node_cpu_s": 0.01
   },
   {
    "name": "timeline, loudness, mouth shapes",
-   "wall_s": 0.009,
-   "node_cpu_s": 0.014
+   "wall_s": 0.012,
+   "node_cpu_s": 0.018
   },
   {
    "name": "render 939 frames (3 browsers)",
-   "wall_s": 392.552,
-   "node_cpu_s": 10.419
+   "wall_s": 386.094,
+   "node_cpu_s": 10.311
   },
   {
    "name": "encode (ffmpeg H.264 + AAC)",
-   "wall_s": 10.222,
+   "wall_s": 9.796,
    "node_cpu_s": 0.004
   }
  ],
@@ -52,67 +52,67 @@
   "workers": 3,
   "chromium": "157.0.8103.78",
   "browser_startup_s": [
-   4.51,
-   4.86,
-   4.94
+   4.62,
+   4.88,
+   5.19
   ],
   "left_v1_stage_ms": {
    "min": 0.1,
    "p50": 0.4,
    "p90": 0.8,
-   "p99": 2.5,
-   "max": 38.3,
+   "p99": 4.2,
+   "max": 90.2,
    "mean": 0.6
   },
   "right_v2_cast_ms": {
-   "min": 3.2,
-   "p50": 12.3,
-   "p90": 57,
-   "p99": 232.5,
-   "max": 560.7,
-   "mean": 26.8
+   "min": 2.9,
+   "p50": 12.2,
+   "p90": 56.4,
+   "p99": 206.2,
+   "max": 485.2,
+   "mean": 24.5
   },
   "screenshot_ms": {
-   "min": 531.6,
-   "p50": 1166.3,
-   "p90": 1496.8,
-   "p99": 1784.1,
-   "max": 2321.1,
-   "mean": 1193.1
+   "min": 521.3,
+   "p50": 1145.7,
+   "p90": 1449.8,
+   "p99": 1784.4,
+   "max": 2018,
+   "mean": 1162.6
   },
   "slowest_frames": [
    {
-    "t": 29.1,
-    "right_ms": 560.7
-   },
-   {
-    "t": 12.77,
-    "right_ms": 423.5
-   },
-   {
     "t": 20.87,
-    "right_ms": 422.8
+    "right_ms": 485.2
    },
    {
-    "t": 23.23,
-    "right_ms": 394.9
+    "t": 3.07,
+    "right_ms": 347.4
    },
    {
-    "t": 1.07,
-    "right_ms": 333.4
+    "t": 2.73,
+    "right_ms": 338.7
+   },
+   {
+    "t": 2.37,
+    "right_ms": 309.7
+   },
+   {
+    "t": 14.07,
+    "right_ms": 252.4
    }
   ]
  },
- "finished": "2026-11-21T17:39:56.905Z",
+ "finished": "2026-11-21T18:50:31.294Z",
  "output": {
   "video": "bulletin-2026-11-21.mp4",
-  "video_bytes": 7656065,
+  "video_bytes": 7558966,
   "voice_bytes": 388059,
   "duration_s": 31.3,
   "script_words": 84
  },
- "total_wall_s": 402.9,
- "realtime_factor": 12.9,
+ "total_wall_s": 396,
+ "realtime_factor": 12.7,
  "stories": [
   {
    "place": "Portugal",

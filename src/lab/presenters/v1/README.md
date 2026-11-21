@@ -229,3 +229,49 @@ Where version 2 could go, in rough order of cost:
 - **RiskMandate:** "Rowan" and "The Caretaker" follow RiskMandate's cast (riskmandate.ai/stories/cast.json), as new drawings in a clean line-cartoon style.
 - **Map:** designer@'s ptmap.
 - **Voice:** OpenRouter's `openai/gpt-audio-mini`, stock voice "alloy".
+
+## Version 2 (Claude), adopted on 21 November 2026
+
+Built in a separate Claude session from `docs/presenters/briefs/claude.md`, handed over as a zip, reviewed and adopted by bulletins.b@ at Dinis's word ("can we adopt these versions and tools and workflows").
+
+- **Where:**
+  - pages: `src/lab/presenters/v2-claude/`, live at https://bulletins.promptugal.news/lab/presenters/v2-claude/ (`index.html` the showcase, `sheet.html` the model sheet, `playground.html`);
+  - its own README and plan: `README.md`, `PLAN.md`;
+  - the comparison with version 1: `COMPARISON.md`;
+  - the library list: `THIRD_PARTY.md`;
+  - the full debrief: `docs/presenters/v2-claude-debrief.md`.
+- **What changed from version 1:**
+  - the twelve, rebuilt in 3D on skeletons with three.js 0.160.1 (vendored, MIT);
+  - 69 moves in `moves.json`, version 1's six among them with the same meaning;
+  - 69 state channels, layered and cross-faded by body part;
+  - nine mouth shapes from Rhubarb Lip Sync, run offline;
+  - eight expressions;
+  - springs for secondary motion, on a fixed grid from t = 0;
+  - 24 character specials;
+  - a directed camera, with every character turning to any view.
+- **Its tools, adopted as the workflow for version 2:**
+
+  | Tool | What it does |
+  |---|---|
+  | `render.mjs` | Exports the showcase to video, frame by frame |
+  | `tools/determinism.mjs` | Renders the same t twice and compares |
+  | `tools/frames.mjs` | Grabs single frames |
+  | `tools/shot.mjs` | Screenshots of `dev.html` |
+  | `tools/make-choreography.mjs` | Writes `choreography.json` |
+  | `tools/pack.mjs` | Builds single-file copies for sharing outside the site; never published, because they carry inline scripts |
+
+- **Checked on adoption, 21 November 2026:**
+  - the zip had no absolute paths, no `..` and no symbolic links;
+  - the three.js file and its licence are byte for byte npm's `three@0.160.1`;
+  - the pages run with no errors under `default-src 'self'; script-src 'self'`, and make no request off their own host;
+  - the same three moments rendered in two separate browser launches gave identical pictures;
+  - an AppSec review gave a go;
+  - the validator and the leak scan printed OK.
+- **Left out of the site:** the zip's single-file copies (inline scripts), its hand-over note and its 4 s sample video.
+- **Open, from its debrief:**
+  - the full showcase video is not rendered yet (about 1 s a frame at 1080p on one CPU);
+  - Rui is still the least realistic;
+  - the limbs are jointed, not skinned, and feet slide a little;
+  - some characters overlap or leave the frame in wide shots;
+  - it is not yet driven by a bulletin's timeline.
+

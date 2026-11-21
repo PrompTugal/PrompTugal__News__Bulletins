@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Presenters version 2 (Claude), the showcase: PrompTugal.news Bulletins lab</title>
+<meta name="description" content="Twelve synthetic presenters as game characters: one skeleton, one move set, twelve drawing styles. Every frame is a function of t. Synthetic presenters; no real person.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="tt-head">
+    <span class="page">P212</span>
+    <h1>Presenters version 2 (Claude)</h1>
+    <span class="what">The showcase: all twelve synthetic presenters in action</span>
+    <span class="right" id="clock">0.00 s</span>
+  </header>
+  <p class="err" id="err" hidden></p>
+  <div class="frame" id="frame">
+    <canvas id="c" aria-label="Twelve synthetic presenters performing on a stage"></canvas>
+    <div id="tags"></div>
+    <div class="strap"><span class="p">P212</span><span class="s">Synthetic presenters</span><span class="p" id="strapNote">made by code, no real person</span><span class="c" id="strapT">t = 0.00</span></div>
+    <div class="lower"><b id="beat"></b><span id="sub"></span></div>
+  </div>
+  <div class="transport">
+    <button class="btn" id="play" type="button">Play</button>
+    <input id="scrub" type="range" min="0" max="100" step="0.01" value="0" aria-label="Time in the showcase">
+    <span class="time" id="time">0.00 / 0.00 s</span>
+    <div class="row2">
+      <label>Speed <select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+      <label>Camera <select id="focus"><option value="">Director's camera</option></select></label>
+      <label>Zoom <input id="zoom" type="range" min="0.5" max="1.6" step="0.01" value="1"></label>
+      <button class="btn plain" id="sound" type="button" aria-pressed="true">Voice on</button>
+      <button class="btn plain" id="names" type="button" aria-pressed="true">Name tags on</button>
+      <span class="dim small">Space plays and pauses. Left and right step one frame.</span>
+    </div>
+  </div>
+  <ol class="beats" id="beats" aria-label="Jump to a part of the showcase"></ol>
+  <div class="note">
+    <p>Every presenter here is a synthetic character built by code from <a href="characters.json">characters.json</a>. None is the likeness of a real person. They share one skeleton and one move set (<a href="moves.json">moves.json</a>), and this sequence is data too (<a href="choreography.json">choreography.json</a>). Drag the scrub bar: any moment can be reached directly, because every frame is computed from the time alone.</p>
+    <p>The voice in the lip-sync passage is version 1's synthetic voice, reading the bulletin's own checked sentences. The mouth shapes were made offline from it with Rhubarb Lip Sync.</p>
+    <p class="dim small">Styles after others are new models, credited: The Guide and The Agent after storyboards.sgit.ai (CC BY 4.0); Conductor and Researcher after the cover of One Human, Nine Agents, Nineteen Hours (CC BY 4.0); Rowan and The Caretaker after RiskMandate's cast. How it is built: <a href="README.md">README.md</a>. Proposal by presenters.v2-claude@PrompTugal.dinis for Dinis Cruz, 20 November 2026.</p>
+  </div>
+</div>
+<nav class="fastext" aria-label="Pages of version 2">
+  <a href="index.html" aria-current="page">Showcase</a><a href="sheet.html">Model sheet</a><a href="playground.html">Playground</a><a href="../v1/">Version 1</a>
+</nav>
+<audio id="voice" preload="auto"></audio>
+<script type="module" src="showcase.js"></script>
+</body>
+</html>

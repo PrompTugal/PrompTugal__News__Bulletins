@@ -23,7 +23,7 @@ blockquote{margin:10px 0;padding:8px 12px;border-left:3px solid #ff0;background:
 const page = (title, desc, body) => `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}: PrompTugal.news Bulletins</title><meta name="description" content="${esc(desc)} ${esc(LABEL)}.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
-<style>${css}</style></head><body><div class="nav">PrompTugal.news Bulletins · Lab · <a href="./">Presenter briefs</a> · <a href="../">the gallery</a> · <a href="../v1/">version 1</a> · <a href="../explainer.mp4">the explainer</a></div>
+<style>${css}</style></head><body><div class="nav">PrompTugal.news Bulletins · Lab · <a href="./">Presenter briefs</a> · <a href="../">the gallery</a> · <a href="../v1/">version 1</a> · <a href="../explainer.mp4">the explainer</a> · <a href="../v2-claude/">version 2 (Claude), the result</a></div>
 <div class="wrap">${body}<p class="dim">${esc(LABEL)}. Text CC BY 4.0, code Apache-2.0.</p></div></body></html>\n`;
 const md2 = (t) => md(t.replace(/^---$/gm, '<!--hr-->')).replace(/<p>&lt;!--hr--&gt;<\/p>/g, '<hr>');
 for (const b of BRIEFS) {

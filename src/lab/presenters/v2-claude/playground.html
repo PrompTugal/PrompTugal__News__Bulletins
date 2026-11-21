@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Presenters version 2 (Claude), the playground: PrompTugal.news Bulletins lab</title>
+<meta name="description" content="Pick one of the twelve synthetic presenters and a move, set its parameters, trigger it, and stack moves. The live state is shown as numbers. Synthetic presenters; no real person.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="tt-head">
+    <span class="page">P214</span>
+    <h1>Presenters version 2 (Claude)</h1>
+    <span class="what">The playground: one synthetic presenter, any move, stacked as you like</span>
+    <span class="right" id="clock">0.00 s</span>
+  </header>
+  <p class="err" id="err" hidden></p>
+  <div class="play">
+    <div>
+      <div class="frame" id="frame">
+        <canvas id="c" aria-label="The chosen synthetic presenter"></canvas>
+        <div class="strap"><span class="p">P214</span><span class="s">Synthetic presenter</span><span class="p" id="who"></span><span class="c" id="strapT">t = 0.00</span></div>
+        <div class="lower"><b id="beat"></b><span id="sub"></span></div>
+      </div>
+      <div class="transport">
+        <button class="btn" id="play" type="button">Pause</button>
+        <span class="dim small">Drag the picture to walk the camera round. The wheel moves it in and out.</span>
+        <span></span>
+        <div class="row2">
+          <label>Speed <select id="speed"><option value="0.1">0.1×</option><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+          <button class="btn plain" id="idle" type="button" aria-pressed="true">Idle on</button>
+          <button class="btn plain" id="home" type="button">Walk back to the mark</button>
+          <button class="btn plain" id="front" type="button">Camera to the front</button>
+        </div>
+      </div>
+      <div class="box">
+        <h2>The live state</h2>
+        <p class="dim small">Every number the rig is applying in this frame. A move writes channels; the body reads them. Version 1 had eight of these.</p>
+        <div class="state" id="state"></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="box">
+        <h2>1. Pick a presenter</h2>
+        <select id="char" aria-label="Presenter"></select>
+        <p class="dim small" id="charNote"></p>
+      </div>
+      <div class="box">
+        <h2>2. Pick a move</h2>
+        <div class="moves" id="moves"></div>
+      </div>
+      <div class="box">
+        <h2>3. Set it and trigger it</h2>
+        <div class="params" id="params"></div>
+        <p><button class="btn" id="go" type="button">Trigger</button> <span class="dim small">Trigger another while one runs: they layer and cross-fade.</span></p>
+      </div>
+      <div class="box">
+        <h2>The stack</h2>
+        <ul class="stack" id="stack"><li class="done">Nothing triggered yet. Pick a move and press Trigger.</li></ul>
+        <p><button class="btn plain" id="clear" type="button">Clear the stack</button></p>
+        <label for="cues">The same as cues, ready for choreography.json</label>
+        <textarea id="cues" readonly spellcheck="false"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="fastext" aria-label="Pages of version 2">
+  <a href="index.html">Showcase</a><a href="sheet.html">Model sheet</a><a href="playground.html" aria-current="page">Playground</a><a href="../v1/">Version 1</a>
+</nav>
+<script type="module" src="playground.js"></script>
+</body>
+</html>

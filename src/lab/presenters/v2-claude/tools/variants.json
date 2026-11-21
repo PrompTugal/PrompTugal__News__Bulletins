@@ -1,0 +1,15 @@
+{
+  "about": "Trial looks for Rowan and Rui, asked for by Dinis on 21 November 2026. Each is a copy of the character with some looks changed. A proposal: none is in characters.json until Dinis picks.",
+  "variants": [
+    { "id": "rowanA", "of": "rowan", "name": "A: trimmed, darker, clear of the ears", "looks": { "beard": "#a04c1c", "beardLine": [[0, -0.74], [20, -0.68], [42, -0.54], [70, -0.42], [90, -0.36]], "beardWidth": 90, "beardPuff": 1.02, "beardBalls": 0 } },
+    { "id": "rowanB", "of": "rowan", "name": "B: goatee and moustache", "looks": { "beard": "#b3561f", "beardLine": [[0, -0.70], [36, -0.78]], "beardWidth": 34, "beardPuff": 1.03, "beardBalls": 8, "beardBallR": 0.009 } },
+    { "id": "rowanC", "of": "rowan", "name": "C: moustache only", "looks": { "beardStyle": "moustache" } },
+    { "id": "rowanD", "of": "rowan", "name": "D: stubble", "looks": { "beard": "#dca27a", "moustacheColor": "#c8642a", "beardLine": [[0, -0.66], [22, -0.58], [42, -0.42], [70, -0.30], [92, -0.24]], "beardWidth": 92, "beardPuff": 1.008, "beardBalls": 0 } },
+    { "id": "rowanE", "of": "rowan", "name": "E: neat full beard, darker, with a gap at the ears", "looks": { "beard": "#a85020", "beardLine": [[0, -0.72], [20, -0.64], [42, -0.48], [70, -0.34], [92, -0.26]], "beardWidth": 92, "beardPuff": 1.03, "beardBalls": 34, "beardBallR": 0.008 } },
+    { "id": "ruiA", "of": "realist", "name": "A: as now, fully matt", "looks": { "matt": 1 } },
+    { "id": "ruiB", "of": "realist", "name": "B: matt, short crop, stubble", "looks": { "matt": 1, "hairLen": 0.5, "beard": "#a97656", "beardLen": 0.45, "beardDensity": 0.4, "beardPuff": 1.006, "beardLine": [[0, -0.62], [22, -0.54], [42, -0.36], [70, -0.22], [94, -0.14]], "beardWidth": 94 } },
+    { "id": "ruiC", "of": "realist", "name": "C: matt, side parting, trimmed beard", "looks": { "matt": 1, "comb": "side", "beardLen": 0.7, "beardLine": [[0, -0.66], [22, -0.58], [42, -0.42], [70, -0.28], [92, -0.2]], "beardWidth": 92 } },
+    { "id": "ruiD", "of": "realist", "name": "D: matt, longer quiff, goatee, bigger eyes", "looks": { "matt": 1, "hairLen": 1.35, "eyeR": 0.0205, "beardLine": [[0, -0.64], [38, -0.74]], "beardWidth": 36, "beardDensity": 0.22 } },
+    { "id": "ruiE", "of": "realist", "name": "E: matt, softer and rounder, short beard", "looks": { "matt": 1, "toon": 0.3, "eyeR": 0.0215, "noseR": 0.0165, "beardLen": 0.6, "beardLine": [[0, -0.64], [22, -0.56], [42, -0.38], [70, -0.24], [92, -0.16]], "beardWidth": 92 } }
+  ]
+}

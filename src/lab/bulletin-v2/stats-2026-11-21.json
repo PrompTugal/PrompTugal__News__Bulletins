@@ -1,0 +1,145 @@
+{
+ "started": "2026-11-21T17:33:12.586Z",
+ "machine": {
+  "cpus": 4,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "mem_gb": 15.7,
+  "os": "linux 6.18.44-fc-v726",
+  "node": "v22.23.5",
+  "gpu": "none (software WebGL)"
+ },
+ "phases": [
+  {
+   "name": "select stories",
+   "wall_s": 0.001,
+   "node_cpu_s": 0.001
+  },
+  {
+   "name": "voice (OpenRouter)",
+   "wall_s": 0.121,
+   "node_cpu_s": 0.008
+  },
+  {
+   "name": "timeline, loudness, mouth shapes",
+   "wall_s": 0.009,
+   "node_cpu_s": 0.014
+  },
+  {
+   "name": "render 939 frames (3 browsers)",
+   "wall_s": 392.552,
+   "node_cpu_s": 10.419
+  },
+  {
+   "name": "encode (ffmpeg H.264 + AAC)",
+   "wall_s": 10.222,
+   "node_cpu_s": 0.004
+  }
+ ],
+ "voice": {
+  "model": "openai/gpt-audio-mini",
+  "voice": "alloy",
+  "cost_usd": 0.001966734,
+  "latency_s": 4.32,
+  "transcript_matches": true,
+  "words": 84,
+  "chars": 480,
+  "reused": true
+ },
+ "render": {
+  "frames": 939,
+  "fps": 30,
+  "size": "1280x720 (two halves of 640x720)",
+  "workers": 3,
+  "chromium": "157.0.8103.78",
+  "browser_startup_s": [
+   4.51,
+   4.86,
+   4.94
+  ],
+  "left_v1_stage_ms": {
+   "min": 0.1,
+   "p50": 0.4,
+   "p90": 0.8,
+   "p99": 2.5,
+   "max": 38.3,
+   "mean": 0.6
+  },
+  "right_v2_cast_ms": {
+   "min": 3.2,
+   "p50": 12.3,
+   "p90": 57,
+   "p99": 232.5,
+   "max": 560.7,
+   "mean": 26.8
+  },
+  "screenshot_ms": {
+   "min": 531.6,
+   "p50": 1166.3,
+   "p90": 1496.8,
+   "p99": 1784.1,
+   "max": 2321.1,
+   "mean": 1193.1
+  },
+  "slowest_frames": [
+   {
+    "t": 29.1,
+    "right_ms": 560.7
+   },
+   {
+    "t": 12.77,
+    "right_ms": 423.5
+   },
+   {
+    "t": 20.87,
+    "right_ms": 422.8
+   },
+   {
+    "t": 23.23,
+    "right_ms": 394.9
+   },
+   {
+    "t": 1.07,
+    "right_ms": 333.4
+   }
+  ]
+ },
+ "finished": "2026-11-21T17:39:56.905Z",
+ "output": {
+  "video": "bulletin-2026-11-21.mp4",
+  "video_bytes": 7656065,
+  "voice_bytes": 388059,
+  "duration_s": 31.3,
+  "script_words": 84
+ },
+ "total_wall_s": 402.9,
+ "realtime_factor": 12.9,
+ "stories": [
+  {
+   "place": "Portugal",
+   "page": "P500",
+   "presenter": "holo",
+   "text": "IPMA lists 23 active weather warnings in 25 areas of Portugal, including 3 red and 11 orange.",
+   "facts": [
+    "500-06"
+   ]
+  },
+  {
+   "place": "Lisbon",
+   "page": "P300",
+   "presenter": "rowan",
+   "text": "IPMA has issued a yellow warning for rain in the Lisboa district, from 12:00 to 18:00 local time today, 2026-11-21.",
+   "facts": [
+    "300-03"
+   ]
+  },
+  {
+   "place": "London",
+   "page": "P700",
+   "presenter": "realist",
+   "text": "The Open-Meteo forecast for London today, 2026-11-21, gives a minimum of 4.1 °C, a maximum of 9 °C and 0 mm of rain.",
+   "facts": [
+    "700-04"
+   ]
+  }
+ ]
+}

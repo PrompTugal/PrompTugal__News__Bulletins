@@ -107,7 +107,8 @@
       sc.style.opacity = ease(lt / 0.5);
     }
     // Rain behind any line that speaks of rain.
-    var raining = s.kind === 'line' && /rain/i.test(s.show);
+    // Rain falls only when the line forecasts rain: never on '0 mm of rain', '0% chance of rain' or 'no rain' (bulletins.b@, 21 Nov 2026).
+    var raining = s.kind === 'line' && /rain/i.test(s.show) && !/(\b0 mm of rain|\b0% chance of rain|\bno rain)/i.test(s.show);
     els.rain.style.opacity = raining ? ease(lt / 0.8) * 0.5 : 0;
     if (raining) [].forEach.call(els.rain.children, function (d, i) { var x = (i * 97) % 100, sp = 140 + (i * 53) % 120; var y = ((t * sp + i * 41) % 760) - 40; d.style.left = x + '%'; d.style.top = y.toFixed(1) + 'px'; });
     // The presenter: mouth from the voice's loudness, a blink every few seconds, a small bob.

@@ -62,7 +62,17 @@
    "prompt_tokens": 614,
    "completion_tokens": 720,
    "cost_usd": 0.000417186
+  },
+  {
+   "at": "2026-11-21T17:21:15.955Z",
+   "what": "bulletin v2 voice 2026-11-21",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 175,
+   "completion_tokens": 784,
+   "cost_usd": 0.001966734
   }
  ],
- "total_usd": 0.003909
+ "total_usd": 0.005875
 }

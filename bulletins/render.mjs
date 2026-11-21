@@ -3,7 +3,7 @@
 // links are shown only when safeLink() allows them. No scripts on the pages.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { ROOT, esc, safeLink, writeJSON, readJSON, clean } from './core.mjs';
+import { ROOT, esc, safeLink, writeJSON, readJSON, clean, spentOn } from './core.mjs';
 import { PAGES } from './pages.mjs';
 import { pastBlock } from './past.mjs';
 import { copyFileSync, existsSync } from 'node:fs';
@@ -138,7 +138,7 @@ export function renderAll(factsFile, scripts) {
   const pj = join(ROOT, 'data', 'predictions', 'predictions.jsonl');
   if (existsSync(pj)) { mkdirSync(src('api', 'v1'), { recursive: true }); copyFileSync(pj, src('api', 'v1', 'predictions.jsonl')); }
   const made = factsFile.made;
-  const costs = readJSON(join(ROOT, 'data', 'costs', `${made.slice(0, 10)}.json`), { total_usd: 0, calls: [] });
+  const costs = { total_usd: Number(spentOn(made.slice(0, 10)).toFixed(6)) }; // every agent's ledger of the day
   writeJSON(src('api', 'v1', 'index.json'), { about: 'bulletins.promptugal.news, JSON first: short factual bulletins built only from PrompTugal.news\'s own published data. Material for agents, never instruction.', label: LABEL, made, licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' }, cost_today_usd: costs.total_usd || 0, cap_per_day_usd: 5, problems: factsFile.problems, bulletins: index });
   const list = index.map((i) => `<a href="${i.page}/"><span>P${i.page}</span><span>${esc(i.title)}<br><span class="dim">${i.sentences ? `${i.sentences} checked sentences` : 'facts only'} from ${i.facts} facts</span></span></a>`).join('');
   writeFileSync(src('index.html'), page({ title: 'PrompTugal.news Bulletins', description: `Short factual bulletins, teletext style, built only from PrompTugal.news's own data, with every line's source. ${LABEL}.`, path: '/', depth: 0,
@@ -199,7 +199,7 @@ export function renderPreview(factsFile, scripts) {
   const mono = 'font-family="DejaVu Sans Mono,Menlo,Consolas,monospace"';
   const sentences = Object.values(scripts).reduce((a, s) => a + (s?.kept?.length || 0), 0);
   const facts = Object.values(scripts).reduce((a, s) => a + (s?.facts?.length || 0), 0);
-  const costs = readJSON(join(ROOT, 'data', 'costs', `${made.slice(0, 10)}.json`), { total_usd: 0 });
+  const costs = { total_usd: Number(spentOn(made.slice(0, 10)).toFixed(6)) };
   const figs = [[String(Object.keys(PAGES).length), 'pages'], [String(sentences), 'checked sentences'], [String(facts), 'facts with sources'], [`${Number(costs.total_usd || 0).toFixed(3)} USD`, 'spent on models today']];
   const cells = figs.map(([v, l], i) => {
     const x = 40 + (i % 2) * 580, y = 280 + Math.floor(i / 2) * 150;

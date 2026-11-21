@@ -1,7 +1,7 @@
 // Shared pieces of the bulletins pipeline: the host allowlist, a safe JSON fetch,
 // text cleaning, HTML escaping and the daily budget ledger. Node built-ins only.
 // Written by bulletins.b@PrompTugal.dinis, 18 November 2026. Code: Apache-2.0.
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -63,10 +63,16 @@ export function writeJSON(p, v) { mkdirSync(dirname(p), { recursive: true }); wr
 // until Dinis sets one. The ledger is committed: data/costs/YYYY-MM-DD.json, one entry per call.
 export const DAILY_CAP_USD = 5;
 export const today = () => new Date().toISOString().slice(0, 10);
-export const ledgerPath = (d = today()) => join(ROOT, 'data', 'costs', `${d}.json`);
-export function spentToday() {
-  const l = readJSON(ledgerPath(), { calls: [] });
-  return l.calls.reduce((a, c) => a + (Number(c.cost_usd) || 0), 0);
+// Two agents share the cap (Dinis, 21 Nov 2026: bulletins.d@ "works as your twin, so you guys need to be able to work at
+// the same time"). Each writes its own ledger, so their commits never collide: bulletins.b@ data/costs/YYYY-MM-DD.json,
+// bulletins.d@ data/costs/YYYY-MM-DD.d.json (BULLETINS_AGENT=d). The day's spend is the sum of every ledger of the day.
+export const AGENT = /^[a-z]$/.test(process.env.BULLETINS_AGENT || '') ? process.env.BULLETINS_AGENT : 'b';
+export const ledgerPath = (d = today(), a = AGENT) => join(ROOT, 'data', 'costs', a === 'b' ? `${d}.json` : `${d}.${a}.json`);
+export const spentToday = () => spentOn(today());
+export function spentOn(d) {
+  const dir = join(ROOT, 'data', 'costs');
+  const mine = existsSync(dir) ? readdirSync(dir).filter((f) => f === `${d}.json` || new RegExp(`^${d}\\.[a-z]\\.json$`).test(f)) : [];
+  return mine.reduce((sum, f) => sum + (readJSON(join(dir, f), { calls: [] }).calls || []).reduce((a, c) => a + (Number(c.cost_usd) || 0), 0), 0);
 }
 export function record(call) {
   const p = ledgerPath();

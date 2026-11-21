@@ -232,3 +232,7 @@ _site/
 
 # trusted copies of the security checks, taken from the last release at check time (security@, 19 Nov, controls 7 and 8)
 scripts/*.trusted.mjs
+
+# The presenters library is ours, not a Python lib/: its source and its published folders are committed (bulletins.b@, 21 Nov 2026)
+!/lib/
+!/src/lib/

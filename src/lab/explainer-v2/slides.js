@@ -37,7 +37,7 @@
   var SCENES = {
     open: function (u, sc) {
       return '<div class="kicker">PrompTugal.news Bulletins · lab</div><div class="big">' + esc(sc.title) + '</div>' +
-        '<div class="lines">' + ['Every frame drawn by code', 'in a web browser', 'on a computer with no graphics card'].map(function (l, i) { return '<div style="opacity:' + ease(u * 4 - i * 0.6).toFixed(3) + '">' + esc(l) + '</div>'; }).join('') + '</div>' +
+        '<div class="lines">' + ['Every frame drawn by code', 'in a web browser', 'on a computer with no graphics card'].map(function (l) { return '<div>' + esc(l) + '</div>'; }).join('') + '</div>' +
         '<div class="chips"><span>Chromium</span><span>three.js</span><span>Mesa llvmpipe</span><span>Xvfb</span><span>ffmpeg</span></div>';
     },
     pipeline: function (u) {
@@ -144,7 +144,7 @@
     var sc = S.scenes[0];
     for (var i = 0; i < S.scenes.length; i++) if (t >= S.scenes[i].start) sc = S.scenes[i];
     var u = clamp((t - sc.start) / Math.max(0.5, sc.end - sc.start), 0, 1);
-    var fade = ease((t - sc.start) / 0.35);
+    var fade = sc === S.scenes[0] ? 1 : ease((t - sc.start) / 0.35);   // the first frame shows the title (Dinis, 22 Nov)
     root.innerHTML = '<div class="scene" style="opacity:' + fade.toFixed(3) + '">' + SCENES[sc.kind](u, sc) + '</div>';
     // Subtitle: the words said so far in this scene, by their share of the scene's time.
     var words = sc.say.split(/\s+/), k = Math.ceil(clamp((t - sc.start - 0.1) / Math.max(0.5, sc.end - sc.start - 0.3), 0, 1) * words.length);

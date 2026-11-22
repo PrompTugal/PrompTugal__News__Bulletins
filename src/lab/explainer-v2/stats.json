@@ -1,5 +1,5 @@
 {
- "started": "2026-11-22T04:28:11.054Z",
+ "started": "2026-11-22T10:43:39.055Z",
  "machine": {
   "cpus": 4,
   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
@@ -11,22 +11,22 @@
  "phases": [
   {
    "name": "voice (OpenRouter, one take per scene)",
-   "wall_s": 0.271,
-   "node_cpu_s": 0.026
+   "wall_s": 0.618,
+   "node_cpu_s": 0.029
   },
   {
    "name": "timeline, loudness, mouth shapes",
-   "wall_s": 0.014,
-   "node_cpu_s": 0.019
+   "wall_s": 0.031,
+   "node_cpu_s": 0.028
   },
   {
    "name": "render 3715 frames (4 browsers, llvmpipe)",
-   "wall_s": 486.103,
-   "node_cpu_s": 21.395
+   "wall_s": 492.953,
+   "node_cpu_s": 18.143
   },
   {
    "name": "encode (ffmpeg H.264 + AAC)",
-   "wall_s": 38.434,
+   "wall_s": 37.616,
    "node_cpu_s": 0.003
   }
  ],
@@ -52,72 +52,72 @@
   "capture": "Chrome DevTools Page.captureScreenshot, PNG",
   "chromium": "153.0.8010.12",
   "browser_startup_s": [
-   4.11,
-   4.19,
-   3.89,
-   3.59
+   4.58,
+   4.67,
+   4.9,
+   3.5
   ],
-  "wall_s": 485.89,
-  "ms_per_frame": 130.8,
+  "wall_s": 492.66,
+  "ms_per_frame": 132.6,
   "left_slides_ms": {
    "min": 0,
    "p50": 0.5,
    "p90": 1,
-   "p99": 2.6,
-   "max": 34.3,
+   "p99": 3.5,
+   "max": 38.6,
    "mean": 0.7
   },
   "right_cast_ms": {
-   "min": 3.2,
-   "p50": 12.8,
-   "p90": 33.9,
-   "p99": 66.6,
-   "max": 1269.2,
-   "mean": 18.3
+   "min": 2.7,
+   "p50": 13.4,
+   "p90": 34.5,
+   "p99": 68.4,
+   "max": 2181.1,
+   "mean": 19.4
   },
   "screenshot_ms": {
-   "min": 171,
-   "p50": 476.1,
-   "p90": 606.9,
-   "p99": 721,
-   "max": 875.5,
-   "mean": 478
+   "min": 177.3,
+   "p50": 482,
+   "p90": 617.6,
+   "p99": 732.9,
+   "max": 897.8,
+   "mean": 483.2
   },
   "note": "The screenshot waits for the GPU process to draw the 3D half, so screenshot_ms is mostly software 3D drawing; right_cast_ms is the JavaScript side only.",
   "slowest_frames": [
    {
-    "t": 59.4,
-    "shot_ms": 875.5
+    "t": 52.57,
+    "shot_ms": 897.8
    },
    {
-    "t": 61.33,
-    "shot_ms": 820
+    "t": 107.73,
+    "shot_ms": 887.4
    },
    {
-    "t": 122.13,
-    "shot_ms": 813
+    "t": 30.97,
+    "shot_ms": 845.4
    },
    {
-    "t": 112.63,
-    "shot_ms": 808.4
+    "t": 109.73,
+    "shot_ms": 833.3
    },
    {
-    "t": 27.33,
-    "shot_ms": 797.8
+    "t": 64.1,
+    "shot_ms": 799.5
    }
   ]
  },
- "finished": "2026-11-22T04:36:58.652Z",
+ "finished": "2026-11-22T10:52:32.719Z",
  "output": {
   "video": "how-this-video-is-made.mp4",
-  "video_bytes": 25125381,
+  "video_bytes": 26305353,
   "voice_bytes": 1495028,
   "duration_s": 123.83,
   "script_words": 369,
   "scenes": 11
  },
- "total_wall_s": 524.82,
- "realtime_factor": 4.24,
+ "total_wall_s": 531.22,
+ "realtime_factor": 4.29,
  "numbers_shown": {
   "shot_nochange_ms": 33,
   "shot_swiftshader_ms": 638,

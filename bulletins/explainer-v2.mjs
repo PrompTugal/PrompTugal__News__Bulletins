@@ -139,7 +139,7 @@ SCENES.forEach((s, i) => {
   const len = s.end - s.start;
   speakers.push({ who: s.who, from: s.start, to: s.end + GAP });
   beats.push({ t: s.start, title: s.title });
-  cues.push({ t: s.start, who: s.who, do: 'speak', track: 'voice', offset: s.start, dur: +len.toFixed(3) });
+  cues.push({ t: s.start, who: ALL, do: 'speak', track: 'voice', offset: s.start, dur: +len.toFixed(3) });   // all twelve mouths follow the voice (Dinis, 22 Nov)
   cues.push({ t: s.start + 0.1, who: others(s.who), do: 'lookAt', target: head(s.who), dur: Math.min(2.4, len - 0.2), stagger: 0.03 });
   cues.push(...BUSINESS[s.kind](s));
   if (i > 0 && s.kind !== 'close') { camera.push({ t: s.start, focus: s.who, cut: true, dist: 6.0, h: 0.55, lh: 0.4, orbit: ORBIT[i] }); camera.push({ t: s.start + len * 0.55, ...WIDE, ease: 'inOut' }); }

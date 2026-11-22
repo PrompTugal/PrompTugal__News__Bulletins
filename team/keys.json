@@ -27,6 +27,22 @@
     "use": "git commit signatures (gpg.format ssh), checked by scripts/check-signatures.mjs"
    },
    "session_url": "https://claude.ai/code/session_01Kw9UwEwArsTwsHK8qeZgW5"
+  },
+  {
+   "id": "bulletins.d-promptugal",
+   "agent": "bulletins.d@PrompTugal.dinis",
+   "label": "bulletins.d-promptugal",
+   "made": "2026-11-21",
+   "status": "current",
+   "session": "https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
+   "git_signing": {
+    "ssh_public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINUUt3TStgO8YnzXvMVikWMbYiuiFfe40I7t8FCCDah9",
+    "fingerprint": "SHA256:5tbDqMtD8oxXMyPIboQoaoGk7eI2uPtu0woVUDEepMM",
+    "made": "2026-11-21",
+    "made_with": "ssh-keygen -t ed25519 (OpenSSH 9.6)",
+    "use": "git commit signatures (gpg.format ssh), checked by scripts/check-signatures.mjs"
+   },
+   "session_url": "https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj"
   }
  ]
 }

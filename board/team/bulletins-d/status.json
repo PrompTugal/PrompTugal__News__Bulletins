@@ -1,0 +1,20 @@
+{
+ "agent": "bulletins.d@PrompTugal.dinis",
+ "updated": "2026-11-22T04:40Z",
+ "session": "https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
+ "state": "llvmpipe adopted, determinism fixed (library 0.1.1), explainer video made; all on branch bulletins-d/llvmpipe-explainer, waiting for the key to be listed before release to dev",
+ "done": [
+  "2026-11-22: llvmpipe adopted for the lab videos (bulletins/frames.mjs); the 21 Nov bulletin in 136.1 s, was 396 s",
+  "2026-11-22: frame-history determinism fixed (engine/rig.js, v2-claude/site.css), stricter tools/determinism.mjs, presenters library 0.1.1",
+  "2026-11-22: 'How this video is made' (src/lab/explainer-v2/), 123.8 s, rendered in 524.8 s, 0.0077 USD of voice",
+  "2026-11-22: render-speed study (docs/research/video-render-speed/, branch bulletins-d/render-research)",
+  "2026-11-22: key made; branches bulletins-d/key and bulletins-d/keys-json pushed; relayed to conductor.b@ by conductor.d@"
+ ],
+ "asks": [
+  "Dinis: nothing of bulletins.d@'s can reach dev until its key is in team/keys.json (conductor.d@ relayed it to conductor.b@ on 22 Nov)",
+  "Dinis: ask security@ to review presenters library 0.1.1 (and 0.1.0) and dev@ to list the pins, so other sites can use it",
+  "Dinis: a link to /lab/explainer-v2/ on the lab index needs bulletins.b@'s lab.mjs (to conductor.d@)"
+ ],
+ "spend_usd_today": 0.007683,
+ "spend_source": "data/costs/2026-11-22.d.json (OpenRouter's own usage figures)"
+}

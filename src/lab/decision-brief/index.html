@@ -3,53 +3,60 @@
 <meta name="description" content="A decision brief that plays in the browser with no video render: Duarte, a synthetic presenter drawn live on your device, reads each question, its options and the recommendation, and you answer by text or dictation. Made by agents from PrompTugal.news's data.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'">
 <style>
-/* Layout: one column, the presenter on top like a studio monitor, then the question as a working card. Dark studio look in both themes. */
+/* Layout: a player. The animation is the screen; under it the subtitles, with the narrator small on the right; then the controls; the decision comes last, below. Dark studio look in both themes. */
 :root{color-scheme:dark;--bg:#070d18;--panel:#0e1829;--line:#22324d;--fg:#e9eef7;--dim:#9aabc4;--accent:#ffd84a;--cyan:#53d3ff;--ok:#5fe0a0;
   --sans:system-ui,-apple-system,'Segoe UI','DejaVu Sans',sans-serif;--mono:ui-monospace,'SF Mono',Menlo,'DejaVu Sans Mono',monospace}
 *{box-sizing:border-box}body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--sans)}
-.wrap{max-width:760px;margin:0 auto;padding-block:12px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+.wrap{max-width:820px;margin:0 auto;padding-block:12px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:12px}
 .wrap>*{min-width:0}
-header h1{font:700 clamp(22px,5vw,30px)/1.15 var(--sans);margin:4px 0 2px;text-wrap:balance}header p{margin:0;color:var(--dim);font-size:14px}
-.kicker{font:700 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
-#stage{position:relative;width:100%;aspect-ratio:16/10;max-width:100%;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#0b1424}
-.mon{margin:0;display:grid;gap:6px}.mon figcaption{font:12px var(--mono);color:var(--dim)}.mon figcaption b{color:var(--fg)}.nostage{padding:16px;color:var(--dim)}
-.bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
-button{font:600 15px var(--sans);border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);padding:10px 16px;min-height:44px;cursor:pointer}
-button:focus-visible,input:focus-visible+.letter,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-button:disabled{opacity:.45;cursor:default}
-#play{background:var(--accent);color:#111;border-color:var(--accent);min-width:96px}
-#count{font:700 13px var(--mono);color:var(--dim);margin-left:auto}
-#dots{display:flex;gap:6px}.dot{width:14px;height:14px;min-height:0;padding:0;border-radius:50%;background:transparent;border:2px solid var(--line)}.dot.on{border-color:var(--accent)}.dot.done{background:var(--ok);border-color:var(--ok)}
-#q{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:14px}
-.eyebrow{margin:0;font:700 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cyan)}
-#q h2{margin:0;font:700 clamp(20px,4.6vw,26px)/1.2 var(--sans);text-wrap:balance}.why{margin:0;color:#d3dcea;max-width:65ch}
+header h1{font:700 clamp(20px,4.6vw,26px)/1.15 var(--sans);margin:2px 0;text-wrap:balance}header p{margin:0;color:var(--dim);font-size:14px}
+.kicker,.eyebrow{font:700 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0}
+#qhead h2{margin:4px 0 0;font:700 clamp(19px,4.4vw,24px)/1.25 var(--sans);text-wrap:balance}
+.player{display:grid;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
+.vis{width:100%;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:#0b1424}.vis svg{display:block;width:100%;height:100%}
+.under{display:grid;grid-template-columns:1fr minmax(96px,26%);gap:10px;align-items:stretch}
+.subs{margin:0;font:600 clamp(16px,3.9vw,20px)/1.4 var(--sans);min-height:4.2em;align-self:center}.subs .said{color:var(--fg)}.subs .tobe{color:#55657e}
+.mon{display:grid;gap:3px;align-content:start}.monframe{position:relative;width:100%;aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:#0b1424;border:1px solid var(--line)}
+#stage{position:absolute;left:0;top:0;width:240px;height:320px;transform-origin:0 0}
+.mon span{font:10px var(--mono);color:var(--dim);line-height:1.2}.nostage{padding:6px;color:var(--dim);font-size:11px}
+.src{margin:0;font:12px var(--mono);color:var(--dim);min-height:1.2em}
+.controls{display:grid;grid-template-columns:auto auto auto 1fr auto;gap:8px;align-items:center}
+button{font:600 15px var(--sans);border-radius:8px;border:1px solid var(--line);background:#0b1424;color:var(--fg);padding:10px 14px;min-height:44px;cursor:pointer}
+button:focus-visible,input:focus-visible+.letter,textarea:focus-visible,input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}button:disabled{opacity:.45}
+#pp{background:var(--accent);color:#111;border-color:var(--accent);min-width:84px}
+.track{position:relative;height:44px;display:grid;align-items:center}.track input{width:100%;margin:0;accent-color:var(--accent);height:44px;background:transparent}
+#marks{position:absolute;left:0;right:0;top:50%;height:0;pointer-events:none}#marks i{position:absolute;top:-9px;width:2px;height:18px;background:var(--cyan);opacity:.7}#marks i.dec{background:var(--ok);width:3px}
+#time{font:12px var(--mono);color:var(--dim);white-space:nowrap}
+.bar2{display:flex;flex-wrap:wrap;gap:8px;align-items:center}#count{font:700 12px var(--mono);color:var(--dim);margin-left:auto}
+#dots{display:flex;flex-wrap:wrap;gap:6px}.dot{width:14px;height:14px;min-height:0;padding:0;border-radius:50%;background:transparent;border:2px solid var(--line)}.dot.on{border-color:var(--accent)}.dot.done{background:var(--ok);border-color:var(--ok)}
+#q{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:12px}.why{margin:0;color:#cfd8e6;font-size:15px}
 .blocks{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--dim)}.chip{border:1px solid #6a5a1a;background:rgba(255,216,74,.1);color:var(--accent);border-radius:999px;padding:2px 10px}
-.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.num{margin:0;border-left:3px solid var(--cyan);padding:4px 10px}.num b{display:block;font:700 22px var(--mono);font-variant-numeric:tabular-nums}.num figcaption{font-size:13px;color:#cfd8e6}.num small{display:block;color:var(--dim);font:11px var(--mono);word-break:break-all}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.num{margin:0;border-left:3px solid var(--cyan);padding:4px 10px}.num b{display:block;font:700 22px var(--mono)}.num figcaption{font-size:13px;color:#cfd8e6}.num small{display:block;color:var(--dim);font:11px var(--mono);word-break:break-all}
 .opts{border:0;margin:0;padding:0;display:grid;gap:8px}.opts legend{font:700 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
 .opt{position:relative;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;background:rgba(255,255,255,.02)}
 .opt input{position:absolute;opacity:0;pointer-events:none}.letter{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--line);font:700 14px var(--mono)}
 .opt:has(input:checked){border-color:var(--accent);background:rgba(255,216,74,.08)}.opt:has(input:checked) .letter{background:var(--accent);color:#111;border-color:var(--accent)}
 .otext{display:grid;gap:2px;min-width:0}.otext span{color:#cfd8e6;font-size:14px}.otext em{font-style:normal;font:12px var(--mono);color:var(--dim)}
-.badge{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:#111;background:var(--ok);border-radius:4px;padding:2px 6px;justify-self:start;margin-bottom:2px}
-.opt.rec{border-color:#2f6f52}
+.badge{font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:#111;background:var(--ok);border-radius:4px;padding:2px 6px;justify-self:start;margin-bottom:2px}.opt.rec{border-color:#2f6f52}
 .rec-box{border:1px solid #2f6f52;background:rgba(95,224,160,.08);border-radius:10px;padding:12px;font-size:15px}
 .alabel{font-weight:600;font-size:14px}textarea{width:100%;font:16px/1.5 var(--sans);color:var(--fg);background:#0a1220;border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}#save{background:var(--ok);color:#06210f;border-color:var(--ok)}.ghost{background:transparent}#saved{font-size:13px;color:var(--dim)}
 .sum{margin:0;padding-left:20px;display:grid;gap:10px}.sum li span{display:block;color:#cfd8e6;font-size:14px}.note{color:var(--dim);font-size:14px;margin:0}
-.brf{display:grid;gap:10px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:4px}.brf h2{margin:0}
-.bvis{width:100%;aspect-ratio:16/9;max-width:100%;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#0b1424}.bvis svg{display:block;width:100%;height:100%}
-.bcap{margin:0;font:600 18px/1.45 var(--sans);min-height:3em}.bcap .said{color:var(--fg)}.bcap .tobe{color:#5b6b84}
-.bsrc{margin:0;font:12px var(--mono);color:var(--dim)}
-.bplay{background:var(--cyan);color:#04121c;border-color:var(--cyan)}.bpart{min-width:44px;padding:10px 0}.bpart.on{border-color:var(--accent);color:var(--accent)}
 footer{color:var(--dim);font-size:12px;display:grid;gap:4px}
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+@media (max-width:420px){.controls{grid-template-columns:auto auto auto 1fr}#time{grid-column:1/-1;justify-self:end}}
 </style></head>
 <body><div class="wrap" data-presenters="../../lib/presenters/v0.1.1/presenters.js">
   <header><span class="kicker">Decision brief · lab</span><h1 id="btitle">Decisions</h1><p id="bsub"></p></header>
-  <figure class="mon"><div id="stage" role="img" aria-label="Duarte, a synthetic presenter, reads each question"></div><figcaption><b>Duarte</b> · synthetic presenter, drawn live on this device</figcaption></figure>
-  <div class="bar"><button type="button" id="play" aria-pressed="false">Play</button><button type="button" id="prev">Back</button><button type="button" id="next">Next</button><div id="dots" aria-label="Questions"></div><span id="count"></span></div>
+  <div id="qhead"></div>
+  <section class="player" aria-label="The story of this decision">
+    <div id="vis" class="vis" aria-live="off"></div>
+    <div class="under"><p id="subs" class="subs" aria-live="polite"></p><figure class="mon" style="margin:0"><div class="monframe" id="monframe"><div id="stage" role="img" aria-label="Duarte, a synthetic presenter, narrates"></div></div><span><b>Duarte</b> · synthetic presenter</span></figure></div>
+    <p id="src" class="src"></p>
+    <div class="controls"><button type="button" id="back" aria-label="Back to the previous point">&#9664;&#9664;</button><button type="button" id="pp" aria-pressed="false">Play</button><button type="button" id="fwd" aria-label="Forward to the next point">&#9654;&#9654;</button>
+      <div class="track"><input type="range" id="scrub" min="0" max="10" step="0.01" value="0" aria-label="Position in the story"><div id="marks"></div></div><span id="time">0:00 / 0:00</span></div>
+  </section>
+  <div class="bar2"><button type="button" id="prevq">Previous decision</button><button type="button" id="nextq">Next decision</button><div id="dots" aria-label="Decisions"></div><span id="count"></span></div>
   <section id="q" aria-live="polite"></section>
-  <footer><span>Duarte is a synthetic presenter drawn by code on this device (PrompTugal.news presenters library 0.1.1, three.js 0.160.1); no real person. The voice is your browser's or Claude's synthetic voice.</span><span>Made by bulletins.d@PrompTugal.dinis, 22 Nov 2026.</span></footer>
+  <footer><span>Duarte is a synthetic presenter drawn by code on this device (PrompTugal.news presenters library 0.1.1, three.js 0.160.1); no real person. The voice is your browser's or Claude's synthetic voice. Scenes and subtitles follow the narration; nothing is rendered on a server.</span><span>Made by bulletins.d@PrompTugal.dinis, 22 Nov 2026.</span></footer>
 </div>
-<script type="module" src="brief.js"></script>
-</body></html>
+<script type="module" src="brief.js"></script></body></html>

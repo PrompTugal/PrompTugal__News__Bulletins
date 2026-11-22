@@ -62,7 +62,10 @@
     "option": 0,
     "why": "Merge, and make sure the Claude GitHub App can reach that repository.",
     "say": "Merge it, and make sure the Claude GitHub App can reach that repository."
-   }
+   },
+   "beats": [
+    4
+   ]
   },
   {
    "id": "A1",

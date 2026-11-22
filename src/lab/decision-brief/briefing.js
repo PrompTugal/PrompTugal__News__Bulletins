@@ -17,7 +17,32 @@ const keysList = (x, y, keys, op = 1) => R(x, y, 250, 46 + keys.length * 34, { o
   keys.map((k, i) => T(x + 18, y + 66 + i * 34, 'key ' + k, { size: 18, mono: true, op })).join('');
 const commit = (x, y, who, state, op = 1, w = 250) => `<g opacity="${op}">${R(x, y, w, 50, { fill: '#0e1829', stroke: state === 'bad' ? C.bad : state === 'ok' ? C.ok : C.line })}${T(x + 14, y + 32, who, { size: 18, mono: true })}${state === 'ok' ? tick(x + w, y + 25) : state === 'bad' ? cross(x + w, y + 25) : state === 'wait' ? badge(x + w - 80, y + 25, 'wait', C.grey) : ''}</g>`;
 
+// Wrap text into lines of at most n characters.
+const wrap = (s, n) => { const out = []; let line = ''; for (const w of String(s).split(/\s+/)) { if ((line + ' ' + w).trim().length > n && line) { out.push(line); line = w; } else line = (line + ' ' + w).trim(); } if (line) out.push(line); return out; };
+
 export const SCENES = {
+  // Any question: what is being decided, what waits on it, and its numbers.
+  context(u, q) {
+    const lines = wrap(q.title, 34).slice(0, 4), a = ease(u * 4);
+    let s = T(24, 44, `${q.from} asks`, { size: 18, fill: C.cyan, mono: true, op: a }) + lines.map((l, i) => T(24, 86 + i * 34, l, { size: 28, w: 700, op: ease(u * 4 - 0.3 - i * 0.15) })).join('');
+    let y = 100 + lines.length * 34;
+    if (q.blocks?.length) { s += T(24, y + 8, 'waiting on this', { size: 17, fill: C.dim, op: ease(u * 3 - 1) }); let x = 24; y += 30; q.blocks.slice(0, 3).forEach((b, i) => { const w = Math.min(590, b.length * 10.5 + 26); if (x + w > 620) { x = 24; y += 42; } s += badge(x, y + 10, b, C.y, ease(u * 3 - 1.2 - i * 0.2)); x += w + 10; }); y += 40; }
+    (q.numbers || []).slice(0, 2).forEach((n, i) => { const x = 24 + i * 300; s += `<g opacity="${ease(u * 3 - 1.6 - i * 0.2).toFixed(3)}">` + `<rect x="${x}" y="${y}" width="4" height="58" fill="${C.cyan}"/>` + T(x + 14, y + 30, n.value, { size: 28, w: 700, mono: true }) + T(x + 14, y + 54, wrap(n.label, 26)[0], { size: 16, fill: C.dim }) + '</g>'; });
+    return s;
+  },
+  // The decision: the options appear as the narration names them; the recommendation lights up last.
+  decision(u, q) {
+    const n = q.options.length, h = Math.min(74, Math.floor(290 / n)), recOn = u > 0.72;
+    let s = T(24, 40, 'the decision', { size: 22, w: 700, fill: C.y });
+    q.options.forEach((o, k) => {
+      const y = 58 + k * h, on = ease(u * (n + 2) - 0.6 - k), rec = k === q.recommend.option && recOn, lines = wrap(o.label, 44);
+      s += `<g opacity="${on.toFixed(3)}">` + R(20, y, 600, h - 10, { stroke: rec ? C.ok : C.line, sw: rec ? 3 : 2, fill: rec ? '#10291f' : C.panel }) +
+        `<circle cx="52" cy="${y + (h - 10) / 2}" r="17" fill="${rec ? C.ok : 'none'}" stroke="${rec ? C.ok : C.line}" stroke-width="2.5"/>` + T(52, y + (h - 10) / 2 + 7, String.fromCharCode(65 + k), { anchor: 'middle', size: 19, w: 700, mono: true, fill: rec ? '#06210f' : C.fg }) +
+        (lines.length > 1 && h >= 60 ? T(84, y + (h - 10) / 2 - 4, lines[0], { size: 19, w: 600 }) + T(84, y + (h - 10) / 2 + 20, lines.slice(1).join(' ').slice(0, 46), { size: 19, w: 600 }) : T(84, y + (h - 10) / 2 + 7, lines.join(' ').slice(0, 48), { size: 19, w: 600 })) +
+        (rec ? badge(470, y + 2, 'recommended', C.ok) : '') + '</g>';
+    });
+    return s;
+  },
   // 1. Every agent signs its commits; the repository lists the keys it trusts.
   keys(u) {
     const k = ease(u * 1.6);
@@ -59,4 +84,4 @@ export const SCENES = {
       badge(364, 220, 'waits for your merge', C.y, ease(u * 3 - 1.2)) + T(16, 318, 'separate from the key; already solved', { size: 21, fill: C.dim, op: ease(u * 3 - 1.8) });
   },
 };
-export function scene(key, u) { const f = SCENES[key]; return `<svg viewBox="0 0 640 360" role="img" aria-label="${esc(key)}" preserveAspectRatio="xMidYMid meet"><rect width="640" height="360" fill="${C.bg}"/>${f ? f(clamp(u, 0, 1)) : ''}</svg>`; }
+export function scene(key, u, q) { const f = SCENES[key]; return `<svg viewBox="0 0 640 360" role="img" aria-label="${esc(key)}" preserveAspectRatio="xMidYMid meet"><rect width="640" height="360" fill="${C.bg}"/>${f ? f(clamp(u, 0, 1), q) : ''}</svg>`; }

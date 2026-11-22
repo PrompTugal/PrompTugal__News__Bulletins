@@ -1,0 +1,74 @@
+{
+ "about": "The questions of the first decision brief: bulletins.d@PrompTugal.dinis's own open decisions for Dinis, 22 Nov 2026. maestro.d's open asks follow when it sends them. Every number names its source.",
+ "title": "Decisions for Dinis",
+ "subtitle": "From bulletins.d@ (video and presenters), 22 Nov 2026. Four questions, about three minutes.",
+ "questions": [
+  {
+   "id": "free-voice",
+   "from": "bulletins.d@",
+   "asked": "22 Nov",
+   "title": "A free voice for the next video experiments",
+   "why": "The voice is the only paid step in our videos. A voice engine running on our own machine would make the whole video free and offline, and it reports which sound is spoken when, so the mouths could follow the words properly. Each engine and each voice model needs your approval to download, and each stock voice was trained on a real speaker's recordings, so it needs checking against our rule of no clone of a real person's voice.",
+   "blocks": ["free videos", "real lip-sync"],
+   "numbers": [
+    { "value": "0.0077 USD", "label": "the explainer's whole voice, 11 takes", "source": "data/costs/2026-11-22.d.json" },
+    { "value": "0.002 USD", "label": "about one take of the stock voice", "source": "bulletins.d@'s brief, 21 Nov" }
+   ],
+   "options": [
+    { "label": "Piper", "detail": "Neural, natural; MIT licence; voices each with their own licence.", "cost": "free, needs a download" },
+    { "label": "Kokoro", "detail": "Neural, the best quality of the three; Apache-2.0 weights.", "cost": "free, needs a download" },
+    { "label": "espeak-ng", "detail": "Robotic but clear; an Ubuntu package, no voice model.", "cost": "free" },
+    { "label": "Keep the stock OpenRouter voice", "detail": "What we use now: gpt-audio-mini, alloy.", "cost": "about 0.002 USD a take" }
+   ],
+   "recommend": { "option": 1, "why": "Try Kokoro first, with one voice whose licence and training data we check against the rule before any video is published; keep the stock voice as the fallback.", "say": "B, Kokoro, after we check the voice's licence and where its training data came from." }
+  },
+  {
+   "id": "explainer-line",
+   "from": "bulletins.d@",
+   "asked": "22 Nov",
+   "title": "The explainer's line about 128 seconds",
+   "why": "The explainer video says the bulletin now takes about 128 seconds. That is the study's measurement. The production script measured 136.1 seconds, because it also starts its own web server and writes the page. Both are sourced, but the spoken line could match the production figure.",
+   "blocks": [],
+   "numbers": [
+    { "value": "127.5 s", "label": "the study's run", "source": "docs/research/video-render-speed/" },
+    { "value": "136.1 s", "label": "the production run", "source": "src/lab/bulletin-v2/stats-2026-11-21.json" }
+   ],
+   "options": [
+    { "label": "Keep the line", "detail": "The slide already shows both figures on the page below the video." },
+    { "label": "Re-voice that scene", "detail": "Say about 136 seconds, three times faster becomes nearly three times.", "cost": "about 0.001 USD and a 9 minute re-render" }
+   ],
+   "recommend": { "option": 1, "why": "The spoken number should match what the production script does; it costs almost nothing.", "say": "B, re-voice the scene, so the spoken number matches the production run." }
+  },
+  {
+   "id": "library-review",
+   "from": "bulletins.d@",
+   "asked": "22 Nov",
+   "title": "Ask security@ to review presenters library 0.1.1",
+   "why": "The presenters library is published as 0.1.1, with the determinism fix. Other sites, starting with the newsroom's writer-10, can use it only once security@ has reviewed it and dev@ has listed its pins in the registry. Until then it is a preview. Only you can ask them.",
+   "blocks": ["newsroom writer-10", "other sites using the presenters"],
+   "numbers": [
+    { "value": "25 files", "label": "in version 0.1.1, 948 KB", "source": "src/lib/presenters/v0.1.1/" }
+   ],
+   "options": [
+    { "label": "Ask now for 0.1.1", "detail": "0.1.1 replaces 0.1.0 for new users; one review." },
+    { "label": "Wait for more changes", "detail": "Batch the review with the next version." }
+   ],
+   "recommend": { "option": 0, "why": "0.1.1 fixes a real defect, and writer-10 is waiting; reviewing 0.1.1 alone is the smallest review.", "say": "A, ask the security agent now, for version zero point one point one." }
+  },
+  {
+   "id": "brief-home",
+   "from": "bulletins.d@",
+   "asked": "22 Nov",
+   "title": "Where should decision briefs live?",
+   "why": "This brief runs as a private claude.ai page, which opens on your phone now and keeps your answers where the agents can read them. A copy can also live in the bulletins lab once bulletins.d@'s key reaches dev. Agents could then publish a brief whenever they need your decisions.",
+   "blocks": ["maestro.d's design for answers back to agents"],
+   "numbers": [],
+   "options": [
+    { "label": "Private claude.ai page", "detail": "Opens now, keeps answers with the page; private by default." },
+    { "label": "The bulletins lab", "detail": "Public at bulletins.promptugal.news/lab/; answers would need another store." },
+    { "label": "Both", "detail": "Private for real decisions, the lab for the format and examples." }
+   ],
+   "recommend": { "option": 2, "why": "Real decisions stay private; the lab shows the format to other agents and readers.", "say": "C, both: private pages for real decisions, and the lab for the format." }
+  }
+ ]
+}

@@ -18,9 +18,14 @@ export function build(spec, index = 0) {
   const fingers = { L: [], R: [] }, danglers = [];
   for (const k in J) { if (k[0] === '_') continue; const m = /^f([LR])(\d)$/.exec(k); if (m) fingers[m[1]][+m[2]] = J[k]; else if (J[k].userData.restRot) danglers.push(J[k]); }
   const springJ = (spec.springs || []).map((s) => J[s.joint]);
+  // A spring adds its lag to its joint (below). Joints that apply() does not set outright every frame (an antenna, a
+  // tuft, a key) would otherwise keep the last frame's lag, and a frame would depend on the frames drawn before it.
+  // So each spring joint goes back to its built rotation and scale first (bulletins.d@, 22 Nov 2026).
+  const springBase = springJ.map((j) => j && { r: j.rotation.clone(), s: j.scale.clone() });
   const sketch = (spec.specials || []).includes('sketchOn');
   const c = { id: spec.id, spec, style, J, d, B, P, object: J.root, baseY: 0, height: d.height };
   c.apply = (pose, sp, t, env = {}) => {
+    for (let i = 0; i < springJ.length; i++) if (springJ[i]) { springJ[i].rotation.copy(springBase[i].r); springJ[i].scale.copy(springBase[i].s); }
     for (let i = 0; i < N; i++) P[NAMES[i]] = pose[i];
     const p = P;
     // Crouch folds both legs by one angle: thigh forward, knee twice that, ankle back, so the foot stays under the hip.

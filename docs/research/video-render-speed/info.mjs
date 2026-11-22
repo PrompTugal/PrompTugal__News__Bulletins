@@ -1,0 +1,9 @@
+import { createRequire } from 'node:module';
+const { chromium } = createRequire(import.meta.url)('playwright');
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 640, height: 720 } });
+await p.route('**/bulletin-v2/cast.js', async (r) => { const res = await r.fetch(); const s = (await res.text()).replace('const stage = new Stage(canvas, specs);', 'const stage = new Stage(canvas, specs); window.__stage = stage;'); await r.fulfill({ response: res, body: s }); });
+await p.goto('http://127.0.0.1:8797/lab/bulletin-v2/cast.html', { waitUntil: 'networkidle' });
+await p.waitForFunction(() => window.castReady === true);
+const out = [await p.evaluate(() => { const by = {}; window.__stage.scene.traverse((o) => { if (!o.isMesh) return; const g = o.geometry; const tri = (g.index ? g.index.count : g.attributes.position.count) / 3; const k = g.type + (g.parameters && g.parameters.widthSegments ? "(" + g.parameters.widthSegments + "x" + g.parameters.heightSegments + ")" : g.parameters && g.parameters.tubularSegments ? "(" + g.parameters.tubularSegments + "x" + g.parameters.radialSegments + ")" : ""); by[k] = by[k] || { n: 0, tri: 0 }; by[k].n++; by[k].tri += tri; }); return Object.entries(by).sort((a, b) => b[1].tri - a[1].tri).slice(0, 12).map(([k, v]) => k + " n=" + v.n + " tri=" + Math.round(v.tri)); })];
+for (const t of [1, 5, 10, 15, 20, 25, 30]) out.push(await p.evaluate((t) => { window.renderAt(t); const i = window.__stage.renderer.info; let meshes = 0, mats = new Set(); window.__stage.scene.traverse((o) => { if (o.isMesh && o.visible) { meshes++; mats.add(o.material.type); } }); return { t, calls: i.render.calls, triangles: i.render.triangles, programs: i.programs.length, textures: i.memory.textures, meshes, mats: [...mats].join(',') }; }, t));
+console.log(JSON.stringify(out, null, 0)); await b.close();

@@ -1,0 +1,156 @@
+{
+ "started": "2026-11-22T04:28:11.054Z",
+ "machine": {
+  "cpus": 4,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "mem_gb": 15.7,
+  "os": "linux 6.18.44-fc-v726",
+  "node": "v22.23.5",
+  "gpu": "none (software WebGL: llvmpipe (Mesa, OpenGL through ANGLE, headed Chromium on Xvfb))"
+ },
+ "phases": [
+  {
+   "name": "voice (OpenRouter, one take per scene)",
+   "wall_s": 0.271,
+   "node_cpu_s": 0.026
+  },
+  {
+   "name": "timeline, loudness, mouth shapes",
+   "wall_s": 0.014,
+   "node_cpu_s": 0.019
+  },
+  {
+   "name": "render 3715 frames (4 browsers, llvmpipe)",
+   "wall_s": 486.103,
+   "node_cpu_s": 21.395
+  },
+  {
+   "name": "encode (ffmpeg H.264 + AAC)",
+   "wall_s": 38.434,
+   "node_cpu_s": 0.003
+  }
+ ],
+ "voice": {
+  "model": "openai/gpt-audio-mini",
+  "voice": "alloy",
+  "takes": 11,
+  "scenes": 11,
+  "cost_usd": 0.007683,
+  "latency_s": 19.88,
+  "transcript_matches": true,
+  "words": 369,
+  "reused": true
+ },
+ "render": {
+  "frames": 3715,
+  "fps": 30,
+  "size": "1280x720 (two halves of 640x720)",
+  "workers": 4,
+  "renderer": "llvmpipe (Mesa, OpenGL through ANGLE, headed Chromium on Xvfb)",
+  "webgl": "ANGLE (Mesa, llvmpipe (LLVM 20.1.2 256 bits), OpenGL 4.5)",
+  "fell_back": null,
+  "capture": "Chrome DevTools Page.captureScreenshot, PNG",
+  "chromium": "153.0.8010.12",
+  "browser_startup_s": [
+   4.11,
+   4.19,
+   3.89,
+   3.59
+  ],
+  "wall_s": 485.89,
+  "ms_per_frame": 130.8,
+  "left_slides_ms": {
+   "min": 0,
+   "p50": 0.5,
+   "p90": 1,
+   "p99": 2.6,
+   "max": 34.3,
+   "mean": 0.7
+  },
+  "right_cast_ms": {
+   "min": 3.2,
+   "p50": 12.8,
+   "p90": 33.9,
+   "p99": 66.6,
+   "max": 1269.2,
+   "mean": 18.3
+  },
+  "screenshot_ms": {
+   "min": 171,
+   "p50": 476.1,
+   "p90": 606.9,
+   "p99": 721,
+   "max": 875.5,
+   "mean": 478
+  },
+  "note": "The screenshot waits for the GPU process to draw the 3D half, so screenshot_ms is mostly software 3D drawing; right_cast_ms is the JavaScript side only.",
+  "slowest_frames": [
+   {
+    "t": 59.4,
+    "shot_ms": 875.5
+   },
+   {
+    "t": 61.33,
+    "shot_ms": 820
+   },
+   {
+    "t": 122.13,
+    "shot_ms": 813
+   },
+   {
+    "t": 112.63,
+    "shot_ms": 808.4
+   },
+   {
+    "t": 27.33,
+    "shot_ms": 797.8
+   }
+  ]
+ },
+ "finished": "2026-11-22T04:36:58.652Z",
+ "output": {
+  "video": "how-this-video-is-made.mp4",
+  "video_bytes": 25125381,
+  "voice_bytes": 1495028,
+  "duration_s": 123.83,
+  "script_words": 369,
+  "scenes": 11
+ },
+ "total_wall_s": 524.82,
+ "realtime_factor": 4.24,
+ "numbers_shown": {
+  "shot_nochange_ms": 33,
+  "shot_swiftshader_ms": 638,
+  "shot_llvmpipe_ms": 233,
+  "triangles": 645000,
+  "draw_calls": 650,
+  "full_runs": [
+   {
+    "label": "SwiftShader, 3 browsers",
+    "s": 396
+   },
+   {
+    "label": "SwiftShader, 4 browsers",
+    "s": 306.5
+   },
+   {
+    "label": "llvmpipe, 1 browser",
+    "s": 236.6
+   },
+   {
+    "label": "llvmpipe, 2 browsers",
+    "s": 155.6
+   },
+   {
+    "label": "llvmpipe, 4 browsers",
+    "s": 127.5
+   }
+  ],
+  "ssim": 0.986,
+  "live_fps_swiftshader": 1.9,
+  "live_fps_llvmpipe": 5.6,
+  "rec_frames": 300,
+  "rec_distinct": 51,
+  "source": "Measured by bulletins.d@PrompTugal.dinis on 22 Nov 2026 (4 CPUs, no GPU): docs/research/video-render-speed/; 396 s from src/lab/bulletin-v2/stats-2026-11-21.json."
+ }
+}

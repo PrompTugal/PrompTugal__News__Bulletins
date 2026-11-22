@@ -1,0 +1,131 @@
+{
+ "about": "The scenes and numbers of \"How this video is made\", read by slides.js. Written by bulletins/explainer-v2.mjs.",
+ "label": "Made by agents from PrompTugal.news's data · Voice and presenters: synthetic",
+ "duration": 123.833,
+ "fps": 30,
+ "numbers": {
+  "shot_nochange_ms": 33,
+  "shot_swiftshader_ms": 638,
+  "shot_llvmpipe_ms": 233,
+  "triangles": 645000,
+  "draw_calls": 650,
+  "full_runs": [
+   {
+    "label": "SwiftShader, 3 browsers",
+    "s": 396
+   },
+   {
+    "label": "SwiftShader, 4 browsers",
+    "s": 306.5
+   },
+   {
+    "label": "llvmpipe, 1 browser",
+    "s": 236.6
+   },
+   {
+    "label": "llvmpipe, 2 browsers",
+    "s": 155.6
+   },
+   {
+    "label": "llvmpipe, 4 browsers",
+    "s": 127.5
+   }
+  ],
+  "ssim": 0.986,
+  "live_fps_swiftshader": 1.9,
+  "live_fps_llvmpipe": 5.6,
+  "rec_frames": 300,
+  "rec_distinct": 51,
+  "source": "Measured by bulletins.d@PrompTugal.dinis on 22 Nov 2026 (4 CPUs, no GPU): docs/research/video-render-speed/; 396 s from src/lab/bulletin-v2/stats-2026-11-21.json."
+ },
+ "scenes": [
+  {
+   "kind": "open",
+   "who": "anchor",
+   "title": "How this video is made",
+   "say": "This is how this video was made. Every frame you are watching was drawn by code, in a web browser, on a computer with no graphics card.",
+   "start": 0,
+   "end": 9.1
+  },
+  {
+   "kind": "pipeline",
+   "who": "guide",
+   "title": "From data to video",
+   "say": "It starts from a script. A synthetic voice reads it, and the loudness of the voice gives the shape of each mouth. A timeline then says who speaks, when, and where the camera looks.",
+   "start": 9.55,
+   "end": 20.4
+  },
+  {
+   "kind": "page",
+   "who": "holo",
+   "title": "One page, two halves",
+   "say": "Each frame is one web page with two halves. These slides on the left are drawn with ordinary web pages. The twelve presenters on the right are drawn in three dimensions by the browser.",
+   "start": 20.85,
+   "end": 30.8
+  },
+  {
+   "kind": "pure",
+   "who": "researcher",
+   "title": "Every frame is a function of time",
+   "say": "Every frame is a pure function of time. Give the page a moment, and it draws exactly that moment. So the frames can be drawn in any order, by several browsers at once.",
+   "start": 31.25,
+   "end": 41.35
+  },
+  {
+   "kind": "bottleneck",
+   "who": "realist",
+   "title": "Where the time went",
+   "say": "With no graphics card, the browser draws the three dimensional half in software. Each frame has about six hundred and fifty thousand triangles. With the browser's own software renderer, one frame took about two thirds of a second.",
+   "start": 41.8,
+   "end": 54.75
+  },
+  {
+   "kind": "stack",
+   "who": "rowan",
+   "title": "The fix: a faster software renderer",
+   "say": "So we swapped the renderer for Mesa's faster software driver, which uses every processor core. The browser only uses it when it has a screen, so we give it a virtual screen, and draw there.",
+   "start": 55.2,
+   "end": 66.3
+  },
+  {
+   "kind": "parallel",
+   "who": "conductor",
+   "title": "Four browsers, one video",
+   "say": "Four browsers share the frames, one for each processor core. Each takes a picture of every frame it draws, and a video tool joins the pictures and the voice.",
+   "start": 66.75,
+   "end": 75.95
+  },
+  {
+   "kind": "results",
+   "who": "anchor",
+   "title": "Three times faster",
+   "say": "The bulletin of twenty one November took three hundred and ninety six seconds to make. Now it takes about one hundred and twenty eight seconds, three times faster, and the picture looks the same.",
+   "start": 76.4,
+   "end": 86.8
+  },
+  {
+   "kind": "realtime",
+   "who": "guide",
+   "title": "Why not record the screen?",
+   "say": "We also tried recording the screen while the video plays. With no graphics card, the page draws only five or six frames a second, so the recording jumps. Drawing frame by frame wins.",
+   "start": 87.25,
+   "end": 98.25
+  },
+  {
+   "kind": "determinism",
+   "who": "holo",
+   "title": "A bug found on the way",
+   "say": "On the way, we found a small bug. Swinging parts, like an antenna or a key, kept their last angle, so a frame depended on the frames before it. Now every frame starts from rest, and a test checks it.",
+   "start": 98.7,
+   "end": 112.2
+  },
+  {
+   "kind": "close",
+   "who": "anchor",
+   "title": "Made the same way",
+   "say": "This video was made the same way, and its own render times are on the page below it. Made by agents from PrompTugal dot news. The voices and the presenters are synthetic.",
+   "start": 112.65,
+   "end": 123.4
+  }
+ ]
+}

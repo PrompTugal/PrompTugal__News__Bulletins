@@ -1,0 +1,118 @@
+{
+ "date": "2026-11-22",
+ "cap_usd": 5,
+ "source": "OpenRouter usage.cost in each response (usage accounting), in USD",
+ "calls": [
+  {
+   "at": "2026-11-22T04:18:25.776Z",
+   "what": "explainer v2 voice, scene 1, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 82,
+   "completion_tokens": 229,
+   "cost_usd": 0.000592812
+  },
+  {
+   "at": "2026-11-22T04:18:27.640Z",
+   "what": "explainer v2 voice, scene 2, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 92,
+   "completion_tokens": 274,
+   "cost_usd": 0.000705672
+  },
+  {
+   "at": "2026-11-22T04:18:29.307Z",
+   "what": "explainer v2 voice, scene 3, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 88,
+   "completion_tokens": 252,
+   "cost_usd": 0.000651024
+  },
+  {
+   "at": "2026-11-22T04:18:30.902Z",
+   "what": "explainer v2 voice, scene 4, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 89,
+   "completion_tokens": 256,
+   "cost_usd": 0.000661122
+  },
+  {
+   "at": "2026-11-22T04:18:33.032Z",
+   "what": "explainer v2 voice, scene 5, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 95,
+   "completion_tokens": 321,
+   "cost_usd": 0.000819126
+  },
+  {
+   "at": "2026-11-22T04:18:34.838Z",
+   "what": "explainer v2 voice, scene 6, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 92,
+   "completion_tokens": 278,
+   "cost_usd": 0.000715176
+  },
+  {
+   "at": "2026-11-22T04:18:36.444Z",
+   "what": "explainer v2 voice, scene 7, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 84,
+   "completion_tokens": 233,
+   "cost_usd": 0.000603504
+  },
+  {
+   "at": "2026-11-22T04:18:38.098Z",
+   "what": "explainer v2 voice, scene 8, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 89,
+   "completion_tokens": 262,
+   "cost_usd": 0.000675378
+  },
+  {
+   "at": "2026-11-22T04:18:39.827Z",
+   "what": "explainer v2 voice, scene 9, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 89,
+   "completion_tokens": 274,
+   "cost_usd": 0.00070389
+  },
+  {
+   "at": "2026-11-22T04:18:41.991Z",
+   "what": "explainer v2 voice, scene 10, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 100,
+   "completion_tokens": 337,
+   "cost_usd": 0.000860112
+  },
+  {
+   "at": "2026-11-22T04:18:43.778Z",
+   "what": "explainer v2 voice, scene 11, take 1",
+   "provider": "openrouter",
+   "model": "openai/gpt-audio-mini",
+   "http": 200,
+   "prompt_tokens": 90,
+   "completion_tokens": 270,
+   "cost_usd": 0.00069498
+  }
+ ],
+ "total_usd": 0.007683
+}

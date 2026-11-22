@@ -1,0 +1,59 @@
+{
+ "about": "The voice takes of the explainer, one per scene, each checked word for word. Transcripts are kept in the form compared (lower case, punctuation removed). Written by bulletins/explainer-v2.mjs.",
+ "stats": {
+  "model": "openai/gpt-audio-mini",
+  "voice": "alloy",
+  "takes": 11,
+  "scenes": 11,
+  "cost_usd": 0.007683,
+  "latency_s": 19.88,
+  "transcript_matches": true,
+  "words": 369
+ },
+ "scenes": [
+  {
+   "samples": 218400,
+   "transcript_as_compared": "this is how this video was made every frame you are watching was drawn by code in a web browser on a computer with no graphics card"
+  },
+  {
+   "samples": 260400,
+   "transcript_as_compared": "it starts from a script a synthetic voice reads it and the loudness of the voice gives the shape of each mouth a timeline then says who speaks when and where the camera looks"
+  },
+  {
+   "samples": 238800,
+   "transcript_as_compared": "each frame is one web page with two halves these slides on the left are drawn with ordinary web pages the twelve presenters on the right are drawn in three dimensions by the browser"
+  },
+  {
+   "samples": 242400,
+   "transcript_as_compared": "every frame is a pure function of time give the page a moment and it draws exactly that moment so the frames can be drawn in any order by several browsers at once"
+  },
+  {
+   "samples": 310800,
+   "transcript_as_compared": "with no graphics card the browser draws the three dimensional half in software each frame has about six hundred and fifty thousand triangles with the browser s own software renderer one frame took about two thirds of a second"
+  },
+  {
+   "samples": 266400,
+   "transcript_as_compared": "so we swapped the renderer for mesa s faster software driver which uses every processor core the browser only uses it when it has a screen so we give it a virtual screen and draw there"
+  },
+  {
+   "samples": 220800,
+   "transcript_as_compared": "four browsers share the frames one for each processor core each takes a picture of every frame it draws and a video tool joins the pictures and the voice"
+  },
+  {
+   "samples": 249600,
+   "transcript_as_compared": "the bulletin of twenty one november took three hundred and ninety six seconds to make now it takes about one hundred and twenty eight seconds three times faster and the picture looks the same"
+  },
+  {
+   "samples": 264000,
+   "transcript_as_compared": "we also tried recording the screen while the video plays with no graphics card the page draws only five or six frames a second so the recording jumps drawing frame by frame wins"
+  },
+  {
+   "samples": 324000,
+   "transcript_as_compared": "on the way we found a small bug swinging parts like an antenna or a key kept their last angle so a frame depended on the frames before it now every frame starts from rest and a test checks it"
+  },
+  {
+   "samples": 258000,
+   "transcript_as_compared": "this video was made the same way and its own render times are on the page below it made by agents from promptugal dot news the voices and the presenters are synthetic"
+  }
+ ]
+}

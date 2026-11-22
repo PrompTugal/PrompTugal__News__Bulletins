@@ -7,22 +7,23 @@
 // 3. Mouth shapes: from the voice's loudness, in Rhubarb's format (Rhubarb itself was not run: an approximation).
 // 4. Left half: version 1's animated bulletin (src/lab/video/stage.js?layout=half) from timeline.json.
 //    Right half: all twelve version 2 presenters (cast.html), directed by cast.json, written here.
-// 5. Render: split.html, every frame a function of t, in parallel browsers; ffmpeg joins frames and voice.
+// 5. Render: split.html, every frame a function of t, in parallel browsers (bulletins/frames.mjs: llvmpipe on Xvfb,
+//    else SwiftShader; Dinis, 22 Nov: "adopt that LLVM pipe"); ffmpeg joins frames and voice.
 // 6. Stats: every phase timed (wall and CPU), every frame timed per half, written to stats-<day>.json and the page.
-// Run: node bulletins/bulletin-v2.mjs [--reuse] [--workers 3] [--fps 30]
+// Run: node bulletins/bulletin-v2.mjs [--reuse] [--workers <CPUs>] [--fps 30] [--renderer auto|llvmpipe|swiftshader]
 import { execFileSync, spawn } from 'node:child_process';
 import { existsSync, mkdtempSync, writeFileSync, readFileSync, rmSync, statSync, copyFileSync } from 'node:fs';
 import { tmpdir, cpus, totalmem, platform, release } from 'node:os';
 import { join } from 'node:path';
 import { performance } from 'node:perf_hooks';
-import { createRequire } from 'node:module';
 import { ROOT, readJSON, writeJSON, esc } from './core.mjs';
 import { LABEL } from './render.mjs';
 import { MAP_DATA } from './map.mjs';
 import { speak, VOICE } from './voice.mjs';
+import { renderFrames } from './frames.mjs';
 
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
-const REUSE = process.argv.includes('--reuse'), WORKERS = +arg('--workers', 3), FPS = +arg('--fps', 30);
+const REUSE = process.argv.includes('--reuse'), WORKERS = +arg('--workers', cpus().length), FPS = +arg('--fps', 30), RENDERER = arg('--renderer', 'auto');
 const DIR = join(ROOT, 'src', 'lab', 'bulletin-v2');
 const stats = { started: new Date().toISOString(), machine: { cpus: cpus().length, cpu: cpus()[0]?.model, mem_gb: +(totalmem() / 2 ** 30).toFixed(1), os: `${platform()} ${release()}`, node: process.version, gpu: 'none (software WebGL)' }, phases: [] };
 async function phase(name, fn) {
@@ -167,37 +168,22 @@ writeJSON(join(DIR, 'cast.json'), { about: `Direction of the twelve version 2 pr
   slots: SLOTS, speakers, tracks: { bulletin: { duration: +duration.toFixed(3), mouthCues, note: 'From the voice\'s loudness, not Rhubarb: an approximation of lip-sync.' } },
   chor: { version: '2.0.0-bulletin', duration: +duration.toFixed(3), fps: FPS, auto: { idle: true, blink: true, fidget: false }, groups: { front: ['agent', 'conductor', 'owl', 'researcher', 'caretaker', 'cube'], all: ALL }, beats, camera, cues } });
 
-// 5. Render: split.html in WORKERS browsers, each a contiguous range of frames, every frame timed per half.
+// 5. Render: split.html in WORKERS browsers (bulletins/frames.mjs), each a contiguous range of frames, every frame timed per half.
 const PORT = 8796;
 const srv = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], { cwd: join(ROOT, 'src'), stdio: 'ignore' });
 const tmp = mkdtempSync(join(tmpdir(), 'bulletinv2-'));
 const OUT = join(DIR, `bulletin-${day}.mp4`);
 try {
   await new Promise((r) => setTimeout(r, 900));
-  const { chromium } = createRequire(import.meta.url)('playwright');
-  const frames = await phase(`render ${n} frames (${WORKERS} browsers)`, async () => {
-    const per = Math.ceil(n / WORKERS), all = [];
-    await Promise.all(Array.from({ length: WORKERS }, async (_, w) => {
-      const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1280, height: 720 }, colorScheme: 'dark' });
-      const ts = performance.now();
-      await p.goto(`http://127.0.0.1:${PORT}/lab/bulletin-v2/split.html`, { waitUntil: 'networkidle' });
-      await p.waitForFunction(() => window.splitReady === true, null, { timeout: 60000 });
-      all.push({ worker: w, startup_s: +((performance.now() - ts) / 1000).toFixed(2), chromium: b.version() });
-      const el = await p.$('#split');
-      for (let f = w * per; f < Math.min(n, (w + 1) * per); f++) {
-        const tm = await p.evaluate((t) => window.renderSplit(t), f / FPS);
-        const s0 = performance.now(); await el.screenshot({ path: join(tmp, `f${String(f).padStart(5, '0')}.png`) });
-        all.push({ f, left_ms: tm.left, right_ms: tm.right, shot_ms: +(performance.now() - s0).toFixed(1) });
-      }
-      await b.close();
-    }));
-    return all;
-  });
-  const startups = frames.filter((x) => x.worker != null), per = frames.filter((x) => x.f != null);
-  const dist = (k) => { const v = per.map((x) => x[k]).sort((a, b) => a - b), q = (p) => v[Math.min(v.length - 1, Math.floor(p * v.length))]; return { min: +v[0].toFixed(1), p50: +q(0.5).toFixed(1), p90: +q(0.9).toFixed(1), p99: +q(0.99).toFixed(1), max: +v[v.length - 1].toFixed(1), mean: +(v.reduce((a, b) => a + b, 0) / v.length).toFixed(1) }; };
-  stats.render = { frames: n, fps: FPS, size: '1280x720 (two halves of 640x720)', workers: WORKERS, chromium: startups[0]?.chromium, browser_startup_s: startups.map((x) => x.startup_s),
-    left_v1_stage_ms: dist('left_ms'), right_v2_cast_ms: dist('right_ms'), screenshot_ms: dist('shot_ms'),
-    slowest_frames: per.slice().sort((a, b) => b.right_ms - a.right_ms).slice(0, 5).map((x) => ({ t: +(x.f / FPS).toFixed(2), right_ms: x.right_ms })) };
+  const r = await phase(`render ${n} frames`, () => renderFrames({ url: `http://127.0.0.1:${PORT}/lab/bulletin-v2/split.html`, n, fps: FPS, out: tmp,
+    ready: () => window.splitReady === true, draw: (t) => window.renderSplit(t), workers: WORKERS, renderer: RENDERER }));
+  stats.phases[stats.phases.length - 1].name = `render ${n} frames (${r.workers} browsers, ${r.renderer.split(' ')[0]})`;
+  const pick = (k) => { const v = r.rows.map((x) => x[k]).sort((a, b) => a - b), q = (p) => v[Math.min(v.length - 1, Math.floor(p * v.length))]; return { min: v[0], p50: q(0.5), p90: q(0.9), p99: q(0.99), max: v[v.length - 1], mean: +(v.reduce((a, b) => a + b, 0) / v.length).toFixed(1) }; };
+  stats.machine.gpu = `none (software WebGL: ${r.renderer})`;
+  stats.render = { frames: n, fps: FPS, size: '1280x720 (two halves of 640x720)', workers: r.workers, renderer: r.renderer, webgl: r.webgl, fell_back: r.fell_back, capture: r.capture,
+    chromium: r.chromium, browser_startup_s: r.browser_startup_s, left_v1_stage_ms: pick('left'), right_v2_cast_ms: pick('right'), screenshot_ms: r.screenshot_ms,
+    note: 'The screenshot waits for the GPU process to draw the 3D half, so screenshot_ms is mostly software 3D drawing; right_v2_cast_ms is the JavaScript side only.',
+    slowest_frames: r.rows.slice().sort((a, b) => b.shot_ms - a.shot_ms).slice(0, 5).map((x) => ({ t: +(x.f / FPS).toFixed(2), shot_ms: x.shot_ms })) };
   await phase('encode (ffmpeg H.264 + AAC)', () => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-framerate', String(FPS), '-i', join(tmp, 'f%05d.png'), '-i', M4A,
     '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '21', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', '-metadata', `comment=${LABEL}. Synthetic presenters and synthetic voice.`, OUT]));
 } finally { srv.kill(); rmSync(tmp, { recursive: true, force: true }); }

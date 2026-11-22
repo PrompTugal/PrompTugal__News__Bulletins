@@ -8,10 +8,12 @@
  * answer. Narration: Claude's voice where the viewer offers it, else the browser's own speech (iPhone Safari), else
  * the text alone. Answers: the artifact's db when granted, else this browser's storage. */
 
+import { scene } from './briefing.js';
+
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const WHO = 'anchor', WPS = 2.55, GAP = 0.6;           // words a second the mouth track assumes, and a pause between parts
-const state = { i: 0, answers: {}, db: null, me: null, tts: null, show: null, segs: [], speaking: false, dict: null };
+const state = { i: 0, answers: {}, db: null, me: null, tts: null, show: null, segs: [], bsegs: {}, speaking: false, dict: null, beat: 0 };
 
 // ---------- The script each question is read from, and its mouth track ----------
 function lines(q) { return [q.title + '.', q.why, 'The options: ' + q.options.map((o, k) => `${String.fromCharCode(65 + k)}, ${o.label}.`).join(' '), 'My recommendation: ' + q.recommend.say]; }
@@ -30,39 +32,80 @@ function plan(brief) {
     if (qi === 0) cues.push({ t: 0.1, who: WHO, do: 'straightenTie' });
     t += 1.2;
   });
-  return { cues, mouth, segs, duration: t + 2 };
+  // Each briefing is one segment: its beats read in a row, each word knowing its beat, so one utterance plays it all.
+  const bsegs = {};
+  for (const br of brief.briefings || []) {
+    const start = t, words = [], beats = [];
+    br.beats.forEach((bt, bi) => { const b0 = t; for (const w of bt.narration.split(/\s+/).filter(Boolean)) { const d = Math.max(0.22, (w.length + 1) / (5.5 * WPS)); words.push({ w, t, d, b: bi }); t += d; } beats.push({ start: b0, end: t }); t += GAP; });
+    const end = t; bsegs[br.id] = { start, end, words, beats, text: br.beats.map((x) => x.narration).join(' ') };
+    for (const [k, x] of words.entries()) { const shapes = ['C', 'E', 'B', 'D', 'F', 'C']; mouth.push({ start: +x.t.toFixed(3), end: +(x.t + x.d * 0.82).toFixed(3), value: shapes[(k + x.w.length) % shapes.length] }); }
+    cues.push({ t: start, who: WHO, do: 'speak', track: 'brief', dur: end - start });
+    beats.forEach((b, bi) => cues.push({ t: b.start + 0.3, who: WHO, do: bi % 2 ? 'openPalms' : 'present', dur: 2.2 }));
+    t += 1.2;
+  }
+  return { cues, mouth, segs, bsegs, duration: t + 2 };
 }
 
 // ---------- Narration ----------
-let utter = null, syncTimer = 0;
+// speakSeg plays one segment: the voice (Claude's, the browser's, or none), the presenter on the show's clock, and
+// onFrame(t) every animation frame for anything else that follows the voice (the briefing's scenes and captions).
+let utter = null, raf = 0, token = 0;
+function labels() { const on = state.speaking; $('play').textContent = on === 'q' ? 'Stop' : 'Play'; $('play').setAttribute('aria-pressed', String(on === 'q')); const bp = $('bplay'); if (bp) bp.textContent = on === 'b' ? 'Stop the briefing' : 'Play the briefing'; }
 function stopSpeech() {
-  clearInterval(syncTimer); state.speaking = false; $('play').textContent = 'Play'; $('play').setAttribute('aria-pressed', 'false');
+  token++; cancelAnimationFrame(raf); state.speaking = false; labels();
   try { state.tts?.stop(); } catch {} try { speechSynthesis.cancel(); } catch {}
   state.show?.pause();
+}
+function speakSeg(seg, onFrame) {
+  return new Promise((resolve) => {
+    const my = ++token, show = state.show, t0 = performance.now();
+    if (show) { show.seek(seg.start); show.play(); }
+    const now = () => show ? show.t : seg.start + (performance.now() - t0) / 1000;
+    const finish = () => { if (my !== token) return resolve(false); cancelAnimationFrame(raf); if (show) { show.pause(); show.seek(seg.end); } onFrame && onFrame(seg.end); resolve(true); };
+    const loop = () => { if (my !== token) return; const t = now(); if (show && t >= seg.end) show.pause(); onFrame && onFrame(Math.min(t, seg.end)); raf = requestAnimationFrame(loop); };
+    loop();
+    const mime = () => setTimeout(finish, Math.max(0.3, seg.end - now()) * 1000);   // no voice: mime on the estimated clock
+    if (state.tts) { state.tts.speak(seg.text, { voice: 'rounded' }).then(finish, finish); return; }
+    if ('speechSynthesis' in window && speechSynthesis.getVoices().length) {
+      utter = new SpeechSynthesisUtterance(seg.text); utter.lang = 'en-GB'; utter.rate = 1;
+      const v = speechSynthesis.getVoices().find((x) => /en-GB/i.test(x.lang)) || speechSynthesis.getVoices().find((x) => /^en/i.test(x.lang)); if (v) utter.voice = v;
+      // Each spoken word moves the show to that word, so the presenter, the scenes and the captions keep up with the voice.
+      utter.onboundary = (e) => { if (!show || (e.name && e.name !== 'word')) return; let n = 0, k = 0; for (; k < seg.words.length; k++) { n += seg.words[k].w.length + 1; if (n > e.charIndex) break; } const w = seg.words[Math.min(k, seg.words.length - 1)]; if (Math.abs(show.t - w.t) > 0.25) show.seek(w.t); if (!show.playing) show.play(); };
+      utter.onend = finish; utter.onerror = (e) => { if (e.error === 'interrupted' || e.error === 'canceled') return finish(); mime(); };
+      speechSynthesis.cancel(); speechSynthesis.speak(utter); return;
+    }
+    mime();
+  });
 }
 async function playQuestion() {
   if (state.speaking) { stopSpeech(); return; }
   const seg = state.segs[state.i]; if (!seg) return;
-  state.speaking = true; $('play').textContent = 'Stop'; $('play').setAttribute('aria-pressed', 'true');
-  const show = state.show;
-  if (show) { show.seek(seg.start); show.play(); }
-  const done = () => { if (!state.speaking) return; stopSpeech(); if (show) show.seek(seg.end); };
-  // The show runs on its own clock; stop it at the end of the segment even if the voice is slower or absent.
-  syncTimer = setInterval(() => { if (show && show.t >= seg.end) show.pause(); }, 100);
-  if (state.tts) {
-    try { await state.tts.speak(seg.text, { voice: 'rounded' }); } catch { /* stopped or refused: the text stays on screen */ }
-    done(); return;
-  }
-  const mime = () => { const left = Math.max(0.5, seg.end - (show ? show.t : seg.start)); if (show && !show.playing) show.play(); setTimeout(done, left * 1000); };
-  if ('speechSynthesis' in window && speechSynthesis.getVoices().length) {
-    utter = new SpeechSynthesisUtterance(seg.text); utter.lang = 'en-GB'; utter.rate = 1;
-    const v = speechSynthesis.getVoices().find((x) => /en-GB/i.test(x.lang)) || speechSynthesis.getVoices().find((x) => /^en/i.test(x.lang)); if (v) utter.voice = v;
-    // Each spoken word moves the mouth track to that word, so the presenter keeps up with the real voice.
-    utter.onboundary = (e) => { if (!show || e.name && e.name !== 'word') return; let n = 0, k = 0; for (; k < seg.words.length; k++) { n += seg.words[k].w.length + 1; if (n > e.charIndex) break; } const w = seg.words[Math.min(k, seg.words.length - 1)]; if (Math.abs(show.t - w.t) > 0.25) show.seek(w.t); if (!show.playing) show.play(); };
-    utter.onend = done; utter.onerror = (e) => { if (e.error === 'interrupted' || e.error === 'canceled') return done(); mime(); };
-    speechSynthesis.cancel(); speechSynthesis.speak(utter); return;
-  }
-  mime();   // no voice here: the presenter mimes, the text is on screen
+  state.speaking = 'q'; labels();
+  await speakSeg(seg); if (state.speaking === 'q') { state.speaking = false; labels(); }
+}
+
+// ---------- The briefing: scenes, captions and sources, all following the voice ----------
+function briefingOf(q) { return (state.brief.briefings || []).find((b) => b.id === q.briefing); }
+function drawBeat(br, k, u, spokenFrac = 1) {
+  const bt = br.beats[k]; if (!bt || !$('bvis')) return;
+  $('bvis').innerHTML = scene(bt.visual, u);
+  const words = bt.caption.split(/\s+/), n = Math.round(spokenFrac * words.length);
+  $('bcap').innerHTML = words.map((w, i) => `<span class="${i < n ? 'said' : 'tobe'}">${esc(w)}</span>`).join(' ');
+  $('bsrc').textContent = 'Source: ' + bt.sources.join('; ');
+  document.querySelectorAll('.bpart').forEach((el, i) => el.classList.toggle('on', i === k));
+}
+async function playBriefing() {
+  const q = state.brief.questions[state.i], br = briefingOf(q), seg = br && state.bsegs[br.id]; if (!seg) return;
+  if (state.speaking === 'b') { stopSpeech(); drawBeat(br, state.beat, 1); return; }
+  if (state.speaking) stopSpeech();
+  state.speaking = 'b'; labels();
+  const ok = await speakSeg(seg, (t) => {
+    let k = 0; for (let i = 0; i < seg.beats.length; i++) if (t >= seg.beats[i].start) k = i;
+    const b = seg.beats[k], u = (t - b.start) / Math.max(0.5, b.end - b.start), inBeat = seg.words.filter((w) => w.b === k), said = inBeat.filter((w) => w.t <= t).length;
+    state.beat = k; drawBeat(br, k, u, inBeat.length ? said / inBeat.length : 1);
+  });
+  if (state.speaking === 'b') { state.speaking = false; labels(); }
+  if (ok) $('qtitle')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ---------- Rendering a question ----------
@@ -70,7 +113,15 @@ function render() {
   const B = state.brief, q = B.questions[state.i], a = state.answers[q.id] || {};
   $('count').textContent = `Question ${state.i + 1} of ${B.questions.length}`;
   $('dots').innerHTML = B.questions.map((x, k) => `<button type="button" class="dot${k === state.i ? ' on' : ''}${state.answers[x.id]?.saved ? ' done' : ''}" data-k="${k}" aria-label="Question ${k + 1}${state.answers[x.id]?.saved ? ', answered' : ''}"></button>`).join('');
-  $('q').innerHTML = `
+  const br = q.briefing && briefingOf(q);
+  $('q').innerHTML = (br ? `<section class="brf" aria-label="Briefing: ${esc(br.title)}">
+      <p class="eyebrow">Briefing · ${br.beats.length} parts · about ${Math.round((state.bsegs[br.id].end - state.bsegs[br.id].start) / 6) * 6 / 60 < 1 ? Math.round(state.bsegs[br.id].end - state.bsegs[br.id].start) + ' s' : Math.round((state.bsegs[br.id].end - state.bsegs[br.id].start) / 60) + ' min'}</p>
+      <h2>${esc(br.title)}</h2>
+      <div id="bvis" class="bvis"></div>
+      <p id="bcap" class="bcap" aria-live="polite"></p>
+      <p id="bsrc" class="bsrc"></p>
+      <div class="row"><button type="button" id="bplay" class="bplay">Play the briefing</button>${br.beats.map((x, k) => `<button type="button" class="bpart" data-b="${k}" aria-label="Part ${k + 1}">${k + 1}</button>`).join('')}</div>
+      <p class="note">${esc(br.by)}</p></section>` : '') + `
     <p class="eyebrow">${esc(q.from)} · asked ${esc(q.asked)}</p>
     <h2 id="qtitle">${esc(q.title)}</h2>
     <p class="why">${esc(q.why)}</p>
@@ -86,6 +137,7 @@ function render() {
     <div class="row"><button type="button" id="mic" class="ghost" hidden>Dictate</button><button type="button" id="save">Save answer</button><span id="saved" role="status">${a.saved ? 'Saved ' + esc(new Date(a.at).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })) : ''}</span></div>`;
   $('prev').disabled = state.i === 0; $('next').textContent = state.i === B.questions.length - 1 ? 'Summary' : 'Next';
   $('save').onclick = save;
+  if (br) { $('bplay').onclick = playBriefing; document.querySelectorAll('.bpart').forEach((el) => { el.onclick = () => { stopSpeech(); state.beat = +el.dataset.b; drawBeat(br, state.beat, 1); }; }); drawBeat(br, state.speaking === 'b' ? state.beat : state.beat || 0, 1); }
   if (state.dict) { const m = $('mic'); m.hidden = false; m.onclick = dictate; }
   if (state.show && !state.speaking) state.show.seek(state.segs[state.i].start);
 }
@@ -123,7 +175,7 @@ async function main() {
     .then((r) => { if (!r.ok) throw new Error('brief.json did not load'); return r.json(); });
   $('btitle').textContent = state.brief.title; $('bsub').textContent = state.brief.subtitle;
   try { state.answers = JSON.parse(localStorage.getItem('brief-answers') || '{}'); } catch { state.answers = {}; }
-  const p = plan(state.brief); state.segs = p.segs;
+  const p = plan(state.brief); state.segs = p.segs; state.bsegs = p.bsegs;
   render();
   // The presenter: drawn live by this device; if WebGL is missing the brief still works as text. The library's path
   // comes from the page (the site uses /lib/presenters/v0.1.1/; the claude.ai copy ships it beside the page).

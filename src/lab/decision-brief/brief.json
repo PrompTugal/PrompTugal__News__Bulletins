@@ -1,8 +1,69 @@
 {
  "about": "The questions of the first decision brief, 22 Nov 2026: maestro.d's ten open asks (sent as data at 11:30 UTC; recommendations are maestro.d's), then bulletins.d@'s four. Every number names its source.",
  "title": "Decisions for Dinis",
- "subtitle": "Ten from maestro.d and four from bulletins.d@, 22 Nov 2026. Answer any you can; skip the rest.",
+ "subtitle": "A briefing on adding a twin's key, then sixteen questions: twelve from maestro.d and four from bulletins.d@, 22 Nov 2026. Answer any you can; skip the rest.",
  "questions": [
+  {
+   "id": "T1",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "briefing": "twin-key",
+   "title": "How should a new twin's key get into a repository?",
+   "why": "A new twin's first commit, the one that adds its key, is refused until a key already listed signs it. Today that means the other twin on account B, which is paused until Monday. data.d, bulletins.d and every future .d twin are stuck the same way.",
+   "blocks": [
+    "data.d",
+    "bulletins.d",
+    "every future .d twin"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "The other twin commits it",
+     "detail": "Works today, but needs account B, every time."
+    },
+    {
+     "label": "Dinis commits each new key himself"
+    },
+    {
+     "label": "The factory does it",
+     "detail": "A key request you approve by merging; then the factory commits the key, signed by a factory key every seeded repository trusts."
+    },
+    {
+     "label": "Your own device key approves each key",
+     "detail": "Via pki.sgit.ai, with a signed file."
+    }
+   ],
+   "recommend": {
+    "option": 2,
+    "why": "C now: it uses machinery that exists (requests, your merge, the factory's pipeline). D later, when the signed-delegation route exists. Neither weakens the check.",
+    "say": "C now, the factory, using machinery that already exists; and D later, when signed delegation exists. Neither weakens the check."
+   }
+  },
+  {
+   "id": "T2",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "briefing": "twin-key",
+   "title": "Merge the factory's push grant for PrompTugal__News__Data (7c755a8)?",
+   "why": "Push access is separate from the key. The factory prepared the grant that adds account D's GitHub identity as a collaborator on the Data repository; it waits for your merge.",
+   "blocks": [
+    "data.d's four commits"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Merge"
+    },
+    {
+     "label": "Not now"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Merge, and make sure the Claude GitHub App can reach that repository.",
+    "say": "Merge it, and make sure the Claude GitHub App can reach that repository."
+   }
+  },
   {
    "id": "A1",
    "from": "maestro.d",
@@ -415,6 +476,59 @@
     "why": "Real decisions stay private; the lab shows the format to other agents and readers.",
     "say": "C, both: private pages for real decisions, and the lab for the format."
    }
+  }
+ ],
+ "briefings": [
+  {
+   "id": "twin-key",
+   "title": "Adding a twin's key",
+   "by": "Storyboard by maestro.d, facts checked by maestro.d on 22 Nov 2026; drawn by bulletins.d@",
+   "questions": [
+    "T1",
+    "T2"
+   ],
+   "beats": [
+    {
+     "visual": "keys",
+     "narration": "Every agent signs its commits with its own key. Each repository keeps a list of the keys it trusts, in team keys dot json.",
+     "caption": "Every agent signs its commits with its own key. Each repository keeps a list of the keys it trusts, in team/keys.json.",
+     "sources": [
+      "scripts/check-signatures.mjs, control 2 (PrompTugal__News__Data)"
+     ]
+    },
+    {
+     "visual": "check",
+     "narration": "The check is strict: a commit is accepted only if it is signed by a key already in the list, as it stood before that commit.",
+     "caption": "The check is strict: a commit is accepted only if it is signed by a key already in the list, as it stood before that commit.",
+     "sources": [
+      "data.d's report, 22 Nov 11:38 UTC"
+     ]
+    },
+    {
+     "visual": "refused",
+     "narration": "So a brand-new agent cannot add its own key. Its first commit is signed by a key nobody lists yet, and the check refuses it. That is correct: otherwise anyone could add themselves.",
+     "caption": "So a brand-new agent cannot add its own key. Its first commit is signed by a key nobody lists yet, and the check refuses it. That is correct: otherwise anyone could add themselves.",
+     "sources": [
+      "data.d: four signed commits waiting; bulletins.d stuck the same way on Bulletins"
+     ]
+    },
+    {
+     "visual": "accounts",
+     "narration": "Today the only listed key that could sign it belongs to the twin on the other account, data dot b, and account B is paused until Monday. Every new twin on account D will hit the same wall, in every repository the factory seeded.",
+     "caption": "Today the only listed key that could sign it belongs to the twin on the other account, data.b, and account B is paused until Monday. Every new twin on account D will hit the same wall, in every repository the factory seeded.",
+     "sources": [
+      "maestro.b, 21 Nov 22:58 UTC"
+     ]
+    },
+    {
+     "visual": "grant",
+     "narration": "Push access is a separate problem and is solved: the factory already prepared the grant for the Data repository in commit 7c755a8. It waits for your merge.",
+     "caption": "Push access is a separate problem and is solved: the factory already prepared the grant for PrompTugal__News__Data in commit 7c755a8. It waits for your merge.",
+     "sources": [
+      "SovereignWebsite__Factory, branch work/factory.d-news-data-collaborator, commit 7c755a8"
+     ]
+    }
+   ]
   }
  ]
 }

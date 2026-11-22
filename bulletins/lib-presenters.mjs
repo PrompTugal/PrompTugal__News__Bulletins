@@ -10,7 +10,7 @@ import { join, relative } from 'node:path';
 import { ROOT, esc } from './core.mjs';
 import { md } from './md.mjs';
 
-const VERSION = '0.1.0', DATE = '2026-11-21';
+const VERSION = '0.1.1', DATE = '2026-11-22';
 const SRC = join(ROOT, 'lib', 'presenters'), V2 = join(ROOT, 'src', 'lab', 'presenters', 'v2-claude'), OUT = join(ROOT, 'src', 'lib', 'presenters');
 const [MA, MI] = VERSION.split('.');
 
@@ -40,7 +40,7 @@ ${md(readme)}
 <p class="dim">Made by agents: bulletins.b@PrompTugal.dinis. Every presenter is synthetic and labelled; none is the likeness of a real person.</p></div>
 <script type="module" src="demo.js"></script></body></html>\n`));
 const list = [...files.keys(), 'manifest.json'].sort();
-files.set('manifest.json', Buffer.from(JSON.stringify({ name: 'presenters', version: VERSION, published: DATE, by: 'bulletins.b@PrompTugal.dinis',
+files.set('manifest.json', Buffer.from(JSON.stringify({ name: 'presenters', version: VERSION, published: DATE, by: VERSION === '0.1.0' ? 'bulletins.b@PrompTugal.dinis' : 'bulletins.d@PrompTugal.dinis',
   entry: 'presenters.js', licence: { code: 'Apache-2.0', text_and_data: 'CC BY 4.0', 'vendor/three.module.min.js': 'MIT (three.js 0.160.1, vendor/three.LICENSE)' },
   pins: 'Not stored here: the registry (promptugal.news/api/v1/sites.json) lists them once security@\'s review passes; until then this version is a preview.',
   label: 'synthetic presenter', files: list }, null, 1) + '\n'));

@@ -1,4 +1,4 @@
-# Presenters library, version 0.1.0
+# Presenters library, version 0.1.1
 
 The PrompTugal.news presenters as a library: twelve **synthetic presenters**, built and animated by code in the browser with three.js. Each is an original character, not the likeness of a real person, and each is always labelled "synthetic presenter". There is no female figure in this set, at Dinis's word. Made by bulletins.b@PrompTugal.dinis on 21 November 2026, at Dinis Cruz's word the same day: "Yes, I would like to have the presenter engine as a reusable library using our current library publishing flow". The engine is version 2 (Claude) of the presenter language. It was adopted on 21 November and already draws the day's video bulletin at bulletins.promptugal.news/lab/bulletin-v2/.
 
@@ -8,16 +8,16 @@ Code: Apache-2.0. Text and data: CC BY 4.0. three.js 0.160.1 (`vendor/`): MIT, n
 
 | Folder | What it holds | Changes? |
 |---|---|---|
-| `v0.1.0/` | This version | **Never.** The publisher refuses to change a published version |
+| `v0.1.1/` | This version (and `v0.1.0/`, the first) | **Never.** The publisher refuses to change a published version |
 | `v0.1/` | The newest 0.1.x | Moves to each new 0.1.x |
 | `v0/` | The newest 0.x.y | Moves to each new 0.x.y |
 | `latest/` | The newest version | Moves to each new version |
 | `versions.json` | Every version, its date and its files | Grows |
 
-The base is https://bulletins.promptugal.news/lib/presenters/. A site that ships should use a pinned version, `v0.1.0/`. `latest/` is for trying things out.
+The base is https://bulletins.promptugal.news/lib/presenters/. A site that ships should use a pinned version, `v0.1.1/`. `latest/` is for trying things out.
 
 **How a site takes it (our library flow, as for the shared map and the sites bar):**
-1. Copy the whole version folder into your own site, for example as `/assets/presenters/0.1.0/`. Don't load it from bulletins.promptugal.news.
+1. Copy the whole version folder into your own site, for example as `/assets/presenters/0.1.1/`. Don't load it from bulletins.promptugal.news.
 2. Check every file against the pins listed for this version in the registry (promptugal.news/api/v1/sites.json). Pins are never stored in this repository. Until dev@ lists the pins after security@'s review reads "passed", treat the version as a preview. Use it in the lab, not on a published page.
 3. Serve it with `script-src 'self'`. It makes no request outside its own folder, and its data fetches are credential-free.
 
@@ -26,7 +26,7 @@ The base is https://bulletins.promptugal.news/lib/presenters/. A site that ships
 ```html
 <div id="stage" style="width:640px;height:360px"></div>
 <script type="module">
-  import { mount } from '/assets/presenters/0.1.0/presenters.js';
+  import { mount } from '/assets/presenters/0.1.1/presenters.js';
   const show = await mount(document.getElementById('stage'), {
     presenters: ['anchor', 'holo', 'owl'],
     duration: 8,
@@ -99,4 +99,5 @@ Measured on a 4-CPU container with no GPU (the same machine as the bulletin): dr
 
 ## Changes
 
+- **0.1.1 (22 Nov 2026, bulletins.d@PrompTugal.dinis):** a frame no longer depends on the frames drawn before it. A swinging part (an antenna, a tie, a tuft, a key, the cube's jelly) added its spring's lag to the angle the previous frame left, when its joint was not set outright every frame; each spring joint now goes back to its built rotation and scale before the pose is applied (`engine/rig.js`). Before, 704 of 939 frames of the 21 Nov bulletin differed slightly between renders split differently across browsers (46 to 57 dB); now the same t gives the same bytes after any history. Dinis, 22 Nov: "fix that determinism issue". No change to the API.
 - **0.1.0 (21 Nov 2026):** first version. The version 2 (Claude) engine as adopted, with The Guide fix of the same day (in the hatched style, faces and hair are shaded flat, so small faces read). Adds `mount()`, name tags above the head, and the fixed label.

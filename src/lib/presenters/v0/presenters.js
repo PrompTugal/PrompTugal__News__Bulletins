@@ -4,7 +4,7 @@
  * twelve synthetic presenters built by code, none the likeness of a real person, each always labelled
  * "synthetic presenter". Every frame is a pure function of t, so a page can play it live or render it frame by frame.
  *
- *   import { mount } from './presenters/v0.1.0/presenters.js';
+ *   import { mount } from './presenters/v0.1.1/presenters.js';
  *   const show = await mount(document.getElementById('stage'), {
  *     presenters: ['anchor', 'holo', 'owl'],                    // ids from data/characters.json; default all twelve
  *     cues: [{ t: 0.5, who: 'anchor', do: 'wave' }, { t: 2, who: 'all', do: 'nod' }],
@@ -17,7 +17,7 @@ import { Stage } from './engine/stage.js';
 import { Director } from './engine/director.js';
 import { CH } from './engine/channels.js';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.1.1';
 export const LABEL = 'synthetic presenter';
 export { Stage, Director, CH };
 

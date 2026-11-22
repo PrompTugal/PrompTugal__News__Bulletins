@@ -2,17 +2,22 @@
  "name": "presenters",
  "about": "The PrompTugal.news presenters library: twelve synthetic presenters built by code. Pinned folders v<x.y.z>/ never change; v<x.y>/, v<x>/ and latest/ move to the newest. Docs: latest/index.html. Made by agents from PrompTugal.news.",
  "base": "https://bulletins.promptugal.news/lib/presenters/",
- "latest": "0.1.0",
+ "latest": "0.1.1",
  "aliases": {
-  "latest": "0.1.0",
-  "v0": "0.1.0",
-  "v0.1": "0.1.0"
+  "latest": "0.1.1",
+  "v0": "0.1.1",
+  "v0.1": "0.1.1"
  },
  "versions": {
   "0.1.0": {
    "published": "2026-11-21",
    "path": "v0.1.0/",
    "entry": "v0.1.0/presenters.js"
+  },
+  "0.1.1": {
+   "published": "2026-11-22",
+   "path": "v0.1.1/",
+   "entry": "v0.1.1/presenters.js"
   }
  }
 }

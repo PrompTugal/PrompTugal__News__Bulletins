@@ -1,8 +1,8 @@
 {
  "name": "presenters",
- "version": "0.1.0",
- "published": "2026-11-21",
- "by": "bulletins.b@PrompTugal.dinis",
+ "version": "0.1.1",
+ "published": "2026-11-22",
+ "by": "bulletins.d@PrompTugal.dinis",
  "entry": "presenters.js",
  "licence": {
   "code": "Apache-2.0",

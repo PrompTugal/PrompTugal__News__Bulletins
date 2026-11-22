@@ -1,26 +1,321 @@
 {
- "about": "The questions of the first decision brief: bulletins.d@PrompTugal.dinis's own open decisions for Dinis, 22 Nov 2026. maestro.d's open asks follow when it sends them. Every number names its source.",
+ "about": "The questions of the first decision brief, 22 Nov 2026: maestro.d's ten open asks (sent as data at 11:30 UTC; recommendations are maestro.d's), then bulletins.d@'s four. Every number names its source.",
  "title": "Decisions for Dinis",
- "subtitle": "From bulletins.d@ (video and presenters), 22 Nov 2026. Four questions, about three minutes.",
+ "subtitle": "Ten from maestro.d and four from bulletins.d@, 22 Nov 2026. Answer any you can; skip the rest.",
  "questions": [
+  {
+   "id": "A1",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "Draft a spec so you can answer agents with a signed message instead of visiting each session?",
+   "why": "Today every decision needs a visit to one session. The rule (ABP R1) already allows a message with your verified signature. It needs a new key made on your own device: your current site key was issued by an agent that also holds its private half.",
+   "blocks": [
+    "scaling your decisions",
+    "this page's answer step"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Yes, draft it with security@ and abp@; no rule changes until reviewed"
+    },
+    {
+     "label": "Not now"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Yes. A signed answer from your own device would let agents act on this page without a session visit.",
+    "say": "Yes: draft it with the security agent and the protocol agent, with no rule changes until reviewed."
+   }
+  },
+  {
+   "id": "A2",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "Measure usage limits across accounts now, so work can later move to the account with room?",
+   "why": "Account B hit 96% of its seven-day limit while account D had room.",
+   "blocks": [
+    "a cross-account maestro"
+   ],
+   "numbers": [
+    {
+     "value": "96%",
+     "label": "account B's seven-day limit used",
+     "source": "maestro.b, 21 Nov 22:58 UTC (board/team/maestros/from-b.md)"
+    }
+   ],
+   "options": [
+    {
+     "label": "Yes"
+    },
+    {
+     "label": "Not yet"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Yes: one account ran short while the other had room.",
+    "say": "Yes, measure them now."
+   }
+  },
+  {
+   "id": "A3",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "A market research and recommendations cell: its name, and who starts it?",
+   "why": "A new cell for market research. maestro.d proposes it starts with Sovereign Website against its competitors and open-source options, ending in three to five website versions.",
+   "blocks": [],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Landscape cell"
+    },
+    {
+     "label": "Market Map cell"
+    },
+    {
+     "label": "Insight cell"
+    },
+    {
+     "label": "Scout cell"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Landscape cell, started by conductor.d@AgentiCCells.dinis; first job: Sovereign Website against its competitors and open-source options, ending in 3 to 5 website versions.",
+    "say": "A: the Landscape cell, started by the AgentiCCells conductor on account D."
+   }
+  },
+  {
+   "id": "A4",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "Give the Claude GitHub App access to PrompTugal__News__Data and PrompTugal__News__Bulletins?",
+   "why": "data.d and factory.d wait on the Data repository. Note from bulletins.d@: push to Bulletins was granted on 22 Nov and works; the Data repository is still waiting.",
+   "blocks": [
+    "data.d",
+    "factory.d (commit 7c755a8)"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Yes, both"
+    },
+    {
+     "label": "Only one"
+    },
+    {
+     "label": "No"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Yes, both: data.d and factory.d wait on Data; Bulletins is already done.",
+    "say": "Yes, both. Bulletins already works, so only Data is still needed."
+   }
+  },
+  {
+   "id": "A5",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "Who raises the presenters 0.1.1 security review with conductor.b@, and should bulletins.b@ add bulletins.d@'s key?",
+   "why": "bulletins.d@'s work cannot reach dev until its key is in team/keys.json, and the library needs security@'s review before other sites use it. Account B is back on Monday.",
+   "blocks": [
+    "bulletins.d@'s work reaching dev"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "conductor.d@PrompTugal.dinis raises it"
+    },
+    {
+     "label": "Dinis raises it"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "conductor.d@PrompTugal.dinis raises it on Monday when account B is back; the key is added then.",
+    "say": "A: the PrompTugal conductor on account D raises it on Monday, and the key is added then."
+   }
+  },
+  {
+   "id": "A6",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "Email cell on account D: several starts and approvals, and one inbox design of five?",
+   "why": "Start email.twins.d, email.contacts.d and email.crm.d; restart email.design.d from its hand-over; let email.dev.d push to dev; which approver keys; a leak-scan exception for the lane-key file; and which of the five inbox designs. maestro.d has no recommendation of its own.",
+   "blocks": [
+    "the email cell"
+   ],
+   "numbers": [
+    {
+     "value": "5",
+     "label": "inbox designs to choose from",
+     "source": "email.design.d"
+    }
+   ],
+   "options": [
+    {
+     "label": "Several separate yes or no answers, and a pick of one design of five"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Ask conductor.d@AgentiCCells.dinis for its recommendation on each first.",
+    "say": "Ask the AgentiCCells conductor on account D for its recommendation on each, first."
+   }
+  },
+  {
+   "id": "A7",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "holacracy.d: four questions on the role-repository layout, and proposal 03: should sites.d and hub.d report to their circle's lead?",
+   "why": "Proposal 03 moves sites.d and hub.d from maestro.d to conductor.d (SovereignWebsite), their circle's lead. Role homes are now SovereignWebsite Site__Agents__<Name>.",
+   "blocks": [
+    "the org chart",
+    "the role homes"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Move sites.d and hub.d under conductor.d (SovereignWebsite)"
+    },
+    {
+     "label": "Keep as is"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Move them under their circle's lead.",
+    "say": "A: move them under their circle's lead."
+   }
+  },
+  {
+   "id": "A8",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "newsroom.d: re-run a failed Pages deploy or let it push a small notes commit; and take the holacracy article next?",
+   "why": "newsroom.d's last release is not live because Pages deploy run 44985613139 failed. A notes commit is something it can do itself.",
+   "blocks": [
+    "newsroom.d's last release going live"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Re-run the deploy"
+    },
+    {
+     "label": "A notes commit"
+    },
+    {
+     "label": "Yes to the article"
+    },
+    {
+     "label": "Not now"
+    }
+   ],
+   "recommend": {
+    "option": 1,
+    "why": "A notes commit (it can do it itself), and yes to the article.",
+    "say": "B: a notes commit, which it can do itself, and yes to the article."
+   }
+  },
+  {
+   "id": "A9",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "streaming.d: build its new first-screen and share-card designs; design.d: move files under /accounts/d/ and add a contrast line on the /policy/ chip?",
+   "why": "Small changes on two sites, all reversible.",
+   "blocks": [
+    "streaming.d",
+    "design.d"
+   ],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Yes to all"
+    },
+    {
+     "label": "Pick"
+    }
+   ],
+   "recommend": {
+    "option": 0,
+    "why": "Yes to all: small and reversible.",
+    "say": "Yes to all: they are small and reversible."
+   }
+  },
+  {
+   "id": "A10",
+   "from": "maestro.d",
+   "asked": "22 Nov",
+   "title": "Merge the email rename pull request?",
+   "why": "email.dev.d can commit the rename itself; maestro.d would then close pull request 2.",
+   "blocks": [],
+   "numbers": [],
+   "options": [
+    {
+     "label": "Merge"
+    },
+    {
+     "label": "Leave it for email.dev.d's own commit"
+    }
+   ],
+   "recommend": {
+    "option": 1,
+    "why": "Leave it: email.dev.d commits the rename itself, and maestro.d closes the pull request when it lands.",
+    "say": "B: leave it, so the email developer commits the rename itself."
+   }
+  },
   {
    "id": "free-voice",
    "from": "bulletins.d@",
    "asked": "22 Nov",
    "title": "A free voice for the next video experiments",
    "why": "The voice is the only paid step in our videos. A voice engine running on our own machine would make the whole video free and offline, and it reports which sound is spoken when, so the mouths could follow the words properly. Each engine and each voice model needs your approval to download, and each stock voice was trained on a real speaker's recordings, so it needs checking against our rule of no clone of a real person's voice.",
-   "blocks": ["free videos", "real lip-sync"],
+   "blocks": [
+    "free videos",
+    "real lip-sync"
+   ],
    "numbers": [
-    { "value": "0.0077 USD", "label": "the explainer's whole voice, 11 takes", "source": "data/costs/2026-11-22.d.json" },
-    { "value": "0.002 USD", "label": "about one take of the stock voice", "source": "bulletins.d@'s brief, 21 Nov" }
+    {
+     "value": "0.0077 USD",
+     "label": "the explainer's whole voice, 11 takes",
+     "source": "data/costs/2026-11-22.d.json"
+    },
+    {
+     "value": "0.002 USD",
+     "label": "about one take of the stock voice",
+     "source": "bulletins.d@'s brief, 21 Nov"
+    }
    ],
    "options": [
-    { "label": "Piper", "detail": "Neural, natural; MIT licence; voices each with their own licence.", "cost": "free, needs a download" },
-    { "label": "Kokoro", "detail": "Neural, the best quality of the three; Apache-2.0 weights.", "cost": "free, needs a download" },
-    { "label": "espeak-ng", "detail": "Robotic but clear; an Ubuntu package, no voice model.", "cost": "free" },
-    { "label": "Keep the stock OpenRouter voice", "detail": "What we use now: gpt-audio-mini, alloy.", "cost": "about 0.002 USD a take" }
+    {
+     "label": "Piper",
+     "detail": "Neural, natural; MIT licence; voices each with their own licence.",
+     "cost": "free, needs a download"
+    },
+    {
+     "label": "Kokoro",
+     "detail": "Neural, the best quality of the three; Apache-2.0 weights.",
+     "cost": "free, needs a download"
+    },
+    {
+     "label": "espeak-ng",
+     "detail": "Robotic but clear; an Ubuntu package, no voice model.",
+     "cost": "free"
+    },
+    {
+     "label": "Keep the stock OpenRouter voice",
+     "detail": "What we use now: gpt-audio-mini, alloy.",
+     "cost": "about 0.002 USD a take"
+    }
    ],
-   "recommend": { "option": 1, "why": "Try Kokoro first, with one voice whose licence and training data we check against the rule before any video is published; keep the stock voice as the fallback.", "say": "B, Kokoro, after we check the voice's licence and where its training data came from." }
+   "recommend": {
+    "option": 1,
+    "why": "Try Kokoro first, with one voice whose licence and training data we check against the rule before any video is published; keep the stock voice as the fallback.",
+    "say": "B, Kokoro, after we check the voice's licence and where its training data came from."
+   }
   },
   {
    "id": "explainer-line",
@@ -30,14 +325,33 @@
    "why": "The explainer video says the bulletin now takes about 128 seconds. That is the study's measurement. The production script measured 136.1 seconds, because it also starts its own web server and writes the page. Both are sourced, but the spoken line could match the production figure.",
    "blocks": [],
    "numbers": [
-    { "value": "127.5 s", "label": "the study's run", "source": "docs/research/video-render-speed/" },
-    { "value": "136.1 s", "label": "the production run", "source": "src/lab/bulletin-v2/stats-2026-11-21.json" }
+    {
+     "value": "127.5 s",
+     "label": "the study's run",
+     "source": "docs/research/video-render-speed/"
+    },
+    {
+     "value": "136.1 s",
+     "label": "the production run",
+     "source": "src/lab/bulletin-v2/stats-2026-11-21.json"
+    }
    ],
    "options": [
-    { "label": "Keep the line", "detail": "The slide already shows both figures on the page below the video." },
-    { "label": "Re-voice that scene", "detail": "Say about 136 seconds, three times faster becomes nearly three times.", "cost": "about 0.001 USD and a 9 minute re-render" }
+    {
+     "label": "Keep the line",
+     "detail": "The slide already shows both figures on the page below the video."
+    },
+    {
+     "label": "Re-voice that scene",
+     "detail": "Say about 136 seconds, three times faster becomes nearly three times.",
+     "cost": "about 0.001 USD and a 9 minute re-render"
+    }
    ],
-   "recommend": { "option": 1, "why": "The spoken number should match what the production script does; it costs almost nothing.", "say": "B, re-voice the scene, so the spoken number matches the production run." }
+   "recommend": {
+    "option": 1,
+    "why": "The spoken number should match what the production script does; it costs almost nothing.",
+    "say": "B, re-voice the scene, so the spoken number matches the production run."
+   }
   },
   {
    "id": "library-review",
@@ -45,15 +359,32 @@
    "asked": "22 Nov",
    "title": "Ask security@ to review presenters library 0.1.1",
    "why": "The presenters library is published as 0.1.1, with the determinism fix. Other sites, starting with the newsroom's writer-10, can use it only once security@ has reviewed it and dev@ has listed its pins in the registry. Until then it is a preview. Only you can ask them.",
-   "blocks": ["newsroom writer-10", "other sites using the presenters"],
+   "blocks": [
+    "newsroom writer-10",
+    "other sites using the presenters"
+   ],
    "numbers": [
-    { "value": "25 files", "label": "in version 0.1.1, 948 KB", "source": "src/lib/presenters/v0.1.1/" }
+    {
+     "value": "25 files",
+     "label": "in version 0.1.1, 948 KB",
+     "source": "src/lib/presenters/v0.1.1/"
+    }
    ],
    "options": [
-    { "label": "Ask now for 0.1.1", "detail": "0.1.1 replaces 0.1.0 for new users; one review." },
-    { "label": "Wait for more changes", "detail": "Batch the review with the next version." }
+    {
+     "label": "Ask now for 0.1.1",
+     "detail": "0.1.1 replaces 0.1.0 for new users; one review."
+    },
+    {
+     "label": "Wait for more changes",
+     "detail": "Batch the review with the next version."
+    }
    ],
-   "recommend": { "option": 0, "why": "0.1.1 fixes a real defect, and writer-10 is waiting; reviewing 0.1.1 alone is the smallest review.", "say": "A, ask the security agent now, for version zero point one point one." }
+   "recommend": {
+    "option": 0,
+    "why": "0.1.1 fixes a real defect, and writer-10 is waiting; reviewing 0.1.1 alone is the smallest review.",
+    "say": "A, ask the security agent now, for version zero point one point one."
+   }
   },
   {
    "id": "brief-home",
@@ -61,14 +392,29 @@
    "asked": "22 Nov",
    "title": "Where should decision briefs live?",
    "why": "This brief runs as a private claude.ai page, which opens on your phone now and keeps your answers where the agents can read them. A copy can also live in the bulletins lab once bulletins.d@'s key reaches dev. Agents could then publish a brief whenever they need your decisions.",
-   "blocks": ["maestro.d's design for answers back to agents"],
+   "blocks": [
+    "maestro.d's design for answers back to agents"
+   ],
    "numbers": [],
    "options": [
-    { "label": "Private claude.ai page", "detail": "Opens now, keeps answers with the page; private by default." },
-    { "label": "The bulletins lab", "detail": "Public at bulletins.promptugal.news/lab/; answers would need another store." },
-    { "label": "Both", "detail": "Private for real decisions, the lab for the format and examples." }
+    {
+     "label": "Private claude.ai page",
+     "detail": "Opens now, keeps answers with the page; private by default."
+    },
+    {
+     "label": "The bulletins lab",
+     "detail": "Public at bulletins.promptugal.news/lab/; answers would need another store."
+    },
+    {
+     "label": "Both",
+     "detail": "Private for real decisions, the lab for the format and examples."
+    }
    ],
-   "recommend": { "option": 2, "why": "Real decisions stay private; the lab shows the format to other agents and readers.", "say": "C, both: private pages for real decisions, and the lab for the format." }
+   "recommend": {
+    "option": 2,
+    "why": "Real decisions stay private; the lab shows the format to other agents and readers.",
+    "say": "C, both: private pages for real decisions, and the lab for the format."
+   }
   }
  ]
 }

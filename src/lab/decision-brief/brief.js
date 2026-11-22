@@ -119,7 +119,8 @@ async function dictate() {
 
 // ---------- Start ----------
 async function main() {
-  state.brief = await fetch('brief.json', { credentials: 'omit' }).then((r) => { if (!r.ok) throw new Error('brief.json did not load'); return r.json(); });
+  state.brief = await fetch('brief.json')   // default credentials: the claude.ai viewer needs them to serve the page's own files
+    .then((r) => { if (!r.ok) throw new Error('brief.json did not load'); return r.json(); });
   $('btitle').textContent = state.brief.title; $('bsub').textContent = state.brief.subtitle;
   try { state.answers = JSON.parse(localStorage.getItem('brief-answers') || '{}'); } catch { state.answers = {}; }
   const p = plan(state.brief); state.segs = p.segs;
@@ -127,13 +128,17 @@ async function main() {
   // The presenter: drawn live by this device; if WebGL is missing the brief still works as text. The library's path
   // comes from the page (the site uses /lib/presenters/v0.1.1/; the claude.ai copy ships it beside the page).
   try {
-    const lib = document.querySelector('[data-presenters]')?.dataset.presenters || './presenters/presenters.js';
+    const lib = new URL(document.querySelector('[data-presenters]')?.dataset.presenters || './presenters/presenters.js', location.href).href;
     const { mount } = await import(lib);
-    state.show = await mount($('stage'), { presenters: [WHO], duration: p.duration, cues: p.cues, tracks: { brief: { mouthCues: p.mouth } },
+    // The presenter data is fetched here with default credentials and handed to mount(), so the library's own
+    // credential-free fetch is not used (the claude.ai viewer refuses it for the page's own files).
+    const get = (n) => fetch(new URL('data/' + n + '.json', lib)).then((r) => { if (!r.ok) throw new Error(n + '.json did not load (' + r.status + ')'); return r.json(); });
+    const [characters, moves, choreography, visemes] = await Promise.all(['characters', 'moves', 'choreography', 'visemes'].map(get));
+    state.show = await mount($('stage'), { data: { characters, moves, choreography, visemes }, presenters: [WHO], duration: p.duration, cues: p.cues, tracks: { brief: { mouthCues: p.mouth } },
       camera: [{ t: 0, focus: WHO, dist: 3.6, h: 0.74, lh: 0.7, fov: 30 }], tags: false, background: '#0b1424' });
     state.show.seek(state.segs[state.i].start);
     new ResizeObserver(() => { state.show.resize(); state.show.renderAt(state.show.t); }).observe($('stage'));
-  } catch (e) { $('stage').innerHTML = '<p class="nostage">The presenter could not be drawn on this device. The brief works without it.</p>'; }
+  } catch (e) { $('stage').innerHTML = '<p class="nostage">The presenter could not be drawn on this device (' + esc(e && e.message ? e.message : e) + '). The brief works without it.</p>'; }
   // Capabilities light up when the viewer offers them; the page works without each.
   if (window.claude?.use) {
     claude.use('tts').then((t) => { state.tts = t; }).catch(() => {});

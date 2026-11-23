@@ -1,0 +1,233 @@
+{
+ "about": "One Kokoro take per phrase of \"Eight ways to caption\": samples and voiced span. Written by bulletins/subtitles-video.mjs.",
+ "voice": "am_michael",
+ "engine": "Kokoro-82M v1.0 (int8 ONNX), kokoro-onnx 0.6.1",
+ "rate": 24000,
+ "wall_s": 22.44,
+ "phrases": [
+  {
+   "samples": 39424,
+   "voiced": [
+    1920,
+    31920
+   ]
+  },
+  {
+   "samples": 43520,
+   "voiced": [
+    720,
+    40080
+   ]
+  },
+  {
+   "samples": 53760,
+   "voiced": [
+    1440,
+    47520
+   ]
+  },
+  {
+   "samples": 69120,
+   "voiced": [
+    1200,
+    65040
+   ]
+  },
+  {
+   "samples": 43520,
+   "voiced": [
+    480,
+    35040
+   ]
+  },
+  {
+   "samples": 56832,
+   "voiced": [
+    2880,
+    47520
+   ]
+  },
+  {
+   "samples": 53760,
+   "voiced": [
+    2400,
+    46560
+   ]
+  },
+  {
+   "samples": 26112,
+   "voiced": [
+    1680,
+    20880
+   ]
+  },
+  {
+   "samples": 25088,
+   "voiced": [
+    1200,
+    20160
+   ]
+  },
+  {
+   "samples": 41984,
+   "voiced": [
+    2640,
+    33120
+   ]
+  },
+  {
+   "samples": 60416,
+   "voiced": [
+    1200,
+    58560
+   ]
+  },
+  {
+   "samples": 54784,
+   "voiced": [
+    1440,
+    52560
+   ]
+  },
+  {
+   "samples": 49664,
+   "voiced": [
+    1680,
+    46800
+   ]
+  },
+  {
+   "samples": 58368,
+   "voiced": [
+    2640,
+    52320
+   ]
+  },
+  {
+   "samples": 63488,
+   "voiced": [
+    720,
+    57840
+   ]
+  },
+  {
+   "samples": 34304,
+   "voiced": [
+    960,
+    30960
+   ]
+  },
+  {
+   "samples": 90624,
+   "voiced": [
+    1200,
+    88800
+   ]
+  },
+  {
+   "samples": 36352,
+   "voiced": [
+    1200,
+    30480
+   ]
+  },
+  {
+   "samples": 31744,
+   "voiced": [
+    960,
+    25680
+   ]
+  },
+  {
+   "samples": 40448,
+   "voiced": [
+    1680,
+    35760
+   ]
+  },
+  {
+   "samples": 75264,
+   "voiced": [
+    2400,
+    70080
+   ]
+  },
+  {
+   "samples": 38400,
+   "voiced": [
+    2400,
+    35040
+   ]
+  },
+  {
+   "samples": 99328,
+   "voiced": [
+    1200,
+    97200
+   ]
+  },
+  {
+   "samples": 27136,
+   "voiced": [
+    960,
+    24480
+   ]
+  },
+  {
+   "samples": 34304,
+   "voiced": [
+    2400,
+    27360
+   ]
+  },
+  {
+   "samples": 27648,
+   "voiced": [
+    720,
+    24240
+   ]
+  },
+  {
+   "samples": 54784,
+   "voiced": [
+    2880,
+    47760
+   ]
+  },
+  {
+   "samples": 93696,
+   "voiced": [
+    2160,
+    90240
+   ]
+  },
+  {
+   "samples": 52736,
+   "voiced": [
+    2640,
+    48720
+   ]
+  },
+  {
+   "samples": 35328,
+   "voiced": [
+    1440,
+    29760
+   ]
+  },
+  {
+   "samples": 68608,
+   "voiced": [
+    1440,
+    65760
+   ]
+  },
+  {
+   "samples": 56832,
+   "voiced": [
+    960,
+    51840
+   ]
+  }
+ ]
+}

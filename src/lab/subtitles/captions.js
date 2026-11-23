@@ -49,7 +49,8 @@
       const P = phrases(W), k = current(W, t); if (k < 0) return '';
       const pi = W[k].p, idx = P.findIndex((ph) => ph[0].p === pi), lines = P.slice(Math.max(0, idx - 1), idx + 1);
       const age = t - P[idx][0].s, shift = (1 - ease(age / 0.25)) * 44;
-      return `<div class="cap rolling"><div class="roll" style="transform:translateY(${shift.toFixed(1)}px)">${lines.map((ph, i) => `<div class="line">${ph.filter((x) => i < lines.length - 1 || x.s <= t + 0.05).map((x) => esc(clean(x.w))).join(' ')}</div>`).join('')}</div></div>`;
+      // Each word is coloured as it is spoken, the whole word at once (Dinis, 23 Nov: "it should color code the word, the full word").
+      return `<div class="cap rolling"><div class="roll" style="transform:translateY(${shift.toFixed(1)}px)">${lines.map((ph, i) => `<div class="line">${ph.map((x) => word(x, t, 'rl')).join(' ')}</div>`).join('')}</div></div>`;
     },
     // 5. The page: the whole paragraph is visible; spoken words turn bright, a marker follows the voice.
     page(W, t, o) {
@@ -81,5 +82,21 @@
       return `<div class="cap ticker"><ol class="said">${said}</ol><div class="bar"><b>${esc(o.label || 'NOW')}</b><span style="transform:translateX(${slide.toFixed(1)}px)">${ph.map((x) => word(x, t, 'tk')).join(' ')}</span></div></div>`;
     },
   };
-  window.Captions = { render(style, W, t, o = {}) { const f = STYLES[style]; return f ? f(W, t, o) : ''; }, styles: Object.keys(STYLES) };
+  /* The three recommended styles, and how to choose between them (Dinis, 23 Nov: "I really like the roll-up ... I like
+   * the kinetic one ... the page is quite good ... when there's longer text ... between these three ... we choose
+   * strategically when we use them"). choose(W) looks at a segment's words:
+   *   page     long explanations: more than 40 words, or sentences longer than 22 words on average;
+   *   kinetic  short lines that carry key words: at most 16 words with at least one word marked important;
+   *   rolling  everything else: ordinary narration. */
+  function choose(W) {
+    const n = W.length, sentences = Math.max(1, W.filter((x) => /[.?!]$/.test(clean(x.w))).length), emph = W.filter((x) => x.emph).length;
+    if (n > 40 || n / sentences > 22) return 'page';
+    if (n <= 16 && emph > 0) return 'kinetic';
+    return 'rolling';
+  }
+  const RECOMMENDED = ['rolling', 'kinetic', 'page'];
+  window.Captions = {
+    render(style, W, t, o = {}) { const st = style === 'auto' ? choose(W) : style, f = STYLES[st]; return f ? f(W, t, o) : ''; },
+    choose, styles: Object.keys(STYLES), recommended: RECOMMENDED,
+  };
 })();

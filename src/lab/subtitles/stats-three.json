@@ -1,0 +1,90 @@
+{
+ "started": "2026-11-23T05:04:18.769Z",
+ "tier": "Explorer",
+ "machine": {
+  "cpus": 4,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.30GHz",
+  "mem_gb": 15.7,
+  "os": "linux 6.18.44-fc-v726",
+  "node": "v22.23.5"
+ },
+ "phases": [
+  {
+   "name": "voice (Kokoro on the CPU, one take per phrase)",
+   "wall_s": 0,
+   "node_cpu_s": 0
+  },
+  {
+   "name": "timeline: phrase and word times, audio",
+   "wall_s": 0.015,
+   "node_cpu_s": 0.012
+  },
+  {
+   "name": "render 2713 frames (4 browsers, llvmpipe)",
+   "wall_s": 114.575,
+   "node_cpu_s": 13.165
+  },
+  {
+   "name": "encode (ffmpeg H.264 + AAC)",
+   "wall_s": 16.707,
+   "node_cpu_s": 0.003
+  }
+ ],
+ "render": {
+  "frames": 2713,
+  "fps": 30,
+  "size": "1280x720",
+  "workers": 4,
+  "renderer": "llvmpipe (Mesa, OpenGL through ANGLE, headed Chromium on Xvfb)",
+  "webgl": "ANGLE (Mesa, llvmpipe (LLVM 20.1.2 256 bits), OpenGL 4.5)",
+  "fell_back": null,
+  "chromium": "153.0.8010.12",
+  "wall_s": 114.38,
+  "ms_per_frame": 42.2,
+  "captions_ms": {
+   "min": 0,
+   "p50": 0.2,
+   "p90": 0.3,
+   "p99": 2.7,
+   "max": 6.8,
+   "mean": 0.3
+  },
+  "presenter_ms": {
+   "min": 0.4,
+   "p50": 1.1,
+   "p90": 8.1,
+   "p99": 14.2,
+   "max": 119.8,
+   "mean": 2.9
+  },
+  "screenshot_ms": {
+   "min": 58.3,
+   "p50": 146.5,
+   "p90": 192.6,
+   "p99": 243,
+   "max": 548.7,
+   "mean": 150.3
+  }
+ },
+ "finished": "2026-11-23T05:06:33.072Z",
+ "voice": {
+  "engine": "Kokoro-82M v1.0 (int8 ONNX), kokoro-onnx 0.6.1",
+  "voice": "am_michael",
+  "lang": "en-us",
+  "licence": "Apache-2.0 (model and voices); kokoro-onnx MIT; onnxruntime MIT",
+  "synthetic": true,
+  "phrases": 32,
+  "takes_wall_s": 22.44,
+  "cost_usd": 0
+ },
+ "script": "three",
+ "output": {
+  "video": "three-ways-to-caption.mp4",
+  "video_bytes": 4457330,
+  "duration_s": 90.46,
+  "segments": 8,
+  "words": 200
+ },
+ "total_wall_s": 131.3,
+ "realtime_factor": 1.45
+}

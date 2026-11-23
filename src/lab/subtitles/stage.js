@@ -3,7 +3,8 @@
  * every frame is a function of t. */
 const $ = (id) => document.getElementById(id);
 async function main() {
-  const T = await fetch('timeline.json', { credentials: 'omit' }).then((r) => { if (!r.ok) throw new Error('timeline.json did not load'); return r.json(); });
+  const tl = (new URLSearchParams(location.search).get('tl') || 'timeline.json').replace(/[^a-z0-9.-]/gi, '');
+  const T = await fetch(tl).then((r) => { if (!r.ok) throw new Error('timeline.json did not load'); return r.json(); });
   const { mount } = await import(document.querySelector('[data-presenters]').dataset.presenters);
   const show = await mount($('stage'), { presenters: [T.who], duration: T.duration, cues: T.cues, camera: T.camera, tracks: { voice: { mouthCues: T.mouthCues } }, tags: false, background: '#0b1424' });
   $('foot').textContent = T.label;

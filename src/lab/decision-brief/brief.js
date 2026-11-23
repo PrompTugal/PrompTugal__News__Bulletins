@@ -45,7 +45,8 @@ function plan(brief) {
     const beats = storyOf(q, brief), end = timeBeats(beats, off), it = { q, beats, off, dur: end - off };
     for (const b of beats) {
       b.words.forEach((x, k) => mouth.push({ start: +x.t.toFixed(3), end: +(x.t + x.d * 0.82).toFixed(3), value: ['C', 'E', 'B', 'D', 'F', 'C'][(k + x.w.length) % 6] }));
-      cues.push({ t: b.start, who: WHO, do: 'speak', track: 'brief', dur: b.end - b.start }, { t: b.start + 0.3, who: WHO, do: b.kind === 'decision' ? 'count' : 'present', dur: 2 });
+      cues.push({ t: b.start, who: WHO, do: 'speak', track: 'brief', offset: b.start, dur: b.end - b.start },   // offset: the mouth track is in absolute time
+         { t: b.start + 0.3, who: WHO, do: b.kind === 'decision' ? 'count' : 'present', dur: 2 });
     }
     for (const b of beats) { b.start -= off; b.end -= off; for (const w of b.words) w.t -= off; }   // item-local times
     items.push(it); off = end + 1;

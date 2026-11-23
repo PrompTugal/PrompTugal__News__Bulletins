@@ -195,6 +195,42 @@ export const FN = {
     const g = bump(sat(u / 0.26)), o = ease('outElastic', (u - 0.24) / 0.26) * (1 - smoother((u - 0.8) / 0.2)), v = sin(tl * 40) * o;
     return { crouch: 0.5 * g, r_sy: -0.2 * g + 0.2 * o + 0.012 * v, sp_x: 0.25 * g - 0.12 * o, h_pitch: 0.3 * g - 0.2 * o, wide: o, squint: g, jaw: 0.95 * o, browL: 1.2 * o - 0.5 * g, browR: 1.2 * o - 0.5 * g, aL_out: 1.0 * o, aR_out: 1.0 * o, aL_sw: 0.4 * o, aR_sw: 0.4 * o, aL_el: 1.2 * g + 0.4 * o, aR_el: 1.2 * g + 0.4 * o, aL_tw: -1 * o, aR_tw: -1 * o, ...scale({ ...OPEN, ...mirror(OPEN) }, o), add: { r_x: 0.006 * v } };
   },
+
+  /* ----- journeys (presenters 0.2.0, bulletins.d@, 23 Nov 2026, for sherpa.d's journey stories) ----- */
+  fall(u, tl, a, c) { // trip, fall (gravity: slow then fast), hit the ground, lie there, and get up if asked
+    const back = a.p.dir === 'back', sg = back ? -1 : 1, P = sg * 1.48, T1 = 0.24, T2 = 0.64, up = a.p.up !== false, Tu = up ? Math.max(T2 + 0.3, a.dur - 1.3) : Infinity;
+    const lift = (c.B && c.B.cube) ? c.d.cube * 0.5 : 0.13 * c.d.height / 1.82;
+    let pitch, down, crouch = 0, hit = 0;
+    if (tl < T1) { pitch = sg * 0.2 * ease('out', tl / T1); down = 0; }
+    else if (tl < T2) { const f = (tl - T1) / (T2 - T1); pitch = sg * 0.2 + (P - sg * 0.2) * f * f; down = f; }
+    else if (tl < Tu) { hit = Math.exp(-(tl - T2) * 9); pitch = P - sg * 0.07 * Math.sin(Math.min(1, (tl - T2) / 0.22) * PI); down = 1; }
+    else { const g = sat((tl - Tu) / 1.3); if (g < 0.55) { const f = smooth(g / 0.55); pitch = lerp(P, sg * 0.75, f); crouch = 1.1 * f; } else { const f = smooth((g - 0.55) / 0.45); pitch = lerp(sg * 0.75, 0, f); crouch = 1.1 * (1 - f); } down = 1 - smooth(g / 0.7); }
+    const st = 1 - down, fl = sin(tl * 23) * st * (tl < T1 + 0.2 ? 1 : 0);
+    const o = { r_pitch: pitch, r_y: lift * smooth((Math.abs(pitch) - 0.9) / 0.58), crouch,
+      aL_sw: back ? -0.5 * down + 0.8 * st : 2.45 * down + 0.9 * st, aR_sw: back ? -0.5 * down + 0.7 * st : 2.3 * down + 0.7 * st, aL_out: 0.55 + 0.25 * fl, aR_out: 0.6 - 0.25 * fl, aL_el: 0.35 * down + 0.6 * st, aR_el: 0.4 * down + 0.6 * st,
+      ...scale({ ...OPEN, ...mirror(OPEN) }, 1), lR_sw: 0.45 * st * (tl < T2 ? 1 : 0), lL_sw: -0.1 * st, lL_kn: 0.15 * down + 0.4 * st, lR_kn: 0.25 * down,
+      h_pitch: back ? 0.35 * down : -0.5 * down, wide: st * (tl < T2 ? 1 : 0), jaw: 0.5 * (tl < T2 ? 1 : 0) + 0.2 * hit, squint: hit + 0.4 * down * (tl > Tu ? 1 : 0), browAng: -0.5 * hit, browL: 0.7 * st, browR: 0.7 * st };
+    return o;
+  },
+  pullUp(u, tl, a, c) { // reach up to a bar (or a rope) and pull the body up to it, a number of times; the hands stay put
+    const n = a.p.times ?? 3, U = c.d.upper, F = c.d.fore, A = (U + F) * 0.995, h = Math.min(A * 0.8, (a.p.height ?? 0.4) * c.d.height / 1.82), R = 0.55;
+    const reach = smooth(tl / R) * (1 - smooth((tl - (a.dur - R)) / R)), x = sat((tl - R) / Math.max(0.1, a.dur - 2 * R)) * n, y = h * (0.5 - 0.5 * cos(TAU * x)) * (x > 0 && x < n ? 1 : 0);
+    const s = Math.max(0.05, A - y), ca = clamp((U * U + s * s - F * F) / (2 * U * s), -1, 1), ce = clamp((U * U + F * F - s * s) / (2 * U * F), -1, 1), al = Math.acos(ca), be = PI - Math.acos(ce);
+    const top = y / (h || 1), sw = lerp(0.1, PI - al, reach), el = be * reach;
+    return { r_y: y, aL_sw: sw, aR_sw: sw, aL_out: 0.12 * reach, aR_out: 0.12 * reach, aL_el: el, aR_el: el, aL_tw: 0.2 * reach, aR_tw: 0.2 * reach, ...scale({ ...FIST, ...mirror(FIST) }, reach),
+      lL_kn: 0.55 * reach, lR_kn: 0.7 * reach, lL_sw: 0.15 * reach, lR_sw: 0.3 * reach, r_pitch: 0.04 * reach, h_pitch: -0.25 * reach + 0.1 * top, lookY: 0.6 * reach, squint: 0.7 * top, browAng: -0.4 * top, smile: -0.2 * top };
+  },
+  carry(u, tl, a, c) { // a coil carried over the shoulder: one hand grips the strap at the chest (the rope itself is a prop)
+    const s = a.p.side === 'R' ? 'R' : 'L', e = poseEnv(tl, a.dur, { in: 0.35, out: 0.35, ease: 'out' }, { anticipate: 0 }), lean = a.p.lean ?? 0.06;
+    const o = onSide({ aR_sw: 0.42, aR_out: -0.08, aR_el: 2.05, aR_tw: 0.75, ...FIST }, s); for (const k in o) o[k] *= e;
+    o.sp_x = lean * e; o.ch_z = (s === 'L' ? -0.04 : 0.04) * e; return o;
+  },
+  hold(u, tl, a, c) { // both hands grip a rope in front at waist height; lean back against it, and haul if asked
+    const e = poseEnv(tl, a.dur, { in: 0.4, out: 0.4, ease: 'out' }, { anticipate: 0 }), lean = a.p.lean ?? 0.25, hz = a.p.haul ?? 0, ph = hz > 0 ? 0.5 - 0.5 * cos(TAU * hz * tl) : 0;
+    const k = (lean + 0.15 * ph) * e;
+    return { aL_sw: (1.0 - 0.35 * ph) * e, aR_sw: (0.85 - 0.35 * ph) * e, aL_out: -0.05 * e, aR_out: -0.02 * e, aL_el: (0.55 + 0.6 * ph) * e, aR_el: (0.7 + 0.6 * ph) * e, aL_tw: 0.3 * e, aR_tw: 0.3 * e, ...scale({ ...FIST, ...mirror(FIST) }, e),
+      r_pitch: -k * 0.45, sp_x: -k * 0.3, crouch: (0.22 + 0.12 * ph) * e, lR_sw: 0.25 * e, lL_sw: -0.1 * e, h_pitch: 0.12 * k, squint: 0.5 * ph * e, browAng: -0.3 * ph * e };
+  },
 };
 function scale(o, e) { const r = {}; for (const k in o) if (o[k] !== undefined) r[k] = o[k] * e; return r; }
 

@@ -76,3 +76,8 @@
   - Captions: roll-up colours each whole word; Captions.choose picks page, kinetic type or roll-up from a segment's words (docs/presenters/captions.md). "Three ways to caption" (src/lab/subtitles/three-ways-to-caption.mp4): 90.5 s, voice am_michael (Kokoro grade C+ in Kokoro's VOICES.md; bm_george, the voice Dinis disliked, is C), voice 22.4 s, render 114.6 s, 0 USD.
   - voice-audition.mp4: six Kokoro male voices on the same two sentences, for Dinis to pick.
   - The decision-brief player stays with bulletins.d@, to become an API; studio.d told.
+- 2026-11-23 (17:04 UTC by date -u): presenters library 0.2.0, for sherpa.d@AgentiCCells.dinis's journey stories, by bulletins.d@PrompTugal.dinis on branch bulletins-d/llvmpipe-explainer (not on dev yet).
+  - Four new moves (fall, pullUp, carry, hold; 73 in all), a rope prop (engine/props.js: coil, hand, line, hang), crowds of copies (crowd(), ids id~n, up to 40) and the flat and set options. Full detail on every figure.
+  - Measured on the 4-CPU container, software WebGL, headless: twenty figures draw in 16 to 47 ms a frame. The same t gives the same bytes after any history, with ropes and a crowd (three times checked). A 0.1.1 scene draws the same bytes on 0.2.0 (four times checked).
+  - The publisher now lists every moving folder in versions.json (it had dropped v0.1 when a 0.2 appeared).
+  - Not reviewed by security@; no pins listed. The journey visual kind in the player is not built yet.

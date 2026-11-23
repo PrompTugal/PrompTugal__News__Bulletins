@@ -34,8 +34,10 @@ export class Stage {
       sh.rotation.x = -Math.PI / 2; sh.renderOrder = -5; c.shadow = sh; c.shadowR = spec.kind === 'cube3d' ? 0.62 : spec.kind === 'owl' ? 0.5 : spec.kind === 'mosaic' ? 0.0 : 0.42; sc.add(sh);
       this.chars.push(c); this.byId[c.id] = c;
     });
-    this.rest = newPose(); this.size = [0, 0];
+    this.rest = newPose(); this.size = [0, 0]; this.props = [];
   }
+  // Props (props.js): drawn after the characters, from the poses of the same frame.
+  addProp(p) { this.props.push(p); return p; }
   buildSet() {
     // The floor: dark, with a faint grid that fades with distance, like the teletext page the site is built on.
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 60), new THREE.ShaderMaterial({ uniforms: {},
@@ -61,19 +63,22 @@ export class Stage {
   setCamera(cam) { const c = this.camera; c.position.set(...cam.pos); c.fov = cam.fov || 28; c.updateProjectionMatrix(); c.lookAt(cam.look[0], cam.look[1], cam.look[2]); }
   /* poses: id -> Float64Array, springs: id -> array (may be missing), only: an id or a list of ids to draw (null for all). */
   render(poses, springs, t, only = null) {
-    const env = { height: this.size[1] }, cam = this.camera;
+    const env = { height: this.size[1] }, cam = this.camera, need = this.props.length ? new Set(this.props.flatMap((q) => q.uses(t))) : null;
     cam.updateMatrixWorld(); FR.setFromProjectionMatrix(PM.multiplyMatrices(cam.projectionMatrix, cam.matrixWorldInverse));
     for (const c of this.chars) {
       const p = poses[c.id] || this.rest;
       // A character is skipped when it is hidden, or wholly outside the camera's view: close-ups then cost one figure, not twelve.
       let show = (!only || only === c.id || (only.includes && only.includes(c.id))) && p[CH.hide] < 0.5;
       if (show) { BS.center.set(p[CH.r_x], c.baseY + c.height * 0.55 + p[CH.r_y], p[CH.r_z]); BS.radius = c.height * 0.75 + 1.1; show = FR.intersectsSphere(BS); }
-      c.object.visible = show; c.shadow.visible = show && c.shadowR > 0 && this.opt.shadows !== false; if (!show) continue;
+      c.object.visible = show; c.shadow.visible = show && c.shadowR > 0 && this.opt.shadows !== false;
+      // A prop may hang from a character the camera cannot see: pose it anyway, so the prop never reads last frame's joints.
+      if (!show) { if (need && need.has(c.id)) c.apply(p, springs && springs[c.id], t, env); continue; }
       c.apply(p, springs && springs[c.id], t, env);
       if (c.tele) c.tele.render(this.renderer, c.P, c.baseY);
       const up = Math.max(0, c.P.r_y), k = c.shadowR * (1 + up * 0.5);
       c.shadow.position.set(c.P.r_x, c.baseY + 0.006, c.P.r_z); c.shadow.scale.set(k, k, 1); c.shadow.material.uniforms.uA.value = 0.55 / (1 + up * 2.2) * (c.style.render === 'hologram' ? 0.3 : 1);
     }
+    for (const q of this.props) q.update(t);
     this.renderer.render(this.scene, this.camera);
   }
   // Where a stage point lands on the canvas, in CSS pixels of a w x h box: used to place the name labels.

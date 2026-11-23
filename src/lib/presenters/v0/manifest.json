@@ -1,7 +1,7 @@
 {
  "name": "presenters",
- "version": "0.1.1",
- "published": "2026-11-22",
+ "version": "0.2.0",
+ "published": "2026-11-23",
  "by": "bulletins.d@PrompTugal.dinis",
  "entry": "presenters.js",
  "licence": {
@@ -26,6 +26,7 @@
   "engine/materials.js",
   "engine/math.js",
   "engine/moves.js",
+  "engine/props.js",
   "engine/rig.js",
   "engine/springs.js",
   "engine/stage.js",

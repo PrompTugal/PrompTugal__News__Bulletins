@@ -4,7 +4,7 @@
  * twelve synthetic presenters built by code, none the likeness of a real person, each always labelled
  * "synthetic presenter". Every frame is a pure function of t, so a page can play it live or render it frame by frame.
  *
- *   import { mount } from './presenters/v0.1.1/presenters.js';
+ *   import { mount } from './presenters/v0.2.0/presenters.js';
  *   const show = await mount(document.getElementById('stage'), {
  *     presenters: ['anchor', 'holo', 'owl'],                    // ids from data/characters.json; default all twelve
  *     cues: [{ t: 0.5, who: 'anchor', do: 'wave' }, { t: 2, who: 'all', do: 'nod' }],
@@ -16,19 +16,37 @@
 import { Stage } from './engine/stage.js';
 import { Director } from './engine/director.js';
 import { CH } from './engine/channels.js';
+import { makeRope } from './engine/props.js';
 
-export const VERSION = '0.1.1';
+export const VERSION = '0.2.0';
 export const LABEL = 'synthetic presenter';
 export { Stage, Director, CH };
 
 const here = (f) => new URL(f, import.meta.url).href;
 const getJSON = (u) => fetch(u, { credentials: 'omit' }).then((r) => { if (!r.ok) throw new Error(u + ' did not load (' + r.status + ')'); return r.json(); });
 
-/* The data the engine runs on: the twelve characters, the 69 moves (with the mouth shapes and expressions), and the
+/* The data the engine runs on: the twelve characters, the 73 moves (with the mouth shapes and expressions), and the
  * showcase's choreography and mouth cues as worked examples. Fetched from beside this file. */
 export async function loadData() {
   const [characters, moves, choreography, visemes] = await Promise.all(['characters', 'moves', 'choreography', 'visemes'].map((n) => getJSON(here('data/' + n + '.json'))));
   return { characters, moves, choreography, visemes };
+}
+
+/* A crowd made of copies (0.2.0, for journey stories). A copy is named 'id~n': the same body, its own blinks and fidgets
+ * (the director seeds them by name), its own place. crowd() spreads n copies of the given ids over an area of the stage,
+ * from a seed, so the same call always gives the same crowd. Spread its result into mount()'s options:
+ *   mount(el, { ...crowd({ of: ['agent', 'holo'], n: 20, area: [-4, 0.5, 4, 3] }), flat: true, tags: false, cues })
+ * It returns { presenters, slots, groups: { crowd: ids } }, so a cue can say who: 'crowd'. A crowd is illustrative:
+ * the page that shows it must say so unless the number is measured. */
+export function crowd({ of = ['agent'], n = 20, area = [-4, 0.5, 4, 3], seed = 1, prefix = '' } = {}) {
+  if (n > 40) throw new Error('crowd: at most 40 figures');
+  let s = (seed * 2654435761) >>> 0; const r = () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296);
+  const [x0, z0, x1, z1] = area, cols = Math.ceil(Math.sqrt(n * (x1 - x0) / Math.max(0.1, z1 - z0))), rows = Math.ceil(n / cols), ids = [], slots = {};
+  for (let i = 0; i < n; i++) {
+    const id = `${of[i % of.length]}~${prefix}${i + 1}`, cx = i % cols, cz = Math.floor(i / cols);
+    slots[id] = [+(x0 + (cx + 0.5 + (r() - 0.5) * 0.6) * (x1 - x0) / cols).toFixed(3), +(z0 + (cz + 0.5 + (r() - 0.5) * 0.6) * (z1 - z0) / rows).toFixed(3)]; ids.push(id);
+  }
+  return { presenters: ids, slots, groups: { crowd: ids } };
 }
 
 /* A wide shot that frames whoever is on stage. */
@@ -49,12 +67,16 @@ function wideShot(specs) {
  *   audio       a URL: played with the show, which then follows the audio's clock
  *   tags        true (default): name tags. The corner label "synthetic presenter" is always drawn and cannot be turned off.
  *   background  a CSS colour for the stage (default '#060914'); auto { idle, blink, fidget } (default idle and blink on)
- * The show: { renderAt(t), play(), pause(), seek(t), duration, playing, stage, director, data, resize(), destroy() } */
+ *   copies      any id may be given as 'id~n' for a copy (see crowd()); flat: true puts everyone on the floor (no riser)
+ *   set         false: no floor, riser or back wall (for a page that draws its own scene behind a transparent stage)
+ *   props       [{ kind: 'rope', keys: [{ t, mode, ... }], length, color }]: see engine/props.js (0.2.0)
+ * The show: { renderAt(t), play(), pause(), seek(t), duration, playing, stage, director, props, data, resize(), destroy() } */
 export async function mount(el, o = {}) {
   if (!el || !el.appendChild) throw new Error('mount: give it an element');
   const data = o.data || await loadData();
   const all = data.characters.presenters, ids = o.presenters || all.map((p) => p.id);
-  const specs = ids.map((id) => { const p = all.find((x) => x.id === id); if (!p) throw new Error('mount: no presenter "' + id + '"'); return { ...p, slot: (o.slots && o.slots[id]) || p.slot }; });
+  if (new Set(ids).size !== ids.length) throw new Error('mount: a presenter is listed twice; name copies "id~n"');
+  const specs = ids.map((id) => { const base = String(id).split('~')[0], p = all.find((x) => x.id === base); if (!p) throw new Error('mount: no presenter "' + id + '"'); return { ...p, id, slot: (o.slots && o.slots[id]) || p.slot }; });
   const duration = o.duration || 10;
   const chor = { version: 'lib-' + VERSION, duration, auto: { idle: true, blink: true, fidget: false, ...(o.auto || {}) }, groups: { all: ids, ...(o.groups || {}) },
     beats: o.beats || [], camera: (o.camera && o.camera.length) ? o.camera : [wideShot(specs)], cues: (o.cues || []).slice().sort((a, b) => a.t - b.t) };
@@ -68,7 +90,8 @@ export async function mount(el, o = {}) {
   const beat = document.createElement('div'); beat.style.cssText = 'position:absolute;left:8px;bottom:8px;background:#ff0;color:#000;font:700 13px "DejaVu Sans Mono",monospace;padding:2px 6px;display:none';
   box.append(canvas, tagLayer, label, beat); el.appendChild(box);
 
-  const stage = new Stage(canvas, specs, { background: o.background });
+  const stage = new Stage(canvas, specs, { background: o.background, flat: !!o.flat, set: o.set });
+  const props = (o.props || []).map((d) => { if (d.kind !== 'rope') throw new Error('mount: unknown prop kind "' + d.kind + '"'); return stage.addProp(makeRope(d, stage)); });
   const director = new Director({ specs, moves: data.moves, chor, chars: stage.byId, tracks: o.tracks || {} });
   const tags = {};
   if (o.tags !== false) for (const c of stage.chars) {
@@ -102,11 +125,11 @@ export async function mount(el, o = {}) {
   const clock = () => audio ? audio.currentTime : from + (performance.now() - t0) / 1000;
   function tick() { const t = clock(); renderAt(t); if (t >= director.duration) { show.pause(); return; } raf = requestAnimationFrame(tick); }
   const show = {
-    t: 0, duration: director.duration, playing: false, stage, director, data, renderAt, resize,
+    t: 0, duration: director.duration, playing: false, stage, director, props, data, renderAt, resize,
     play() { if (show.playing) return; if (show.t >= director.duration) show.seek(0); show.playing = true; from = show.t; t0 = performance.now(); if (audio) { audio.currentTime = show.t; audio.play().catch(() => {}); } raf = requestAnimationFrame(tick); },
     pause() { show.playing = false; cancelAnimationFrame(raf); if (audio) audio.pause(); },
     seek(t) { renderAt(t); from = show.t; t0 = performance.now(); if (audio) audio.currentTime = show.t; },
-    destroy() { show.pause(); stage.renderer.dispose(); box.remove(); },
+    destroy() { show.pause(); for (const q of props) q.destroy(); stage.renderer.dispose(); box.remove(); },
   };
   renderAt(0);
   return show;

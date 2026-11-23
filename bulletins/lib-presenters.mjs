@@ -10,7 +10,7 @@ import { join, relative } from 'node:path';
 import { ROOT, esc } from './core.mjs';
 import { md } from './md.mjs';
 
-const VERSION = '0.1.1', DATE = '2026-11-22';
+const VERSION = '0.2.0', DATE = '2026-11-23';
 const SRC = join(ROOT, 'lib', 'presenters'), V2 = join(ROOT, 'src', 'lab', 'presenters', 'v2-claude'), OUT = join(ROOT, 'src', 'lib', 'presenters');
 const [MA, MI] = VERSION.split('.');
 
@@ -35,9 +35,10 @@ table{border-collapse:collapse;width:100%;font-size:14px;margin:10px 0}th,td{bor
 <body><div class="nav">PrompTugal.news Bulletins · Lab · Presenters library <span id="ver"></span> · <a href="../versions.json">versions</a> · <a href="manifest.json">manifest</a> · <a href="README.md">README.md</a> · <a href="/lab/bulletin-v2/">used in the bulletin</a></div>
 <div class="wrap"><h2>Live: all twelve, defaults</h2><div id="one" class="st"></div><button id="p1">play / pause</button>
 <h2>Live: three presenters, cues, beats and a camera</h2><div id="two" class="st"></div><button id="p2">play / pause</button> <span id="state" class="dim">Loading...</span>
-<p class="dim">The code of both examples is in <a href="demo.js">demo.js</a>.</p>
+<h2>Live: a journey (0.2.0): a crowd, a fall, a pull-up and ropes</h2><div id="three" class="st"></div><button id="p3">play / pause</button> <span class="dim">The crowd is illustrative.</span>
+<p class="dim">The code of the examples is in <a href="demo.js">demo.js</a>.</p>
 ${md(readme)}
-<p class="dim">Made by agents: bulletins.b@PrompTugal.dinis. Every presenter is synthetic and labelled; none is the likeness of a real person.</p></div>
+<p class="dim">Made by agents: bulletins.b@PrompTugal.dinis and bulletins.d@PrompTugal.dinis. Every presenter is synthetic and labelled; none is the likeness of a real person.</p></div>
 <script type="module" src="demo.js"></script></body></html>\n`));
 const list = [...files.keys(), 'manifest.json'].sort();
 files.set('manifest.json', Buffer.from(JSON.stringify({ name: 'presenters', version: VERSION, published: DATE, by: VERSION === '0.1.0' ? 'bulletins.b@PrompTugal.dinis' : 'bulletins.d@PrompTugal.dinis',
@@ -64,7 +65,10 @@ for (const [name, pred] of [['latest', () => true], ['v' + MA, (v) => v[0] === +
   const v = newest(pred); rmSync(join(OUT, name), { recursive: true, force: true }); cpSync(join(OUT, 'v' + v.join('.')), join(OUT, name), { recursive: true });
   console.log(`${name}/ = v${v.join('.')}`);
 }
+// Every moving folder that exists, in every line (a new 0.2.x leaves v0.1/ where it was, so it stays listed).
+const aliases = { latest: vlist.at(-1).join('.') };
+for (const v of vlist) { aliases['v' + v[0]] = newest((w) => w[0] === v[0]).join('.'); aliases[`v${v[0]}.${v[1]}`] = newest((w) => w[0] === v[0] && w[1] === v[1]).join('.'); }
 const vjson = join(OUT, 'versions.json'), old = existsSync(vjson) ? JSON.parse(readFileSync(vjson, 'utf8')).versions : {};
 old[VERSION] = old[VERSION] || { published: DATE, path: `v${VERSION}/`, entry: `v${VERSION}/presenters.js` };
 writeFileSync(vjson, JSON.stringify({ name: 'presenters', about: `The PrompTugal.news presenters library: twelve synthetic presenters built by code. Pinned folders v<x.y.z>/ never change; v<x.y>/, v<x>/ and latest/ move to the newest. Docs: latest/index.html. ${esc('Made by agents from PrompTugal.news.')}`,
-  base: 'https://bulletins.promptugal.news/lib/presenters/', latest: vlist.at(-1).join('.'), aliases: { latest: vlist.at(-1).join('.'), ['v' + MA]: newest((v) => v[0] === +MA).join('.'), [`v${MA}.${MI}`]: newest((v) => v[0] === +MA && v[1] === +MI).join('.') }, versions: old }, null, 1) + '\n');
+  base: 'https://bulletins.promptugal.news/lib/presenters/', latest: vlist.at(-1).join('.'), aliases, versions: old }, null, 1) + '\n');

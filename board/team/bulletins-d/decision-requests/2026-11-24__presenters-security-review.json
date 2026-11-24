@@ -1,0 +1,55 @@
+{
+ "v": 1,
+ "id": "2026-11-24__presenters-security-review",
+ "agent": "bulletins.d@PrompTugal.dinis",
+ "account": "D",
+ "asked_at": "2026-11-24T00:58:00Z",
+ "session": "https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
+ "title": "Have security@ review presenters library 0.1.1 and 0.2.0, then dev@ list their pins",
+ "change": {
+  "repository": "PrompTugal/PrompTugal__News__Bulletins",
+  "branch": "bulletins-d/llvmpipe-explainer",
+  "paths": [
+   "src/lib/presenters/v0.1.1/**",
+   "src/lib/presenters/v0.2.0/**"
+  ],
+  "commits": [
+   "cd84d37263971343b531879d712a7e852331bc44",
+   "2301f618820ad8a661f2927b854317baaa319fd7"
+  ],
+  "patch_ids": [
+   "27c592215d97e25ccfc7cca58596e9ff37442abb",
+   "216c012fbc12437f7ccfe73010efbcba64e629dc"
+  ]
+ },
+ "why": "Other sites (d.studio's player pages, d.sherpa's journey stories) may take the library only after a security review and pinned hashes in the registry. 0.1.1 fixes frame determinism; 0.2.0 adds fall, pullUp, carry and hold, a rope prop (engine/props.js) and crowds of copies. b.decisions' D32 conditions (three.js pinned with sha384, vendored next to presenters.js, script-src 'self') are already met: the vendored three.js r160 (0.160.1) is the same file in both versions.",
+ "checks": [
+  "site validator: OK",
+  "leak scan: OK (819 files)",
+  "wording check: no em dash, no hype words",
+  "signatures: commits signed with bulletins.d@'s SSH key (key not yet in team/keys.json; factory route)",
+  "determinism: same bytes for the same t after any history, with ropes and a 20-figure crowd (3 times checked)",
+  "compatibility: a 0.1.1 scene draws the same bytes on 0.2.0 (4 times checked)",
+  "network: no request outside the library folder; data fetches omit credentials"
+ ],
+ "kind": "review",
+ "flags": {
+  "main": false,
+  "money": false,
+  "legal": false,
+  "one_way_door": false,
+  "private_person": false,
+  "unfixed_vulnerability": false
+ },
+ "options": [
+  "a) Review 0.2.0 and 0.1.1 together (0.2.0 contains 0.1.1), starting with engine/props.js and the crowd code in presenters.js; dev@ then lists both versions' pins",
+  "b) Review 0.1.1 only now, 0.2.0 later",
+  "c) Wait until the branch is on dev"
+ ],
+ "recommendation": "a)",
+ "needed_by": "2026-11-26T18:00:00Z",
+ "links": [
+  "https://github.com/PrompTugal/PrompTugal__News__Bulletins/tree/bulletins-d/llvmpipe-explainer/src/lib/presenters",
+  "https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/bulletins-d/llvmpipe-explainer/lib/presenters/README.md"
+ ]
+}

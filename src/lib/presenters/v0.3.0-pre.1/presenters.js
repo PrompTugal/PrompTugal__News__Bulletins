@@ -1,0 +1,156 @@
+/* presenters.js: the PrompTugal.news presenters library, one module to import (bulletins.b@PrompTugal.dinis,
+ * 21 Nov 2026, at Dinis's word: "I would like to have the presenter engine as a reusable library").
+ * It wraps the version 2 engine (engine/, from src/lab/presenters/v2-claude/ in PrompTugal__News__Bulletins):
+ * twelve synthetic presenters built by code, none the likeness of a real person, each always labelled
+ * "synthetic presenter". Every frame is a pure function of t, so a page can play it live or render it frame by frame.
+ *
+ *   import { mount } from './presenters/v0.3.0-pre.1/presenters.js';
+ *   const show = await mount(document.getElementById('stage'), {
+ *     presenters: ['anchor', 'holo', 'owl'],                    // ids from data/characters.json; default all twelve
+ *     cues: [{ t: 0.5, who: 'anchor', do: 'wave' }, { t: 2, who: 'all', do: 'nod' }],
+ *     duration: 8,
+ *   });
+ *   show.play();               // or show.renderAt(3.2) for one exact frame
+ *
+ * Code Apache-2.0; text CC BY 4.0; three.js (vendor/) MIT, its notice in vendor/three.LICENSE. */
+import { Stage } from './engine/stage.js';
+import { Director } from './engine/director.js';
+import { CH } from './engine/channels.js';
+import { makeRope } from './engine/props.js';
+import { makeScene, SCENES } from './engine/scenes.js';
+import { cameraCues, MOVES } from './engine/camera.js';
+
+export const VERSION = '0.3.0-pre.1';
+export const LABEL = 'synthetic presenter';
+export { Stage, Director, CH, SCENES, MOVES };
+
+const here = (f) => new URL(f, import.meta.url).href;
+const getJSON = (u) => fetch(u, { credentials: 'omit' }).then((r) => { if (!r.ok) throw new Error(u + ' did not load (' + r.status + ')'); return r.json(); });
+
+/* The data the engine runs on: the twelve characters, the 73 moves (with the mouth shapes and expressions), and the
+ * showcase's choreography and mouth cues as worked examples. Fetched from beside this file. */
+export async function loadData() {
+  const [characters, moves, choreography, visemes] = await Promise.all(['characters', 'moves', 'choreography', 'visemes'].map((n) => getJSON(here('data/' + n + '.json'))));
+  return { characters, moves, choreography, visemes };
+}
+
+/* A crowd made of copies (0.2.0, for journey stories). A copy is named 'id~n': the same body, its own blinks and fidgets
+ * (the director seeds them by name), its own place. crowd() spreads n copies of the given ids over an area of the stage,
+ * from a seed, so the same call always gives the same crowd. Spread its result into mount()'s options:
+ *   mount(el, { ...crowd({ of: ['agent', 'holo'], n: 20, area: [-4, 0.5, 4, 3] }), flat: true, tags: false, cues })
+ * It returns { presenters, slots, groups: { crowd: ids } }, so a cue can say who: 'crowd'. A crowd is illustrative:
+ * the page that shows it must say so unless the number is measured. */
+export function crowd({ of = ['agent'], n = 20, area = [-4, 0.5, 4, 3], seed = 1, prefix = '' } = {}) {
+  if (n > 40) throw new Error('crowd: at most 40 figures');
+  let s = (seed * 2654435761) >>> 0; const r = () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296);
+  const [x0, z0, x1, z1] = area, cols = Math.ceil(Math.sqrt(n * (x1 - x0) / Math.max(0.1, z1 - z0))), rows = Math.ceil(n / cols), ids = [], slots = {};
+  for (let i = 0; i < n; i++) {
+    const id = `${of[i % of.length]}~${prefix}${i + 1}`, cx = i % cols, cz = Math.floor(i / cols);
+    slots[id] = [+(x0 + (cx + 0.5 + (r() - 0.5) * 0.6) * (x1 - x0) / cols).toFixed(3), +(z0 + (cz + 0.5 + (r() - 0.5) * 0.6) * (z1 - z0) / rows).toFixed(3)]; ids.push(id);
+  }
+  return { presenters: ids, slots, groups: { crowd: ids } };
+}
+
+/* A wide shot that frames whoever is on stage. */
+function wideShot(specs) {
+  if (!specs.length) return { t: 0, pos: [0, 2.0, 11.5], look: [0, 1.15, -1], fov: 28 };
+  const xs = specs.map((s) => s.slot[0]), span = Math.max(1.5, Math.max(...xs) - Math.min(...xs));
+  const cx = (Math.max(...xs) + Math.min(...xs)) / 2;
+  return { t: 0, pos: [cx, 2.0, 4.2 + span * 1.25], look: [cx, 1.05, -1], fov: 28 };
+}
+
+/* mount(el, options): puts a stage in el (a block element; it takes el's size) and returns a show.
+ * options:
+ *   presenters  ids to put on stage, in order (default: all twelve)
+ *   slots       { id: [x, z] } to move them (default: each character's own slot; z from -3.4 to -1.25 is the riser)
+ *   cues        [{ t, who, do, ...params, stagger }]  who: an id, a list, 'all' or a group name; do: a move in data/moves.json
+ *   camera      [{ t, pos, look, fov, ease } | { t, focus, dist, h, lh, orbit, cut, only }] (default: one wide shot)
+ *   beats       [{ t, title }] captions; groups { name: [ids] }; duration (s, default 10)
+ *   tracks      { name: { mouthCues: [{ start, end, value: 'A'..'H' | 'X' }] } } for the speak move
+ *   audio       a URL: played with the show, which then follows the audio's clock
+ *   tags        true (default): name tags. The corner label "synthetic presenter" is always drawn and cannot be turned off.
+ *   background  a CSS colour for the stage (default '#060914'); auto { idle, blink, fidget } (default idle and blink on)
+ *   copies      any id may be given as 'id~n' for a copy (see crowd()); flat: true puts everyone on the floor (no riser)
+ *   set         false: no floor, riser or back wall (for a page that draws its own scene behind a transparent stage)
+ *   props       [{ kind: 'rope', keys: [{ t, mode, ... }], length, color }]: see engine/props.js (0.2.0)
+ *   scene       { kind: 'galaxy', ... }: a bigger set built from data, see engine/scenes.js (0.3.0). With a scene the
+ *               studio floor is off and presenters may be [] (a scene-only mount; put the presenter in its own mount)
+ *   band        a fraction of the height kept clear at the bottom (e.g. 620 / 1920 for a presenter strip): every
+ *               shot centres on the frame above it (0.3.0)
+ *   camera cues { t, do: 'camera', move: 'dolly-in' | 'orbit' | 'crane-up' | 'push-to' | 'reset', to, dt, ease } in
+ *               cues; t in seconds or a beat id (beats: [{ id, t, title }]). See engine/camera.js (0.3.0)
+ * The show: { renderAt(t), play(), pause(), seek(t), duration, playing, stage, director, props, data, resize(), destroy() } */
+export async function mount(el, o = {}) {
+  if (!el || !el.appendChild) throw new Error('mount: give it an element');
+  const data = o.data || await loadData();
+  const all = data.characters.presenters, ids = o.presenters || all.map((p) => p.id);
+  if (new Set(ids).size !== ids.length) throw new Error('mount: a presenter is listed twice; name copies "id~n"');
+  const specs = ids.map((id) => { const base = String(id).split('~')[0], p = all.find((x) => x.id === base); if (!p) throw new Error('mount: no presenter "' + id + '"'); return { ...p, id, slot: (o.slots && o.slots[id]) || p.slot }; });
+  const duration = o.duration || 10;
+  const beatT = (t) => { if (typeof t === 'number') return t; const b = (o.beats || []).find((x) => x.id === t); if (!b) throw new Error('mount: no beat "' + t + '"'); return b.t; };
+  const allCues = (o.cues || []).map((c) => ({ ...c, t: beatT(c.t) })), camCues = allCues.filter((c) => c.do === 'camera');
+  const chor = { version: 'lib-' + VERSION, duration, auto: { idle: true, blink: true, fidget: false, ...(o.auto || {}) }, groups: { all: ids, ...(o.groups || {}) },
+    beats: o.beats || [], camera: (o.camera && o.camera.length) ? o.camera : [wideShot(specs)], cues: allCues.filter((c) => c.do !== 'camera').sort((a, b) => a.t - b.t) };
+
+  const box = document.createElement('div'); box.className = 'ptp';
+  box.style.cssText = 'position:relative;width:100%;height:100%;overflow:hidden;font-family:"DejaVu Sans",system-ui,sans-serif';
+  const canvas = document.createElement('canvas'); canvas.style.cssText = 'display:block;width:100%;height:100%';
+  const tagLayer = document.createElement('div'); tagLayer.style.cssText = 'position:absolute;inset:0;pointer-events:none';
+  const label = document.createElement('div'); label.textContent = specs.length ? specs.length + ' ' + LABEL + (specs.length > 1 ? 's' : '') + ' · made by code, no real person' : 'scene made by code · no real person';
+  label.style.cssText = 'position:absolute;left:8px;top:6px;color:#fff;background:#000a;padding:2px 6px;font:700 11px "DejaVu Sans Mono",monospace;pointer-events:none';
+  const beat = document.createElement('div'); beat.style.cssText = 'position:absolute;left:8px;bottom:8px;background:#ff0;color:#000;font:700 13px "DejaVu Sans Mono",monospace;padding:2px 6px;display:none';
+  box.append(canvas, tagLayer, label, beat); el.appendChild(box);
+
+  const stage = new Stage(canvas, specs, { background: o.background || (o.scene ? '#02040c' : undefined), flat: !!o.flat, set: o.scene ? (o.set ?? false) : o.set });
+  const scene = o.scene ? stage.addProp(makeScene(o.scene, stage)) : null; stage.band = o.band || 0;
+  const props = (o.props || []).map((d) => { if (d.kind !== 'rope') throw new Error('mount: unknown prop kind "' + d.kind + '"'); return stage.addProp(makeRope(d, stage)); });
+  const director = new Director({ specs, moves: data.moves, chor, chars: stage.byId, tracks: o.tracks || {} });
+  if (scene && !(o.camera && o.camera.length)) chor.camera = [{ t: 0, ...scene.base(Math.max(1, el.clientWidth) / Math.max(1, el.clientHeight)) }];
+  // A camera target: a stage point, a presenter (framed on its height) or a scene anchor.
+  const target = (to, t) => {
+    if (Array.isArray(to)) return { p: to, r: 3 };
+    if (director.ctx[to]) { const c = director.ctx[to], q = director.standAt(to, t); return { p: [q.x, c.baseY + c.d.height * 0.6, q.z], r: 2.2 + c.d.height * 1.4 }; }
+    const a = scene && scene.anchor(to, t); if (a) return a; throw new Error('camera: no target "' + to + '"');
+  };
+  const camAt = camCues.length ? cameraCues(camCues, (t) => director.cameraAt(t, null), target) : (t) => director.cameraAt(t, null);
+  const tags = {};
+  if (o.tags !== false) for (const c of stage.chars) {
+    const t = document.createElement('div'); t.style.cssText = 'position:absolute;left:0;top:0;text-align:center;color:#fff;font:700 11px "DejaVu Sans",sans-serif;text-shadow:0 0 3px #000,0 0 2px #000;white-space:nowrap';
+    const b = document.createElement('b'); b.textContent = c.spec.name; const i = document.createElement('i'); i.textContent = LABEL; i.style.cssText = 'display:block;font:400 9px "DejaVu Sans",sans-serif;color:#cde';
+    t.append(b, i); tagLayer.append(t); tags[c.id] = t;
+    c.tagH = c.tele ? c.spec.looks.rows * 3 * c.spec.looks.sextant : c.height;
+  }
+  let W = 0, H = 0;
+  function resize() { W = Math.max(1, box.clientWidth); H = Math.max(1, box.clientHeight); stage.setSize(W, H); }
+  resize();
+
+  function renderAt(t) {
+    t = Math.max(0, Math.min(director.duration, t));
+    const f = director.frame(t);
+    stage.setCamera(camAt(t)); stage.render(f.poses, f.springs, t, director.onlyAt(t, null));
+    for (const c of stage.chars) {
+      const el2 = tags[c.id]; if (!el2) continue; const p = f.poses[c.id];
+      if (!c.object.visible) { el2.style.display = 'none'; continue; }
+      // Above the head, so a front row never covers a back row's name.
+      const s = stage.project(p[CH.r_x], c.baseY + (c.tagH || 1.6) + 0.08, p[CH.r_z], W, H);
+      if (s[2] > 1 || s[0] < -40 || s[0] > W + 40 || s[1] < 0) { el2.style.display = 'none'; continue; }
+      el2.style.display = ''; el2.style.transform = `translate(${s[0].toFixed(1)}px, ${s[1].toFixed(1)}px) translate(-50%, -100%)`;
+    }
+    const b = director.beatAt(t); beat.textContent = b ? b.title : ''; beat.style.display = b ? '' : 'none';
+    show.t = t; return t;
+  }
+
+  const audio = o.audio ? Object.assign(new Audio(o.audio), { preload: 'auto' }) : null;
+  let raf = 0, t0 = 0, from = 0;
+  const clock = () => audio ? audio.currentTime : from + (performance.now() - t0) / 1000;
+  function tick() { const t = clock(); renderAt(t); if (t >= director.duration) { show.pause(); return; } raf = requestAnimationFrame(tick); }
+  const show = {
+    t: 0, duration: director.duration, playing: false, stage, director, props, scene, camera: camAt, data, renderAt, resize,
+    play() { if (show.playing) return; if (show.t >= director.duration) show.seek(0); show.playing = true; from = show.t; t0 = performance.now(); if (audio) { audio.currentTime = show.t; audio.play().catch(() => {}); } raf = requestAnimationFrame(tick); },
+    pause() { show.playing = false; cancelAnimationFrame(raf); if (audio) audio.pause(); },
+    seek(t) { renderAt(t); from = show.t; t0 = performance.now(); if (audio) audio.currentTime = show.t; },
+    destroy() { show.pause(); for (const q of props) q.destroy(); if (scene) scene.destroy(); stage.renderer.dispose(); box.remove(); },
+  };
+  renderAt(0);
+  return show;
+}

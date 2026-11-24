@@ -57,9 +57,12 @@ export class Stage {
   }
   setSize(w, h) {
     if (this.size[0] === w && this.size[1] === h) return; this.size = [w, h];
-    this.renderer.setSize(w, h, false); this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
+    this.renderer.setSize(w, h, false); this.camera.aspect = w / h; this.setBand(this.band); this.camera.updateProjectionMatrix();
     for (const c of this.chars) c.style.setRes(w, h);
   }
+  /* band: a fraction of the frame height kept for something drawn over the stage's bottom (a presenter strip on a
+   * phone). Every shot then centres on the frame above it, by moving the projection's centre, not the camera. */
+  setBand(f) { this.band = f || 0; const [w, h] = this.size; if (this.band && w && h) this.camera.setViewOffset(w, h, 0, this.band * h / 2, w, h); else this.camera.clearViewOffset(); }
   setCamera(cam) { const c = this.camera; c.position.set(...cam.pos); c.fov = cam.fov || 28; c.updateProjectionMatrix(); c.lookAt(cam.look[0], cam.look[1], cam.look[2]); }
   /* poses: id -> Float64Array, springs: id -> array (may be missing), only: an id or a list of ids to draw (null for all). */
   render(poses, springs, t, only = null) {

@@ -24,6 +24,12 @@
    "published": "2026-11-23",
    "path": "v0.2.0/",
    "entry": "v0.2.0/presenters.js"
+  },
+  "0.3.0-pre.1": {
+   "published": "2026-11-24",
+   "path": "v0.3.0-pre.1/",
+   "entry": "v0.3.0-pre.1/presenters.js",
+   "preview": true
   }
  }
 }

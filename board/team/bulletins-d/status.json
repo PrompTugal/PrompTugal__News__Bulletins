@@ -1,15 +1,16 @@
 {
  "agent": "bulletins.d@PrompTugal.dinis",
- "updated": "2026-11-23T17:08Z",
+ "updated": "2026-11-24T02:40Z",
  "session": "d.bulletins: https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
- "state": "Presenters library 0.2.0 (journeys: fall, pullUp, carry, hold, a rope prop, crowds of copies) published on branch bulletins-d/llvmpipe-explainer with the earlier work; release to dev waits on the key (factory route) and a signed yes from d.decisions",
+ "state": "Presenters 0.3.0-pre.1 (camera cues, galaxy scene, band) for c.studio; 0.2.0 journeys for d.sherpa and d.studio; all on branch bulletins-d/llvmpipe-explainer; dev waits on the key",
  "done": [
   "2026-11-22: llvmpipe adopted for the lab videos (bulletins/frames.mjs); the 21 Nov bulletin in 136.1 s, was 396 s",
   "2026-11-22: frame-history determinism fixed (engine/rig.js, v2-claude/site.css), stricter tools/determinism.mjs, presenters library 0.1.1",
   "2026-11-22: 'How this video is made' (src/lab/explainer-v2/), 123.8 s, rendered in 524.8 s, 0.0077 USD of voice",
   "2026-11-22: render-speed study (docs/research/video-render-speed/, branch bulletins-d/render-research)",
   "2026-11-22: key made; branches bulletins-d/key and bulletins-d/keys-json pushed; relayed to conductor.b@ by conductor.d@",
-  "2026-11-23: presenters library 0.2.0 for sherpa.d's journey stories, full detail on every figure; 0.1.1 frames unchanged (checked); determinism with ropes and a crowd (checked at three times)"
+  "2026-11-23: presenters library 0.2.0 for sherpa.d's journey stories, full detail on every figure; 0.1.1 frames unchanged (checked); determinism with ropes and a crowd (checked at three times)",
+  "2026-11-24: presenters 0.3.0-pre.1, build 1 for c.studio: camera cues and the galaxy scene; 0.2.0 scenes draw the same bytes on it (checked)"
  ],
  "asks": [
   "d.decisions: release branch bulletins-d/llvmpipe-explainer to dev, once my key is in team/keys.json by the factory route",
@@ -24,6 +25,12 @@
    "what": "Built and published presenters library 0.2.0 (src/lib/presenters/v0.2.0/, aliases latest, v0, v0.2) on my own branch",
    "rule": "No agent blocked: a reversible step in my own area goes ahead on my own call (Dinis, relayed by conductor.d)",
    "why": "sherpa.d asked for a fall, a rope, a pull-up and crowds; it is my lane, the branch is not dev, and a new pinned version changes no existing one"
+  },
+  {
+   "time": "2026-11-24T02:35Z",
+   "what": "Published preview v0.3.0-pre.1 of the presenters library on my branch; the publisher now handles previews (pinned, no alias moves)",
+   "rule": "No agent blocked: a reversible step in my own area goes ahead on my own call",
+   "why": "c.studio asked (via the maestros) for builds to test; pinned by commit, latest/ stays on 0.2.0"
   }
  ],
  "contacts": {

@@ -81,3 +81,7 @@
   - Measured on the 4-CPU container, software WebGL, headless: twenty figures draw in 16 to 47 ms a frame. The same t gives the same bytes after any history, with ropes and a crowd (three times checked). A 0.1.1 scene draws the same bytes on 0.2.0 (four times checked).
   - The publisher now lists every moving folder in versions.json (it had dropped v0.1 when a 0.2 appeared).
   - Not reviewed by security@; no pins listed. The journey visual kind in the player is not built yet.
+- 2026-11-24 (02:40 UTC by date -u): presenters library 0.3.0-pre.1, a preview for c.studio's bigger 3D scenes (Dinis's words relayed through the maestros), by bulletins.d@PrompTugal.dinis on branch bulletins-d/llvmpipe-explainer (not on dev).
+  - Camera cues (dolly-in, orbit, crane-up, push-to, reset), the galaxy scene from data, scene-only mounts and the band option. latest/ stays on 0.2.0.
+  - Measured: 1080x1920, headless SwiftShader, one browser: 244 to 267 ms a frame with capture, for 117 agents round 6 suns (illustrative test data). Same bytes after any history; a 0.2.0 scene draws the same bytes on 0.3.0-pre.1 (three times checked).
+  - Not built yet: the stand, newsroom, loop and wall scenes.

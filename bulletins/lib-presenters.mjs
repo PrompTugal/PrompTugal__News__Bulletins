@@ -10,9 +10,9 @@ import { join, relative } from 'node:path';
 import { ROOT, esc } from './core.mjs';
 import { md } from './md.mjs';
 
-const VERSION = '0.2.0', DATE = '2026-11-23';
+const VERSION = '0.3.0-pre.1', DATE = '2026-11-24';
 const SRC = join(ROOT, 'lib', 'presenters'), V2 = join(ROOT, 'src', 'lab', 'presenters', 'v2-claude'), OUT = join(ROOT, 'src', 'lib', 'presenters');
-const [MA, MI] = VERSION.split('.');
+const [MA, MI] = VERSION.split('-')[0].split('.'), PRE = VERSION.includes('-');   // a preview (x.y.z-pre.N) is pinned but moves no alias
 
 // 1. The files of this version, in memory: path -> Buffer.
 const files = new Map();
@@ -61,7 +61,7 @@ if (existsSync(pinned)) {
 // 3. The moving folders, copies of the newest version in their line, and versions.json.
 const vlist = readdirSync(OUT).filter((d) => /^v\d+\.\d+\.\d+$/.test(d)).map((d) => d.slice(1).split('.').map(Number)).sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]);
 const newest = (pred) => vlist.filter(pred).pop();
-for (const [name, pred] of [['latest', () => true], ['v' + MA, (v) => v[0] === +MA], [`v${MA}.${MI}`, (v) => v[0] === +MA && v[1] === +MI]]) {
+if (!PRE) for (const [name, pred] of [['latest', () => true], ['v' + MA, (v) => v[0] === +MA], [`v${MA}.${MI}`, (v) => v[0] === +MA && v[1] === +MI]]) {
   const v = newest(pred); rmSync(join(OUT, name), { recursive: true, force: true }); cpSync(join(OUT, 'v' + v.join('.')), join(OUT, name), { recursive: true });
   console.log(`${name}/ = v${v.join('.')}`);
 }
@@ -69,6 +69,6 @@ for (const [name, pred] of [['latest', () => true], ['v' + MA, (v) => v[0] === +
 const aliases = { latest: vlist.at(-1).join('.') };
 for (const v of vlist) { aliases['v' + v[0]] = newest((w) => w[0] === v[0]).join('.'); aliases[`v${v[0]}.${v[1]}`] = newest((w) => w[0] === v[0] && w[1] === v[1]).join('.'); }
 const vjson = join(OUT, 'versions.json'), old = existsSync(vjson) ? JSON.parse(readFileSync(vjson, 'utf8')).versions : {};
-old[VERSION] = old[VERSION] || { published: DATE, path: `v${VERSION}/`, entry: `v${VERSION}/presenters.js` };
+old[VERSION] = old[VERSION] || { published: DATE, path: `v${VERSION}/`, entry: `v${VERSION}/presenters.js`, ...(PRE ? { preview: true } : {}) };
 writeFileSync(vjson, JSON.stringify({ name: 'presenters', about: `The PrompTugal.news presenters library: twelve synthetic presenters built by code. Pinned folders v<x.y.z>/ never change; v<x.y>/, v<x>/ and latest/ move to the newest. Docs: latest/index.html. ${esc('Made by agents from PrompTugal.news.')}`,
   base: 'https://bulletins.promptugal.news/lib/presenters/', latest: vlist.at(-1).join('.'), aliases, versions: old }, null, 1) + '\n');

@@ -1,4 +1,4 @@
-# Presenters library, version 0.2.0
+# Presenters library, version 0.3.0-pre.1 (preview; the current release is 0.2.0)
 
 The PrompTugal.news presenters as a library: twelve **synthetic presenters**, built and animated by code in the browser with three.js. Each is an original character, not the likeness of a real person, and each is always labelled "synthetic presenter". There is no female figure in this set, at Dinis's word. Made by bulletins.b@PrompTugal.dinis on 21 November 2026, at Dinis Cruz's word the same day: "Yes, I would like to have the presenter engine as a reusable library using our current library publishing flow". The engine is version 2 (Claude) of the presenter language. It was adopted on 21 November and already draws the day's video bulletin at bulletins.promptugal.news/lab/bulletin-v2/.
 
@@ -82,6 +82,29 @@ const show = await mount(el, {
 
 Measured on the 4-CPU container with no GPU (software WebGL, headless): twenty figures at full detail draw in 16 to 47 ms a frame; four figures with three ropes in 10 to 19 ms. The same t gives the same bytes after any history, with ropes and with a crowd (checked at three times).
 
+### Scenes and camera moves (0.3.0, previews)
+
+For c.studio's bigger 3D stories. Dinis, relayed by c.studio through the maestros (24 Nov 2026): "work with the dev to start creating these sort of bigger scenes and these three-dimensional stories". Previews are published as `v0.3.0-pre.N/`: pinned and never changed, but `latest/`, `v0/` and the other moving folders stay on 0.2.0 until 0.3.0.
+
+```js
+const show = await mount(el, {
+  presenters: [],                                   // a scene-only mount; the presenter goes in its own mount
+  scene: { kind: 'galaxy', suns: [{ id: 'p1', label: 'Ana', agents: 31 }, { id: 'p2', label: 'Bea', agents: 24 }] },
+  band: 620 / 1920,                                 // keep the bottom strip clear: every shot centres above it
+  beats: [{ id: 'b1', t: 0 }, { id: 'b2', t: 3 }],
+  cues: [{ t: 'b1', do: 'camera', move: 'orbit', to: 70, dt: 3 }, { t: 'b2', do: 'camera', move: 'push-to', to: 'sun:p2', dt: 3 }],
+  duration: 8,
+});
+```
+
+- **Camera cues** (`engine/camera.js`): `{ t, do: 'camera', move, to, dt, ease }`, with `t` in seconds or a beat id. `dolly-in` (`to`: the fraction of the distance, default 0.4), `orbit` (`to`: degrees, default 60), `crane-up` (`to`: metres, default 2), `push-to` (`to`: a point, a presenter id or a scene anchor; frames it) and `reset` (back to the base shot). Each cue starts from where the cues before it left the camera; the shot at t is worked out from scratch, so any t can be drawn in any order.
+- **Scenes** (`engine/scenes.js`), data in, not baked in:
+  - `galaxy`: one sun per person (`suns: [{ id, label, agents, color }]`), one planet per agent orbiting it, star field, labels with the counts. Anchors: `galaxy`, `sun:<id or n>`, `agent:<n>`. `title` and `subtitle` override the heading (default: the counts, "counts from the storyboard").
+  - Next, in c.studio's order: a stand, a newsroom, a loop of four stations, a wall of five screens.
+- **`band`**: a fraction of the frame height kept clear at the bottom. Shots centre on the frame above it.
+
+Measured on the 4-CPU container, headless Chromium with SwiftShader (no GPU), 1080x1920, one browser: the galaxy with 117 agents round 6 suns takes 244 to 267 ms a frame, drawing and PNG capture together. The same t gives the same bytes after any history.
+
 ### The twelve
 
 | id | Name | Style |
@@ -114,7 +137,7 @@ There are 73 moves in `data/moves.json`, each with its parameters and defaults. 
 
 ## What is in the folder
 
-`presenters.js` (the entry), `engine/` (15 modules), `vendor/` (three.js and its licence), `data/` (characters, moves, choreography, visemes), `index.html` (this page with live examples), `demo.js`, `README.md`, `manifest.json` (name, version, files, licences; no hashes: the pins are in the registry).
+`presenters.js` (the entry), `engine/` (17 modules), `vendor/` (three.js and its licence), `data/` (characters, moves, choreography, visemes), `index.html` (this page with live examples), `demo.js`, `README.md`, `manifest.json` (name, version, files, licences; no hashes: the pins are in the registry).
 
 ## Performance
 
@@ -122,6 +145,7 @@ Measured on a 4-CPU container with no GPU (the same machine as the bulletin): dr
 
 ## Changes
 
+- **0.3.0-pre.1 (24 Nov 2026, bulletins.d@PrompTugal.dinis), preview:** camera cues (`dolly-in`, `orbit`, `crane-up`, `push-to`, `reset`), scenes with the first kind (`galaxy`), scene-only mounts (`presenters: []`), and the `band` option. Labels in scenes keep their size on screen. No 0.2.0 option changes meaning.
 - **0.2.0 (23 Nov 2026, bulletins.d@PrompTugal.dinis):** journeys, for sherpa.d's stories. Four moves (`fall`, `pullUp`, `carry`, `hold`), a rope prop (`engine/props.js`, the `props` option), crowds of copies (`crowd()`, ids `id~n`) and the `flat` and `set` options. The stage poses a character a prop needs even when the camera cannot see it, so a rope never reads an old frame's hands. Nothing in 0.1.x changes meaning; a page on 0.1.1 that moves to 0.2.0 draws the same frames.
 - **0.1.1 (22 Nov 2026, bulletins.d@PrompTugal.dinis):** a frame no longer depends on the frames drawn before it. A swinging part (an antenna, a tie, a tuft, a key, the cube's jelly) added its spring's lag to the angle the previous frame left, when its joint was not set outright every frame; each spring joint now goes back to its built rotation and scale before the pose is applied (`engine/rig.js`). Before, 704 of 939 frames of the 21 Nov bulletin differed slightly between renders split differently across browsers (46 to 57 dB); now the same t gives the same bytes after any history. Dinis, 22 Nov: "fix that determinism issue". No change to the API.
 - **0.1.0 (21 Nov 2026):** first version. The version 2 (Claude) engine as adopted, with The Guide fix of the same day (in the hatched style, faces and hair are shaded flat, so small faces read). Adds `mount()`, name tags above the head, and the fixed label.

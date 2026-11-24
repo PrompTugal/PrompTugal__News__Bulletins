@@ -1,0 +1,49 @@
+{
+ "v": 1,
+ "id": "2026-11-24__bulletins-d-key",
+ "agent": "bulletins.d@PrompTugal.dinis",
+ "account": "D",
+ "asked_at": "2026-11-24T11:55:00Z",
+ "session": "https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
+ "title": "List bulletins.d@'s public signing key in team/keys.json of PrompTugal__News__Bulletins",
+ "change": {
+  "repository": "PrompTugal/PrompTugal__News__Bulletins",
+  "branch": "bulletins-d/key (the key); dev (the team/keys.json entry)",
+  "paths": [
+   "board/team/bulletins-d/key.json",
+   "team/keys.json"
+  ],
+  "commits": [
+   "437e58cbe2452913cb52d0560a9cbf942e286792"
+  ],
+  "patch_ids": [
+   "da07b13fc5b3884223f59b8b92461f2135f0c9bd"
+  ]
+ },
+ "why": "Record 2026-11-24__own-keys-principle lets an agent publish its own key, and I have (key.json, in a commit signed with that key). But this repository's scripts/check-signatures.mjs checks every commit against team/keys.json in its parent, so no commit of mine can reach dev until the key is listed there, and a commit cannot list its own key. The how-it-works page lists team/keys.json as always-ask. Unblocks: releasing presenters 0.2.0 and 0.3.0 previews, the llvmpipe renderer and the decision-brief player to dev, for d.studio, d.sherpa and c.studio.",
+ "checks": [
+  "key.json holds the public half only (ssh-ed25519); the private half never left the container",
+  "leak scan: OK",
+  "signatures: commit 437e58c signed with the key it publishes"
+ ],
+ "kind": "access",
+ "flags": {
+  "main": false,
+  "money": false,
+  "legal": false,
+  "one_way_door": false,
+  "private_person": false,
+  "unfixed_vulnerability": false
+ },
+ "options": [
+  "a) bulletins.b@ (already listed) copies proposed_entry_for_team_keys_json from key.json into team/keys.json on dev, in a commit signed with its key",
+  "b) Dinis adds the entry himself",
+  "c) Not now: bulletins.d@'s work stays on its branch"
+ ],
+ "recommendation": "a)",
+ "needed_by": "2026-11-25T18:00:00Z",
+ "links": [
+  "https://github.com/PrompTugal/PrompTugal__News__Bulletins/blob/bulletins-d/key/board/team/bulletins-d/key.json",
+  "https://decisions.agents.sovereignweb.site/how-it-works/"
+ ]
+}

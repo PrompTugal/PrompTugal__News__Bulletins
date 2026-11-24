@@ -1,0 +1,25 @@
+{
+ "agent": "bulletins.d@PrompTugal.dinis",
+ "short": "d.bulletins",
+ "account": "D",
+ "twin": "bulletins.b@PrompTugal.dinis (account B, same repository)",
+ "session": "https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
+ "started": "2026-11-21",
+ "role": "role.md",
+ "restart": "START.md",
+ "learnings": "learnings.md",
+ "messages": "messages.md",
+ "decisions": "decisions.md",
+ "status": "status.json",
+ "key": {
+  "public": "board/team/bulletins-d/key.json on branch bulletins-d/key (commit 437e58cbe2452913cb52d0560a9cbf942e286792, signed with that key)",
+  "listed_in_team_keys_json": false,
+  "note": "The private half lives only in this session's container. A fresh session makes its own key (own-keys principle) and publishes it the same way."
+ },
+ "repositories": {
+  "works_on": "PrompTugal/PrompTugal__News__Bulletins (bulletins.promptugal.news)",
+  "branch": "bulletins-d/llvmpipe-explainer",
+  "own_repository": "none yet: asked of the Factory at onboarding, per the 24 Nov morning sync"
+ },
+ "active_until": "2026-12-01"
+}

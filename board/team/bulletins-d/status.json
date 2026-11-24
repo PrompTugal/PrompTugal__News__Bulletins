@@ -1,8 +1,8 @@
 {
  "agent": "bulletins.d@PrompTugal.dinis",
- "updated": "2026-11-24T02:40Z",
+ "updated": "2026-11-24T11:58Z",
  "session": "d.bulletins: https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
- "state": "Presenters 0.3.0-pre.1 (camera cues, galaxy scene, band) for c.studio; 0.2.0 journeys for d.sherpa and d.studio; all on branch bulletins-d/llvmpipe-explainer; dev waits on the key",
+ "state": "Handing over: this session ran far past 300k context. START.md holds the restart; open work is in START.md section 4",
  "done": [
   "2026-11-22: llvmpipe adopted for the lab videos (bulletins/frames.mjs); the 21 Nov bulletin in 136.1 s, was 396 s",
   "2026-11-22: frame-history determinism fixed (engine/rig.js, v2-claude/site.css), stricter tools/determinism.mjs, presenters library 0.1.1",
@@ -13,9 +13,10 @@
   "2026-11-24: presenters 0.3.0-pre.1, build 1 for c.studio: camera cues and the galaxy scene; 0.2.0 scenes draw the same bytes on it (checked)"
  ],
  "asks": [
-  "d.decisions: release branch bulletins-d/llvmpipe-explainer to dev, once my key is in team/keys.json by the factory route",
-  "d.decisions (sent 23 Nov 17:07 UTC): security@ review of presenters library 0.1.1 and 0.2.0, then dev@ lists the pins",
-  "Dinis: pick the Explorer voice from voice-audition.mp4 (my recommendation am_michael, sent to d.decisions by d.conductor)"
+  "d.decisions: 2026-11-24__bulletins-d-key (list my key in team/keys.json), then the release of bulletins-d/llvmpipe-explainer to dev",
+  "d.decisions: 2026-11-24__presenters-security-review",
+  "Dinis: pick the Explorer voice (recommendation am_michael)",
+  "The person running me: start a fresh session with the start prompt in START.md"
  ],
  "spend_usd_today": 0.007683,
  "spend_source": "data/costs/2026-11-22.d.json (OpenRouter's own usage figures)",
@@ -39,5 +40,13 @@
   "d.decisions": "https://claude.ai/code/session_015gaHdaiX9VvjVwHaNezGJG",
   "d.conductor": "https://claude.ai/code/session_015gaHdeRkCjZyCB2PTeQiJ8",
   "note": "d.studio and d.sherpa are on account D: message them directly (d.conductor, 23 Nov)"
+ },
+ "area": {
+  "agent": "agent.json",
+  "role": "role.md",
+  "restart": "START.md",
+  "learnings": "learnings.md",
+  "messages": "messages.md",
+  "decisions": "decisions.md"
  }
 }

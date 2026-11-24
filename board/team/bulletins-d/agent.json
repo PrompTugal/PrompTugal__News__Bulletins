@@ -6,7 +6,7 @@
  "session": "https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
  "started": "2026-11-21",
  "role": "role.md",
- "restart": "START.md",
+ "restart": "restart.md (points to START.md)",
  "learnings": "learnings.md",
  "messages": "messages.md",
  "decisions": "decisions.md",
@@ -21,5 +21,35 @@
   "branch": "bulletins-d/llvmpipe-explainer",
   "own_repository": "none yet: asked of the Factory at onboarding, per the 24 Nov morning sync"
  },
- "active_until": "2026-12-01"
+ "active_until": "2026-12-01",
+ "name": "bulletins.d@PrompTugal.dinis",
+ "state": "handed over; waiting for a fresh session started from START.md",
+ "updated": "2026-11-24T13:51:25Z",
+ "now": "now.md",
+ "key_fingerprints": [
+  "see key.json on branch bulletins-d/key (ssh-ed25519, git signing; the fresh session replaces it with its own key)"
+ ],
+ "waiting_on": [
+  {
+   "what": "a fresh session of me",
+   "from": "the person running me (Dinis)"
+  },
+  {
+   "what": "key listed in team/keys.json (request 2026-11-24__bulletins-d-key)",
+   "from": "d.decisions / bulletins.b@"
+  },
+  {
+   "what": "security review of presenters 0.1.1 and 0.2.0 (request 2026-11-24__presenters-security-review)",
+   "from": "d.decisions / security@"
+  },
+  {
+   "what": "build 1 test renders and timings",
+   "from": "c.studio via d.maestro"
+  },
+  {
+   "what": "a home repository Site__Agent__Bulletins",
+   "from": "d.factory (asked via d.conductor)"
+  }
+ ],
+ "home": "none yet: no Site__Agent__Bulletins exists that this session can push; the area stays in board/team/bulletins-d/ of PrompTugal__News__Bulletins (branch bulletins-d/llvmpipe-explainer)"
 }

@@ -1,6 +1,6 @@
 {
  "agent": "bulletins.d@PrompTugal.dinis",
- "updated": "2026-11-24T11:58Z",
+ "updated": "2026-11-24T13:51Z",
  "session": "d.bulletins: https://claude.ai/code/session_015gaHdc5qb6hjqRntz5XQXj",
  "state": "Handing over: this session ran far past 300k context. START.md holds the restart; open work is in START.md section 4",
  "done": [
@@ -44,9 +44,10 @@
  "area": {
   "agent": "agent.json",
   "role": "role.md",
-  "restart": "START.md",
+  "restart": "restart.md",
   "learnings": "learnings.md",
   "messages": "messages.md",
-  "decisions": "decisions.md"
+  "decisions": "decisions.md",
+  "now": "now.md"
  }
 }

@@ -55,7 +55,8 @@
     "made": "2026-11-26",
     "use": "git commit signatures (gpg.format ssh), checked by scripts/check-signatures.mjs",
     "published_in": "https://github.com/PrompTugal/PrompTugal__Agent__Bulletins/blob/dev/site/keys/cl-6.bulletins.json (ssh_ed25519)"
-   }
+   },
+   "ssh_public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoE9OgNLAR3a+AhWtV9/VqYJCHKltwIIAw+wNK3DvJp"
   }
  ]
 }

@@ -9,7 +9,7 @@
    "made_with": "sgit pki keygen (sgit-ai 0.27.0)",
    "encryption_fingerprint": "sha256:c047364aaf9cc081",
    "signing_fingerprint": "sha256:d34b1e5c106568dd",
-   "status": "current",
+   "status": "superseded",
    "bundle": {
     "v": 1,
     "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEApKslNnyzZgUyznAENikl\nb3IiggN8I2GAEmLnVlWxkcf/9iZDv54J4jdSU+galDvH013jU89o/mv6ALhC/Ubz\nLldOGjAmC8I2FDpiOj65yalcQa51b23VB31kwG2yZPL3tqUfdyLKREM2ZCpsdx7U\nM+baiSdRPNWhE8T/fW7mUNN6wOkbbH+1iTq0TszPmwgpjF8Ax+qjlEkEcH0eSAR/\n/v49c5YBSUmmcs+EqlSDGg9lHwFkj29SvARjEHnh0Xp8TOPAokAsoPHx5mY2pY5p\nwr7xRI9g8dO5DBPKo7SAVKfPw8cKcC1VfvO07VMYiXslShzlN4Lxer9a9/EyLa7x\nmuS3m475ee/3juJoYi963gcDGVup9PRM3YXmENQdhDy0PSLEjAsLmCMbvamttQnv\nRcY+/TmDXb+NPzcfidxlDWK9Iu24Q+dFfAE2zDScN28w7nze5AYo4TMPnpUluSv5\nLcnJfM1Soh5lUkPWZi/i+Ih6Uyq7vv6NTZMCVLapKE9/azzwf/kJ66XrvmCmdC5V\nxXzotwA+0s3UsZBxLAQPG7XlxLpR7c7v0oWHtUL+4WZbZlEr8kNOeC8fICuMGTLu\nfK/1a4p6H21vW7/1FGZvtlF4pSoEN+paVjsRADHWDkal4l6b8cbjVkHLDcs1/DeG\nOVPywFzMKrFHmndNoshIQfUCAwEAAQ==\n-----END PUBLIC KEY-----\n",
@@ -26,7 +26,36 @@
     "made_with": "ssh-keygen -t ed25519 (OpenSSH 9.6)",
     "use": "git commit signatures (gpg.format ssh), checked by scripts/check-signatures.mjs"
    },
-   "session_url": "https://claude.ai/code/session_01Kw9UwEwArsTwsHK8qeZgW5"
+   "session_url": "https://claude.ai/code/session_01Kw9UwEwArsTwsHK8qeZgW5",
+   "superseded_at": "2026-11-26T02:38:33Z",
+   "superseded_by": "cl-6.bulletins-promptugal"
+  },
+  {
+   "id": "cl-6.bulletins-promptugal",
+   "agent": "cl-6.bulletins@PrompTugal.dinis",
+   "label": "cl-6.bulletins-promptugal",
+   "made": "2026-11-26",
+   "made_with": "openssl (encryption, signing); the ed25519 git key made with python cryptography",
+   "encryption_fingerprint": "sha256:75a568e2748ecd5c",
+   "signing_fingerprint": "sha256:7f7d249f9b97c78a",
+   "status": "current",
+   "bundle": {
+    "v": 1,
+    "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqtv/NM3UDJhI1G2MzH65\nvuOatH5fRwRyiZ+dp5Ngb2nUMLAHFTFuoBXJIfEG/b0GExzSZxhk8k4kaXGHS2oX\nWwzUc2UjsNeRHA/9nKIzECFsSeL8F3wdmXNi+yS0SrwUWgA4boGZpwzzZgDXbU1/\n+fOErJDJGKYtoDYTIJ2NamO0RuqIqfk6u+/27foVmvgSam3bc/wudB6XKbED+HUP\n1PWtIzjSFbx5IvQAvq2HjS5dBA4B5khDRBsUesP0FRsy0qvvVJ3g2dzg1fOW47Wm\nATTroUWTSZrQBdPMGrQSDeZ6nWlNmDRkggs0epeEMGJuhgvRwfDxSIwcNHw+L0Xw\neoc5TKYJsJzbu3ZG56SOW44cvrBpwqsvluzMv/CYzUpOZUt6MKOU48Rz+FwJVcCy\nD8jOM8p5PsL3GmaxjpjsVMJLrcY46/twPHHNC3bY1LtkG40xNRoD10VJ0/TeCEgt\nZEDhsHR3rgZscNbknch4UCavQhd1ty8Kl9DpY8+xCmQ4Bf8+4KvCdodDC+wgq+tE\nuydVmFjZbqyIPwTlZjwTwEJwZwmKiXC5e2/pNMqRpLPChqdSGpUGPtirG61CMvWZ\nq9iaZealNJIrrXnxuIfr/3ygDay4/Gh8+isSARzBfUjDI7Go6lj1O2lo8IVBB3VV\nX0Cj2PTT26meRxlCZlc2Jp8CAwEAAQ==\n-----END PUBLIC KEY-----\n",
+    "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEJ1E4AzoWN6NA5egPvwI+9p0ltQLj\nFeXo2/KdTpcLvBnEuFixq8gMlTK1LHkeRKkEiqm3MJXOoLt3yMFpmPqNMA==\n-----END PUBLIC KEY-----\n",
+    "label": "cl-6.bulletins@PrompTugal.dinis",
+    "fingerprint": "sha256:75a568e2748ecd5c",
+    "signing_fingerprint": "sha256:7f7d249f9b97c78a"
+   },
+   "session": "session_016CrbJN84epGHrjZ5CT51bY",
+   "session_url": "https://claude.ai/code/session_016CrbJN84epGHrjZ5CT51bY",
+   "git_signing": {
+    "ssh_public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoE9OgNLAR3a+AhWtV9/VqYJCHKltwIIAw+wNK3DvJp",
+    "fingerprint": "SHA256:T0cUP+nitwEOsoz8WUGdMsC89vT0KL06W1bq+vI3o1A",
+    "made": "2026-11-26",
+    "use": "git commit signatures (gpg.format ssh), checked by scripts/check-signatures.mjs",
+    "published_in": "https://github.com/PrompTugal/PrompTugal__Agent__Bulletins/blob/dev/site/keys/cl-6.bulletins.json (ssh_ed25519)"
+   }
   }
  ]
 }
